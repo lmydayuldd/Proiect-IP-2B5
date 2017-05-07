@@ -1,8 +1,20 @@
 package modul3;
 
-public interface PathFinder {
+public abstract class PathFinder {
 
+  Matrix matrix;
+
+    public PathFinder() {
+        
+    }
   
-  public void execute(Cell a, Cell b);
+  public void setPathFinder()
+  {
+      
+  }
+  
+  public abstract void execute(Cell a, Cell b);
+  
+  
 
 }
