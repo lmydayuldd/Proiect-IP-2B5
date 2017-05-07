@@ -17,6 +17,15 @@ public class Matrix {
   public Matrix() {
       
       pathFinder = new SimplePath();
+      
+      /**
+       * This is a matrix of cells, representing the building.
+       * The first dimension of the 3D table represents the floor
+       * The last two dimensions represent the coordinates of the cell in the floor
+       * Each floor is mapped in a Cartesian system xOy.
+       * matrix[k][i][j] represents the cell located at floor k
+       *    with coordinates (i, j).
+       */
       Cell[][][] matrix = new Cell[LEVEL_COUNT][DIMENSION][DIMENSION];
   }
   

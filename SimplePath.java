@@ -1,6 +1,6 @@
 package modul3;
 
-public class SimplePath implements PathFinder {
+public class SimplePath extends PathFinder {
 
     @Override
     public void execute(Cell a, Cell b) {

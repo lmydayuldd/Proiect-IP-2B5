@@ -1,6 +1,6 @@
 package modul3;
 
-public class MinTimePath implements PathFinder {
+public class MinTimePath extends PathFinder {
 
     @Override
     public void execute(Cell a, Cell b) {

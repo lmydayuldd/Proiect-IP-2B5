@@ -1,7 +1,7 @@
 package modul3;
 
 
-public class MinDistancePath implements PathFinder {
+public class MinDistancePath extends PathFinder {
 
     @Override
     public void execute(Cell a, Cell b) {
