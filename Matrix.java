@@ -19,6 +19,7 @@ public class Matrix {
       pathFinder = new SimplePath();
       
       /**
+       * asdf
        * This is a matrix of cells, representing the building.
        * The first dimension of the 3D table represents the floor
        * The last two dimensions represent the coordinates of the cell in the floor
