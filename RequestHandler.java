@@ -4,42 +4,41 @@ import java.util.Vector;
 
 
 /**
- * 
  * This class recieves requests from user and sends them to the Controller (Engine class)
- * 
+ *
  * @author Juve45
  */
 
 
 public class RequestHandler {
 
-    public Vector  myEngine;
-  
-  public void addWall() {
-  }
+    public Vector myEngine;
 
-  public void removeWall() {
-  }
+    public void addWall() {
+    }
 
-  public void addDoor() {
-  }
+    public void removeWall() {
+    }
 
-  public void removeDoor() {
-  }
+    public void addDoor() {
+    }
 
-  public void addWindow() {
-  }
+    public void removeDoor() {
+    }
 
-  public void removeWindow() {
-  }
+    public void addWindow() {
+    }
 
-  public void deleteName() {
-  }
+    public void removeWindow() {
+    }
 
-  public void rename() {
-  }
+    public void deleteName() {
+    }
 
-  public void sendBuild() {
-  }
+    public void rename() {
+    }
+
+    public void sendBuild() {
+    }
 
 }
