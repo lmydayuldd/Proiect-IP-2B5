@@ -1,14 +1,102 @@
-<md-tab-group>
-  <md-tab label="Create">Formular</md-tab>
-  <md-tab label="Modify">Content 2</md-tab>
-  <md-tab label="Projects">Content 2</md-tab>
-</md-tab-group>
+    <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-brand-centered">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a href="#" class="navbar-brand navbar-brand-centered" id="brand">FORM</a>
+            </div>
 
-<md-card-content>
-  <p>Mare content</p>
-</md-card-content>
+            <div class="collapse navbar-collapse" id="navbar-brand-centered">
+              <ul class="nav navbar-nav navbar-left">
+                <li><a href="#"><span class="glyphicon glyphicon-pencil" title="Search Tag"> Eventuale_butoane </span></a></li>
 
-<div>
-  <button md-raised-button>Temporary Save</button>
-  <button md-raised-button>End Editing</button>
-</div>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-briefcase" title="About Us"> Eventuale_butoane </span></a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+    <br>
+
+    <div class="container">
+        <div class="row">
+            <div class = "page-header">
+
+            <h1>
+              <small>Add element</small>
+            </h1>
+
+        </div>
+        <br>
+    </div>
+    <br><br>
+    <div class="row" style="height: 520px;">
+        <div class="col-xs-12">
+            <form name="myForm" action="save.html" onsubmit="return validateForm()" method="post" accept-charset="utf-8" class="form">
+                <div class="row">
+                    <div class="col-xs-4">
+                            <select name="element" class = "form-control input-lg">
+                                <option value="0">The element you want to add</option>
+                                <option value="Room"> Room </option>
+                                <option value="Door"> Door </option>
+                                <option value="Stairs"> Stairs </option>
+                            </select>
+                    </div><br>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-md-6">
+                        <input type="number" name="x1" value="" class="form-control input-lg" placeholder="X1"  />                        
+                    </div>
+                    <div class="col-xs-6 col-md-6">
+                        <input type="number" name="y1" value="" class="form-control input-lg" placeholder="Y1"  />                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-md-6">
+                        <input type="number" name="x2" value="" class="form-control input-lg" placeholder="X2"  />                        
+                    </div>
+                    <div class="col-xs-6 col-md-6">
+                        <input type="number" name="y2" value="" class="form-control input-lg" placeholder="Y2"  />                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4">
+                            <select name="floor" class = "form-control input-lg">
+                                <option value="-1"> Select floor</option>
+                                <option value="0"> Ground floor </option>
+                                <option value="1"> 1 </option>
+                                <option value="2"> 2 </option>
+                                <option value="3"> 3 </option>
+                                <option value="4"> 4 </option>
+                                <option value="5"> 5 </option>
+                                <option value="6"> 6 </option>
+                                <option value="7"> 7 </option>
+                                <option value="8"> 8 </option>
+                                <option value="9"> 9 </option>
+                                <option value="10"> 10 </option>
+                            </select>
+                    </div><br>
+                </div>    
+                <br>
+                <br/>
+
+                <button class="btn btn-primary col-xs-4 " type="submit" style="margin-right: 10px;"> Temporarily save </button>
+                <button class="btn btn-success col-xs-4 " type="submit"> Save this element </button>
+            </form>
+            <br><br><br>
+        </div>
+      </div>
+    </div>
+     <br>
+     <br>
+     <br>
+
+
+
+   

@@ -11,7 +11,5 @@
 		- Angular Material - "npm install @angular/material".
 		- Angular Animations - "npm install @angular/animations".
 		- HammerJS - "npm install hammerjs".
-    - Bootstrap - "npm install bootstrap@4.0.0-alpha.6"
-                - "npm install --save @ng-bootstrap/ng-bootstrap"
 	4. Porniti serverul utilizand comanda "ng serve" in directorul "BuildingRepresentation".
 	5. Deschideti un browser si adaugati urmatorul url: "http://localhost:4200/".

@@ -6,11 +6,52 @@
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="../node_modules/@angular/material/prebuilt-themes/indigo-pink.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="icon" type="images/png" href="images/favicon.ico">
+
+  <script>
+        function validateForm() {
+            var element = document.forms["myForm"]["element"].value;
+                if (element == "0") {
+                    alert("You must choose an element to add");
+                    return false;
+                }
+            var x1 = document.forms["myForm"]["x1"].value;
+                if (x1 == "") {
+                    alert("X1 value must be filled out");
+                    return false;
+                }
+            var y1 = document.forms["myForm"]["y1"].value;
+                if (y1 == "") {
+                    alert("Y1 value must be filled out");
+                    return false;
+                }
+            var x2 = document.forms["myForm"]["x2"].value;
+                if (x2 == "") {
+                    alert("X2 value must be filled out");
+                    return false;
+                }
+            var y2 = document.forms["myForm"]["y2"].value;
+                if (y2 == "") {
+                    alert("Y2 value must be filled out");
+                    return false;
+                }
+            var floor = document.forms["myForm"]["floor"].value;
+                if (floor == "-1") {
+                    alert("You must choose a floor");
+                    return false;
+                }
+        }
+    </script>
+    
+
 </head>
 <body>
   <app-root>Loading...</app-root>
+  
 </body>
 </html>
