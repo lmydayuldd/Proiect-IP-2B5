@@ -17,5 +17,4 @@ public interface DatabaseService {
     // functionality
     void addData(TemporaryData data) throws Exception;
     void deleteData(TemporaryData data) throws Exception;
-
 }

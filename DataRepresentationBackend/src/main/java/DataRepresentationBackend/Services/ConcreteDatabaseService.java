@@ -12,25 +12,10 @@ import java.sql.*;
  */
 @Service
 public class ConcreteDatabaseService implements DatabaseService {
-    private Connection connection = null;
-
-    public ConcreteDatabaseService() {
-        try {
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "DATA_REPRESENTATION", "DATA_REPRESENTATION");
-            System.out.println("================================");
-            System.out.println(">>CONNECTED TO ORACLE DATABASE<<");
-            System.out.println("================================");
-        } catch (ClassNotFoundException e) {
-            System.err.println("Fatal Error: " + e.getMessage());
-        } catch (SQLException e) {
-            System.err.println("Database Error: " + e.getMessage());
-        }
-    }
 
     public void commit() {
         try {
-            connection.commit();
+            DatabaseConnection.getConnection().commit();
         } catch (SQLException ex) {
             System.err.println("Error at saving changes.");
         }
@@ -38,18 +23,18 @@ public class ConcreteDatabaseService implements DatabaseService {
 
     public int test() {
         try {
-            Statement statement = connection.createStatement();
+            Statement statement = DatabaseConnection.getConnection().createStatement();
             ResultSet resultSet = statement.executeQuery("select count(*) from test");
             resultSet.next();
             return resultSet.getInt(1);
         } catch (Exception ex) {
-            System.err.println("Error at generating test querry: " + ex.getMessage());
+            System.err.println("Error at generating test query: " + ex.getMessage());
         }
         return -1;
     }
 
     public void addData(TemporaryData data) throws Exception {
-        PreparedStatement statement = connection.prepareStatement("insert into TEMPORARY_DATA(elementType, x1, y1, x2, y2, floor, room, isExitWay) values(?,?,?,?,?,?,?,?)");
+        PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement("insert into TEMPORARY_DATA(elementType, x1, y1, x2, y2, floor, room, isExitWay) values(?,?,?,?,?,?,?,?)");
         statement.setString(1, data.elementType);
         statement.setInt(2, data.x1);
         statement.setInt(3, data.y1);
@@ -63,7 +48,7 @@ public class ConcreteDatabaseService implements DatabaseService {
     }
 
     public void deleteData(TemporaryData data) throws Exception {
-        PreparedStatement statementCheck = connection.prepareStatement( "select count(*) FROM TEMPORARY_DATA WHERE elementType =? and x1 = ? and y1 = ? and x2=? and y2 = ? and floor = ? and room = ? and isExitWay = ?");
+        PreparedStatement statementCheck = DatabaseConnection.getConnection().prepareStatement("select count(*) FROM TEMPORARY_DATA WHERE elementType =? and x1 = ? and y1 = ? and x2=? and y2 = ? and floor = ? and room = ? and isExitWay = ?");
         statementCheck.setString(1, data.elementType);
         statementCheck.setInt(2, data.x1);
         statementCheck.setInt(3, data.y1);
@@ -76,14 +61,13 @@ public class ConcreteDatabaseService implements DatabaseService {
         ResultSet resultSet = statementCheck.executeQuery();
         resultSet.next();
         int response = resultSet.getInt(1);
-        if(response < 1) {
+        if (response < 1) {
             throw new OperationNotSupportedException("No data to delete.");
-        }
-        else if(response > 1) {
+        } else if (response > 1) {
             throw new OperationNotSupportedException("Multiple deletion operation.");
         }
 
-        PreparedStatement statement = connection.prepareStatement("delete from TEMPORARY_DATA WHERE elementType = ? and x1 = ? and y1 = ? and x2=? and y2 = ? and floor = ? and room = ? and isExitWay = ?");
+        PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement("delete from TEMPORARY_DATA WHERE elementType = ? and x1 = ? and y1 = ? and x2=? and y2 = ? and floor = ? and room = ? and isExitWay = ?");
         statement.setString(1, data.elementType);
         statement.setInt(2, data.x1);
         statement.setInt(3, data.y1);
