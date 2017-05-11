@@ -35,14 +35,7 @@ public class RoomTest {
      */
     @Test
     public void testEquals() {
-        System.out.println("equals");
-        Object o = null;
-        Room instance = null;
-        boolean expResult = false;
-        boolean result = instance.equals(o);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -50,12 +43,7 @@ public class RoomTest {
      */
     @Test
     public void testAddWall() throws Exception {
-        System.out.println("addWall");
-        Wall w = null;
-        Room instance = null;
-        instance.addWall(w);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -63,11 +51,7 @@ public class RoomTest {
      */
     @Test
     public void testDeleteWall() throws Exception {
-        System.out.println("deleteWall");
-        Room instance = null;
-        instance.deleteWall();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       
     }
 
     /**
@@ -75,13 +59,7 @@ public class RoomTest {
      */
     @Test
     public void testToString() {
-        System.out.println("toString");
-        Room instance = null;
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       
     }
 
     /**
@@ -89,13 +67,7 @@ public class RoomTest {
      */
     @Test
     public void testGetWalls() {
-        System.out.println("getWalls");
-        Room instance = null;
-        ArrayList<Wall> expResult = null;
-        ArrayList<Wall> result = instance.getWalls();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -103,12 +75,7 @@ public class RoomTest {
      */
     @Test
     public void testSetWalls() {
-        System.out.println("setWalls");
-        ArrayList<Wall> walls = null;
-        Room instance = null;
-        instance.setWalls(walls);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -182,13 +149,7 @@ public class RoomTest {
      */
     @Test
     public void testToPath2D() {
-        System.out.println("toPath2D");
-        Room room = null;
-        Path2D expResult = null;
-        Path2D result = Room.toPath2D(room);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
     
 }
