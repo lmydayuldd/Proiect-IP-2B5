@@ -5,6 +5,8 @@
  */
 package Representations;
 
+import java.awt.geom.Line2D;
+
 /**
  *
  * @author Procop Vladimir
@@ -64,6 +66,10 @@ public class Wall {
     
     @Override
     public String toString(){
-        return ("Wall: Left " + this.leftPoint + " ; Right " + this.rightPoint);
+        return ("Wall: lpoint(" + this.leftPoint.toString().substring(7) + "), rpoint(" + this.rightPoint.toString().substring(7)+")");
+    }
+    
+    public static Line2D toLine2D(Wall wall){
+        return (new Line2D.Double(wall.leftPoint.getX(), wall.leftPoint.getY(), wall.rightPoint.getX(), wall.rightPoint.getY()));
     }
 }

@@ -5,6 +5,16 @@
  */
 package datarepresentation;
 
+import CustomExceptions.DataNotValidException;
+import Representations.Door;
+import Representations.Floor;
+import Representations.Point;
+import Representations.Room;
+import Representations.Wall;
+import java.awt.geom.Area;
+import java.awt.geom.Path2D;
+import java.util.ArrayList;
+
 /**
  *
  * @author Procop Vladimir
@@ -14,8 +24,7 @@ public class DataRepresentation {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        
+    public static void main(String[] args) throws DataNotValidException {
+                
     }
-    
 }

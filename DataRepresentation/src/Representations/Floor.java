@@ -6,6 +6,9 @@
 package Representations;
 
 import CustomExceptions.DataNotValidException;
+import java.awt.geom.Area;
+import java.awt.geom.Path2D;
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 /**
@@ -43,7 +46,7 @@ public class Floor extends Element {
     }
     
     public void addRoom(Room r) throws DataNotValidException{/**Add room to this floor's rooms*/
-        //E un algoritm mai complex , ramane de implementat. Trebuie vazut daca se poate adauga peretele asta la camera
+        this.rooms.add(r);
     }
     
     public void deleteRoom()throws DataNotValidException{/**Delete a room from this floor*/
@@ -75,7 +78,31 @@ public class Floor extends Element {
         this.rooms = room;
     }
     
-    static boolean validate(Room room){
-        return false;
+    public static boolean validate(Floor floor) throws DataNotValidException{
+        Path2D room1AsPath = null;
+        Path2D room2AsPath = null;
+        Area room1AsArea = null;
+        Area room2AsArea = null;
+        Area room2Temp = null;
+        
+        for(int i = 0 ; i < floor.rooms.size()-1; i++){
+            
+            Room.validate(floor.rooms.get(i));
+                                 
+            room1AsPath = Room.toPath2D(floor.rooms.get(i));
+            room1AsArea = new Area(room1AsPath);
+            for(int j = i+1  ; j  < floor.rooms.size(); j++){
+                room2AsPath = Room.toPath2D(floor.rooms.get(j));
+                room2AsArea = new Area(room2AsPath);
+                room2Temp = new Area(room1AsPath);
+                room2Temp.intersect(room2AsArea);
+                if(!room2Temp.isEmpty()){
+                    throw new DataNotValidException("Rooms [" + floor.rooms.get(i) + "]  AND  [" + floor.rooms.get(j) + "] overlap");
+                }
+            }
+        }        
+        
+        Room.validate(floor.rooms.get(floor.rooms.size()-1));
+        return true;
     }
 }
