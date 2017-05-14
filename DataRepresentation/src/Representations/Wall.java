@@ -14,6 +14,9 @@ import java.awt.geom.Line2D;
 public class Wall {
     protected Point leftPoint = null;
     protected Point rightPoint = null;
+    protected int floorNumber;
+    protected int roomNumber;
+    protected boolean isExterior;
     
     public Wall(){/**Construct wall which is or isn't an exit-way*/
     }
@@ -61,7 +64,7 @@ public class Wall {
         if(o == null) return false;
         if(!(o instanceof Wall)) return false;
         Wall w = (Wall)o;
-        return (this.leftPoint.equals(w.leftPoint)) && (this.rightPoint.equals(w.rightPoint));
+        return (this.leftPoint.equals(w.leftPoint)) && (this.rightPoint.equals(w.rightPoint) &&(w.getFloorNumber()==this.getFloorNumber()) && (this.getRoomNumber() == w.getRoomNumber()) );
     }
     
     @Override
@@ -71,5 +74,29 @@ public class Wall {
     
     public static Line2D toLine2D(Wall wall){
         return (new Line2D.Double(wall.leftPoint.getX(), wall.leftPoint.getY(), wall.rightPoint.getX(), wall.rightPoint.getY()));
+    }
+
+    public int getFloorNumber() {
+        return floorNumber;
+    }
+
+    public void setFloorNumber(int floorNumber) {
+        this.floorNumber = floorNumber;
+    }
+
+    public int getRoomNumber() {
+        return roomNumber;
+    }
+
+    public void setRoomNumber(int roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
+    public boolean isIsExterior() {
+        return isExterior;
+    }
+
+    public void setIsExterior(boolean isExterior) {
+        this.isExterior = isExterior;
     }
 }

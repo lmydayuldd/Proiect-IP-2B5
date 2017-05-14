@@ -17,9 +17,11 @@ import java.util.ArrayList;
 public class Room extends Element{
 
     private ArrayList<Wall> walls = new ArrayList<>();
-    String name;
-    public Room(String name){/**Construct a room with a name*/
-        this.name = name;
+    private int roomNumber;
+    private int floorNumber;
+    
+    public Room(int number){/**Construct a room with a name*/
+        this.roomNumber = number;
     }
     public Room(ArrayList<Wall> walls){
         this.walls = walls;
@@ -43,22 +45,25 @@ public class Room extends Element{
         return true;
     }
     
-    public void addWall(Wall w) throws DataNotValidException{/**Add a wall to this room*/
-        //...
+    public void addWall(Wall wall) throws DataNotValidException{/**Add a wall to this room*/
+        if(wall.getFloorNumber()!=this.getFloorNumber()){
+            throw new DataNotValidException("Tried to insert into [" + this.toString() + "] a wall from different floor !");
+        }
+        this.walls.add(wall);
     }
     
-    public void deleteWall()throws DataNotValidException{/**Delete a wall from this room*/
-        //...
+    public void deleteWall(Wall wall)throws DataNotValidException{/**Delete a wall from this room*/
+        this.walls.remove(wall);
     }
     
     @Override
     public String toString(){
-        String ans = "Room " + this.name + " : "; int i = 0;
+        String ans = "Room " + this.getRoomNumber() + " : "; int i = 0;
         for(i = 0; i < walls.size()-1; i++){
             ans = ans +  i + " -> "  + walls.get(i).toString() + " , ";
         }
         ans = ans + i + " -> " + walls.get(walls.size()-1).toString();
-        return ans;
+        return ans + ". Floor: " + this.floorNumber;
     }
     
     public ArrayList<Wall> getWalls() {/**Returns the room's walls*/
@@ -89,9 +94,7 @@ public class Room extends Element{
             }
             for(int j = i+1; j < walls.size(); j++){
                 if(walls.get(i).equals(walls.get(j))){
-                    walls.remove(j);
-                    j--;
-                    continue;
+                    throw new DataNotValidException("Peretele " + walls.get(i) + " a fost specificat de doua ori");
                 }
                 if(oneCommonExtremity(walls.get(i), walls.get(j))){
                     neighbors[i]++; 
@@ -108,7 +111,7 @@ public class Room extends Element{
                 if(neighbors[k]!=2) {
                         throw new DataNotValidException("["+walls.get(k)+"]" + " are " + neighbors[k] + " vecini, nu 2 ");
                 }    
-            }
+        }
         
         if(walls.get(walls.size()-1) instanceof Door){
             door = true;
@@ -118,24 +121,18 @@ public class Room extends Element{
             }
         
         if(!door) {
-            throw new DataNotValidException("In camera .. .. .. . !!!! nu exista usa");
+            throw new DataNotValidException("In camera " + walls.get(0).getRoomNumber() + " nu exista usa");
         }
         return true;
     }
-    private static boolean firstQuadrant(Wall wall1) {
+    public static boolean firstQuadrant(Wall wall1) {
         return ((wall1.leftPoint.getX()>=0) && (wall1.leftPoint.getY()>=0) && (wall1.rightPoint.getX()>=0) && (wall1.rightPoint.getY()>=0));
     }
-    private static boolean oneCommonExtremity(Wall w1, Wall w2) {
+    public static boolean oneCommonExtremity(Wall w1, Wall w2) {
         return ( w1.leftPoint.equals(w2.leftPoint) || (w1.leftPoint.equals(w2.rightPoint)) || 
                 (w1.rightPoint.equals(w2.leftPoint)) || (w1.rightPoint.equals(w2.rightPoint)) );
     }
-    private static boolean intersect(Wall w1, Wall w2) {
-//        double m1 = slope(w1); 
-//        double m2 = slope(w2);
-//               
-//        double intersectionX = (m1*m2*w1.leftPoint.getX() - m2*(w1.leftPoint.getY()-w2.leftPoint.getY()) - w2.leftPoint.getX())/(m1*m2-1);
-//        double intersectionY =
-
+    public static boolean intersect(Wall w1, Wall w2) {
           Line2D w1Line = new Line2D.Float(w1.leftPoint.getX(), w1.leftPoint.getY(), w1.rightPoint.getX(), w1.rightPoint.getY());
           Line2D w2Line = new Line2D.Float(w2.leftPoint.getX(), w2.leftPoint.getY(), w2.rightPoint.getX(), w2.rightPoint.getY());;
           return (w1Line.intersectsLine(w2Line));
@@ -151,5 +148,32 @@ public class Room extends Element{
             path.append(Wall.toLine2D(room.walls.get(i)), true);
         }
         return path;
+    }
+
+    public ArrayList<Wall> getExteriorWalls(){
+        ArrayList<Wall> exteriorWalls = new ArrayList<>();
+        for(int i = 0; i < walls.size(); i++){
+            if(walls.get(i).isIsExterior()){
+                exteriorWalls.add(walls.get(i));
+            }
+        }
+        
+        return exteriorWalls;
+    }
+    
+    public int getRoomNumber() {
+        return roomNumber;
+    }
+
+    public void setRoomNumber(int roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
+    public int getFloorNumber() {
+        return floorNumber;
+    }
+
+    public void setFloorNumber(int floorNumber) {
+        this.floorNumber = floorNumber;
     }
 }
