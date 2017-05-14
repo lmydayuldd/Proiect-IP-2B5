@@ -7,128 +7,96 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="#" class="navbar-brand navbar-brand-centered" id="brand">FORM</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="navbar-brand-centered">
-      <ul class="nav navbar-nav navbar-left">
-        <li><a href="#"><span class="glyphicon glyphicon-pencil" title="Search Tag"> Eventuale_butoane </span></a></li>
-
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-briefcase" title="About Us"> Eventuale_butoane </span></a></li>
-      </ul>
+      <a href="#" class="navbar-brand navbar-brand-left" id="brand">BUILDING FORM</a>
     </div>
   </div>
 </nav>
-
 <br>
 
-<div class="container">
+<div class="container" id="mainDiv">
   <div class="row">
-    <div class="page-header">
-
-      <h1>
-        <small>Add element</small>
-      </h1>
-
-    </div>
-    <br>
-  </div>
-  <br><br>
-  <div class="row" style="height: 520px;">
-    <div class="col-xs-12">
-      <form name="myForm" accept-charset="utf-8"
-            class="form">
-        <div class="row">
-          <div class="col-xs-4">
-            <select name="element" #element class="form-control input-lg">
-              <option value="0">The element you want to add</option>
-              <option value="Room"> Room</option>
-              <option value="Door"> Door</option>
-              <option value="Stairs"> Stairs</option>
-            </select>
-          </div>
-          <br>
+    <div class="col-xs-12 col-md-12">
+      <div class="page-header" style="margin-left: 15px; margin-top: 60px;">
+        <h1>
+          <small>Add an element</small>
+        </h1>
+      </div>
+      <form name="myForm" accept-charset="utf-8" class="form">
+        <div class="form-group col-xs-4 col-md-4">
+          <label for="element">Choose the element you want to add</label>
+          <select name="element" id="element" #element class="form-control input-lg">
+            <option value="Room"> Room</option>
+            <option value="Door"> Door</option>
+            <option value="Stairs"> Stairs</option>
+          </select>
         </div>
-        <div class="row">
-          <div class="col-xs-4">
-            <select name="isExitWay" #isExitWay class="form-control input-lg">
-              <option value="">Is exit Way</option>
-              <option value="0">No</option>
-              <option value="1">Yes</option>
-            </select>
-          </div>
-          <br>
+        <div class="form-group col-xs-4 col-md-4">
+          <label for="isExitWay">Does that element lead to exit?</label>
+          <select name="isExitWay" id="isExitWay" #isExitWay class="form-control input-lg">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
         </div>
-        <div class="row">
-          <div class="col-xs-4">
-            <select name="isExterior" #isExterior class="form-control input-lg">
-              <option value="">Is exterior</option>
-              <option value="0">No</option>
-              <option value="1">Yes</option>
-            </select>
-          </div>
-          <br>
+        <div class="form-group col-xs-4 col-md-4">
+          <label for="isExterior">Does it belong to the outer side?</label>
+          <select name="isExterior" id="isExterior" #isExterior class="form-control input-lg">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
         </div>
-        <div class="row">
-          <div class="col-xs-6 col-md-6">
-            <input #x1 type="number" name="x1" value="" class="form-control input-lg" placeholder="X1"/>
-          </div>
-          <div class="col-xs-6 col-md-6">
-            <input #y1 type="number" name="y1" value="" class="form-control input-lg" placeholder="Y1"/>
-          </div>
+        <div class="form-group col-xs-6 col-md-6">
+          <label for="x1">Left lower x coordinate </label>
+          <input #x1 type="number" name="x1" value="" id="x1" class="form-control input-lg" placeholder="x1"/>
         </div>
-        <div class="row">
-          <div class="col-xs-6 col-md-6">
-            <input #x2 type="number" name="x2" value="" class="form-control input-lg" placeholder="X2"/>
-          </div>
-          <div class="col-xs-6 col-md-6">
-            <input #y2 type="number" name="y2" value="" class="form-control input-lg" placeholder="Y2"/>
-          </div>
+        <div class="form-group col-xs-6 col-md-6">
+          <label for="y1">Left lower y coordinate </label>
+          <input #x1 type="number" name="x1" value="" id="y1" class="form-control input-lg" placeholder="y1"/>
         </div>
-        <div class="row">
-          <div class="col-xs-6 col-md-6">
-            <input #room name="room" value="" class="form-control input-lg" placeholder="room"/>
-          </div>
+        <div class="form-group col-xs-6 col-md-6">
+          <label for="x2">Right upper x coordinate </label>
+          <input #x1 type="number" name="x2" value="" id="x2" class="form-control input-lg" placeholder="x2"/>
         </div>
-        <div class="row">
-          <div class="col-xs-4">
-            <select name="floor" #floor class="form-control input-lg">
-              <option value="-1"> Select floor</option>
-              <option value="0"> Ground floor</option>
-              <option value="1"> 1</option>
-              <option value="2"> 2</option>
-              <option value="3"> 3</option>
-              <option value="4"> 4</option>
-              <option value="5"> 5</option>
-              <option value="6"> 6</option>
-              <option value="7"> 7</option>
-              <option value="8"> 8</option>
-              <option value="9"> 9</option>
-              <option value="10"> 10</option>
-            </select>
-          </div>
-          <br>
+        <div class="form-group col-xs-6 col-md-6">
+          <label for="y2">Right upper y coordinate </label>
+          <input #x1 type="number" name="y2" value="" id="y2" class="form-control input-lg" placeholder="y2"/>
         </div>
-        <br>
-        <br/>
-
-        <button class="btn btn-success col-xs-4 " type="submit"
-                (click)="onSaveElementClick(element.value, x1.value, y1.value, x2.value, y2.value, floor.value, room.value, isExitWay.value, isExterior.value)">
-          Save this element
-        </button>
-        <button class="btn btn-primary col-xs-4 " type="submit" style="margin-right: 10px;"
-                (click)="onTemporarySaveDataClick()"> Temporarily save
-        </button>
+        <div class="form-group col-xs-6 col-md-6">
+          <label for="room">Room this element belongs to </label>
+          <input #room name="room" id="room" value="" class="form-control input-lg" placeholder="ex: 112, 412"/>
+        </div>
+        <div class="form-group col-xs-6 col-md-6">
+          <label for="floor">Choose floor </label>
+          <select name="floor" id="floor" #floor class="form-control input-lg">
+            <option value="0"> Ground floor</option>
+            <option value="1"> 1</option>
+            <option value="2"> 2</option>
+            <option value="3"> 3</option>
+            <option value="4"> 4</option>
+            <option value="5"> 5</option>
+            <option value="6"> 6</option>
+            <option value="7"> 7</option>
+            <option value="8"> 8</option>
+            <option value="9"> 9</option>
+            <option value="10"> 10</option>
+          </select>
+        </div>
+        <div class="btn-group col-md-12" role="group" aria-label="Actions" style="margin-top: 30px;">
+          <button class="btn btn-primary" id="saveElement" type="submit"
+                  (click)="onSaveElementClick(element.value, x1.value, y1.value, x2.value, y2.value, floor.value, room.value, isExitWay.value, isExterior.value)">
+            Save this element
+          </button>
+          <button class="btn btn-success" id="saveBuilding" type="submit"
+                  (click)="onTemporarySaveDataClick()"> Save Building
+          </button>
+        </div>
       </form>
-      <br><br><br>
     </div>
   </div>
+  <br>
+  <br>
+  <br>
+
 </div>
-<br>
-<br>
-<br>
 
 
 

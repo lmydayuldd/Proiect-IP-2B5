@@ -7,8 +7,8 @@ import {AppComponent} from './app.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {ErrorComponent} from './error/error.component';
 import {MaterialModule} from '@angular/material';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {mainRouter} from "./app-router";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {mainRouter} from './app-router';
 import 'hammerjs';
 import {PopupComponent} from './popup/popup.component';
 
@@ -24,7 +24,7 @@ import {PopupComponent} from './popup/popup.component';
     FormsModule,
     HttpModule,
     mainRouter,
-    MaterialModule.forRoot(),
+    MaterialModule,
     BrowserAnimationsModule,
   ],
   entryComponents: [PopupComponent],
