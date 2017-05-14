@@ -34,7 +34,7 @@ public class ConcreteDatabaseService implements DatabaseService {
     }
 
     public void addData(TemporaryData data) throws Exception {
-        PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement("insert into TEMPORARY_DATA(elementType, x1, y1, x2, y2, floor, room, isExitWay) values(?,?,?,?,?,?,?,?)");
+        PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement("insert into TEMPORARY_DATA(elementType, x1, y1, x2, y2, floor, room, isExitWay, isExterior) values(?,?,?,?,?,?,?,?,?)");
         statement.setString(1, data.elementType);
         statement.setInt(2, data.x1);
         statement.setInt(3, data.y1);
@@ -43,12 +43,12 @@ public class ConcreteDatabaseService implements DatabaseService {
         statement.setInt(6, data.floor);
         statement.setString(7, data.room);
         statement.setInt(8, data.isExitWay);
-
+        statement.setInt(9, data.isExterior);
         statement.executeUpdate();
     }
 
     public void deleteData(TemporaryData data) throws Exception {
-        PreparedStatement statementCheck = DatabaseConnection.getConnection().prepareStatement("select count(*) FROM TEMPORARY_DATA WHERE elementType =? and x1 = ? and y1 = ? and x2=? and y2 = ? and floor = ? and room = ? and isExitWay = ?");
+        PreparedStatement statementCheck = DatabaseConnection.getConnection().prepareStatement("select count(*) FROM TEMPORARY_DATA WHERE elementType =? and x1 = ? and y1 = ? and x2=? and y2 = ? and floor = ? and room = ? and isExitWay = ? and isExterior = ?");
         statementCheck.setString(1, data.elementType);
         statementCheck.setInt(2, data.x1);
         statementCheck.setInt(3, data.y1);
@@ -57,7 +57,7 @@ public class ConcreteDatabaseService implements DatabaseService {
         statementCheck.setInt(6, data.floor);
         statementCheck.setString(7, data.room);
         statementCheck.setInt(8, data.isExitWay);
-
+        statementCheck.setInt(9, data.isExterior);
         ResultSet resultSet = statementCheck.executeQuery();
         resultSet.next();
         int response = resultSet.getInt(1);
@@ -67,7 +67,7 @@ public class ConcreteDatabaseService implements DatabaseService {
             throw new OperationNotSupportedException("Multiple deletion operation.");
         }
 
-        PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement("delete from TEMPORARY_DATA WHERE elementType = ? and x1 = ? and y1 = ? and x2=? and y2 = ? and floor = ? and room = ? and isExitWay = ?");
+        PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement("delete from TEMPORARY_DATA WHERE elementType = ? and x1 = ? and y1 = ? and x2=? and y2 = ? and floor = ? and room = ? and isExitWay = ? and isExterior = ?");
         statement.setString(1, data.elementType);
         statement.setInt(2, data.x1);
         statement.setInt(3, data.y1);
@@ -76,7 +76,7 @@ public class ConcreteDatabaseService implements DatabaseService {
         statement.setInt(6, data.floor);
         statement.setString(7, data.room);
         statement.setInt(8, data.isExitWay);
-
+        statement.setInt(9, data.isExterior);
         statement.executeUpdate();
     }
 }

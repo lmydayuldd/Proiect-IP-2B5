@@ -9,7 +9,8 @@ CREATE TABLE TEMPORARY_DATA (
   y2 number NOT NULL,
   floor number NOT NULL,
   room varchar(100) NOT NULL,
-  isExitWay integer
+  isExitWay integer,
+  isExterior integer
 );
 /
 DROP SEQUENCE TEMPORARY_DATA_ID;

@@ -8,7 +8,7 @@ import java.io.Serializable;
  */
 public class TemporaryData {
     public String elementType, room;
-    public Integer x1, y1, x2, y2, floor, isExitWay;
+    public Integer x1, y1, x2, y2, floor, isExitWay, isExterior;
 
     public String getElementType() {
         return elementType;
@@ -72,5 +72,13 @@ public class TemporaryData {
 
     public void setIsExitWay(Integer isExitWay) {
         this.isExitWay = isExitWay;
+    }
+
+    public Integer getIsExterior() {
+        return isExterior;
+    }
+
+    public void setIsExterior(Integer isExterior) {
+        this.isExterior = isExterior;
     }
 }
