@@ -17,7 +17,7 @@ export class DashboardComponent {
   }
 
   onTemporarySaveDataClick() {
-    this.dialog.open(PopupComponent, {width: '500px', height: '500px'});
+    this.dialog.open(PopupComponent, {width: '400px', height: '200px'});
   }
 
   // button element
@@ -27,16 +27,8 @@ export class DashboardComponent {
   }
 
   validateElements(element: any, x1: any, y1: any, x2: any, y2: any, floor: any, room: any, isExitWay: any, isExterior: any) {
-    if (element == "0") {
-      this.snackBar.open("You must choose an element to add.", "", {duration: 2000});
-      return false;
-    }
-    if (floor == "-1") {
-      this.snackBar.open("You must choose a floor.", "", {duration: 2000});
-      return false;
-    }
     if (room == "") {
-      this.snackBar.open("You must give a name to a room.", "", {duration: 2000});
+      this.snackBar.open("A room must be named.", "", {duration: 2000});
       return false;
     }
     if (x1 == "") {
@@ -55,21 +47,13 @@ export class DashboardComponent {
       this.snackBar.open("Y2 value must be filled out.", "", {duration: 2000});
       return false;
     }
-    if (isExitWay == "") {
-      this.snackBar.open("IsExitWay must be filled out.", "", {duration: 2000});
-      return false;
-    }
-    if (isExterior == "") {
-      this.snackBar.open("IsExterior must be filled out.", "", {duration: 2000});
-      return false;
-    }
     return true;
   }
 
   onSaveElementEvent(element: any, x1: any, y1: any, x2: any, y2: any, floor: any, room: any, isExitWay: any, isExterior: any) {
     this._dashboardService.sendElement(element, x1, y1, x2, y2, floor, room, isExitWay, isExterior)
       .subscribe(
-        data => this.answer = JSON.stringify(data).replace(/\"/g, ""),
+        data => this.answer = JSON.parse(JSON.stringify(data)).message,
         error => alert(error),
         () => this.snackBar.open(this.answer, "", {
           duration: 2000,

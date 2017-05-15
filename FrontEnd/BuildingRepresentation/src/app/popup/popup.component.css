@@ -1,14 +1,8 @@
-md-card-header {
-  width: 100%
+.content {
+  margin-left: 20px;
+  margin-top: 40px;
 }
 
-md-card-title {
-  width: 100%
+p {
+  font-size: 1em;
 }
-
-.notFound {
-  width: 402px;
-  margin-left: calc(50% - 200px);
-  margin-top: 20px;
-}
-
