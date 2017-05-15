@@ -16,11 +16,13 @@ public class MinDistancePath extends PathFinder {
          
         /*Queue<Point> q = new LinkedList<>();
 
+
         int dx[] = {-1, 0, 0, 1};
         int dy[] = {0, 1, -1, 0};
         int N = matrix.DIMENSION;
 
-        for (q.add(source); !q.isEmpty(); q.poll()) {
+
+        for (q.add(start); !q.isEmpty(); q.poll()) {
             Cell front = q.element();
 
             for (int dir = 0; dir < 4; ++dir) {

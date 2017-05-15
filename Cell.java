@@ -3,7 +3,6 @@ package modul3;
 import java.util.Vector;
 
 public class Cell {
-
 /**
  * This encodes the walls of the current cell.
  * This variable takes values from 0 to 63, first 4 bits encoding representing the 
