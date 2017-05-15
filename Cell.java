@@ -1,6 +1,5 @@
 package modul3;
 
-
 import java.util.Vector;
 
 public class Cell {
@@ -20,7 +19,5 @@ public int walls;
  * If free = 1, then this cell belongs to the building. Otherwise, it is a cell outside the building.
  */
 public int free;
-
-    public Vector  myMatrix;
 
 }
