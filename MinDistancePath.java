@@ -10,12 +10,14 @@ public class MinDistancePath extends PathFinder {
     }
 
     @Override
-    public void execute(Cell a, Cell b) {
+    public void execute(Point source, Point dest) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void execute(ArrayList<Cell> path) {
+    public void execute(ArrayList<Point> path) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
 }

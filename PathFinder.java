@@ -23,13 +23,13 @@ public abstract class PathFinder {
       matrix = m;
   }
   
-  public abstract void execute(Cell a, Cell b);
+  public abstract void execute(Point source, Point dest);
   
   
   /**
    * This class calculates the route in the building that travels through the
    * points described by the @param path list.
    */
-  public abstract void execute(ArrayList<Cell> path);
+  public abstract void execute(ArrayList<Point> path);
  
 }
