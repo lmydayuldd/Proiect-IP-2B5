@@ -1,0 +1,11 @@
+Raport Date: 17-May-2017, Hour 22:58
+	Test 1
+	1. Test Name: addDataShouldReturnInsertOperationSuccess
+	2. Test Status: passed.
+
+	Test 2
+	1. Test Name: checkDatShouldReturnTrueIfThisDataExists
+	2. Test Status: passed.
+Observation:
+	- Possible bug when multiple data are inserted.
+	- To check.

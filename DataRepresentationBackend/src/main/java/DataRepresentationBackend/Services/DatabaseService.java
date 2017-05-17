@@ -15,6 +15,7 @@ public interface DatabaseService {
     void commit();
 
     // functionality
+    public Boolean checkExistsData(TemporaryData data) throws Exception;
     void addData(TemporaryData data) throws Exception;
     void deleteData(TemporaryData data) throws Exception;
 }

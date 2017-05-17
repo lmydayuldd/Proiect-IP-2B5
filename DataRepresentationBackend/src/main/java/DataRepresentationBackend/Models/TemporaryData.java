@@ -10,6 +10,21 @@ public class TemporaryData {
     public String elementType, room;
     public Integer x1, y1, x2, y2, floor, isExitWay, isExterior;
 
+    public TemporaryData() {
+    }
+
+    public TemporaryData(String elementType, String room, Integer x1, Integer y1, Integer x2, Integer y2, Integer floor, Integer isExitWay, Integer isExterior) {
+        this.elementType = elementType;
+        this.room = room;
+        this.x1 = x1;
+        this.y1 = y1;
+        this.x2 = x2;
+        this.y2 = y2;
+        this.floor = floor;
+        this.isExitWay = isExitWay;
+        this.isExterior = isExterior;
+    }
+
     public String getElementType() {
         return elementType;
     }

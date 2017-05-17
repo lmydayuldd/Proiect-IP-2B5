@@ -1,0 +1,28 @@
+DROP TABLE FINAL_DATA CASCADE CONSTRAINTS;
+/
+CREATE TABLE FINAL_DATA (
+  id integer primary key,
+  elementType varchar2(100),
+  x1 number NOT NULL,
+  y1 number NOT NULL,
+  x2 number NOT NULL,
+  y2 number NOT NULL,
+  floor number NOT NULL,
+  room varchar(100) NOT NULL,
+  isExitWay integer,
+  isExterior integer
+);
+/
+DROP SEQUENCE FINAL_DATA_ID;
+/
+CREATE SEQUENCE FINAL_DATA_ID INCREMENT BY 1 START WITH 1 MAXVALUE 99999;
+/
+CREATE OR REPLACE TRIGGER FINAL_DATA_ID_TRG
+  BEFORE INSERT ON FINAL_DATA
+  FOR EACH ROW
+BEGIN
+  :new.id := FINAL_DATA_ID.NEXTVAL;
+END;
+/
+
+select * from FINAL_DATA;
