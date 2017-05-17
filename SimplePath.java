@@ -9,7 +9,7 @@ public class SimplePath extends PathFinder {
     }
 
     @Override
-    public void execute(Point source, Point dest) {
+    public Integer execute(Point source, Point dest) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

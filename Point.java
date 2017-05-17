@@ -2,25 +2,30 @@ package modul3;
 
 /**
  *
- * @author alexandru
  */
-public class Point {
-    
+class Point {
+
     /**
      * The coordinates of a cell in matrix.
      */
     private int x, y, floor;//
-    
-    public int getX(){
+
+    Point(int x, int y, int floor) {
+        this.x = x;
+        this.y = y;
+        this.floor = floor;
+    }
+
+    int getX() {
         return x;
     }
-    
-    public int getFloor(){
+
+    int getFloor() {
         return floor;
     }
-    
-    public int getY(){
+
+    int getY() {
         return y;
     }
-        
+
 }
