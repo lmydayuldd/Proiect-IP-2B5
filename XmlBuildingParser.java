@@ -1,16 +1,13 @@
 package modul3;
+
 /**
  * Created by Vasile Catana, Tamara Trifan, Cristina Ulinici  on 5/18/2017.
  */
 
 import  org.w3c.dom.*;
 import org.xml.sax.SAXException;
-
 import  javax.xml.parsers.*;
 import  java.io.*;
-
-
-
 
 public class XmlBuildingParser {
     private DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
