@@ -1,5 +1,8 @@
 package modul3;
 
+/**
+ * 5/18/2017.
+ */
 public class Cell {
     /**
      * This encodes the walls of the current cell.
@@ -10,11 +13,33 @@ public class Cell {
      * The walls that exist are N, E, W.
      * The last 2 bits encode the up/down accessibility.
      */
-    int walls;
+    private int walls;
 
     /**
      * If free = 1, then this cell belongs to the building. Otherwise, it is a cell outside the building.
      */
-    public int free;
+    private int free;
+
+    public Cell(int walls, int free)
+    {
+        this.walls = walls;
+        this.free = free;
+    }
+	
+	public int getFree() {
+        return free;
+    }
+
+    public int getWalls() {
+        return walls;
+    }
+	
+	public void setFree(int free) {
+        this.free = free;
+    }
+
+    public void setWalls(int walls) {
+        this.walls = walls;
+    }
 
 }
