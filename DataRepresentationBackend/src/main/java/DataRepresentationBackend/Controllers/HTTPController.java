@@ -3,7 +3,6 @@ package DataRepresentationBackend.Controllers;
 import DataRepresentationBackend.Models.Message;
 import DataRepresentationBackend.Models.TemporaryData;
 import DataRepresentationBackend.Models.TemporarySaveMessage;
-import DataRepresentationBackend.Models.Test;
 import DataRepresentationBackend.Services.DatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,14 +26,6 @@ public class HTTPController {
                 data.getX2() == null || data.getY1() == null || data.getY2() == null)
             return true;
         return false;
-    }
-
-    @CrossOrigin
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public ResponseEntity<Test> getTest() {
-        Test response = new Test();
-        response.dummyNumber = databaseService.test();
-        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @CrossOrigin

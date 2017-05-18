@@ -14,6 +14,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -44,9 +45,23 @@ public class HTTPControllerTest {
     }
 
     @Test
-    public void testWillAlwaysReturnTrue() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/test").accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk()).andDo(print());
+    public void checkDatShouldReturnFalseIfThisDataDoesNotExists() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/checkExists")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\n" +
+                        "\t\"elementType\" : 6,\n" +
+                        "\t\"room\" : \"Timisoara\",\n" +
+                        "\t\"x1\" : 1,\n" +
+                        "\t\"y1\" : 2,\n" +
+                        "\t\"x2\" : 3,\n" +
+                        "\t\"y2\" : 4,\n" +
+                        "\t\"floor\" : 5,\n" +
+                        "\t\"isExitWay\" : 3,\n" +
+                        "\t\"isExterior\": 6\n" +
+                        "}")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.message").value("Data does not exists in database."))
+        ;
     }
 
     @Test
@@ -66,11 +81,11 @@ public class HTTPControllerTest {
                         "}")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.message").value("Insert operation success."))
-                ;
+        ;
     }
 
     @Test
-    public void checkDatShouldReturnTrueIfThisDataExists() throws Exception {
+    public void checkDataShouldReturnTrueIfThisDataExists() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/checkExists")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
@@ -86,6 +101,151 @@ public class HTTPControllerTest {
                         "}")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.message").value("Data exists in database."))
-                ;
+        ;
     }
+
+    @Test
+    public void deleteDataShouldReturnOKRequestIfDataCanBeDeleted() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete("/delete")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\n" +
+                        "\t\"elementType\" : 6,\n" +
+                        "\t\"room\" : \"Timisoara\",\n" +
+                        "\t\"x1\" : 1,\n" +
+                        "\t\"y1\" : 2,\n" +
+                        "\t\"x2\" : 3,\n" +
+                        "\t\"y2\" : 4,\n" +
+                        "\t\"floor\" : 5,\n" +
+                        "\t\"isExitWay\" : 3,\n" +
+                        "\t\"isExterior\": 4\n" +
+                        "}")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+        ;
+    }
+
+    @Test
+    public void deleteDataShouldReturnBadRequestIfDataDoesNotExists() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete("/delete")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\n" +
+                        "\t\"elementType\" : 6,\n" +
+                        "\t\"room\" : \"Timisoara\",\n" +
+                        "\t\"x1\" : 1,\n" +
+                        "\t\"y1\" : 2,\n" +
+                        "\t\"x2\" : 3,\n" +
+                        "\t\"y2\" : 4,\n" +
+                        "\t\"floor\" : 5,\n" +
+                        "\t\"isExitWay\" : 3,\n" +
+                        "\t\"isExterior\": 214\n" +
+                        "}")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+        ;
+    }
+
+    @Test
+    public void temporarySaveShouldReturnSuccess() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/finalSave")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{}")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+        ;
+    }
+
+    //region test related to invalid jsons
+    @Test
+    public void checkDataShouldReturnBadRequestIfJsonIsInvalid() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/checkExists")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\n" +
+                        "}")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+        ;
+    }
+
+    @Test
+    public void addDataShouldReturnBadRequestIfJsonIsInvalid() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/add")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\n" +
+                        "\t\"elementType\" : 6,\n" +
+                        "\t\"room\" : \"Timisoara\",\n" +
+                        "\t\"x1\" : 1,\n" +
+                        "\t\"y1\" : 2,\n" +
+                        "\t\"x2\" : 4,\n" +
+                        "\t\"y2\" : 5,\n" +
+                        "\t\"floor\" : 5,\n" +
+                        "\t\"isExitWy\" : 3,\n" +
+                        "\t\"isExterior\": 4\n" +
+                        "}")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+        ;
+    }
+
+    @Test
+    public void deleteDataShouldReturnBadRequestIfDataJsonIsInvalid() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete("/delete")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\n" +
+                        "\t\"elementType\" : 6,\n" +
+                        "\t\"room\" : \"Timisoara\",\n" +
+                        "\t\"x1\" : 1,\n" +
+                        "\t\"y1\" : 2,\n" +
+                        "\t\"x2\" : 3,\n" +
+                        "\t\"y2\" : 4,\n" +
+                        "\t\"floor\" : 5,\n" +
+                        "\t\"isExitWay\" : 3,\n" +
+                        "\t\"isEfsafrior\": 214\n" +
+                        "}")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+        ;
+    }
+    //endregion
+
+    //region test related to http method
+    @Test
+    public void checkExistsShouldReturnMethodNotAllowedIfWrongHttpRequest() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete("/checkExists")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{}")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isMethodNotAllowed())
+        ;
+    }
+
+    @Test
+    public void addShouldReturnMethodNotAllowedIfWrongHttpRequest() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/add")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{}")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isMethodNotAllowed())
+        ;
+    }
+
+    @Test
+    public void deleteReturnMethodNotAllowedIfWrongHttpRequest() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/delete")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{}")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isMethodNotAllowed())
+        ;
+    }
+
+    @Test
+    public void temporarySaveShouldReturnMethodNotAllowedIfWrongHttpRequest() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete("/finalSave")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{}")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isMethodNotAllowed())
+        ;
+    }
+    //endregion
 }

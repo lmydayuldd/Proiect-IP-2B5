@@ -9,3 +9,59 @@ Raport Date: 17-May-2017, Hour 22:58
 Observation:
 	- Possible bug when multiple data are inserted.
 	- To check.
+
+Raport Date: 18-May-2017, Hour 19:50
+	- test created on date 17-May-2017, passed;
+
+	Test 1
+	1. Test Name: checkExistsShouldReturnMethodNotAllowedIfWrongHttpRequest
+	2. Test Status: passed
+
+	Test 2
+	1. Test Name: addShouldReturnMethodNotAllowedIfWrongHttpRequest
+	2. Test Status: passed
+
+	Test 3
+	1. Test Name: deleteReturnMethodNotAllowedIfWrongHttpRequest
+	2. Test Status: passed
+
+	Test 4
+	1. Test Name: temporarySaveShouldReturnMethodNotAllowedIfWrongHttpRequest
+	2. Test Status: passed
+
+	Test 5
+	1. Test Name:
+	checkDataShouldReturnBadRequestIfJsonIsInvalid
+	2. Test Status: passed
+
+	Test 6
+	1. Test Name: addDataShouldReturnBadRequestIfJsonIsInvalid
+	2. Test Status: passed
+
+	Test 7
+	1. Test Name: deleteDataShouldReturnBadRequestIfDataJsonIsInvalid
+	2. Test Status: passed
+
+	Test 8
+	1. Test Name: temporarySaveShouldReturnSuccess
+	2. Test Status: passed
+
+	Test 9
+	1. Test Name: deleteDataShouldReturnBadRequestIfDataDoesNotExists
+	2. Test Status: passed
+
+	Test 10
+	1. Test Name: deleteDataShouldReturnOKRequestIfDataCanBeDeleted
+	2. Test Status: passed
+
+	Test 11
+	1. Test Name: checkDataShouldReturnTrueIfThisDataExists
+	2. Test Status: passed
+
+	Test 12
+	1. Test Name: addDataShouldReturnInsertOperationSuccess
+	2. Test Status: passed
+
+	Test 13
+	1. Test Name: checkDatShouldReturnFalseIfThisDataDoesNotExists
+	2. Test Status: passed
