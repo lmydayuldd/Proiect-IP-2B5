@@ -15,8 +15,8 @@ import java.util.Vector;
  */
 public class Matrix {
 
-    final int DIMENSION = 100;
-    final int LEVEL_COUNT = 10;
+    static final int DIMENSION = 1000;
+    static final int LEVEL_COUNT = 10;
 
     private Cell[][][] matrix;
 

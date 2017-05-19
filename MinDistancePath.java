@@ -27,6 +27,7 @@ public class MinDistancePath extends PathFinder {
             for (int j = 0; j < n; ++j)
                 for (int k = 0; k < n; ++k)
                     dist[i][j][k] = (int) 1e9 + 69 * 69;
+                    //Djok's magic number 
 
         dist[source.getFloor()][source.getX()][source.getY()] = 0;
         for (q.add(source); !q.isEmpty(); q.poll()) {
@@ -36,7 +37,7 @@ public class MinDistancePath extends PathFinder {
             Cell now = matrix.getCell(x, y, z);
 
             for (int dir = 0; dir < 6; ++dir) {
-                if ((now.walls & (1 << dir)) != 0)
+                if ((now.getWalls() & (1 << dir)) != 0)
                     continue;
                 int newx = x + dx[dir];
                 int newy = y + dy[dir];

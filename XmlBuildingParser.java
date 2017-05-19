@@ -38,13 +38,13 @@ public class XmlBuildingParser {
         document.getDocumentElement().normalize();
 
         NodeList nodeList = document.getElementsByTagName("element");
-        rawMatrix = new int[500][500][500];
+        rawMatrix = new int[Matrix.LEVEL_COUNT][Matrix.DIMENSION][Matrix.DIMENSION];
 
-        for (int i=0; i<500; ++i)
+        for (int i=0; i<Matrix.LEVEL_COUNT; ++i)
         {
-            for (int j=0; j<500; ++j)
+            for (int j=0; j<Matrix.DIMENSION; ++j)
             {
-                for (int i1=0; i1<500; ++i1)
+                for (int i1=0; i1<Matrix.DIMENSION; ++i1)
                 {
                     rawMatrix[i][j][i1]=0;
                 }
