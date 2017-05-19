@@ -1,0 +1,63 @@
+Metode
+
+:4500/add
+	- HTTPMethod: POST
+	- BodyType: JSON
+	- BodyContent: 
+		Example JSON:
+		{
+			"elementType" : 6,
+			"room" : "Timisoara",
+			"x1" : 1,
+			"y1" : 2,
+			"x2" : 3,
+			"y2" : 4,
+			"floor" : 5,
+			"isExitWay" : 3,
+			"isExterior": 4
+		}
+	- Responses returned:
+		1. Json + HTTPMessage
+			Example JSON:
+			{
+  				"message": "Insert operation success."
+			}
+		2. HTTPMessage
+
+:4500/delete
+	- HttpMethod: DELETE
+	- BodyType: JSON
+	- BodyContent:
+		Example JSON:
+		{
+			"elementType" : 6,
+			"room" : "Timisoara",
+			"x1" : 1,
+			"y1" : 2,
+			"x2" : 3,
+			"y2" : 4,
+			"floor" : 5,
+			"isExitWay" : 3,
+			"isExterior": 4
+		}
+	- Responses returned:
+		1. Json + HTTPMessage
+			Example JSON:
+			{
+  				"message": "Insert operation success."
+			}
+		2. HTTPMessage
+
+:4500/finalSave
+	- HttpMethod: POST
+	- BodyType: JSON
+	- BodyContent:
+		- Not Yet Decided
+	- Responses returned:
+		1. Json + HTTPMessage
+			Example JSON:
+				- Not Yet Implemented
+		2. HTTPMessage
+
+OBS!!
+	- Mai este si checkExists, dar nu o facem publica.
