@@ -85,16 +85,28 @@ public class XmlBuildingParser {
             }
         }
     }
+	
+    private int getX(int x1, int y1, int x2, int y2, int y){
+	return ( (y-y1)*(x2-x1) / (y2-y1) + x1 );
+    }
 
-    private void fiilWall( int x1, int y1, int x2, int y2, int floor)
+    private int getY(int x1, int y1, int x2, int y2, int x){
+	return ( (x-x1)*(y2-y1) / (x2-x1) + y1 );
+    }	
+	/*
+		We use Equation of a line to create the walls
+		(x - x1) / (x2 -x1 ) = (y - y1) / (y2 - y1)
+	*/
+    private void fillWall( int x1, int y1, int x2, int y2, int floor)
     {
-        for (int i=x1; i<=x2; ++i)
-        {
-            for (int j=y1; j<=y2; ++j)
-            {
-                rawMatrix[floor][i][j] = 1;
-            }
-        }
+	if ( y2-y1  >  x2-x1 ){
+    		for(int y = y1+1; y < y2; ++y)
+    			rawMatrix[floor][getX(x1, y1, x2, y2, y)][y]=1;
+	}else{
+		for(int x = x1+1; x < x2; ++x)
+			rawMatrix[floor][x][getY(x1, y1, x2, y2, x)]=1;
+	}    
+	
     }
 
     /*
