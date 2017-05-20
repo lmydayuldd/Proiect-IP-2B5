@@ -1,16 +1,13 @@
 package modul3;
+
 /**
  * Created by Vasile Catana, Tamara Trifan, Cristina Ulinici  on 5/18/2017.
  */
 
 import  org.w3c.dom.*;
 import org.xml.sax.SAXException;
-
 import  javax.xml.parsers.*;
 import  java.io.*;
-
-
-
 
 public class XmlBuildingParser {
     private DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -41,13 +38,13 @@ public class XmlBuildingParser {
         document.getDocumentElement().normalize();
 
         NodeList nodeList = document.getElementsByTagName("element");
-        rawMatrix = new int[500][500][500];
+        rawMatrix = new int[Matrix.LEVEL_COUNT][Matrix.DIMENSION][Matrix.DIMENSION];
 
-        for (int i=0; i<500; ++i)
+        for (int i=0; i<Matrix.LEVEL_COUNT; ++i)
         {
-            for (int j=0; j<500; ++j)
+            for (int j=0; j<Matrix.DIMENSION; ++j)
             {
-                for (int i1=0; i1<500; ++i1)
+                for (int i1=0; i1<Matrix.DIMENSION; ++i1)
                 {
                     rawMatrix[i][j][i1]=0;
                 }
@@ -88,16 +85,35 @@ public class XmlBuildingParser {
             }
         }
     }
+	
+    private int getX(int x1, int y1, int x2, int y2, int y){
+	return ( (y-y1)*(x2-x1) / (y2-y1) + x1 );
+    }
 
-    private void fiilWall( int x1, int y1, int x2, int y2, int floor)
-    {
-        for (int i=x1; i<=x2; ++i)
-        {
-            for (int j=y1; j<=y2; ++j)
-            {
-                rawMatrix[floor][i][j] = 1;
+    private int getY(int x1, int y1, int x2, int y2, int x){
+        return ( Math.abs((x-x1))*Math.abs((y2-y1)) / Math.abs((x2-x1)) + y1 );
+    }
+	/*
+		We use Equation of a line to create the walls
+		(x - x1) / (x2 -x1 ) = (y - y1) / (y2 - y1)
+	*/
+    private void fillWall( int x1, int y1, int x2, int y2, int floor) {
+        if (y2 - y1 > x2 - x1) {
+            if (y1 > y2) {
+                y1 = swap(y2, y2 = y1);
             }
-        }
+            for (int y = y1 + 1; y < y2; ++y) {
+                rawMatrix[floor][getX(x1, y1, x2, y2, y)][y] = 1;
+                }
+            }
+         else {
+            if (x1>x2) {
+                x1 = swap(x2, x2 = x1);
+            }
+            for (int x = x1 + 1; x < x2; ++x) {
+                rawMatrix[floor][x][getY(x1, y1, x2, y2, x)] = 1;
+                }
+            }
     }
 
     /*
