@@ -28,9 +28,4 @@ public class Server {
         System.out.println("Someone has connected");
         XMLInput.getXMLFile(socket.getInputStream(),"B:\\input2.txt");
     }
-    public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException {
-        System.out.println("Hello World!");
-        Server server = new Server();
-        server.run();
-    }
 }
