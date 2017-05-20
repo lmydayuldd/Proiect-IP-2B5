@@ -91,22 +91,29 @@ public class XmlBuildingParser {
     }
 
     private int getY(int x1, int y1, int x2, int y2, int x){
-	return ( (x-x1)*(y2-y1) / (x2-x1) + y1 );
-    }	
+        return ( Math.abs((x-x1))*Math.abs((y2-y1)) / Math.abs((x2-x1)) + y1 );
+    }
 	/*
 		We use Equation of a line to create the walls
 		(x - x1) / (x2 -x1 ) = (y - y1) / (y2 - y1)
 	*/
-    private void fillWall( int x1, int y1, int x2, int y2, int floor)
-    {
-	if ( y2-y1  >  x2-x1 ){
-    		for(int y = y1+1; y < y2; ++y)
-    			rawMatrix[floor][getX(x1, y1, x2, y2, y)][y]=1;
-	}else{
-		for(int x = x1+1; x < x2; ++x)
-			rawMatrix[floor][x][getY(x1, y1, x2, y2, x)]=1;
-	}    
-	
+    private void fillWall( int x1, int y1, int x2, int y2, int floor) {
+        if (y2 - y1 > x2 - x1) {
+            if (y1 > y2) {
+                y1 = swap(y2, y2 = y1);
+            }
+            for (int y = y1 + 1; y < y2; ++y) {
+                rawMatrix[floor][getX(x1, y1, x2, y2, y)][y] = 1;
+                }
+            }
+         else {
+            if (x1>x2) {
+                x1 = swap(x2, x2 = x1);
+            }
+            for (int x = x1 + 1; x < x2; ++x) {
+                rawMatrix[floor][x][getY(x1, y1, x2, y2, x)] = 1;
+                }
+            }
     }
 
     /*
