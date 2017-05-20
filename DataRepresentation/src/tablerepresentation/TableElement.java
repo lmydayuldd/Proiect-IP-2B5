@@ -5,10 +5,6 @@
  */
 package tablerepresentation;
 
-/**
- *
- * @author Procop Vladimir
- */
 public class TableElement {
     public String elementType = "";
     public int x1;
@@ -19,4 +15,15 @@ public class TableElement {
     public int room;
     public boolean isExterior;
     public boolean isExit;
+    
+    public TableElement(int xx1, int yy1, int xx2, int yy2, int floor, int theRoom, boolean exterior, boolean exit){
+        x1= xx1;
+        x2 = xx2;
+        y1 = yy1;
+        y2 = yy2;
+        floorNumber = floor;
+        room = theRoom;
+        isExterior = exterior;
+        isExit = exit;
+    }
 }
