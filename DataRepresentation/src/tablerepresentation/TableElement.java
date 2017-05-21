@@ -12,11 +12,11 @@ public class TableElement {
     public int x2;
     public int y2;
     public int floorNumber;
-    public int room;
-    public boolean isExterior;
-    public boolean isExit;
+    public String room;
+    public int isExterior;
+    public int isExit;
     
-    public TableElement(String elementType, int xx1, int yy1, int xx2, int yy2, int floor, int theRoom, boolean exterior, boolean exit){
+    public TableElement(String elementType, int xx1, int yy1, int xx2, int yy2, int floor, String theRoom, int exterior, int exit){
         this.elementType = elementType; 
         x1= xx1;
         x2 = xx2;
