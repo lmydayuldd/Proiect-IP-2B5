@@ -16,7 +16,8 @@ public class TableElement {
     public boolean isExterior;
     public boolean isExit;
     
-    public TableElement(int xx1, int yy1, int xx2, int yy2, int floor, int theRoom, boolean exterior, boolean exit){
+    public TableElement(String elementType, int xx1, int yy1, int xx2, int yy2, int floor, int theRoom, boolean exterior, boolean exit){
+        this.elementType = elementType; 
         x1= xx1;
         x2 = xx2;
         y1 = yy1;
