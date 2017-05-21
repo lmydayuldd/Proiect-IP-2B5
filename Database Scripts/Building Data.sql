@@ -28,5 +28,4 @@ BEGIN
   :new.id := BUILDING_DATA_ID.NEXTVAL;
 END;
 /
-
 SELECT * FROM building_data;
