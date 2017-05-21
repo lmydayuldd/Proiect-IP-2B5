@@ -16,7 +16,7 @@ public class TableElement {
     public int isExterior;
     public int isExit;
     
-    public TableElement(String elementType, int xx1, int yy1, int xx2, int yy2, int floor, String theRoom, int exterior, int exit){/**Construct TableElement*/
+    public TableElement(String elementType, int xx1, int yy1, int xx2, int yy2, int floor, String theRoom, int exterior, int exit){
         this.elementType = elementType; 
         x1= xx1;
         x2 = xx2;
@@ -30,5 +30,5 @@ public class TableElement {
     
     public String toString(){
         return ("TableElement : elementType=" + this.elementType + " , x1 = " + this.x2 + " , y1 = " + this.y1 + " , x2 = " + this.x2 + " , y2 = " + this.y2 + " , room = " + this.room + " , isExterior = " + this.isExterior + " , isExit = " + this.isExit);
-    }
+}
 }
