@@ -2,7 +2,7 @@ DROP TABLE FINAL_DATA CASCADE CONSTRAINTS;
 /
 CREATE TABLE FINAL_DATA (
   id integer primary key,
-  elementType varchar2(100),
+  type varchar2(100),
   x1 number NOT NULL,
   y1 number NOT NULL,
   x2 number NOT NULL,
