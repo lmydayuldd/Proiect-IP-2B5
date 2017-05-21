@@ -110,14 +110,14 @@ public class FloorTest {
     public void testValidate1() throws DataNotValidException {
         // TEST1 PENTRU ETAJ ///////////////////////////////////////
         ArrayList<Wall> walls = new ArrayList<Wall>();
-        walls.add(new Door(new Point(1, 1), new Point(2, 0), true));
+        walls.add(new Door(new Point(1, 1), new Point(2, 0), 1));
         walls.add(new Wall(new Point(2, 0), new Point(3, 0)));
         walls.add(new Wall(new Point(3, 0), new Point(2, 2)));
         walls.add(new Wall(new Point(2, 2), new Point(1, 1)));
         Room room1 = new Room(walls);
         
         ArrayList<Wall> walls2 = new ArrayList<Wall>();
-        walls2.add(new Door(new Point(1, 1), new Point(2, 0), true));
+        walls2.add(new Door(new Point(1, 1), new Point(2, 0), 1));
         walls2.add(new Wall(new Point(2, 0), new Point(2, 2)));
         walls2.add(new Wall(new Point(2, 2), new Point(1, 1)));
         Room room2 = new Room(walls2);
@@ -125,7 +125,7 @@ public class FloorTest {
         ArrayList<Room> rooms = new ArrayList<>();
         rooms.add(room1);
         rooms.add(room2);
-        Floor instance = new Floor();
+        Floor instance = new Floor(0);
         instance.setRooms(rooms);
         // TODO review the generated test code and remove the default call to fail.
         try{
@@ -140,14 +140,14 @@ public class FloorTest {
     public void testValidate2() throws DataNotValidException {
         //  TEST2 PENTRU ETAJ ///////////////////////////////////////
         ArrayList<Wall> walls = new ArrayList<Wall>();
-        walls.add(new Door(new Point(1, 1), new Point(2, 0), true));
+        walls.add(new Door(new Point(1, 1), new Point(2, 0), 1));
         walls.add(new Wall(new Point(2, 0), new Point(3, 0)));
         walls.add(new Wall(new Point(3, 0), new Point(2, 2)));
         walls.add(new Wall(new Point(2, 2), new Point(1, 1)));
         Room room1 = new Room(walls);
         
         ArrayList<Wall> walls2 = new ArrayList<Wall>();
-        walls2.add(new Door(new Point(1, 1), new Point(2, 0), true));
+        walls2.add(new Door(new Point(1, 1), new Point(2, 0), 1));
         walls2.add(new Wall(new Point(2, 0), new Point(1, 0)));
         walls2.add(new Wall(new Point(1, 0), new Point(1, 1)));
         Room room2 = new Room(walls2);
@@ -155,7 +155,7 @@ public class FloorTest {
         ArrayList<Room> rooms = new ArrayList<>();
         rooms.add(room1);
         rooms.add(room2);
-        Floor instance = new Floor();
+        Floor instance = new Floor(0);
         instance.setRooms(rooms);
         // TODO review the generated test code and remove the default call to fail.
         try{
@@ -172,40 +172,40 @@ public class FloorTest {
         walls.add(new Wall(new Point(0, 1), new Point(0, 2)));
         walls.add(new Wall(new Point(0, 2), new Point(1, 2)));
         walls.add(new Wall(new Point(1, 2), new Point(1, 1)));
-        walls.add(new Door(new Point(1, 1), new Point(0, 1), false));
+        walls.add(new Door(new Point(1, 1), new Point(0, 1), 0));
         Room room1 = new Room(walls);
         
         ArrayList<Wall> walls2 = new ArrayList<Wall>();
-        walls2.add(new Door(new Point(1, 1), new Point(0, 1), false));
+        walls2.add(new Door(new Point(1, 1), new Point(0, 1), 0));
         walls2.add(new Wall(new Point(0, 1), new Point(0, 0)));
         walls2.add(new Wall(new Point(0, 0), new Point(1, 0)));
-        walls2.add(new Door(new Point(1, 0), new Point(1, 1), false));
+        walls2.add(new Door(new Point(1, 0), new Point(1, 1), 0));
         Room room2 = new Room(walls2);
         
         ArrayList<Wall> walls3 = new ArrayList<Wall>();
-        walls3.add(new Door(new Point(2, 1), new Point(1, 1), false));
-        walls3.add(new Door(new Point(1, 1), new Point(1, 0), false));
+        walls3.add(new Door(new Point(2, 1), new Point(1, 1), 0));
+        walls3.add(new Door(new Point(1, 1), new Point(1, 0), 0));
         walls3.add(new Wall(new Point(1, 0), new Point(2, 0)));
-        walls3.add(new Door(new Point(2, 0), new Point(2, 1), false));
+        walls3.add(new Door(new Point(2, 0), new Point(2, 1), 0));
         Room room3 = new Room(walls3);
         
         ArrayList<Wall> walls4 = new ArrayList<Wall>();
-        walls4.add(new Door(new Point(3, 1), new Point(2, 1), false));
-        walls4.add(new Door(new Point(2, 1), new Point(2, 0), false));
+        walls4.add(new Door(new Point(3, 1), new Point(2, 1), 0));
+        walls4.add(new Door(new Point(2, 1), new Point(2, 0), 0));
         walls4.add(new Wall(new Point(2, 0), new Point(3, 0)));
-        walls4.add(new Door(new Point(3, 0), new Point(3, 1), false));
+        walls4.add(new Door(new Point(3, 0), new Point(3, 1), 0));
         Room room4 = new Room(walls4);
         
         ArrayList<Wall> walls5 = new ArrayList<Wall>();
-        walls5.add(new Door(new Point(4, 1), new Point(3, 1), false));
-        walls5.add(new Door(new Point(3, 1), new Point(3, 0), false));
+        walls5.add(new Door(new Point(4, 1), new Point(3, 1), 0));
+        walls5.add(new Door(new Point(3, 1), new Point(3, 0), 0));
         walls5.add(new Wall(new Point(3, 0), new Point(4, 0)));
-        walls5.add(new Door(new Point(4, 0), new Point(4, 1), false));
+        walls5.add(new Door(new Point(4, 0), new Point(4, 1), 0));
         Room room5 = new Room(walls5);
         
         ArrayList<Wall> walls6 = new ArrayList<Wall>();
-        walls6.add(new Door(new Point(5, 1), new Point(4, 1), false));
-        walls6.add(new Door(new Point(4, 1), new Point(4, 0), false));
+        walls6.add(new Door(new Point(5, 1), new Point(4, 1), 0));
+        walls6.add(new Door(new Point(4, 1), new Point(4, 0), 0));
         walls6.add(new Wall(new Point(4, 0), new Point(5, 0)));
         walls6.add(new Wall(new Point(5, 0), new Point(3, 0)));
         Room room6 = new Room(walls6);
@@ -218,7 +218,7 @@ public class FloorTest {
         rooms.add(room4);
         rooms.add(room5);
         rooms.add(room6);
-        Floor instance = new Floor();
+        Floor instance = new Floor(0);
         instance.setRooms(rooms);
         // TODO review the generated test code and remove the default call to fail.
         try{
@@ -236,40 +236,40 @@ public class FloorTest {
         walls.add(new Wall(new Point(0, 1), new Point(0, 2)));
         walls.add(new Wall(new Point(0, 2), new Point(1, 2)));
         walls.add(new Wall(new Point(1, 2), new Point(1, 1)));
-        walls.add(new Door(new Point(1, 1), new Point(0, 1), false));
+        walls.add(new Door(new Point(1, 1), new Point(0, 1), 0));
         Room room1 = new Room(walls);
         
         ArrayList<Wall> walls2 = new ArrayList<Wall>();
-        walls2.add(new Door(new Point(1, 1), new Point(0, 1), false));
+        walls2.add(new Door(new Point(1, 1), new Point(0, 1), 0));
         walls2.add(new Wall(new Point(0, 1), new Point(0, 0)));
         walls2.add(new Wall(new Point(0, 0), new Point(1, 0)));
-        walls2.add(new Door(new Point(1, 0), new Point(1, 1), false));
+        walls2.add(new Door(new Point(1, 0), new Point(1, 1), 0));
         Room room2 = new Room(walls2);
         
         ArrayList<Wall> walls3 = new ArrayList<Wall>();
-        walls3.add(new Door(new Point(2, 1), new Point(1, 1), false));
-        walls3.add(new Door(new Point(1, 1), new Point(1, 0), false));
+        walls3.add(new Door(new Point(2, 1), new Point(1, 1), 0));
+        walls3.add(new Door(new Point(1, 1), new Point(1, 0), 0));
         walls3.add(new Wall(new Point(1, 0), new Point(2, 0)));
-        walls3.add(new Door(new Point(2, 0), new Point(2, 1), false));
+        walls3.add(new Door(new Point(2, 0), new Point(2, 1), 0));
         Room room3 = new Room(walls3);
         
         ArrayList<Wall> walls4 = new ArrayList<Wall>();
-        walls4.add(new Door(new Point(3, 1), new Point(2, 1), false));
-        walls4.add(new Door(new Point(2, 1), new Point(2, 0), false));
+        walls4.add(new Door(new Point(3, 1), new Point(2, 1), 0));
+        walls4.add(new Door(new Point(2, 1), new Point(2, 0), 0));
         walls4.add(new Wall(new Point(2, 0), new Point(3, 0)));
-        walls4.add(new Door(new Point(3, 0), new Point(3, 1), false));
+        walls4.add(new Door(new Point(3, 0), new Point(3, 1), 0));
         Room room4 = new Room(walls4);
         
         ArrayList<Wall> walls5 = new ArrayList<Wall>();
-        walls5.add(new Door(new Point(4, 1), new Point(3, 1), false));
-        walls5.add(new Door(new Point(3, 1), new Point(3, 0), false));
+        walls5.add(new Door(new Point(4, 1), new Point(3, 1), 0));
+        walls5.add(new Door(new Point(3, 1), new Point(3, 0), 0));
         walls5.add(new Wall(new Point(3, 0), new Point(4, 0)));
-        walls5.add(new Door(new Point(4, 0), new Point(4, 1), false));
+        walls5.add(new Door(new Point(4, 0), new Point(4, 1), 0));
         Room room5 = new Room(walls5);
         
         ArrayList<Wall> walls6 = new ArrayList<Wall>();
-        walls6.add(new Door(new Point(5, 1), new Point(4, 1), false));
-        walls6.add(new Door(new Point(4, 1), new Point(4, 0), false));
+        walls6.add(new Door(new Point(5, 1), new Point(4, 1), 0));
+        walls6.add(new Door(new Point(4, 1), new Point(4, 0), 0));
         walls6.add(new Wall(new Point(4, 0), new Point(5, 0)));
         walls6.add(new Wall(new Point(5, 0), new Point(5, 1)));
         Room room6 = new Room(walls6);
@@ -282,7 +282,7 @@ public class FloorTest {
         rooms.add(room4);
         rooms.add(room5);
         rooms.add(room6);
-        Floor instance = new Floor();
+        Floor instance = new Floor(0);
         instance.setRooms(rooms);
         // TODO review the generated test code and remove the default call to fail.
         try{

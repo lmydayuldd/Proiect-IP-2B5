@@ -85,7 +85,7 @@ public class RoomTest {
     public void testValidate1() throws Exception {
         System.out.println("validate");
         ArrayList<Wall> walls = new ArrayList<Wall>();
-        walls.add(new Door(new Point(1, 1), new Point(2, 0), true));
+        walls.add(new Door(new Point(1, 1), new Point(2, 0), 1));
         walls.add(new Wall(new Point(2, 0), new Point(3, 0)));
         walls.add(new Wall(new Point(3, 0), new Point(2, 2)));
         walls.add(new Wall(new Point(2, 2), new Point(1, 1)));
@@ -99,7 +99,7 @@ public class RoomTest {
     @Test
     public void testValidate2() throws Exception {
         ArrayList<Wall> walls = new ArrayList<Wall>();
-        walls.add(new Door(new Point(1, 1), new Point(2, 0), true));
+        walls.add(new Door(new Point(1, 1), new Point(2, 0), 1));
         walls.add(new Wall(new Point(2, 0), new Point(1, 0)));
         walls.add(new Wall(new Point(1, 0), new Point(2, 2)));
         Room room = new Room(walls);
@@ -132,7 +132,7 @@ public class RoomTest {
     public void testValidate4() throws Exception {
         System.out.println("validate");
         ArrayList<Wall> walls = new ArrayList<Wall>();
-        walls.add(new Door(new Point(1, 1), new Point(2, 0), true));
+        walls.add(new Door(new Point(1, 1), new Point(2, 0), 1));
         walls.add(new Wall(new Point(2, 0), new Point(3, 0)));
         walls.add(new Wall(new Point(3, 0), new Point(2, 2)));
         Room room = new Room(walls);

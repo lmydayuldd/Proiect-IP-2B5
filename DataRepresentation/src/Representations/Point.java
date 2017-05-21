@@ -17,7 +17,7 @@ public class Point {
     private int y;
     
     public Point(int initx, int inity) throws DataNotValidException{/**Construct Point with coordinates x=initx and y=inity*/
-        if((x<0) || (y<0)) throw new DataNotValidException("Tried to initialize point with negative coordinates");
+        if((x<0) || (y<0) || (x>100) || (y>100)) throw new DataNotValidException("Tried to initialize point with negative or larger than 100 coordinates");
         this.x = initx;
         this.y = inity;
     }

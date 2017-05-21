@@ -10,24 +10,19 @@ package Representations;
  * @author Procop Vladimir
  */
 public class Door extends Wall{
-    private boolean exitWay = false;
-    
-    public Door(boolean exit){/**Construct door which is or isn't an exit-way*/
-        super();
-        this.exitWay = exit;
-    }
-    
-    public Door(Point lpoint, Point rpoint, boolean exit){/**Construct door with points*/
+    private int exitWay = 0;
+        
+    public Door(Point lpoint, Point rpoint, int exit){/**Construct door with points*/
         super(lpoint, rpoint);
         this.exitWay = exit;
     }
     
-    public Door(Door toCopy, boolean exit){/**Construct door which is a deep copy of another door*/
+    public Door(Door toCopy, int exit){/**Construct door which is a deep copy of another door*/
         super(toCopy);
         this.exitWay = exit;
     }
     
-    public boolean isExit(){/**True if the door is an exit way, false otherwise*/
+    public int isExit(){/**True if the door is an exit way, false otherwise*/
         return this.exitWay;
     }
 }

@@ -14,6 +14,7 @@ import Representations.Wall;
 import java.awt.geom.Area;
 import java.awt.geom.Path2D;
 import java.util.ArrayList;
+import tablerepresentation.ElementManager;
 
 /**
  *
@@ -25,6 +26,6 @@ public class DataRepresentation {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws DataNotValidException {
-                
+        ElementManager em = new ElementManager();
     }
 }

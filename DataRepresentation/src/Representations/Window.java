@@ -10,8 +10,6 @@ package Representations;
  * @author Procop Vladimir
  */
 public class Window extends Wall{
-    public Window(){}
-    
     public Window(Point lpoint, Point rpoint){
         super(lpoint, rpoint);
     }

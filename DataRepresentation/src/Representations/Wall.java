@@ -5,6 +5,7 @@
  */
 package Representations;
 
+import CustomExceptions.DataNotValidException;
 import java.awt.geom.Line2D;
 
 /**
@@ -15,11 +16,8 @@ public class Wall {
     protected Point leftPoint = null;
     protected Point rightPoint = null;
     protected int floorNumber;
-    protected int roomNumber;
-    protected boolean isExterior;
-    
-    public Wall(){/**Construct wall which is or isn't an exit-way*/
-    }
+    protected String roomName;
+    protected int isExterior;
     
     public Wall(Point lpoint, Point rpoint){/**Construct wall with points*/
         this.leftPoint = new Point(lpoint);
@@ -64,7 +62,7 @@ public class Wall {
         if(o == null) return false;
         if(!(o instanceof Wall)) return false;
         Wall w = (Wall)o;
-        return (this.leftPoint.equals(w.leftPoint)) && (this.rightPoint.equals(w.rightPoint) &&(w.getFloorNumber()==this.getFloorNumber()) && (this.getRoomNumber() == w.getRoomNumber()) );
+        return (this.leftPoint.equals(w.leftPoint)) && (this.rightPoint.equals(w.rightPoint) &&(w.getFloorNumber()==this.getFloorNumber()) && (this.getRoomName() == w.getRoomName()) );
     }
     
     @Override
@@ -72,7 +70,7 @@ public class Wall {
         return ("Wall: lpoint(" + this.leftPoint.toString().substring(7) + "), rpoint(" + this.rightPoint.toString().substring(7)+")");
     }
     
-    public static Line2D toLine2D(Wall wall){
+    public static Line2D toLine2D(Wall wall){/**Returns equivalent representation of Wall as equivalent Line2D object*/
         return (new Line2D.Double(wall.leftPoint.getX(), wall.leftPoint.getY(), wall.rightPoint.getX(), wall.rightPoint.getY()));
     }
 
@@ -80,23 +78,26 @@ public class Wall {
         return floorNumber;
     }
 
-    public void setFloorNumber(int floorNumber) {
+    public void setFloorNumber(int floorNumber) throws DataNotValidException {
+        if((floorNumber < -10) || (floorNumber > 200)){
+            throw new DataNotValidException("Floor number must be between -10 and 200");
+        }
         this.floorNumber = floorNumber;
     }
 
-    public int getRoomNumber() {
-        return roomNumber;
+    public String getRoomName() {
+        return roomName;
     }
 
-    public void setRoomNumber(int roomNumber) {
-        this.roomNumber = roomNumber;
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
     }
 
-    public boolean isIsExterior() {
+    public int isExterior() {
         return isExterior;
     }
 
-    public void setIsExterior(boolean isExterior) {
+    public void setIsExterior(int isExterior) {
         this.isExterior = isExterior;
     }
 }
