@@ -175,5 +175,10 @@ public class XmlBuildingParser {
         parse();
         return toMatrix(rawMatrix);
     }
+	
+    private static int swap(int x, int y)
+    {
+	    return x;
+    }
 
 }
