@@ -1,17 +1,11 @@
-
-
 package Tests;
-
-
 import java.util.ArrayList;
-
 import tablerepresentation.TableElement;
 /**
  *
  * @author Dorin, Daniel
  *
  */
-
 public class TestsArrayElements {
     //no errors
     //no errors
