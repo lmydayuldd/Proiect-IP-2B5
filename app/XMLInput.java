@@ -1,4 +1,4 @@
-package modulul3;
+package app;
 
 import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;

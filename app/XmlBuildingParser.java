@@ -1,4 +1,4 @@
-package modul3;
+package app;
 
 /**
  * Created by Vasile Catana, Tamara Trifan, Cristina Ulinici  on 5/18/2017.
@@ -80,7 +80,7 @@ public class XmlBuildingParser {
 
                 if (element.getElementsByTagName("type").item(0).getTextContent().toString().equals("wall"))
                 {
-                    fiilWall(x1,y1,x2,y2,floor);
+                    fillWall(x1,y1,x2,y2,floor);
                 }
             }
         }
@@ -100,7 +100,7 @@ public class XmlBuildingParser {
     private void fillWall( int x1, int y1, int x2, int y2, int floor) {
         if (y2 - y1 > x2 - x1) {
             if (y1 > y2) {
-                y1 = swap(y2, y2 = y1);
+                y1 = swap(y2, y2 = y1); //@Vasile - check this
             }
             for (int y = y1 + 1; y < y2; ++y) {
                 rawMatrix[floor][getX(x1, y1, x2, y2, y)][y] = 1;
@@ -108,7 +108,7 @@ public class XmlBuildingParser {
             }
          else {
             if (x1>x2) {
-                x1 = swap(x2, x2 = x1);
+               x1 = swap(x2, x2 = x1); //@Vasile - check this
             }
             for (int x = x1 + 1; x < x2; ++x) {
                 rawMatrix[floor][x][getY(x1, y1, x2, y2, x)] = 1;

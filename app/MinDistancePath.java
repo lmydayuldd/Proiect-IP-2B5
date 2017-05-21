@@ -1,4 +1,4 @@
-package modul3;
+package app;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
