@@ -1,20 +1,18 @@
 package DataRepresentationBackend.Models;
 
-import java.io.Serializable;
-
 /**
  * Project name DataRepresentationBackend.
  * Created by Turcu Nicusor on 08-May-17.
  */
 public class TemporaryData {
-    public String elementType, room;
+    public String type, room;
     public Integer x1, y1, x2, y2, floor, isExitWay, isExterior;
 
     public TemporaryData() {
     }
 
-    public TemporaryData(String elementType, String room, Integer x1, Integer y1, Integer x2, Integer y2, Integer floor, Integer isExitWay, Integer isExterior) {
-        this.elementType = elementType;
+    public TemporaryData(String type, String room, Integer x1, Integer y1, Integer x2, Integer y2, Integer floor, Integer isExitWay, Integer isExterior) {
+        this.type = type;
         this.room = room;
         this.x1 = x1;
         this.y1 = y1;
@@ -25,12 +23,12 @@ public class TemporaryData {
         this.isExterior = isExterior;
     }
 
-    public String getElementType() {
-        return elementType;
+    public String getType() {
+        return type;
     }
 
-    public void setElementType(String elementType) {
-        this.elementType = elementType;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getRoom() {

@@ -32,7 +32,7 @@ public class HTTPController {
     private DatabaseService databaseService;
 
     public Boolean isBadRequest(TemporaryData data) {
-        if (data.getElementType() == null || data.getFloor() == null || data.getIsExitWay() == null
+        if (data.getType() == null || data.getFloor() == null || data.getIsExitWay() == null
                 || data.getIsExterior() == null || data.getRoom() == null || data.getX1() == null ||
                 data.getX2() == null || data.getY1() == null || data.getY2() == null)
             return true;
@@ -60,18 +60,15 @@ public class HTTPController {
             printDOM(xmlDoc, outputFile);
 
             conn.close();
-        }   catch(FileAlreadyExistsException f){
+        } catch (FileAlreadyExistsException f) {
             System.out.println("There is already a file with this name in this location");
-        }
-
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Really poor exception handling " + e.toString());
         }
     }
 
     /* The method that builds the XML */
-    private static Document buildXML(ResultSet _queryRS) throws Exception
-    {
+    private static Document buildXML(ResultSet _queryRS) throws Exception {
         Document xmlDoc = new DocumentImpl();
 
         /* Creating the root element */
@@ -79,8 +76,7 @@ public class HTTPController {
         Element rootElement = xmlDoc.createElement("building"); // Root element, our building
         xmlDoc.appendChild(rootElement);
 
-        while(_queryRS.next())
-        {
+        while (_queryRS.next()) {
 
             Element bigElement = xmlDoc.createElement("element");
 
@@ -120,9 +116,8 @@ public class HTTPController {
     }
 
     /* Method used by getXML to serialize the XML */
-    private static void printDOM(Document _xmlDoc, File _outputFile) throws Exception
-    {
-        OutputFormat outputFormat = new OutputFormat("XML","UTF-8",true);
+    private static void printDOM(Document _xmlDoc, File _outputFile) throws Exception {
+        OutputFormat outputFormat = new OutputFormat("XML", "UTF-8", true);
         FileWriter fileWriter = new FileWriter(_outputFile);
 
         XMLSerializer xmlSerializer = new XMLSerializer(fileWriter, outputFormat);

@@ -5,8 +5,8 @@ package DataRepresentationBackend.Models;
  * Created by Turcu Nicusor on 14-May-17.
  */
 public class TemporarySaveMessage {
-    public String message;
-    public TemporaryData data;
+    private String message;
+    private TemporaryData data;
 
     public TemporarySaveMessage(String message) {
         this.message = message;

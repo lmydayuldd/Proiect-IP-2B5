@@ -14,7 +14,7 @@ public class DatabaseConnection {
     private DatabaseConnection() {
     }
 
-    public static Connection getConnection() {
+    static Connection getConnection() {
         if (connection == null) {
             createConnection();
         }

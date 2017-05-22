@@ -35,9 +35,9 @@ public class ConcreteDatabaseService implements DatabaseService {
 
     public Boolean checkExistsData(TemporaryData data) throws Exception {
         PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement("select count(*) from " +
-                "TEMPORARY_DATA WHERE elementType = ? and x1 = ? and y1 = ? and x2 = ? and y2 = ? and floor = ? " +
+                "TEMPORARY_DATA WHERE type = ? and x1 = ? and y1 = ? and x2 = ? and y2 = ? and floor = ? " +
                 "and room = ? and isExitWay = ? and isExterior = ?");
-        statement.setString(1, data.elementType);
+        statement.setString(1, data.type);
         statement.setInt(2, data.x1);
         statement.setInt(3, data.y1);
         statement.setInt(4, data.x2);
@@ -55,8 +55,8 @@ public class ConcreteDatabaseService implements DatabaseService {
 
     public void addData(TemporaryData data) throws Exception {
         PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement("insert into " +
-                "TEMPORARY_DATA(elementType, x1, y1, x2, y2, floor, room, isExitWay, isExterior) values(?,?,?,?,?,?,?,?,?)");
-        statement.setString(1, data.elementType);
+                "TEMPORARY_DATA(type, x1, y1, x2, y2, floor, room, isExitWay, isExterior) values(?,?,?,?,?,?,?,?,?)");
+        statement.setString(1, data.type);
         statement.setInt(2, data.x1);
         statement.setInt(3, data.y1);
         statement.setInt(4, data.x2);
@@ -70,9 +70,9 @@ public class ConcreteDatabaseService implements DatabaseService {
 
     public void deleteData(TemporaryData data) throws Exception {
         PreparedStatement statementCheck = DatabaseConnection.getConnection().prepareStatement("select count(*) FROM" +
-                " TEMPORARY_DATA WHERE elementType =? and x1 = ? and y1 = ? and x2=? and y2 = ? and floor = ? and room = ? " +
+                " TEMPORARY_DATA WHERE type =? and x1 = ? and y1 = ? and x2=? and y2 = ? and floor = ? and room = ? " +
                 "and isExitWay = ? and isExterior = ?");
-        statementCheck.setString(1, data.elementType);
+        statementCheck.setString(1, data.type);
         statementCheck.setInt(2, data.x1);
         statementCheck.setInt(3, data.y1);
         statementCheck.setInt(4, data.x2);
@@ -91,9 +91,9 @@ public class ConcreteDatabaseService implements DatabaseService {
         }
 
         PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement("delete from TEMPORARY_DATA " +
-                "WHERE elementType = ? and x1 = ? and y1 = ? and x2=? and y2 = ? and floor = ? and room = ? and isExitWay = ? " +
+                "WHERE type = ? and x1 = ? and y1 = ? and x2=? and y2 = ? and floor = ? and room = ? and isExitWay = ? " +
                 "and isExterior = ?");
-        statement.setString(1, data.elementType);
+        statement.setString(1, data.type);
         statement.setInt(2, data.x1);
         statement.setInt(3, data.y1);
         statement.setInt(4, data.x2);
@@ -104,14 +104,14 @@ public class ConcreteDatabaseService implements DatabaseService {
         statement.setInt(9, data.isExterior);
         statement.executeUpdate();
     }
-
+/*
     public ArrayList<TemporaryData> getTableElements() throws Exception {
         TemporaryData element = new TemporaryData();
         List<TemporaryData> elements = new ArrayList<TemporaryData>();
         try (PreparedStatement statementCheck = DatabaseConnection.getConnection().prepareStatement("select * from temporary_data")) {
             ResultSet resultSet = statementCheck.executeQuery();
             while (resultSet.next()) {
-                element.setElementType(resultSet.getString(1));
+                element.setType(resultSet.getString(1));
                 element.setX1(resultSet.getInt(2));
                 element.setY1(resultSet.getInt(3));
                 element.setX2(resultSet.getInt(4));
@@ -135,8 +135,8 @@ public class ConcreteDatabaseService implements DatabaseService {
             System.out.println("Datele sunt valide");
             while (i < elements.size()) {
                 element = elements.get(i);
-                PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement("insert into FINAL_DATA(elementType, x1, y1, x2, y2, floor, room, isExit, isExterior) values(?,?,?,?,?,?,?,?)");
-                statement.setString(1, element.getElementType);
+                PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement("insert into FINAL_DATA(type, x1, y1, x2, y2, floor, room, isExit, isExterior) values(?,?,?,?,?,?,?,?)");
+                statement.setString(1, element.getType);
                 statement.setInt(2, element.getX1);
                 statement.setInt(3, element.getY1);
                 statement.setInt(4, element.getX2);
@@ -153,4 +153,5 @@ public class ConcreteDatabaseService implements DatabaseService {
                 System.out.printl("Datele trebuie revazute");
 
     }
+    */
 }

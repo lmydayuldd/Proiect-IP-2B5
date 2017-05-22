@@ -6,7 +6,7 @@ Metode
 	- BodyContent: 
 		Example JSON:
 		{
-			"elementType" : 6,
+			"type" : 6,
 			"room" : "Timisoara",
 			"x1" : 1,
 			"y1" : 2,
@@ -30,7 +30,7 @@ Metode
 	- BodyContent:
 		Example JSON:
 		{
-			"elementType" : 6,
+			"type" : 6,
 			"room" : "Timisoara",
 			"x1" : 1,
 			"y1" : 2,

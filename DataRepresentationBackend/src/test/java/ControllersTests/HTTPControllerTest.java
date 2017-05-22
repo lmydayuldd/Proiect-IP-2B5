@@ -49,7 +49,7 @@ public class HTTPControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.post("/checkExists")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
-                        "\t\"elementType\" : 6,\n" +
+                        "\t\"type\" : 6,\n" +
                         "\t\"room\" : \"Timisoara\",\n" +
                         "\t\"x1\" : 1,\n" +
                         "\t\"y1\" : 2,\n" +
@@ -69,7 +69,7 @@ public class HTTPControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.post("/add")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
-                        "\t\"elementType\" : 6,\n" +
+                        "\t\"type\" : 6,\n" +
                         "\t\"room\" : \"Timisoara\",\n" +
                         "\t\"x1\" : 1,\n" +
                         "\t\"y1\" : 2,\n" +
@@ -89,7 +89,7 @@ public class HTTPControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.post("/checkExists")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
-                        "\t\"elementType\" : 6,\n" +
+                        "\t\"type\" : 6,\n" +
                         "\t\"room\" : \"Timisoara\",\n" +
                         "\t\"x1\" : 1,\n" +
                         "\t\"y1\" : 2,\n" +
@@ -109,7 +109,7 @@ public class HTTPControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.delete("/delete")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
-                        "\t\"elementType\" : 6,\n" +
+                        "\t\"type\" : 6,\n" +
                         "\t\"room\" : \"Timisoara\",\n" +
                         "\t\"x1\" : 1,\n" +
                         "\t\"y1\" : 2,\n" +
@@ -129,7 +129,7 @@ public class HTTPControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.delete("/delete")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
-                        "\t\"elementType\" : 6,\n" +
+                        "\t\"type\" : 6,\n" +
                         "\t\"room\" : \"Timisoara\",\n" +
                         "\t\"x1\" : 1,\n" +
                         "\t\"y1\" : 2,\n" +
@@ -171,7 +171,7 @@ public class HTTPControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.post("/add")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
-                        "\t\"elementType\" : 6,\n" +
+                        "\t\"type\" : 6,\n" +
                         "\t\"room\" : \"Timisoara\",\n" +
                         "\t\"x1\" : 1,\n" +
                         "\t\"y1\" : 2,\n" +
@@ -191,7 +191,7 @@ public class HTTPControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.delete("/delete")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
-                        "\t\"elementType\" : 6,\n" +
+                        "\t\"type\" : 6,\n" +
                         "\t\"room\" : \"Timisoara\",\n" +
                         "\t\"x1\" : 1,\n" +
                         "\t\"y1\" : 2,\n" +

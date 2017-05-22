@@ -12,7 +12,7 @@ export class PopupService {
     var body = {};
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http.post('http://localhost:4500/temporarysave', JSON.stringify(body), {headers: headers})
+    return this._http.post('http://localhost:4500/finalSave', JSON.stringify(body), {headers: headers})
       .map(res => res.json());
   }
 }
