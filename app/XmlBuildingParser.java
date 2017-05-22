@@ -5,7 +5,7 @@ package app;
  */
 
 import  org.w3c.dom.*;
-import org.xml.sax.SAXException;
+import  org.xml.sax.SAXException;
 import  javax.xml.parsers.*;
 import  java.io.*;
 
@@ -24,10 +24,11 @@ public class XmlBuildingParser {
         maxLength = 0;
         maxWidth = 0;
         maxFloor = 0;
-        this.pathXml = pathXml;
+        this.pathXml = pathXml; // path where to read XML file
     }
-
-
+/**
+* parse a xml file and extract data
+*/
     private void parse() throws ParserConfigurationException, IOException, SAXException {
         DocumentBuilder builder = factory.newDocumentBuilder();
 
@@ -39,7 +40,9 @@ public class XmlBuildingParser {
 
         NodeList nodeList = document.getElementsByTagName("element");
         rawMatrix = new int[Matrix.LEVEL_COUNT][Matrix.DIMENSION][Matrix.DIMENSION];
-
+	   
+	 //set rawMatrix with 0
+	 // rawMatrix is used to the process of builing the 3D matrix   
         for (int i=0; i<Matrix.LEVEL_COUNT; ++i)
         {
             for (int j=0; j<Matrix.DIMENSION; ++j)
@@ -50,7 +53,7 @@ public class XmlBuildingParser {
                 }
             }
         }
-
+	//parse the XML elements
         for (int i=0; i<nodeList.getLength(); ++i)
         {
             Node node = nodeList.item(i);
@@ -60,13 +63,7 @@ public class XmlBuildingParser {
             {
                 Element element = (Element) node;
                 System.out.println(element.getElementsByTagName("type").item(0).getTextContent());
-//                System.out.println(Double.parseDouble(element.getElementsByTagName("x1").item(0).getTextContent().toString()));
-//                System.out.println(Double.parseDouble(element.getElementsByTagName("y1").item(0).getTextContent().toString()));
-//                System.out.println(Double.parseDouble(element.getElementsByTagName("x2").item(0).getTextContent().toString()));
-//                System.out.println(Double.parseDouble(element.getElementsByTagName("y2").item(0).getTextContent().toString()));
-//                System.out.println(Integer.parseInt(element.getElementsByTagName("floor").item(0).getTextContent().toString()));
-//                System.out.println(element.getElementsByTagName("isExterior").item(0).getTextContent());
-//                System.out.println(element.getElementsByTagName("isExit").item(0).getTextContent());
+
                 int x1 = (int)(Double.parseDouble(element.getElementsByTagName("x1").item(0).getTextContent().toString())*10);
                 int y1 = (int)(Double.parseDouble(element.getElementsByTagName("y1").item(0).getTextContent().toString())*10);
                 int x2 = (int)(Double.parseDouble(element.getElementsByTagName("x2").item(0).getTextContent().toString())*10);
@@ -87,11 +84,11 @@ public class XmlBuildingParser {
     }
 	
     private int getX(int x1, int y1, int x2, int y2, int y){
-	return ( (y-y1)*(x2-x1) / (y2-y1) + x1 );
+	return ( (y-y1)*(x2-x1) / (y2-y1) + x1 ); // some formula for nerds
     }
 
     private int getY(int x1, int y1, int x2, int y2, int x){
-        return ( Math.abs((x-x1))*Math.abs((y2-y1)) / Math.abs((x2-x1)) + y1 );
+        return ( Math.abs((x-x1))*Math.abs((y2-y1)) / Math.abs((x2-x1)) + y1 ); // some formula for nerds
     }
 	/*
 		We use Equation of a line to create the walls
@@ -100,7 +97,7 @@ public class XmlBuildingParser {
     private void fillWall( int x1, int y1, int x2, int y2, int floor) {
         if (y2 - y1 > x2 - x1) {
             if (y1 > y2) {
-                y1 = swap(y2, y2 = y1); //@Vasile - check this
+                y1 = swap(y2, y2 = y1); //@Vasile - check this; @Alex - checked
             }
             for (int y = y1 + 1; y < y2; ++y) {
                 rawMatrix[floor][getX(x1, y1, x2, y2, y)][y] = 1;
@@ -108,7 +105,7 @@ public class XmlBuildingParser {
             }
          else {
             if (x1>x2) {
-               x1 = swap(x2, x2 = x1); //@Vasile - check this
+               x1 = swap(x2, x2 = x1); //@Vasile - check this; @Alex - checked
             }
             for (int x = x1 + 1; x < x2; ++x) {
                 rawMatrix[floor][x][getY(x1, y1, x2, y2, x)] = 1;
@@ -120,7 +117,8 @@ public class XmlBuildingParser {
        In rawMatrix:
        1 - for wall
        0 - free space
-
+       
+       toMatrix - transfrom data from rawMatrix to Matrix()
      */
 
     private Matrix toMatrix(int[][][] a)
@@ -175,7 +173,8 @@ public class XmlBuildingParser {
         parse();
         return toMatrix(rawMatrix);
     }
-	
+   //swap method
+   // if it is confusing, check the call 
     private static int swap(int x, int y)
     {
 	    return x;
