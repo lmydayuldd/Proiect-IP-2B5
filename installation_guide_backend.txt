@@ -1,0 +1,18 @@
+Backend Tutorial
+	1. Luati datele referitoare la serverul de backend de pe git, (git sync) de pe branchul "DataRepresentationBackend"
+	2. Este destul de imporatant sa folositi import atunci cand doriti sa deschideti proiectul(cateodata nu recunoaste fisierele, cel putin la mine se comporta asa).
+		Explicatie: Nu dati OpenProject, selectati import project.
+	3. Se modifica versiunea de jdbc, in caz ca nu corespunde cu ce am eu.
+	   Daca aveti probleme aici urmati linkul: http://stackoverflow.com/questions/1074869/find-oracle-jdbc-driver-in-maven-repository
+	4. Proiectul se ruleaza ca un simplu proiect java, se da click pe run.
+	5. Extra: Daca doriti puteti sa va setati ca variabila de sistem java maven si sa rulati proiectul, in pathul: "..2\DataRepresentationBackend", folosind comanda:
+		mvn spring-boot:run
+
+	6. Atentie: Aveti grija sa construiti baza de date conform scripturilor din folderul "Database Scripts".
+		Ordine rulare scripturi:
+			Create User DataRepresentation.sql
+			Temporary Data.sql
+			Final Data.sql
+
+	Link Ajutator:
+		http://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-running-your-application.html

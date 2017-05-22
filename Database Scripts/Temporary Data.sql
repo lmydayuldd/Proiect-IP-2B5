@@ -1,0 +1,28 @@
+DROP TABLE TEMPORARY_DATA CASCADE CONSTRAINTS;
+/
+CREATE TABLE TEMPORARY_DATA (
+  id integer primary key,
+  type varchar2(100),
+  x1 number NOT NULL,
+  y1 number NOT NULL,
+  x2 number NOT NULL,
+  y2 number NOT NULL,
+  floor number NOT NULL,
+  room varchar(100) NOT NULL,
+  isExitWay integer,
+  isExterior integer
+);
+/
+DROP SEQUENCE TEMPORARY_DATA_ID;
+/
+CREATE SEQUENCE TEMPORARY_DATA_ID INCREMENT BY 1 START WITH 1 MAXVALUE 99999;
+/
+CREATE OR REPLACE TRIGGER TEMPORARY_DATA_ID_TRG
+  BEFORE INSERT ON TEMPORARY_DATA
+  FOR EACH ROW
+BEGIN
+  :new.id := TEMPORARY_DATA_ID.NEXTVAL;
+END;
+/
+
+select * from temporary_data;
