@@ -12,6 +12,7 @@ import java.awt.geom.Area;
 import java.awt.geom.Path2D;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import tablerepresentation.DataNotValidExceptionLogger;
 
 /**
  *
@@ -48,7 +49,7 @@ public class Floor extends Element {
     
     public void addRoom(Room room) throws DataNotValidException{/**Add room to this floor's rooms*/
         if(room.getFloorNumber()!=this.floorLevel){
-            throw new DataNotValidException("Tried to insert onto Floor " + this.floorLevel + " a Room from floor " + room.getFloorNumber());
+            DataNotValidExceptionLogger.getInstance().addExceptionMessage("Tried to insert onto Floor " + this.floorLevel + " a Room from floor " + room.getFloorNumber());
         }
         this.rooms.add(room);
     }
@@ -75,7 +76,7 @@ public class Floor extends Element {
     }
 
     public void setFloorHeight(int floorHeight) throws DataNotValidException{
-        if(floorHeight<2) throw new DataNotValidException("Floor height must be >=2");
+        if(floorHeight<2) DataNotValidExceptionLogger.getInstance().addExceptionMessage("Floor height must be >=2");
         this.floorHeight = floorHeight;
     }
 
@@ -106,7 +107,7 @@ public class Floor extends Element {
                 room2Temp = new Area(room1AsPath);
                 room2Temp.intersect(room2AsArea);
                 if(!room2Temp.isEmpty()){
-                    throw new DataNotValidException("Rooms [" + floor.rooms.get(i) + "]  AND  [" + floor.rooms.get(j) + "] overlap");
+                    DataNotValidExceptionLogger.getInstance().addExceptionMessage("Rooms [" + floor.rooms.get(i) + "]  AND  [" + floor.rooms.get(j) + "] overlap");
                 }
             }
         }        
@@ -121,7 +122,7 @@ public class Floor extends Element {
     static public boolean validateExterior(Floor floor)throws DataNotValidException{/**Returns true is the Exterior layout of the floor is valid. Otherwise it throws DataNotValidException*/
         ArrayList<Wall> exterior = floor.exteriorWalls;
         if((exterior==null) || (exterior.size()< 3)){
-            throw new DataNotValidException("Exterior of " + exterior.get(0).floorNumber + " must have at least 3 sides !");
+            DataNotValidExceptionLogger.getInstance().addExceptionMessage("Exterior of " + exterior.get(0).floorNumber + " must have at least 3 sides !");
         }
         boolean door = false;
         int[] neighbors = new int[exterior.size()]; 
@@ -130,8 +131,9 @@ public class Floor extends Element {
         }
         
         for(int i = 0; i < exterior.size()-1; i++){
+//            System.out.println("DEBUG Floor.validateExterior: " + exterior.get(i));
             if(!Room.firstQuadrant(exterior.get(i))){
-                throw new DataNotValidException("["+exterior.get(i).toString()+"]" + "] is not entirely in the right upper quadrant !");
+                DataNotValidExceptionLogger.getInstance().addExceptionMessage("["+exterior.get(i).toString()+"]" + "] is not entirely in the right upper quadrant !");
             }
             if(exterior.get(i) instanceof Door){
                 door = true;
@@ -139,7 +141,7 @@ public class Floor extends Element {
             
             for(int j = i+1; j < exterior.size(); j++){
                 if(exterior.get(i).equals(exterior.get(j))){
-                    throw new DataNotValidException("Wall " + exterior.get(i) + " has been inserted twice for the same room !");
+                    DataNotValidExceptionLogger.getInstance().addExceptionMessage("Wall " + exterior.get(i) + " has been inserted twice for the same room !");
                 }
                 if(Room.oneCommonExtremity(exterior.get(i), exterior.get(j))){
                     neighbors[i]++; 
@@ -147,14 +149,14 @@ public class Floor extends Element {
                     continue;
                 }
                 else if(intersect(exterior.get(i), exterior.get(j))){
-                    throw new DataNotValidException("[" + exterior.get(i) + "]" + " AND " + "[" + exterior.get(j) + "]" + " intersect each other in inner point !");
+                    DataNotValidExceptionLogger.getInstance().addExceptionMessage("[" + exterior.get(i) + "]" + " AND " + "[" + exterior.get(j) + "]" + " intersect each other in inner point !");
                 }
             }
         }
-        
+//        System.out.println("DEBUG Floor.validateExterior: " + exterior.get(exterior.size()-1));
         for(int k = 0 ; k < neighbors.length; k++){
                 if(neighbors[k]!=2) {
-                        throw new DataNotValidException("["+exterior.get(k)+"]" + " has " + neighbors[k] + " neighbours, NOT 2 !");
+                        DataNotValidExceptionLogger.getInstance().addExceptionMessage("["+exterior.get(k)+"]" + " has " + neighbors[k] + " neighbours, NOT 2 !");
                 }    
         }
         
@@ -162,11 +164,11 @@ public class Floor extends Element {
             door = true;
         }
         if(!firstQuadrant(exterior.get(exterior.size()-1))){
-                throw new DataNotValidException("["+exterior.get(exterior.size()-1).toString()+"] is not entirely in the right upper quadrant !");
+                DataNotValidExceptionLogger.getInstance().addExceptionMessage("["+exterior.get(exterior.size()-1).toString()+"] is not entirely in the right upper quadrant !");
             }
         
         if((!door) && (floor.floorLevel==0)) {
-            throw new DataNotValidException("There is no door on the first floor " + exterior.get(0).getFloorNumber());
+            DataNotValidExceptionLogger.getInstance().addExceptionMessage("There is no door on the first floor " + exterior.get(0).getFloorNumber());
         }
         
         
@@ -178,10 +180,9 @@ public class Floor extends Element {
             roomTemp = new Area(Room.toPath2D(floor.rooms.get(i)));
             roomTemp.intersect(exteriorAsArea);
             if(!roomTemp.equals(new Area(Room.toPath2D(floor.rooms.get(i))))){
-                throw new DataNotValidException("[" + floor.rooms.get(i) + "] is not contained by it's floor , " + floor.rooms.get(i).getFloorNumber());
+                DataNotValidExceptionLogger.getInstance().addExceptionMessage("[" + floor.rooms.get(i) + "] is not contained by it's floor , " + floor.rooms.get(i).getFloorNumber());
             } 
         }
-        
         return true;
     }
     
@@ -195,5 +196,18 @@ public class Floor extends Element {
             path.append(Wall.toLine2D(walls.get(i)), true);
         }
         return path;
+    }
+    public String toString(){
+        String ans = "FLOOR " + this.floorLevel + " : " + '\n';
+        ans += "---------------------- EXTERIOR WALLS -----------------------------------------------------------------------------------------------------------------------------------------------------" + '\n';
+        for(int i = 0; i < this.exteriorWalls.size(); i++){
+            ans = ans  + exteriorWalls.get(i) + "  ,  ";
+        }
+        ans += '\n';
+        ans += "------------------------- ROOMS --------------------------------------------------------------------------------------------------------------------------------------------------------------" + '\n';
+        for(int i = 0; i < this.rooms.size(); i++){
+            ans = ans  + rooms.get(i) + '\n';
+        }
+        return ans;
     }
 }

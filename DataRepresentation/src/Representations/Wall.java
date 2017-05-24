@@ -7,6 +7,7 @@ package Representations;
 
 import CustomExceptions.DataNotValidException;
 import java.awt.geom.Line2D;
+import tablerepresentation.DataNotValidExceptionLogger;
 
 /**
  *
@@ -18,6 +19,7 @@ public class Wall {
     protected int floorNumber;
     protected String roomName;
     protected int isExterior;
+    public boolean isStairs = false;
     
     public Wall(Point lpoint, Point rpoint){/**Construct wall with points*/
         this.leftPoint = new Point(lpoint);
@@ -67,7 +69,7 @@ public class Wall {
     
     @Override
     public String toString(){
-        return ("Wall: lpoint(" + this.leftPoint.toString().substring(7) + "), rpoint(" + this.rightPoint.toString().substring(7)+")");
+        return ("Wall: lpoint(" + this.leftPoint.toString().substring(7) + "), rpoint(" + this.rightPoint.toString().substring(7)+"), room: " + this.roomName);
     }
     
     public static Line2D toLine2D(Wall wall){/**Returns equivalent representation of Wall as equivalent Line2D object*/
@@ -80,7 +82,7 @@ public class Wall {
 
     public void setFloorNumber(int floorNumber) throws DataNotValidException {
         if((floorNumber < -10) || (floorNumber > 200)){
-            throw new DataNotValidException("Floor number must be between -10 and 200");
+            DataNotValidExceptionLogger.getInstance().addExceptionMessage("Floor number must be between -10 and 200");
         }
         this.floorNumber = floorNumber;
     }

@@ -7,6 +7,7 @@ package Representations;
 
 
 import CustomExceptions.DataNotValidException;
+import tablerepresentation.DataNotValidExceptionLogger;
 
 /**
  *
@@ -17,7 +18,7 @@ public class Point {
     private int y;
     
     public Point(int initx, int inity) throws DataNotValidException{/**Construct Point with coordinates x=initx and y=inity*/
-        if((x<0) || (y<0) || (x>100) || (y>100)) throw new DataNotValidException("Tried to initialize point with negative or larger than 100 coordinates");
+        if((x<0) || (y<0) || (x>100) || (y>100)) DataNotValidExceptionLogger.getInstance().addExceptionMessage("Tried to initialize point with negative or larger than 100 coordinates");
         this.x = initx;
         this.y = inity;
     }
@@ -32,7 +33,7 @@ public class Point {
     }
 
     public void setX(int x) throws DataNotValidException{/**Set x to new value*/
-        if(x < 0) throw new DataNotValidException("Tried to set x-coordinate to negative value");
+        if(x < 0) DataNotValidExceptionLogger.getInstance().addExceptionMessage("Tried to set x-coordinate to negative value");
         this.x = x;
     }
 
@@ -41,7 +42,7 @@ public class Point {
     }
 
     public void setY(int y) throws DataNotValidException {/**Set y to new value*/
-        if(x < 0) throw new DataNotValidException("Tried to set y-coordinate to negative value");
+        if(x < 0) DataNotValidExceptionLogger.getInstance().addExceptionMessage("Tried to set y-coordinate to negative value");
         this.y = y;
     }
     

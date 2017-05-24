@@ -9,6 +9,7 @@ import CustomExceptions.DataNotValidException;
 import java.awt.geom.Line2D;
 import java.awt.geom.Path2D;
 import java.util.ArrayList;
+import tablerepresentation.DataNotValidExceptionLogger;
 
 /**
  *
@@ -49,10 +50,13 @@ public class Room extends Element{
     
     public void addWall(Wall wall) throws DataNotValidException{/**Add a wall to this room*/
         if(wall.getFloorNumber()!=this.getFloorNumber()){
-            throw new DataNotValidException("Tried to insert into [" + this.toString() + "] a wall from a different floor !");
+            DataNotValidExceptionLogger.getInstance().addExceptionMessage("Tried to insert into [" + this.toString() + "] a wall from a different floor !");
         }
         if(!wall.getRoomName().equalsIgnoreCase(this.roomName)){
-            throw new DataNotValidException("Tried to insert into [" + this.toString() + "] a wall from a different room !");
+            DataNotValidExceptionLogger.getInstance().addExceptionMessage("Tried to insert into [" + this.toString() + "] a wall from a different room !");
+        }
+        if(wall.isStairs){
+            this.isStairwell = true;
         }
         this.walls.add(wall);
     }
@@ -67,7 +71,7 @@ public class Room extends Element{
         for(i = 0; i < walls.size()-1; i++){
             ans = ans +  i + " -> "  + walls.get(i).toString() + " , ";
         }
-        ans = ans + i + " -> " + walls.get(walls.size()-1).toString();
+        ans = ans + i + " -> " + walls.get(walls.size()-1).toString() + '\n';
         return ans + ". Floor: " + this.floorNumber;
     }
     
@@ -82,7 +86,7 @@ public class Room extends Element{
     public static boolean validate(Room room)throws DataNotValidException{/**True if argument is a valid room, false otherwise*/
         ArrayList<Wall> walls = room.walls;
         if((walls==null) || (walls.size()< 3)){
-            throw new DataNotValidException("A Room must have at least 3 walls in order to be valid !");
+            DataNotValidExceptionLogger.getInstance().addExceptionMessage("A Room must have at least 3 walls in order to be valid !");
         }
         boolean door = false;
         int[] neighbors = new int[walls.size()]; 
@@ -91,20 +95,23 @@ public class Room extends Element{
         }
         for(int i = 0; i < walls.size()-1; i++){
             if(!firstQuadrant(walls.get(i))){
-                throw new DataNotValidException("["+walls.get(i).toString()+"] is not entirely in the right upper quadrant !");
+                DataNotValidExceptionLogger.getInstance().addExceptionMessage("["+walls.get(i).toString()+"] is not entirely in the right upper quadrant !");
             }
             if(walls.get(i) instanceof Door){
                 door = true;
             }
+            if((!walls.get(i).isStairs) && room.isStairwell){
+                DataNotValidExceptionLogger.getInstance().addExceptionMessage("["+walls.get(i).toString()+"] is not of type Stairs but it is specified as part of a Stairwell");
+            }
             for(int j = i+1; j < walls.size(); j++){
                 if(walls.get(i).getFloorNumber() != walls.get(j).getFloorNumber()){
-                    throw new DataNotValidException("In [" + room.toString() + "] walls from different floors have been inserted !" );
+                    DataNotValidExceptionLogger.getInstance().addExceptionMessage("In [" + room.toString() + "] walls from different floors have been inserted !" );
                 }
                 if(!walls.get(i).getRoomName().equalsIgnoreCase(walls.get(j).getRoomName())){
-                    throw new DataNotValidException("In [" + room.getRoomName() + "] walls from different rooms have been inserted !" );
+                    DataNotValidExceptionLogger.getInstance().addExceptionMessage("In [" + room.getRoomName() + "] walls from different rooms have been inserted !" );
                 }
                 if(walls.get(i).equals(walls.get(j))){
-                    throw new DataNotValidException("Wall " + walls.get(i) + " has been inserted twice for the same room !");
+                    DataNotValidExceptionLogger.getInstance().addExceptionMessage("Wall " + walls.get(i) + " has been inserted twice for the same room !");
                 }
                 if(oneCommonExtremity(walls.get(i), walls.get(j))){
                     neighbors[i]++; 
@@ -112,14 +119,14 @@ public class Room extends Element{
                     continue;
                 }
                 else if(intersect(walls.get(i), walls.get(j))){
-                    throw new DataNotValidException("[" + walls.get(i) + "]" + " AND " + "[" + walls.get(j) + "]" + " intersect each other in inner point !");
+                    DataNotValidExceptionLogger.getInstance().addExceptionMessage("[" + walls.get(i) + "]" + " AND " + "[" + walls.get(j) + "]" + " intersect each other in inner point !");
                 }
             }
         }
         
         for(int k = 0 ; k < neighbors.length; k++){
                 if(neighbors[k]!=2) {
-                        throw new DataNotValidException("["+walls.get(k)+"]" + " has " + neighbors[k] + " neighbours, NOT 2 ");
+                        DataNotValidExceptionLogger.getInstance().addExceptionMessage("["+walls.get(k)+"]" + " has " + neighbors[k] + " neighbours, NOT 2 ");
                 }    
         }
         
@@ -127,11 +134,14 @@ public class Room extends Element{
             door = true;
         }
         if(!firstQuadrant(walls.get(walls.size()-1))){
-                throw new DataNotValidException("["+walls.get(walls.size()-1).toString()+"]" + " is not entirely in the right upper quadrant !");
+                DataNotValidExceptionLogger.getInstance().addExceptionMessage("["+walls.get(walls.size()-1).toString()+"]" + " is not entirely in the right upper quadrant !");
+        }
+        if((!walls.get(walls.size()-1).isStairs) && room.isStairwell){
+                DataNotValidExceptionLogger.getInstance().addExceptionMessage("["+walls.get(walls.size()-1).toString()+"] is not of type Stairs but it is specified as part of a Stairwell");
             }
         
         if(!door) {
-            throw new DataNotValidException("In Room " + walls.get(0).getRoomName() + " there is no Door !");
+            DataNotValidExceptionLogger.getInstance().addExceptionMessage("In Room " + walls.get(0).getRoomName() + " , Floor : " + walls.get(0).floorNumber + " there is no Door !");
         }
         return true;
     }
