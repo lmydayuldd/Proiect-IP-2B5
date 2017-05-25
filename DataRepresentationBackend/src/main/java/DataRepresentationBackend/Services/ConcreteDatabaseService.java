@@ -1,5 +1,6 @@
 package DataRepresentationBackend.Services;
 
+import DataRepresentationBackend.Models.SingleObject;
 import DataRepresentationBackend.Models.TemporaryData;
 import org.springframework.stereotype.Service;
 
@@ -104,6 +105,19 @@ public class ConcreteDatabaseService implements DatabaseService {
         statement.setInt(9, data.isExterior);
         statement.executeUpdate();
     }
+
+    public void deleteRoom(SingleObject data) throws Exception {
+        // operations here
+    }
+
+    public void deleteFloor(SingleObject data) throws Exception {
+        // operations here
+    }
+
+    public void updateData(TemporaryData data) throws Exception {
+        // operations here
+    }
+
 /*
     public ArrayList<TemporaryData> getTableElements() throws Exception {
         TemporaryData element = new TemporaryData();

@@ -1,5 +1,7 @@
 package DataRepresentationBackend.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Project name DataRepresentationBackend.
  * Created by Turcu Nicusor on 08-May-17.
@@ -93,5 +95,12 @@ public class TemporaryData {
 
     public void setIsExterior(Integer isExterior) {
         this.isExterior = isExterior;
+    }
+
+    @JsonIgnore
+    public Boolean isValid() {
+        return !(this.getType() == null || this.getFloor() == null || this.getIsExitWay() == null
+                || this.getIsExterior() == null || this.getRoom() == null || this.getX1() == null ||
+                this.getX2() == null || this.getY1() == null || this.getY2() == null);
     }
 }

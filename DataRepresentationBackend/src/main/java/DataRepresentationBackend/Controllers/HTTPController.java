@@ -1,12 +1,12 @@
 package DataRepresentationBackend.Controllers;
 
 import DataRepresentationBackend.Models.Message;
+import DataRepresentationBackend.Models.SingleObject;
 import DataRepresentationBackend.Models.TemporaryData;
 import DataRepresentationBackend.Models.TemporarySaveMessage;
 import DataRepresentationBackend.Services.DatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import javax.naming.OperationNotSupportedException;
@@ -30,14 +30,6 @@ import java.sql.*;
 public class HTTPController {
     @Autowired
     private DatabaseService databaseService;
-
-    public Boolean isBadRequest(TemporaryData data) {
-        if (data.getType() == null || data.getFloor() == null || data.getIsExitWay() == null
-                || data.getIsExterior() == null || data.getRoom() == null || data.getX1() == null ||
-                data.getX2() == null || data.getY1() == null || data.getY2() == null)
-            return true;
-        return false;
-    }
 
     /* The method which takes everything from BUILDING_DATA and generates the XML in the desired output file */
 
@@ -131,7 +123,7 @@ public class HTTPController {
     @RequestMapping(value = "/checkExists", method = RequestMethod.POST)
     public ResponseEntity<Message> checkExistsData(@RequestBody TemporaryData data) {
         try {
-            if (isBadRequest(data)) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            if (!data.isValid()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             if (databaseService.checkExistsData(data))
                 return new ResponseEntity<>(new Message("Data exists in database."), HttpStatus.OK);
             return new ResponseEntity<>(new Message("Data does not exists in database."), HttpStatus.OK);
@@ -145,7 +137,8 @@ public class HTTPController {
     @ResponseBody
     public ResponseEntity<Message> addTemporaryData(@RequestBody TemporaryData data) {
         try {
-            if (isBadRequest(data)) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            // to check error cannot insert null when "room" : ""
+            if (!data.isValid()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             databaseService.addData(data);
             databaseService.commit();
             return new ResponseEntity<>(new Message("Insert operation success."), HttpStatus.OK);
@@ -155,12 +148,58 @@ public class HTTPController {
     }
 
     @CrossOrigin
+    @RequestMapping(value = "/modifyElement", method = RequestMethod.PUT)
+    @ResponseBody
+    public ResponseEntity<?> modifyElement(@RequestBody TemporaryData updatedData) {
+        try {
+            if (!updatedData.isValid()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            databaseService.updateData(updatedData);
+            databaseService.commit();
+            return new ResponseEntity<>(new Message("Modify operation success."), HttpStatus.OK);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(new Message("Modify operation failed. " + ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @CrossOrigin
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     @ResponseBody
     public ResponseEntity<Message> deleteTemporaryData(@RequestBody TemporaryData data) {
         try {
-            if (isBadRequest(data)) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            if (!data.isValid()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             databaseService.deleteData(data);
+            databaseService.commit();
+            return new ResponseEntity<>(new Message("Delete operation success."), HttpStatus.OK);
+        } catch (OperationNotSupportedException ex) {
+            return new ResponseEntity<>(new Message(ex.getMessage()), HttpStatus.BAD_REQUEST);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(new Message("Delete operation failed."), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/deleteRoom", method = RequestMethod.DELETE)
+    @ResponseBody
+    public ResponseEntity<Message> deleteRoom(@RequestBody SingleObject room) {
+        try {
+            if (!room.isValid()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            databaseService.deleteRoom(room);
+            databaseService.commit();
+            return new ResponseEntity<>(new Message("Delete operation success."), HttpStatus.OK);
+        } catch (OperationNotSupportedException ex) {
+            return new ResponseEntity<>(new Message(ex.getMessage()), HttpStatus.BAD_REQUEST);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(new Message("Delete operation failed."), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/deleteFloor", method = RequestMethod.DELETE)
+    @ResponseBody
+    public ResponseEntity<Message> deleteFloor(@RequestBody SingleObject floor) {
+        try {
+            if (!floor.isValid()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            databaseService.deleteFloor(floor);
             databaseService.commit();
             return new ResponseEntity<>(new Message("Delete operation success."), HttpStatus.OK);
         } catch (OperationNotSupportedException ex) {
@@ -177,6 +216,23 @@ public class HTTPController {
             return new ResponseEntity<>(new TemporarySaveMessage("Operation success."), HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(new TemporarySaveMessage("Delete operation failed."), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/getXML", method = RequestMethod.GET)
+    public HttpEntity<?> getXML(){
+        try{
+            String xml = "<list>\n" +
+                        "<value>DUMMY XML</value>\n" +
+                        "</list>\n";
+            byte[] documentBody = xml.getBytes();
+            HttpHeaders header = new HttpHeaders();
+            header.setContentType(new MediaType("application", "xml"));
+            header.setContentLength(documentBody.length);
+            return new HttpEntity<byte[]>(documentBody, header);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(new Message("Get XML operation failed"), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
