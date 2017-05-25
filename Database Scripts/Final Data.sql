@@ -24,5 +24,4 @@ BEGIN
   :new.id := FINAL_DATA_ID.NEXTVAL;
 END;
 /
-
 select * from FINAL_DATA;

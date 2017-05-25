@@ -24,5 +24,20 @@ BEGIN
   :new.id := TEMPORARY_DATA_ID.NEXTVAL;
 END;
 /
-
+CREATE OR REPLACE PROCEDURE REPLICATE_DATA IS
+  v_sqlDrop varchar2(100);
+  v_sqlCreate varchar2(100);
+BEGIN
+  v_sqlDrop := 'DROP TABLE FINAL_DATA CASCADE CONSTRAINTS';
+  v_sqlCreate := 'CREATE TABLE FINAL_DATA AS SELECT * FROM TEMPORARY_DATA';
+  EXECUTE IMMEDIATE v_sqlDrop;
+  EXECUTE IMMEDIATE v_sqlCreate;
+END;
+/
 select * from temporary_data;
+/
+select * from final_data;
+/
+BEGIN
+  REPLICATE_DATA;
+END;

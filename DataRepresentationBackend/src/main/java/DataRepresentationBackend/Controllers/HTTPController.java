@@ -215,7 +215,7 @@ public class HTTPController {
         try {
             return new ResponseEntity<>(new TemporarySaveMessage("Operation success."), HttpStatus.OK);
         } catch (Exception ex) {
-            return new ResponseEntity<>(new TemporarySaveMessage("Delete operation failed."), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(new TemporarySaveMessage("Delete operation failed." + ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -230,7 +230,7 @@ public class HTTPController {
             HttpHeaders header = new HttpHeaders();
             header.setContentType(new MediaType("application", "xml"));
             header.setContentLength(documentBody.length);
-            return new HttpEntity<byte[]>(documentBody, header);
+            return new HttpEntity<>(documentBody, header);
         } catch (Exception ex) {
             return new ResponseEntity<>(new Message("Get XML operation failed"), HttpStatus.INTERNAL_SERVER_ERROR);
         }

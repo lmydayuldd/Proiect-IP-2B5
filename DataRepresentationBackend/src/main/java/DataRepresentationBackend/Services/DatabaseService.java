@@ -22,6 +22,8 @@ public interface DatabaseService {
     void deleteFloor(SingleObject data) throws Exception;
 
     void updateData(TemporaryData data) throws Exception;
+
+    void replicateData() throws Exception;
     /*
     public ArrayList<TemporaryData> getTableElements() throws Exception;
     public void saveFinalData() throws Exception;

@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * Created by Turcu Nicusor on 08-May-17.
  */
 public class Message {
-    public String message;
+    private String message;
 
     public Message(String message) {
         this.message = message;

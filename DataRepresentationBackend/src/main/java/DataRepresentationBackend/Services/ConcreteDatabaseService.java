@@ -118,6 +118,12 @@ public class ConcreteDatabaseService implements DatabaseService {
         // operations here
     }
 
+    public void replicateData() throws Exception {
+        String plsql = "BEGIN REPLICATE_DATA; END;";
+        PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(plsql);
+        statement.executeUpdate();
+    }
+
 /*
     public ArrayList<TemporaryData> getTableElements() throws Exception {
         TemporaryData element = new TemporaryData();
