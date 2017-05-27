@@ -1,4 +1,33 @@
-<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Formular </title>
+
+    <link href="formular.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="icon" type="images/png" href="images/favicon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="javaScript.js"></script>
+
+</head>
+<body>
+	<div id="mySidenav" class="sidenav" style="margin-top: 50px;">
+	  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	  <p style="text-align: center;"> Elements added </p>
+	</div>
+
+	
+	<p style="margin-top: 50px;">
+		<span style="font-size:30px;cursor:pointer;" onclick="openNav()">&#9776; View added elements</span>
+	</p>
+
+    <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-brand-centered">
@@ -16,7 +45,7 @@
 <div class="container" id="mainDiv">
   <div class="row">
     <div class="col-xs-12 col-md-12">
-      <div class="page-header" style="margin-left: 15px; margin-top: 60px;">
+      <div class="page-header" style="margin-left: 15px; margin-top: 10px;">
         <h1>
           <small>Add an element</small>
         </h1>
@@ -56,14 +85,17 @@
           <label for="x2">Right upper x coordinate </label>
           <input #x2 type="number" name="x2" value="" id="x2" class="form-control input-lg" placeholder="x2"/>
         </div>
+
         <div class="form-group col-xs-6 col-md-6">
           <label for="y2">Right upper y coordinate </label>
-          <input #y2 type="number" name="y2" value="" id="y2" class="form-control input-lg" placeholder="y2"/>
+          <input #y2 name="y2" value="" id="y2" class="form-control input-lg" placeholder="y2"/>
         </div>
+
         <div class="form-group col-xs-6 col-md-6">
           <label for="room">Room this element belongs to </label>
           <input #room name="room" id="room" value="" class="form-control input-lg" placeholder="ex: 112, 412"/>
         </div>
+
         <div class="form-group col-xs-6 col-md-6">
           <label for="floor">Choose floor </label>
           <select #floor name="floor" id="floor" class="form-control input-lg">
@@ -82,14 +114,21 @@
         </div>
         <div class="btn-group col-md-12" role="group" aria-label="Actions" style="margin-top: 30px;">
           <button class="btn btn-primary" id="saveElement" type="submit"
-                  (click)="onSaveElementClick(element.value, x1.value, y1.value, x2.value, y2.value, floor.value, room.value, isExitWay.value, isExterior.value)">
+          			(click)="onSaveElementClick(element.value, x1.value, y1.value, x2.value, y2.value, floor.value, room.value, isExitWay.value, isExterior.value)">
             Save this element
           </button>
           <button class="btn btn-success" id="saveBuilding" type="submit"
                   (click)="onTemporarySaveDataClick()"> Save Building
           </button>
-        </div>
+        
       </form>
+      
+	  <div id= "finalMessage"></div>
+
+	  <div id = "wrongInput"></div>		
+	  
+      
+
     </div>
   </div>
   <br>
@@ -97,6 +136,7 @@
   <br>
 
 </div>
-
-
+   
+</body>
+</html>
 
