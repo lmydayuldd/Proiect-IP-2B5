@@ -123,8 +123,6 @@ public class HTTPController {
         xmlSerializer.serialize(_xmlDoc.getDocumentElement());
     }
 
-
-
     @CrossOrigin
     @RequestMapping(value = "/checkExists", method = RequestMethod.POST)
     public ResponseEntity<Message> checkExistsData(@RequestBody TemporaryData data) {
@@ -138,25 +136,6 @@ public class HTTPController {
         }
     }
 
-    /**
-     * POST method that
-     * add element of the building into the database
-     * @param data - BodyType: JSon {
-                                "elementType" : 6,
-                                "room" : "C210",
-                                "x1" : 1,
-                                "y1" : 2,
-                                "x2" : 3,
-                                "y2" : 4,
-                                "floor" : 5,
-                                "isExitWay" : 0,
-                                "isExterior": 0
-                                 }
-     * @return ResponseEntity - a Message object and HttpStatus.OK if element is added to database
-     * or a ResponseEntity in case of OperationNotSupportedException that contains a significant message and HttpStatus.BAD_REQUEST
-     * or in case of Exception contains a significant Message and HttpStatus.INTERNAL_SERVER_ERROR
-     * or a ResponseEntity in case of invalid data with HttpStatus.BAD_REQUEST
-     */
     @CrossOrigin
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
@@ -176,26 +155,6 @@ public class HTTPController {
         }
     }
 
-    /**
-     * DELETE method that
-     * erase element of the building from the database
-     * @param data - BodyType: JSon {
-                                "elementType" : 6,
-                                "room" : "C210",
-                                "x1" : 1,
-                                "y1" : 2,
-                                "x2" : 3,
-                                "y2" : 4,
-                                "floor" : 5,
-                                "isExitWay" : 0,
-                                "isExterior": 0
-                                }
-     * @return HttpStatus.OK if element is added to database
-     * or a ResponseEntity in case of OperationNotSupportedException that contains a significant message and HttpStatus.BAD_REQUEST
-     * or a ResponseEntity in case of Exception that contains a significant Message and HttpStatus.INTERNAL_SERVER_ERROR
-     * or a ResponseEntity in case of invalid data with HttpStatus.BAD_REQUEST
-     */
-
     @CrossOrigin
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     @ResponseBody
@@ -212,13 +171,6 @@ public class HTTPController {
         }
     }
 
-    /**
-     * method that delete a room from the building
-     * @param room - SingleObject that represent a room from the building
-     * @return ResponseEntity in case of OperationNotSupportedException that contains a significant message and HttpStatus.BAD_REQUEST
-     * or a ResponseEntity in case of Exception that contains a significant Message and HttpStatus.INTERNAL_SERVER_ERROR
-     * or a ResponseEntity in case of invalid data with HttpStatus.BAD_REQUEST
-     */
     @CrossOrigin
     @RequestMapping(value = "/deleteRoom", method = RequestMethod.DELETE)
     @ResponseBody
@@ -235,14 +187,6 @@ public class HTTPController {
         }
     }
 
-    /**
-     * method that gives the posibility to delete a entire floor
-     * @param floor - SingleObject
-     * @return ResponseEntity - a Message and HttpStatus.OK
-     * or a ResponseEntity that contains a significant message and HttpStatus.CONFLICT in case of SQLException
-     * or a ResponseEntity in case of Exception that contains a significant Message and HttpStatus.INTERNAL_SERVER_ERROR
-     * or a ResponseEntity in case of invalid data with HttpStatus.BAD_REQUEST
-     */
     @CrossOrigin
     @RequestMapping(value = "/deleteFloor", method = RequestMethod.DELETE)
     @ResponseBody
@@ -258,13 +202,7 @@ public class HTTPController {
             return new ResponseEntity<>(new Message("Delete operation failed."), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    /**
-     * POST method
-     * that make the final save. After validating the temporary elements, they are saved into the final form
-     * @return ResponseEntity - a message and HttpStatus.OK
-     * or a ResponseEntity that contains a significant message and HttpStatus.CONFLICT in case of SQLException
-     * or a ResponseEntity in case of Exception that contains a significant Message and HttpStatus.INTERNAL_SERVER_ERROR
-     */
+
     @CrossOrigin
     @RequestMapping(value = "/finalSave", method = RequestMethod.POST)
     public ResponseEntity<TemporarySaveMessage> temporarySave() {
@@ -289,12 +227,6 @@ public class HTTPController {
         }
     }
 
-    /**
-     * GET method
-     * that returns the XML Document needed for the representation of the building and for the pathfinding
-     * @return HttpEntity - the XML document and a HttpHeader which has information about the content type and length
-     * or a ResponseEntity in case of Exception that contains a significant Message and HttpStatus.INTERNAL_SERVER_ERROR
-     */
     @CrossOrigin
     @RequestMapping(value = "/getXML", method = RequestMethod.GET)
     public HttpEntity<?> getXML() {
@@ -312,12 +244,6 @@ public class HTTPController {
         }
     }
 
-    /**
-     * GET method that
-     * returns elements that are saved temporary by the user
-     * @return ResponseEntity - HttpStatus.OK and an array list of elements.
-     * or a ResponseEntity - in case of Exception returns a significant message and HttpStatus.INTERNAL_SERVER_ERROR
-     */
     @CrossOrigin
     @RequestMapping(value = "/getTemporaryData", method = RequestMethod.GET)
     ResponseEntity<?> getTemporaryData() {
