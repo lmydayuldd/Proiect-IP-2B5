@@ -11,10 +11,10 @@ import java.nio.charset.StandardCharsets;
  */
 
 
-public class XMLInput  extends ByteArrayInputStream{
+public class XmlInput  extends ByteArrayInputStream{
     private DataInputStream dataInputStream;
 
-    public XMLInput(InputStream inputStream){
+    public XmlInput(InputStream inputStream){
         super(new byte[11]); // harcoded
         this.dataInputStream = new DataInputStream(inputStream);
     }
@@ -33,7 +33,7 @@ public class XMLInput  extends ByteArrayInputStream{
     * Saves bytes recieved via @param inputStream in file @param pathToSave
     */
     public static void getXMLFile(InputStream inputStream, String pathToSave) throws ParserConfigurationException, IOException, SAXException {
-        XMLInput xmlInput = new XMLInput(inputStream);
+        XmlInput xmlInput = new XmlInput(inputStream);
         xmlInput.receive();
         String str = new String(xmlInput.buf, StandardCharsets.UTF_8);
         str = str.replaceAll("[^\\x20-\\x7e]", "");
