@@ -13,7 +13,6 @@ public class MainFrame extends JFrame{
 
     WallPanel leftPanel;
     
-    
     public MainFrame() {
         super();
         setLayout(new FlowLayout());
