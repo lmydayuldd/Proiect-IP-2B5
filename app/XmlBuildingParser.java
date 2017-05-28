@@ -17,7 +17,7 @@ public class XmlBuildingParser {
     private int maxFloor = 0;
 	
     private final String pathXml;
-    private static int[][][] rawMatrix;
+    private static int[][][] rawMatrix = new int[Matrix.LEVEL_COUNT][Matrix.DIMENSION][Matrix.DIMENSION];
 
     public XmlBuildingParser(String pathXml)
     {
@@ -112,6 +112,17 @@ public class XmlBuildingParser {
                 }
             }
     }
+	
+
+    public int getRawMatrixCell(int x, int y, int z){
+        return rawMatrix[z][x][y];
+    }
+
+    public int[][][] getRawMatrix(){
+        return rawMatrix;
+    }
+
+
 
     /*
        In rawMatrix:
