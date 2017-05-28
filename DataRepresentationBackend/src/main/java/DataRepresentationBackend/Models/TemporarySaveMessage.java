@@ -8,13 +8,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 public class TemporarySaveMessage {
     private String message;
-    private TemporaryData data;
+    private String data;
 
     public TemporarySaveMessage(String message) {
         this.message = message;
     }
 
-    public TemporarySaveMessage(String message, TemporaryData data) {
+    public TemporarySaveMessage(String message, String data) {
         this.message = message;
         this.data = data;
     }
@@ -27,11 +27,11 @@ public class TemporarySaveMessage {
         this.message = message;
     }
 
-    public TemporaryData getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(TemporaryData data) {
+    public void setData(String data) {
         this.data = data;
     }
 

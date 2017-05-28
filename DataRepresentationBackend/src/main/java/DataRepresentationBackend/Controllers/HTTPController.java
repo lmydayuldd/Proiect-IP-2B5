@@ -1,5 +1,8 @@
 package DataRepresentationBackend.Controllers;
 
+import DataRepresentationBackend.Logic.CustomExceptions.DataNotValidException;
+import DataRepresentationBackend.Logic.TableRepresentation.ElementManager;
+import DataRepresentationBackend.Logic.TableRepresentation.TableElement;
 import DataRepresentationBackend.Models.Message;
 import DataRepresentationBackend.Models.SingleObject;
 import DataRepresentationBackend.Models.TemporaryData;
@@ -146,7 +149,7 @@ public class HTTPController {
             databaseService.commit();
             return new ResponseEntity<>(new Message("Insert operation success."), HttpStatus.OK);
         } catch (SQLException sqlEx) {
-            return new ResponseEntity<>(new Message("Room name must be unique." ), HttpStatus.CONFLICT);
+            return new ResponseEntity<>(new Message("Room name must be unique."), HttpStatus.CONFLICT);
         } catch (Exception ex) {
             return new ResponseEntity<>(new Message("Insert operation failed. " + ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -204,9 +207,23 @@ public class HTTPController {
     @RequestMapping(value = "/finalSave", method = RequestMethod.POST)
     public ResponseEntity<TemporarySaveMessage> temporarySave() {
         try {
-            return new ResponseEntity<>(new TemporarySaveMessage("Operation success."), HttpStatus.OK);
+            ArrayList<TableElement> building = new ArrayList<>(); // functie ce returneaza arrayList de elemente din tabel.
+
+            ElementManager elementManager = new ElementManager(building);
+
+            try {
+                elementManager.validateElements();
+            } catch (DataNotValidException e) {
+                return new ResponseEntity<>(new TemporarySaveMessage("Building is invalid.", e.getMessage()), HttpStatus.OK);
+            }
+            try {
+                databaseService.replicateData();
+                return new ResponseEntity<>(new TemporarySaveMessage("Operation success."), HttpStatus.OK);
+            } catch (Exception ex) {
+                return new ResponseEntity<>(new TemporarySaveMessage("Error at replicate data in database" + ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+            }
         } catch (Exception ex) {
-            return new ResponseEntity<>(new TemporarySaveMessage("Delete operation failed." + ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(new TemporarySaveMessage("Final save operation failed." + ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -233,8 +250,7 @@ public class HTTPController {
         try {
             ArrayList<TemporaryData> data = databaseService.getTemporaryDataElements();
             return new ResponseEntity<>(data, HttpStatus.OK);
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             return new ResponseEntity<>(new Message("Get temporary data failed " + ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
