@@ -41,7 +41,6 @@ public class HTTPControllerTest {
     @Before
     public void setup() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
-
     }
 
     @Test
@@ -205,6 +204,30 @@ public class HTTPControllerTest {
                 .andExpect(status().isBadRequest())
         ;
     }
+
+    @Test
+    public void deleteRoomShouldReturnBadRequestIfDataJsonIsInvalid() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete("/deleteRoom")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\n" +
+                        "\t\"nme\" : \"sdad\"\n" +
+                        "}")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+        ;
+    }
+
+    @Test
+    public void deleteFloorShouldReturnBadRequestIfDataJsonIsInvalid() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete("/deleteFloor")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\n" +
+                        "\t\"nme\" : \"sdad\"\n" +
+                        "}")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+        ;
+    }
     //endregion
 
     //region test related to http method
@@ -241,6 +264,46 @@ public class HTTPControllerTest {
     @Test
     public void temporarySaveShouldReturnMethodNotAllowedIfWrongHttpRequest() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.delete("/finalSave")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{}")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isMethodNotAllowed())
+        ;
+    }
+
+    @Test
+    public void getXmlShouldReturnMethodNotAllowedIfWrongHttpRequest() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/getXML")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{}")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isMethodNotAllowed())
+        ;
+    }
+
+    @Test
+    public void deleteRoomShouldReturnMethodNotAllowedIfWrongHttpRequest() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/deleteRoom")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{}")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isMethodNotAllowed())
+        ;
+    }
+
+    @Test
+    public void deleteFloorShouldReturnMethodNotAllowedIfWrongHttpRequest() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/deleteFloor")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{}")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isMethodNotAllowed())
+        ;
+    }
+
+    @Test
+    public void getTemporaryDataShouldReturnMethodNotAllowedIfWrongHttpRequest() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete("/getTemporaryData")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{}")
                 .accept(MediaType.APPLICATION_JSON))

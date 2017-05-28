@@ -65,3 +65,30 @@ Raport Date: 18-May-2017, Hour 19:50
 	Test 13
 	1. Test Name: checkDatShouldReturnFalseIfThisDataDoesNotExists
 	2. Test Status: passed
+
+Report Date: 28 May 2017
+	- test created on date 18-May-2017, passed;
+
+	Test 1
+	1. Test Name: getXmlShouldReturnMethodNotAllowedIfWrongHttpRequest
+	2. Test Status: passed
+
+	Test 2
+	1. Test Name: deleteRoomShouldReturnMethodNotAllowedIfWrongHttpRequest
+	2. Test Status: passed
+
+	Test 3
+	1. Test Name: deleteFloorShouldReturnMethodNotAllowedIfWrongHttpRequest
+	2. Test Status: passed
+
+	Test 4
+	1. Test Name: getTemporaryDataShouldReturnMethodNotAllowedIfWrongHttpRequest
+	2. Test Status: passed
+
+	Test 5
+	1. Test Name: deleteRoomShouldReturnBadRequestIfDataJsonIsInvalid
+	2. Test Status: passed
+
+	Test 6
+	1. Test Name: deleteFloorShouldReturnBadRequestIfDataJsonIsInvalid
+	2. Test Status: passed

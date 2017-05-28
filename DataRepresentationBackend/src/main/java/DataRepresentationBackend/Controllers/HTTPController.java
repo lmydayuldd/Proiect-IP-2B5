@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.nio.file.FileAlreadyExistsException;
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  * Project name DataRepresentationBackend.
@@ -144,6 +145,8 @@ public class HTTPController {
             databaseService.addData(data);
             databaseService.commit();
             return new ResponseEntity<>(new Message("Insert operation success."), HttpStatus.OK);
+        } catch (SQLException sqlEx) {
+            return new ResponseEntity<>(new Message("Room name must be unique." ), HttpStatus.CONFLICT);
         } catch (Exception ex) {
             return new ResponseEntity<>(new Message("Insert operation failed. " + ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -221,6 +224,18 @@ public class HTTPController {
             return new HttpEntity<>(documentBody, header);
         } catch (Exception ex) {
             return new ResponseEntity<>(new Message("Get XML operation failed" + ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/getTemporaryData", method = RequestMethod.GET)
+    ResponseEntity<?> getTemporaryData() {
+        try {
+            ArrayList<TemporaryData> data = databaseService.getTemporaryDataElements();
+            return new ResponseEntity<>(data, HttpStatus.OK);
+        }
+        catch (Exception ex) {
+            return new ResponseEntity<>(new Message("Get temporary data failed " + ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

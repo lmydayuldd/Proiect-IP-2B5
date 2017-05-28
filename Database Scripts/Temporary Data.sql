@@ -8,7 +8,7 @@ CREATE TABLE TEMPORARY_DATA (
   x2 number NOT NULL,
   y2 number NOT NULL,
   floor number NOT NULL,
-  room varchar(100) NOT NULL,
+  room varchar(100) UNIQUE NOT NULL,
   isExitWay integer,
   isExterior integer
 );

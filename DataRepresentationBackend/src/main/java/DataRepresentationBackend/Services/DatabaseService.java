@@ -3,6 +3,9 @@ package DataRepresentationBackend.Services;
 import DataRepresentationBackend.Models.SingleObject;
 import DataRepresentationBackend.Models.TemporaryData;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 /**
  * Project name DataRepresentationBackend.
  * Created by Turcu Nicusor on 08-May-17.
@@ -22,8 +25,10 @@ public interface DatabaseService {
     void deleteFloor(SingleObject data) throws Exception;
 
     void replicateData() throws Exception;
+
+    ArrayList<TemporaryData> getTemporaryDataElements() throws SQLException;
+
     /*
-    public ArrayList<TemporaryData> getTableElements() throws Exception;
     public void saveFinalData() throws Exception;
     */
 }
