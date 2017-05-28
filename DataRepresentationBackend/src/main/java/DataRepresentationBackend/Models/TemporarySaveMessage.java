@@ -37,6 +37,6 @@ public class TemporarySaveMessage {
 
     @JsonIgnore
     public Boolean isValid() {
-        return !(message == null || data == null);
+        return !(getMessage() == null || getData() == null);
     }
 }

@@ -99,8 +99,9 @@ public class TemporaryData {
 
     @JsonIgnore
     public Boolean isValid() {
-        return !(this.getType() == null || this.getFloor() == null || this.getIsExitWay() == null
-                || this.getIsExterior() == null || this.getRoom() == null || this.getX1() == null ||
-                this.getX2() == null || this.getY1() == null || this.getY2() == null);
+        return !(this.getType() == null || this.getFloor() == null || this.getIsExitWay() == null ||
+                this.getIsExterior() == null || this.getRoom() == null || this.getX1() == null ||
+                this.getX2() == null || this.getY1() == null || this.getY2() == null ||
+                getType().isEmpty() || getRoom().isEmpty());
     }
 }

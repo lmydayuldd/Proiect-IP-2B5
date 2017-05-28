@@ -50,8 +50,9 @@ public class ConcreteDatabaseService implements DatabaseService {
         ResultSet resultSet = statement.executeQuery();
         resultSet.next();
         int response = resultSet.getInt(1);
-        if (response == 1) return true;
-        return false;
+        resultSet.close();
+        statement.close();
+        return response == 1;
     }
 
     public void addData(TemporaryData data) throws Exception {
@@ -67,6 +68,7 @@ public class ConcreteDatabaseService implements DatabaseService {
         statement.setInt(8, data.isExitWay);
         statement.setInt(9, data.isExterior);
         statement.executeUpdate();
+        statement.close();
     }
 
     public void deleteData(TemporaryData data) throws Exception {
@@ -87,8 +89,6 @@ public class ConcreteDatabaseService implements DatabaseService {
         int response = resultSet.getInt(1);
         if (response < 1) {
             throw new OperationNotSupportedException("No data to delete.");
-        } else if (response > 1) {
-            throw new OperationNotSupportedException("Multiple deletion operation.");
         }
 
         PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement("delete from TEMPORARY_DATA " +
@@ -104,17 +104,15 @@ public class ConcreteDatabaseService implements DatabaseService {
         statement.setInt(8, data.isExitWay);
         statement.setInt(9, data.isExterior);
         statement.executeUpdate();
+        resultSet.close();
+        statement.close();
     }
 
     public void deleteRoom(SingleObject data) throws Exception {
-        // operations here
+        String sql = "";
     }
 
     public void deleteFloor(SingleObject data) throws Exception {
-        // operations here
-    }
-
-    public void updateData(TemporaryData data) throws Exception {
         // operations here
     }
 
@@ -122,6 +120,7 @@ public class ConcreteDatabaseService implements DatabaseService {
         String plsql = "BEGIN REPLICATE_DATA; END;";
         PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(plsql);
         statement.executeUpdate();
+        statement.close();
     }
 
 /*

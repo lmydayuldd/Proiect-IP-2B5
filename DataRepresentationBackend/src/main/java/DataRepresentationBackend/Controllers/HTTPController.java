@@ -139,25 +139,13 @@ public class HTTPController {
         try {
             // to check error cannot insert null when "room" : ""
             if (!data.isValid()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            if (databaseService.checkExistsData(data))
+                return new ResponseEntity<>(new Message("Element already exists."), HttpStatus.CONFLICT);
             databaseService.addData(data);
             databaseService.commit();
             return new ResponseEntity<>(new Message("Insert operation success."), HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(new Message("Insert operation failed. " + ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @CrossOrigin
-    @RequestMapping(value = "/modifyElement", method = RequestMethod.PUT)
-    @ResponseBody
-    public ResponseEntity<?> modifyElement(@RequestBody TemporaryData updatedData) {
-        try {
-            if (!updatedData.isValid()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-            databaseService.updateData(updatedData);
-            databaseService.commit();
-            return new ResponseEntity<>(new Message("Modify operation success."), HttpStatus.OK);
-        } catch (Exception ex) {
-            return new ResponseEntity<>(new Message("Modify operation failed. " + ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -221,18 +209,18 @@ public class HTTPController {
 
     @CrossOrigin
     @RequestMapping(value = "/getXML", method = RequestMethod.GET)
-    public HttpEntity<?> getXML(){
-        try{
+    public HttpEntity<?> getXML() {
+        try {
             String xml = "<list>\n" +
-                        "<value>DUMMY XML</value>\n" +
-                        "</list>\n";
+                    "<value>DUMMY XML</value>\n" +
+                    "</list>\n";
             byte[] documentBody = xml.getBytes();
             HttpHeaders header = new HttpHeaders();
             header.setContentType(new MediaType("application", "xml"));
             header.setContentLength(documentBody.length);
             return new HttpEntity<>(documentBody, header);
         } catch (Exception ex) {
-            return new ResponseEntity<>(new Message("Get XML operation failed"), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(new Message("Get XML operation failed" + ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

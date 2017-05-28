@@ -9,7 +9,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class SingleObject {
     private String name;
 
-    public SingleObject(){ }
+    public SingleObject() {
+    }
 
     public SingleObject(String name) {
         this.name = name;
@@ -25,6 +26,6 @@ public class SingleObject {
 
     @JsonIgnore
     public Boolean isValid() {
-        return !(name==null);
+        return !(getName() == null || getName().isEmpty());
     }
 }
