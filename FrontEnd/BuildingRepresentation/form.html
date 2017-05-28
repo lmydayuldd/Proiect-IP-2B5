@@ -1,6 +1,5 @@
-
-
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,8 +13,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="javaScript.js"></script>
-
+   
 </head>
+
 <body>
 	<div id="mySidenav" class="sidenav" style="margin-top: 50px;">
 	  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -116,27 +116,25 @@
           <button class="btn btn-primary" id="saveElement" type="submit"
           			(click)="onSaveElementClick(element.value, x1.value, y1.value, x2.value, y2.value, floor.value, room.value, isExitWay.value, isExterior.value)">
             Save this element
-          </button>
+                  <div id= "snackbar" > <i> Element adaugat cu succes </i> </div>
+            </button>
+          
           <button class="btn btn-success" id="saveBuilding" type="submit"
                   (click)="onTemporarySaveDataClick()"> Save Building
           </button>
-        
-      </form>
-      
-	  <div id= "finalMessage"></div>
+         </form>
 
-	  <div id = "wrongInput"></div>		
-	  
-      
+            <div id= "finalMessage"></div>
+            <div id = "wrongInput"></div>	
+            <div id = "error" > </div>
 
+        </div>
     </div>
-  </div>
-  <br>
-  <br>
-  <br>
+    <br>
+    <br>
+    <br>
 
 </div>
-   
 </body>
 </html>
 

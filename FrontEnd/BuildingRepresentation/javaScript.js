@@ -27,53 +27,14 @@ function closeNav() {
 	xhr.onreadystatechange = function () {
 	    if (xhr.readyState === 4 && xhr.status === 200) {
 	        var json = JSON.parse(xhr.responseText);
-			
-	    }
+            console.log(json);
+		}
 	};
 	xhr.send(JSON.stringify(body));
     });
 }
 
 
-
-
-
-function sendElement(element, x1, y1, x2, y2, floor, room, isExitWay, isExterior){
-	var body = {
-      "type": element,
-      "room": room,
-      "x1": x1,
-      "y1": y1,
-      "x2": x2,
-      "y2": y2,
-      "floor": floor,
-      "isExitWay": isExitWay,
-      "isExterior": isExterior
-    };
-    var x1 = $('#x1').val();
-	var y1 = $('#y1').val();
-	var x2 = $('#x2').val();
-	var y2 = $('#y2').val();
-	var element = $('#element').val();
-	var y1 = $('#y1').val();
-    console.log(JSON.stringify(body));
-
-    var xhr = new XMLHttpRequest();
-	var url = "http://localhost:4500/add/";
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json");
-	xhr.onreadystatechange = function () {
-	    if (xhr.readyState === 4 && xhr.status === 200) {
-	        var json = JSON.parse(xhr.responseText);
-            console.log(json);
-        }
-        else
-        {
-            console.log("nasol , ghinion, csff ");
-        }
-	};
-	xhr.send(JSON.stringify(body));
-}
 
 
 function onSaveElementClick(element, x1, y1, x2, y2, floor, room, isExitWay, isExterior){
@@ -99,8 +60,8 @@ function onTemporarySaveDataClick()
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json");
 	xhr.onreadystatechange = function () {
-	    if (xhr.readyState === 4 && xhr.status === 200 && s === JSON.parse(xhr.responseText) ) {
-			document.getElementById('finalMessage').innerHTML = "<p> Bravo ai introdus toate datele corect </p>";
+	    if (xhr.readyState === 4 && xhr.status === 200 && s === JSON.parse(xhr.responseText).message ) {
+			document.getElementById('finalMessage').innerHTML = "<p> Bravo, ai introdus toate datele corect </p>";
 			}
         else
         {
@@ -109,9 +70,6 @@ function onTemporarySaveDataClick()
 	};
 
 }
-
-
-
 
 $(document).ready(function(){
 		$('#saveElement').on('click', function(ev){
@@ -141,11 +99,52 @@ $(document).ready(function(){
                     alert("You must choose a floor");
                     return false;
                 }
-			var valoare = $('#room').val();
-			var x1 = $('#x1').val();
-			var y1 = $('#y1').val();
-			var element = "<div class='minibox glyphicon glyphicon-trash' onclick='removeMe()'> " + valoare+" X1:"+x1+" Y1:"+y1+"</div>";
-	        $("#mySidenav").append( element );
-	        onSaveElementClick(element.value, x1.value, y1.value, x2.value, y2.value, floor.value, room.value, isExitWay.value, isExterior.value);
+			// var valoare = $('#room').val();
+			// var x1 = $('#x1').val();
+			// var y1 = $('#y1').val();
+			 onSaveElementClick(element.value, x1.value, y1.value, x2.value, y2.value, floor.value, room.value, isExitWay.value, isExterior.value);
 		})
 })
+
+function sendElement(element, x1, y1, x2, y2, floor, room, isExitWay, isExterior){
+	var body = {
+      "type": element,
+      "room": room,
+      "x1": x1,
+      "y1": y1,
+      "x2": x2,
+      "y2": y2,
+      "floor": floor,
+      "isExitWay": isExitWay,
+      "isExterior": isExterior
+    };
+    var x1 = $('#x1').val();
+	var y1 = $('#y1').val();
+	var x2 = $('#x2').val();
+	var y2 = $('#y2').val();
+	var element = $('#element').val();
+	var y1 = $('#y1').val();
+    console.log(JSON.stringify(body));
+
+    var xhr = new XMLHttpRequest();
+	var url = "http://localhost:4500/add/";
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json");
+	xhr.onreadystatechange = function () {
+	    if (xhr.readyState === 4 && xhr.status === 200) {
+            var json = JSON.parse(xhr.responseText).message;
+            console.log(json);
+            var x = document.getElementById("snackbar")
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+            var element = "<div class='minibox glyphicon glyphicon-trash' onclick='removeMe()'> " + room+" X1:"+x1+" Y1:"+y1+"</div>";
+	        $("#mySidenav").append(element);	    
+        }
+        // else
+        // {
+        // document.getElementById('error').innerHTML = "<i> Eroare </i>";
+        // }
+
+    };
+	xhr.send(JSON.stringify(body));
+}
