@@ -1094,14 +1094,14 @@ public class TestsArrayElements {
     
     @Test 
     public void test19Run()throws DataNotValidException{
-        ArrayList<TableElement> floor = test16();
+        ArrayList<TableElement> floor = test19();
         ElementManager em = new ElementManager(floor);
         try{
-            System.out.println("**TEST 16 **");
+            System.out.println("**TEST 19 **");
             em.validateElements();
 //            fail("DataNotValidException expected");
         }catch(DataNotValidException e){
-            System.out.println("Test 16 : " + e.getMessage());
+            System.out.println("Test 19 : " + e.getMessage());
         }
     }
     
@@ -1181,6 +1181,18 @@ public class TestsArrayElements {
         floor.add(new TableElement("stairs",27,4,27,16,2,"s1",0,0));
 
         return floor;
+    }
+    @Test 
+    public void test16Run()throws DataNotValidException{
+        ArrayList<TableElement> building = test16();
+        ElementManager em = new ElementManager(building);
+        try{
+            System.out.println("**TEST 16 **");
+            em.validateElements();
+//            fail("DataNotValidException expected");
+        }catch(DataNotValidException e){
+            System.out.println("Test 16 : " + e.getMessage());
+        }
     }
     
     //no errors
@@ -1290,6 +1302,18 @@ public class TestsArrayElements {
         floor.add(new TableElement("stairs",27,4,27,16,3,"s1",0,0));
         
         return floor;
+    }
+    @Test 
+    public void test17Run()throws DataNotValidException{
+        ArrayList<TableElement> building = test17();
+        ElementManager em = new ElementManager(building);
+        try{
+            System.out.println("**TEST 17 **");
+            assertTrue(em.validateElements());
+//            fail("DataNotValidException expected");
+        }catch(DataNotValidException e){
+            System.out.println("Test 17 : " + e.getMessage());
+        }
     }
     
     
@@ -1407,6 +1431,18 @@ public class TestsArrayElements {
         
         return floor;
     }
+    @Test 
+    public void test18Run()throws DataNotValidException{
+        ArrayList<TableElement> building = test18();
+        ElementManager em = new ElementManager(building);
+        try{
+            System.out.println("**TEST 18 **");
+            assertTrue(em.validateElements());
+//            fail("DataNotValidException expected");
+        }catch(DataNotValidException e){
+            System.out.println("Test 18 : " + e.getMessage());
+        }
+    }
     
     
     //error - s1 from second floor bad coordinates
@@ -1514,6 +1550,18 @@ public class TestsArrayElements {
         floor.add(new TableElement("stairs",27,4,27,16,3,"s1",0,0));
         
         return floor;
+    }
+    @Test 
+    public void test20Run()throws DataNotValidException{
+        ArrayList<TableElement> building = test20();
+        ElementManager em = new ElementManager(building);
+        try{
+            System.out.println("**TEST 20 **");
+            em.validateElements();
+            fail("DataNotValidException expected");
+        }catch(DataNotValidException e){
+            System.out.println("Test 20 : " + e.getMessage());
+        }
     }
     
     //error - no door s1 from floor 2
@@ -1624,6 +1672,18 @@ public class TestsArrayElements {
         
         return floor;
     }
+    @Test 
+    public void test21Run()throws DataNotValidException{
+        ArrayList<TableElement> building = test21();
+        ElementManager em = new ElementManager(building);
+        try{
+            System.out.println("**TEST 21 **");
+            em.validateElements();
+            fail("DataNotValidException expected");
+        }catch(DataNotValidException e){
+            System.out.println("Test 21 : " + e.getMessage());
+        }
+    }
     
     //error - no stairs floor 3
     public ArrayList<TableElement> test22(){
@@ -1724,6 +1784,19 @@ public class TestsArrayElements {
         
         return floor;
     }
+    @Test 
+    public void test22Run()throws DataNotValidException{
+        ArrayList<TableElement> building = test22();
+        ElementManager em = new ElementManager(building);
+        try{
+            System.out.println("**TEST 22 **");
+            em.validateElements();
+            fail("DataNotValidException expected");
+        }catch(DataNotValidException e){
+            System.out.println("Test 22 : " + e.getMessage());
+        }
+    }
+    
     
     //floor 3 inaccessable
     public ArrayList<TableElement> test23(){
@@ -1821,6 +1894,7 @@ public class TestsArrayElements {
         floor.add(new TableElement("wall",24,11,24,9,3,"301",0,0));////
         floor.add(new TableElement("wall",24,5,24,2,3,"301",0,0));////
         floor.add(new TableElement("wall",24,2,13,2,3,"301",0,0));////
+        floor.add(new TableElement("wall",13,2,13,11,3,"301",0,0));////
 
         //stairs "s2"
         floor.add(new TableElement("door",10,23,13,23,3,"s2",0,0));
@@ -1831,6 +1905,18 @@ public class TestsArrayElements {
         floor.add(new TableElement("stairs",7,23,10,23,3,"s2",0,0));
         
         return floor;
+    }
+    @Test 
+    public void test23Run()throws DataNotValidException{
+        ArrayList<TableElement> building = test23();
+        ElementManager em = new ElementManager(building);
+        try{
+            System.out.println("**TEST 23 **");
+            em.validateElements();
+            fail("DataNotValidException expected");
+        }catch(DataNotValidException e){
+            System.out.println("Test 23 : " + e.getMessage());
+        }
     }
 }
 

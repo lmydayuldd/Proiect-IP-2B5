@@ -17,8 +17,8 @@ import tablerepresentation.DataNotValidExceptionLogger;
  */
 public class Stairs3D {
 
-    private int bottom;
-    private int top;
+    private int bottom = Integer.MAX_VALUE;
+    private int top = Integer.MIN_VALUE;
     private String name = "";
     private ArrayList<Room> stairs2D = null;
     
@@ -45,7 +45,7 @@ public class Stairs3D {
             this.name = newStairs2D.getRoomName();
         }
         if(newStairs2D.getFloorNumber()<this.bottom){
-                this.bottom = newStairs2D.getFloorNumber();
+            this.bottom = newStairs2D.getFloorNumber();
             }
         if(newStairs2D.getFloorNumber()>this.top){
             this.top = newStairs2D.getFloorNumber();
@@ -55,6 +55,9 @@ public class Stairs3D {
     
     
     public static boolean validate(Stairs3D stairs3D) throws DataNotValidException {
+        if(stairs3D.stairs2D.size()<2){
+            DataNotValidExceptionLogger.getInstance().addExceptionMessage("For Stairs " + stairs3D.getStairs3DName() + " there is only one room specified, on a single floor!");
+        }
         Collections.sort(stairs3D.stairs2D, (st1, st2)->{
             return(st1.getFloorNumber()-st2.getFloorNumber());
         });

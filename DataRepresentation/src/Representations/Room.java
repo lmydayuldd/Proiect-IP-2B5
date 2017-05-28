@@ -100,7 +100,7 @@ public class Room extends Element{
             if(walls.get(i) instanceof Door){
                 door = true;
             }
-            if((!walls.get(i).isStairs) && room.isStairwell){
+            if(!(walls.get(i) instanceof Stairs) && (!(walls.get(i) instanceof Window))&& (!(walls.get(i) instanceof Door)) && room.isStairwell){
                 DataNotValidExceptionLogger.getInstance().addExceptionMessage("["+walls.get(i).toString()+"] is not of type Stairs but it is specified as part of a Stairwell");
             }
             for(int j = i+1; j < walls.size(); j++){

@@ -15,6 +15,8 @@ import Representations.Stairs3D;
 import Representations.Wall;
 import Representations.Window;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
@@ -152,8 +154,17 @@ public class ElementFilter {
             }
         }
             //////////////// VALIDARI TESTE///////////////////////////////////////////////////
+        Collections.sort(floors, (f1, f2) -> {
+            return (f1.getFloorLevel()-f2.getFloorLevel());
+        });
         for(int i = 0; i < floors.size (); i++){
             Floor.validate(floors.get(i));
+            if((i>0)&&(floors.get(i).getFloorLevel()-floors.get(i-1).getFloorLevel() != 1)){
+                DataNotValidExceptionLogger.getInstance().addExceptionMessage("From Floor " + floors.get(i-1).getFloorLevel() + " you jump directly to Floor " + floors.get(i).getFloorLevel());
+            }
+            if((!floors.get(i).hasStairs) && (floors.get(i).getFloorLevel()!=0)){
+                DataNotValidExceptionLogger.getInstance().addExceptionMessage("Floor " + floors.get(i).getFloorLevel() + " is not reached by any stairs");
+            }
         }
         return floors;
     }
@@ -203,7 +214,7 @@ public class ElementFilter {
             }
         }
         for(int i = 0; i < stairs3D.size (); i++){
-            Stairs3D.validate(stairs3D.get(i));
+            Stairs3D.validate(stairs3D.get(i));///////////////////////////  <--- LOOK AT IT <--------
         }
         return stairs3D;
     }

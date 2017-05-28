@@ -23,6 +23,7 @@ public class Floor extends Element {
     private int floorHeight;
     private ArrayList<Room> rooms = new ArrayList<>();
     private ArrayList<Wall> exteriorWalls = new ArrayList<>();
+    public boolean hasStairs = false;
    
     public Floor(int level){/**Construct floor with floorHeight and floorLevel*/
         this.floorLevel = level;
@@ -50,6 +51,9 @@ public class Floor extends Element {
     public void addRoom(Room room) throws DataNotValidException{/**Add room to this floor's rooms*/
         if(room.getFloorNumber()!=this.floorLevel){
             DataNotValidExceptionLogger.getInstance().addExceptionMessage("Tried to insert onto Floor " + this.floorLevel + " a Room from floor " + room.getFloorNumber());
+        }
+        if(room.isStairwell()){
+            this.hasStairs = true;
         }
         this.rooms.add(room);
     }
