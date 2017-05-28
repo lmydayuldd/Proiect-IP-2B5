@@ -207,7 +207,7 @@ public class HTTPController {
     @RequestMapping(value = "/finalSave", method = RequestMethod.POST)
     public ResponseEntity<TemporarySaveMessage> temporarySave() {
         try {
-            ArrayList<TableElement> building = new ArrayList<>(); // functie ce returneaza arrayList de elemente din tabel.
+            ArrayList<TableElement> building = databaseService.getTemporaryDataTable();
 
             ElementManager elementManager = new ElementManager(building);
 
