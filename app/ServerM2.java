@@ -8,11 +8,11 @@ import java.net.Socket;
  * Created by Djok on 5/29/2017.
  * With Soul
  */
-public class ServeAlexSchimbaDenumirea {
+public class ServerM2 {
     private static final int PORT = 6969;
     private ServerSocket serverSocket;
 
-    public ServeAlexSchimbaDenumirea() throws IOException {
+    public ServerM2() throws IOException {
         serverSocket = new ServerSocket(PORT);
     }
 
