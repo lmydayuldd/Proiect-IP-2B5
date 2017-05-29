@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<path_points>
+	<point>
+		<x>0.3</x>
+		<y>0.5</y>
+		<floor>4</floor>
+	</point>
+	<point>
+		<x>0.3</x>
+		<y>0.5</y>
+		<floor>4</floor>
+	</point>
+	<point>
+		<x>0.3</x>
+		<y>0.5</y>
+		<floor>4</floor>
+	</point>
+	<point>
+		<x>0.3</x>
+		<y>0.5</y>
+		<floor>4</floor>
+	</point>
+</path_points>
+// to delete this 
+// just comments
+/**
+* Xml file with path reference points 
+**/
