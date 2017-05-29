@@ -28,4 +28,8 @@ class Point {
         return y;
     }
 
+    boolean isValid(Integer lvl, Integer n, Integer m) {
+        return !(floor < 0 || floor >= lvl) && !(x < 0 || x >= n) && !(y < 0 || y >= m);
+    }
+
 }

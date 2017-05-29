@@ -1,6 +1,6 @@
 package app;
 
-import java.util.ArrayList;
+import java.util.Vector;
 
 
 /**
@@ -11,7 +11,7 @@ public abstract class PathFinder {
 
     Matrix matrix;
 
-    public PathFinder(Matrix m) {
+    PathFinder(Matrix m) {
         matrix = m;
     }
 
@@ -19,13 +19,10 @@ public abstract class PathFinder {
         matrix = m;
     }
 
-    public abstract Integer execute(Point source, Point dest);
-
-
     /**
      * This class calculates the route in the building that travels through the
      * points described by the @param path list.
      */
-    public abstract void execute(ArrayList<Point> path);
+    public abstract Vector<Point> execute(Point source, Point dest);
 
 }
