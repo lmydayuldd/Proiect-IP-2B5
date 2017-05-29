@@ -10,7 +10,15 @@ import java.util.Vector;
  * With Soul
  */
 class ServeClient extends Thread {
+    /**
+     * Creati o conexiune TCP la portul 6969 si trimiteti
+     * un sir de caractere care sa reprezinte coordonatele.
+     * EX: "23 45 23 47" care reprezinta ca dorim din sursa (23, 45) sa ajungem in destinatia (23, 47).
+     * Dupa care, asteptati un sir de caractere care reprezinta un XML cu drumul.
+     */
+
     private Socket sock = null;
+
     ServeClient(Socket socket) {
         sock = socket;
     }
