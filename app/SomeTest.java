@@ -1,4 +1,4 @@
-package com.company;
+package  app;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -120,13 +120,13 @@ public class SomeTest {
         sample.fillWall(1, 1, 1, 100, 3);
 
         int[][][] xmat = sample.getRawMatrix();
-        /*
+
         for(int i=1; i<=15; ++i) {
             for (int j = 1; j <= 15; ++j)
                 System.out.print(xmat[3][i][j] + " ");
             System.out.println();
         }
-        */
+
         assertTrue(1 == xmat[3][1][16]);
     }
     @Test
@@ -142,7 +142,56 @@ public class SomeTest {
             System.out.println();
         }
 
-        assertTrue(1 == xmat[1][1][16]);
+        assertTrue(1 == xmat[3][16][1]);
+    }
+    //part2
+    @Test
+    public void testRawMatrix7(){
+        XmlBuildingParser sample = new XmlBuildingParser("exXML");
+        sample.fillWall(100, 100, 1, 1, 3);
+
+        int[][][] xmat = sample.getRawMatrix();
+
+        for(int i=1; i<=15; ++i) {
+            for (int j = 1; j <= 15; ++j)
+                System.out.print(xmat[3][i][j] + " ");
+            System.out.println();
+        }
+
+        assertTrue(1 == xmat[3][1][1]);
+    }
+
+    @Test
+    public void testRawMatrix8(){
+        XmlBuildingParser sample = new XmlBuildingParser("exXML");
+        sample.fillWall(100, 100, 2, 3, 3);
+
+        int[][][] xmat = sample.getRawMatrix();
+
+        for(int i=1; i<=15; ++i) {
+            for (int j = 1; j <= 15; ++j)
+                System.out.print(xmat[3][i][j] + " ");
+            System.out.println();
+        }
+
+        assertTrue(1 == xmat[3][2][3]);
+    }
+
+    //fix FillWall
+    @Test
+    public void testRawMatrix9(){
+        XmlBuildingParser sample = new XmlBuildingParser("exXML");
+        sample.fillWall(100, 1, 2, 70, 3);
+
+        int[][][] xmat = sample.getRawMatrix();
+
+        for(int i=1; i<=15; ++i) {
+            for (int j = 1; j <= 15; ++j)
+                System.out.print(xmat[3][i][j] + " ");
+            System.out.println();
+        }
+
+        assertTrue(1 == xmat[3][2][3]);
     }
 
 }
