@@ -1,0 +1,39 @@
+12:00
+ 
+exemplu daca trebuie un path de la doua etaje diferite: (Trimis de modulul 2)
+In felul acesta trimitem drumul minim
+   
+    <floor number="1"> //seria de puncte de la etajul 1
+        <room>
+            <type name="path">
+                <x1> 0</x1>
+                <y1> 0 </y1>
+                <x2> 5 </x2>
+                <y2> 0 </y2>
+            </type>
+            <type name="path">
+                <x1> 0</x1>
+                <y1> 0 </y1>
+                <x2> 5 </x2>
+                <y2> 0 </y2>
+            </type>
+           
+        </room>
+    </floor>
+    <floor number="2">//seria de puncte de la etaj 2
+        <room>
+            <type name="path">
+                <x1> 0</x1>
+                <y1> 0 </y1>
+                <x2> 5 </x2>
+                <y2> 0 </y2>
+            </type>
+            <type name="path">
+                <x1> 0</x1>
+                <y1> 0 </y1>
+                <x2> 5 </x2>
+                <y2> 0 </y2>
+            </type>
+           
+        </room>
+    </floor>

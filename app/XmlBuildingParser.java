@@ -17,7 +17,7 @@ public class XmlBuildingParser {
     private int maxFloor = 0;
 	
     private final String pathXml;
-    private static int[][][] rawMatrix;
+    private static int[][][] rawMatrix = new int[Matrix.LEVEL_COUNT][Matrix.DIMENSION][Matrix.DIMENSION];
 
     public XmlBuildingParser(String pathXml)
     {
@@ -88,30 +88,48 @@ public class XmlBuildingParser {
     }
 
     private int getY(int x1, int y1, int x2, int y2, int x){
-        return ( Math.abs((x-x1))*Math.abs((y2-y1)) / Math.abs((x2-x1)) + y1 ); // some formula for nerds
+        return ( ((x-x1))*((y2-y1)) / ((x2-x1)) + y1 ); // some formula for nerds
     }
 	/*
 		We use Equation of a line to create the walls
 		(x - x1) / (x2 -x1 ) = (y - y1) / (y2 - y1)
 	*/
-    private void fillWall( int x1, int y1, int x2, int y2, int floor) {
-        if (y2 - y1 > x2 - x1) {
-            if (y1 > y2) {
-                y1 = swap(y2, y2 = y1); //@Vasile - check this; @Alex - checked
-            }
-            for (int y = y1 + 1; y < y2; ++y) {
+    public void fillWall( int x1, int y1, int x2, int y2, int floor) {
+        if (Math.abs(y2 - y1) > Math.abs(x2 - x1)) {
+           // if (y1 > y2) {
+                //y1 = swap(y2, y2 = y1); //@Vasile - check this; @Alex - checked
+                int a1, a2;
+                a2 = Math.max(y1, y2);
+                a1 = Math.min(y1, y2);
+
+           // }
+            for (int y = a1; y <= a2; ++y) {
                 rawMatrix[floor][getX(x1, y1, x2, y2, y)][y] = 1;
                 }
             }
          else {
-            if (x1>x2) {
-               x1 = swap(x2, x2 = x1); //@Vasile - check this; @Alex - checked
-            }
-            for (int x = x1 + 1; x < x2; ++x) {
+         //   if (x1>x2) {
+              // x1 = swap(x2, x2 = x1); //@Vasile - check this; @Alex - checked
+            int a1, a2;
+            a2 = Math.max(x1, x2);
+            a1 = Math.min(x1, x2);
+          //  }
+            for (int x = a1; x <= a2; ++x) {
                 rawMatrix[floor][x][getY(x1, y1, x2, y2, x)] = 1;
                 }
             }
     }
+	
+
+    public int getRawMatrixCell(int x, int y, int z){
+        return rawMatrix[z][x][y];
+    }
+
+    public int[][][] getRawMatrix(){
+        return rawMatrix;
+    }
+
+
 
     /*
        In rawMatrix:
