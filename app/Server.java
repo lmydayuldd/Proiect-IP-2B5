@@ -26,6 +26,6 @@ public class Server {
     public void run() throws IOException, ParserConfigurationException, SAXException {
         Socket socket = serverSocket.accept();
         System.out.println("Someone has connected");
-        XMLInput.getXMLFile(socket.getInputStream(),"B:\\input2.txt");
+        XmlInput.getXMLFile(socket.getInputStream(),"B:\\input2.txt");
     }
 }

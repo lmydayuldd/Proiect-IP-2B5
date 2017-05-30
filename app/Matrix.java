@@ -24,7 +24,7 @@ public class Matrix {
 
     public Matrix() {
         pathFinder = new SimplePath(this);
-        Cell[][][] matrix = new Cell[LEVEL_COUNT][DIMENSION][DIMENSION];
+        matrix = new Cell[LEVEL_COUNT][DIMENSION][DIMENSION];
     }
 
     public void setCell(Cell cell, int x, int y, int z) {
