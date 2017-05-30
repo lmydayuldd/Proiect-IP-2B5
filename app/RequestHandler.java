@@ -10,7 +10,6 @@ import java.util.Vector;
 
 public class RequestHandler {
 
-    public Vector myEngine;
 
     public void addWall() {
     }

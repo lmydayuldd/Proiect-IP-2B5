@@ -5,6 +5,7 @@
  */
 package app;
 import gui.*;
+import java.io.IOException;
 /**
  *
  */
@@ -14,10 +15,11 @@ public class Modul3 {
      * @param args the command line arguments
      */
     static MainFrame mf;
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // TODO code application logic here
+        ServerM2 srv = new ServerM2();
+        srv.start();
         mf = new MainFrame();
-        
     }
 
 }

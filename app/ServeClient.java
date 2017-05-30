@@ -23,7 +23,7 @@ class ServeClient extends Thread {
     ServeClient(Socket socket) {
         sock = socket;
     }
-
+    
     @Override
     public void run() {
         try {

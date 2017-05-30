@@ -14,6 +14,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+import java.io.StringWriter;
 import java.util.ArrayList;
 
 /**
@@ -45,7 +46,7 @@ public class XmlOutput{
      * @see         XmlOutput
      */
 
-    public void createXml(String path) throws TransformerException {
+    public String createXml(String path) throws TransformerException {
         Document document = docBuilder.newDocument();
         Element rootElement = document.createElement("path_points");
         document.appendChild(rootElement);
@@ -80,6 +81,8 @@ public class XmlOutput{
         StreamResult result = new StreamResult(new File(path));
 
         transformer.transform(source,result);
+        
+        return document.getTextContent();
     }
 
 }
