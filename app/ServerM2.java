@@ -8,7 +8,7 @@ import java.net.Socket;
  * Created by Djok on 5/29/2017.
  * With Soul
  */
-public class ServerM2 {
+public class ServerM2 extends Thread{
     private static final int PORT = 6969;
     private ServerSocket serverSocket;
 
@@ -16,6 +16,7 @@ public class ServerM2 {
         serverSocket = new ServerSocket(PORT);
     }
 
+    @Override
     public void run() {
         try {
             Socket socket = serverSocket.accept();
@@ -24,4 +25,5 @@ public class ServerM2 {
             e.printStackTrace();
         }
     }
+
 }
