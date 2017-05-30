@@ -1,4 +1,8 @@
-package  app;
+package app.test;
+import app.Cell;
+import app.Matrix;
+import app.Point;
+import app.XmlBuildingParser;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -185,13 +189,28 @@ public class SomeTest {
 
         int[][][] xmat = sample.getRawMatrix();
 
-        for(int i=1; i<=15; ++i) {
-            for (int j = 1; j <= 15; ++j)
+        for(int i=1; i<=110; ++i) {
+            for (int j = 1; j <= 110; ++j)
                 System.out.print(xmat[3][i][j] + " ");
             System.out.println();
         }
 
-        assertTrue(1 == xmat[3][2][3]);
+        assertTrue(1 == xmat[3][2][70]);
+    }
+    @Test
+    public void testRawMatrix10(){
+        XmlBuildingParser sample = new XmlBuildingParser("exXML");
+        sample.fillWall(2, 2, 2, 2, 3);
+
+        int[][][] xmat = sample.getRawMatrix();
+
+        for(int i=1; i<=11; ++i) {
+            for (int j = 1; j <= 11; ++j)
+                System.out.print(xmat[3][i][j] + " ");
+            System.out.println();
+        }
+
+        assertTrue(1 == xmat[3][2][2]);
     }
 
 }

@@ -3,28 +3,28 @@ package app;
 /**
  *
  */
-class Point {
+public class Point {
 
     /**
      * The coordinates of a cell in matrix.
      */
     private int x, y, floor;//
 
-    Point(int x, int y, int floor) {
+    public Point(int x, int y, int floor) {
         this.x = x;
         this.y = y;
         this.floor = floor;
     }
 
-    int getX() {
+    public int getX() {
         return x;
     }
 
-    int getFloor() {
+    public int getFloor() {
         return floor;
     }
 
-    int getY() {
+    public int getY() {
         return y;
     }
 
