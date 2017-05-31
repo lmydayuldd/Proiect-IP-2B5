@@ -12,6 +12,9 @@ public class Cell {
      * 7 in base 2 is 1110
      * The walls that exist are N, E, W.
      * The last 2 bits encode the up/down accessibility.
+     * 10 - up
+     * 01 - down
+     * 11 - up/down
      */
     private int walls;
 
