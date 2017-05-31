@@ -33,6 +33,9 @@ public class XmlBuildingParser {
     public void parse() throws ParserConfigurationException, IOException, SAXException {
         DocumentBuilder builder = factory.newDocumentBuilder();
 
+        
+        //TODO put 0 on door on rawMatrix!!!!
+        
         StringBuilder xmlStringBuilder = new StringBuilder();
         File file = new File(this.pathXml);
 

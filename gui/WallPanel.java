@@ -68,7 +68,7 @@ class WallPanel extends JPanel{
         
         // Starting to initialize the three inside Panels: topPane, addWallPane and removeWallPane
         topPane = new JPanel();
-        topPane.setPreferredSize(new Dimension(1000, 100));
+        topPane.setPreferredSize(new Dimension(1000, 70));
         addWallPane = new JPanel();
         addWallPane.setPreferredSize(new Dimension(1000, 50));
         removeWallPane = new JPanel();
@@ -102,7 +102,7 @@ class WallPanel extends JPanel{
         wallsTableModel = new DefaultTableModel(null, tableHeader);
         wallsTableModel.addRow(tableHeader);
         walls = new JTable(wallsTableModel);
-        walls.setPreferredScrollableViewportSize(new Dimension(500, 100));
+        walls.setPreferredScrollableViewportSize(new Dimension(500, 80));
 
         /*
         //Setting up the scroll pane in which we will put the Table
@@ -115,7 +115,7 @@ class WallPanel extends JPanel{
         //Adding to the main frame the bottom panel which contains the table
         // with the walls data
         add(removeWallPane);
-        setPreferredSize(new Dimension(1024, 450));
+        setPreferredSize(new Dimension(1024, 250));
         setBorder(border);
         //setBackground(Color.DARK_GRAY);
         

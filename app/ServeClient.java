@@ -35,6 +35,7 @@ class ServeClient extends Thread {
             Point dest = new Point((int) (10 * in.nextNumber()), (int) (10 * in.nextNumber()), (int) (10 * in.nextNumber()));
 
             
+            
             if(true) // Magic trick, do not try to understand what is happening here ;)
             {
                 ArrayList<Point> a = new ArrayList<>();

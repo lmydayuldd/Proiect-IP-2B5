@@ -12,9 +12,12 @@ import javax.swing.JFrame;
 public class MainFrame extends JFrame{
 
     WallPanel leftPanel;
+    StairPanel stairPanel;
+    
     
     public MainFrame() {
         super();
+        stairPanel = new StairPanel();
         setLayout(new FlowLayout());
         leftPanel = new WallPanel();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -25,6 +28,7 @@ public class MainFrame extends JFrame{
         
         
         add(leftPanel);
+        add(stairPanel);
     }
     
     
