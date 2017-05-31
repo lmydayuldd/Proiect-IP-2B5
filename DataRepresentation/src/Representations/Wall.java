@@ -20,13 +20,13 @@ public class Wall {
     protected String roomName;
     protected int isExterior;
     public boolean isStairs = false;
-    
-    public Wall(Point lpoint, Point rpoint){/**Construct wall with points*/
+    /**Construct wall with points*/
+    public Wall(Point lpoint, Point rpoint){
         this.leftPoint = new Point(lpoint);
         this.rightPoint = new Point(rpoint);
     }
-    
-    public Wall(Wall toCopy){/**Construct wall which is a deep copy of another door*/
+    /**Construct wall which is a deep copy of another door*/
+    public Wall(Wall toCopy){
         this.leftPoint = new Point(toCopy.getLeftPoint());
         this.rightPoint = new Point(toCopy.getRightPoint());
     }
@@ -71,8 +71,8 @@ public class Wall {
     public String toString(){
         return ("Wall: lpoint(" + this.leftPoint.toString().substring(7) + "), rpoint(" + this.rightPoint.toString().substring(7)+"), room: " + this.roomName);
     }
-    
-    public static Line2D toLine2D(Wall wall){/**Returns equivalent representation of Wall as equivalent Line2D object*/
+    /**Returns equivalent representation of Wall as equivalent Line2D object*/
+    public static Line2D toLine2D(Wall wall){
         return (new Line2D.Double(wall.leftPoint.getX(), wall.leftPoint.getY(), wall.rightPoint.getX(), wall.rightPoint.getY()));
     }
 

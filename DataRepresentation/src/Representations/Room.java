@@ -21,12 +21,13 @@ public class Room extends Element{
     private String roomName;
     private int floorNumber;
     private boolean isStairwell = false;
-    
-    public Room(String name, int floorNumber){/**Construct a room with a name*/
+    /**Construct a room with a name*/
+    public Room(String name, int floorNumber){
         this.roomName = name;
         this.floorNumber = floorNumber;
     }
-    public Room(ArrayList<Wall> walls){/**Constructs Room with Walls*/
+    /**Constructs Room with Walls*/
+    public Room(ArrayList<Wall> walls){
         this.walls = walls;
     }
     
@@ -47,8 +48,8 @@ public class Room extends Element{
         
         return true;
     }
-    
-    public void addWall(Wall wall) throws DataNotValidException{/**Add a wall to this room*/
+    /**Add a wall to this room*/
+    public void addWall(Wall wall) throws DataNotValidException{
         if(wall.getFloorNumber()!=this.getFloorNumber()){
             DataNotValidExceptionLogger.getInstance().addExceptionMessage("Tried to insert into [" + this.toString() + "] a wall from a different floor !");
         }
@@ -60,8 +61,8 @@ public class Room extends Element{
         }
         this.walls.add(wall);
     }
-    
-    public void deleteWall(Wall wall)throws DataNotValidException{/**Delete a wall from this room*/
+    /**Delete a wall from this room*/
+    public void deleteWall(Wall wall)throws DataNotValidException{
         this.walls.remove(wall);
     }
     
@@ -74,19 +75,19 @@ public class Room extends Element{
         ans = ans + i + " -> " + walls.get(walls.size()-1).toString() + '\n';
         return ans + ". Floor: " + this.floorNumber;
     }
-    
-    public ArrayList<Wall> getWalls() {/**Returns the room's walls*/
+    /**Returns the room's walls*/
+    public ArrayList<Wall> getWalls() {
         return walls;
     }
 
     public void setWalls(ArrayList<Wall> walls) { 
         this.walls = walls;
     }
-    
-    public static boolean validate(Room room)throws DataNotValidException{/**True if argument is a valid room, false otherwise*/
+    /**True if argument is a valid room, false otherwise*/
+    public static boolean validate(Room room)throws DataNotValidException{
         ArrayList<Wall> walls = room.walls;
         if((walls==null) || (walls.size()< 3)){
-            DataNotValidExceptionLogger.getInstance().addExceptionMessage("A Room must have at least 3 walls in order to be valid !");
+            throw new DataNotValidException("Room " + room.getRoomName() + " on floor " + room.getFloorNumber() + " is not a polygon" );
         }
         boolean door = false;
         int[] neighbors = new int[walls.size()]; 
@@ -95,7 +96,7 @@ public class Room extends Element{
         }
         for(int i = 0; i < walls.size()-1; i++){
             if(!firstQuadrant(walls.get(i))){
-                DataNotValidExceptionLogger.getInstance().addExceptionMessage("["+walls.get(i).toString()+"] is not entirely in the right upper quadrant !");
+                throw new DataNotValidException("["+walls.get(i).toString()+"] is not entirely in the right upper quadrant !");
             }
             if(walls.get(i) instanceof Door){
                 door = true;
@@ -144,15 +145,15 @@ public class Room extends Element{
             DataNotValidExceptionLogger.getInstance().addExceptionMessage("In Room " + walls.get(0).getRoomName() + " , Floor : " + walls.get(0).floorNumber + " there is no Door !");
         }
         return true;
-    }
-    public static boolean firstQuadrant(Wall wall1) {/**True if the Wall parameter is entirely in the right upper quadrant*/
+    }/**True if the Wall parameter is entirely in the right upper quadrant*/
+    public static boolean firstQuadrant(Wall wall1) {
         return ((wall1.leftPoint.getX()>=0) && (wall1.leftPoint.getY()>=0) && (wall1.rightPoint.getX()>=0) && (wall1.rightPoint.getY()>=0));
-    }
-    public static boolean oneCommonExtremity(Wall w1, Wall w2) {/**True if the two Wall arguments share just one extremity*/
+    }/**True if the two Wall arguments share just one extremity*/
+    public static boolean oneCommonExtremity(Wall w1, Wall w2) {
         return ( w1.leftPoint.equals(w2.leftPoint) || (w1.leftPoint.equals(w2.rightPoint)) || 
                 (w1.rightPoint.equals(w2.leftPoint)) || (w1.rightPoint.equals(w2.rightPoint)) );
-    }
-    public static boolean intersect(Wall w1, Wall w2) {/**True if the two Wall arguments intersect in an interior point*/
+    }/**True if the two Wall arguments intersect in an interior point*/
+    public static boolean intersect(Wall w1, Wall w2) {
           Line2D w1Line = new Line2D.Float(w1.leftPoint.getX(), w1.leftPoint.getY(), w1.rightPoint.getX(), w1.rightPoint.getY());
           Line2D w2Line = new Line2D.Float(w2.leftPoint.getX(), w2.leftPoint.getY(), w2.rightPoint.getX(), w2.rightPoint.getY());;
           return (w1Line.intersectsLine(w2Line));
@@ -161,16 +162,16 @@ public class Room extends Element{
     private static double slope(Wall w){
         return (double)(w.rightPoint.getY()-w.leftPoint.getY())/(double)((w.rightPoint.getX()-w.leftPoint.getX()));
     }
-    
-    public static Path2D toPath2D(Room room) {/**Returns Path2D object equivalent to the Room parameter*/
+    /**Returns Path2D object equivalent to the Room parameter*/
+    public static Path2D toPath2D(Room room) {
         Path2D path = new Path2D.Double();
         for(int i = 0; i < room.walls.size(); i++){
             path.append(Wall.toLine2D(room.walls.get(i)), true);
         }
         return path;
     }
-
-    public ArrayList<Wall> getExteriorWalls(){/**Returns an ArrayList of Room's exterior Walls*/
+/**Returns an ArrayList of Room's exterior Walls*/
+    public ArrayList<Wall> getExteriorWalls(){
         ArrayList<Wall> exteriorWalls = new ArrayList<>();
         for(int i = 0; i < walls.size(); i++){
             if(walls.get(i).isExterior() == 1){

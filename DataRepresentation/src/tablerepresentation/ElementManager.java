@@ -32,7 +32,8 @@ public class ElementManager {/**Class that manages the elements in the TEMPORARY
         this.elements = elements;
         this.filter = new ElementFilter(this.elements);
     }
-    public void addElement(TableElement te){/**Adds an element to the set of TableElements*/
+    /**Adds an element to the set of TableElements*/
+    public void addElement(TableElement te){
         this.elements.add(te);
     }
     
@@ -47,7 +48,9 @@ public class ElementManager {/**Class that manages the elements in the TEMPORARY
         
 //        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 //        for(int i = 0 ; i < floors.size(); i++){
-//            System.out.println(floors.get(i));
+//            for(int j = 0 ; j< floors.get(i).getExteriorWalls().size(); j++){
+//                System.out.println(floors.get(i).getExteriorWalls().get(j));   
+//            }
 //        }
 //        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         

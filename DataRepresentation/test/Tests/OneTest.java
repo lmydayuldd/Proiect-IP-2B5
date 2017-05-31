@@ -31,8 +31,10 @@ public class OneTest {
         floor.add(new TableElement("wall",24,27,24,18,0,"-1",1,0));
         floor.add(new TableElement("wall",24,18,36,18,0,"-1",1,0));
         floor.add(new TableElement("wall",36,18,36,2,0,"-1",1,0));
-        floor.add(new TableElement("wall",36,2,2,2,0,"-1",1,0));
-        floor.add(new TableElement("wall",2,2,2,17,0,"-1",1,0));
+        floor.add(new TableElement("wall",36,2,24,2,0,"-1",1,0));
+//        floor.add(new TableElement("wall",36,2,2,2,0,"-1",1,0)); ////
+//        floor.add(new TableElement("wall",2,2,2,17,0,"-1",1,0));  ////
+        floor.add(new TableElement("wall",2,11,2,17,0,"-1",1,0));
         floor.add(new TableElement("wall",2,22,2,27,0,"-1",1,0));
 
         //room "101"
@@ -40,15 +42,15 @@ public class OneTest {
         floor.add(new TableElement("wall",2,11,5,11,0,"101",0,0));
         floor.add(new TableElement("wall",10,11,13,11,0,"101",0,0));
         floor.add(new TableElement("wall",13,11,13,2,0,"101",0,0));
-        floor.add(new TableElement("wall",13,2,2,2,0,"101",0,0));
-        floor.add(new TableElement("wall",2,2,2,11,0,"101",0,0));
+        floor.add(new TableElement("wall",13,2,2,2,0,"101",1,0));     /////
+        floor.add(new TableElement("wall",2,2,2,11,0,"101",1,0));    /////
 
         //room "102"
         floor.add(new TableElement("door",24,9,24,5,0,"102",0,0));////
         floor.add(new TableElement("wall",13,11,24,11,0,"102",0,0));////
         floor.add(new TableElement("wall",24,11,24,9,0,"102",0,0));////
         floor.add(new TableElement("wall",24,5,24,2,0,"102",0,0));////
-        floor.add(new TableElement("wall",24,2,13,2,0,"102",0,0));////
+        floor.add(new TableElement("wall",24,2,13,2,0,"102",1,0));////      ////
         floor.add(new TableElement("wall",13,2,13,11,0,"102",0,0));////
 
         //room "103"
@@ -68,12 +70,12 @@ public class OneTest {
     public void test1Run()throws DataNotValidException{
         ArrayList<TableElement> floor = test1();
         ElementManager em = new ElementManager(floor);
-//        try{
+        try{
             System.out.println("**TEST 1 **");
             assertTrue(em.validateElements());
-//        }catch(DataNotValidException e){
-//            System.out.println("Test 1 : " + e.getMessage());
-//        }
+        }catch(DataNotValidException e){
+            System.out.println("Test 1 : " + e.getMessage());
+        }
 
     }
 

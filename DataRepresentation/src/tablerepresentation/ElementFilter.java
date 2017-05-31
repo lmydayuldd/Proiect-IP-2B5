@@ -34,8 +34,8 @@ public class ElementFilter {
         this.exteriorWallsNoRoom = new ArrayList<>();
         this.stairsRooms = new ArrayList<Room>();
     }
-    
-    public ArrayList<Wall> getWalls() throws DataNotValidException{/**Filters from the set of TableElements those which are Walls*/
+    /**Filters from the set of TableElements those which are Walls - with ELEMET_TYPE Walls, Door, Window, Stairs*/
+    public ArrayList<Wall> getWalls() throws DataNotValidException{
         ArrayList<Wall> walls = new ArrayList<>();
         
         
@@ -100,8 +100,8 @@ public class ElementFilter {
         }
         return walls;
     }
-    
-    public ArrayList<Room> getRooms(ArrayList<Wall> walls) throws DataNotValidException{/**Filters from the set of Walls the set of Rooms in the building*/
+    /**Filters from the set of Walls the set of Rooms in the building based on the room String from TableElement*/
+    public ArrayList<Room> getRooms(ArrayList<Wall> walls) throws DataNotValidException{
         ArrayList<Room> rooms = new ArrayList<>();
         Room newRoom;
         Wall wall;
@@ -125,7 +125,7 @@ public class ElementFilter {
         }
         return rooms;
     }
-    
+    /**Filters from the set of Rooms the set of Floors in the building based on the floorNumber int from TableElement*/
     public ArrayList<Floor> getFloors(ArrayList<Room> rooms) throws DataNotValidException{
         ArrayList<Floor> floors = new ArrayList<>();
         Room room;
@@ -168,8 +168,8 @@ public class ElementFilter {
         }
         return floors;
     }
-    
-    public boolean insertIfRoomExists(ArrayList<Room> rooms, Wall wall) throws DataNotValidException{/**Tries to insert the Wall parameter in one of the existing Rooms. If it succeeds it returns true. Otherwise it returns false*/
+    /**Tries to insert the Wall parameter in one of the existing Rooms. If it succeeds it returns true. Otherwise it returns false*/
+    public boolean insertIfRoomExists(ArrayList<Room> rooms, Wall wall) throws DataNotValidException{
         for(int i = 0; i < rooms.size(); i++){
             if((rooms.get(i).getRoomName().equalsIgnoreCase(wall.getRoomName())) && (rooms.get(i).getFloorNumber() == wall.getFloorNumber())){
                 rooms.get(i).addWall(wall);
@@ -178,8 +178,8 @@ public class ElementFilter {
         }
         return false;
     }
-    
-    public boolean insertIfFloorExists(ArrayList<Floor> floors, Room room) throws DataNotValidException{/**Tries to insert the Room parameter in one of the existing Floors. If it succeeds it returns true. Otherwise it returns false*/
+    /**Tries to insert the Room parameter in one of the existing Floors. If it succeeds it returns true. Otherwise it returns false*/
+    public boolean insertIfFloorExists(ArrayList<Floor> floors, Room room) throws DataNotValidException{
         for(int i = 0; i < floors.size(); i++){
             if(floors.get(i).getFloorLevel() == room.getFloorNumber()){
                 floors.get(i).addRoom(room);
@@ -189,7 +189,7 @@ public class ElementFilter {
         return false;
     }
     
-    public boolean addToExteriorIfFloorExists(ArrayList<Floor> floors, Wall wall){/**Tries to insert the Wall parameter in one of the existing Floors as exterior Wall. If it succeeds it returns true. Otherwise it returns false*/
+    public boolean addToExteriorIfFloorExists(ArrayList<Floor> floors, Wall wall){
         for(int i = 0; i < floors.size(); i++){
             if(floors.get(i).getFloorLevel() == wall.getFloorNumber()){
                 floors.get(i).addExteriorWall(wall);
@@ -218,8 +218,8 @@ public class ElementFilter {
         }
         return stairs3D;
     }
-    
-    public boolean insertIfStairsExist(ArrayList<Stairs3D> stairs3D, Room stair) throws DataNotValidException{/**Tries to insert the Room parameter in one of the existing Floors. If it succeeds it returns true. Otherwise it returns false*/
+    /**Tries to insert the Room parameter in one of the existing Floors. If it succeeds it returns true. Otherwise it returns false*/
+    public boolean insertIfStairsExist(ArrayList<Stairs3D> stairs3D, Room stair) throws DataNotValidException{
         for(int i = 0; i < stairs3D.size(); i++){
             if(stairs3D.get(i).getStairs3DName() == stair.getRoomName()){
                 stairs3D.get(i).addStairs2D(stair);
