@@ -111,8 +111,8 @@ public class showMenu5 : MonoBehaviour
         dd_2d_etaj.ClearOptions();
         dd_2d_etaj.AddOptions(etajj);
         dd_etaj1.ClearOptions();
-        //dd_etaj1.AddOptions(etajj);
-        dd_etaj1.AddOptions(Deserialize.getCamere()); //de scos
+        dd_etaj1.AddOptions(etajj);
+        //dd_etaj1.AddOptions(Deserialize.getCamere()); //de scos
         dd_etaj2.ClearOptions();
         dd_etaj2.AddOptions(etajj);
     }
