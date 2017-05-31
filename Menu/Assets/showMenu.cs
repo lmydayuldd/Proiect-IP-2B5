@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class showMenu : MonoBehaviour
 {
-    public List<string> etaj = new List<string>() { "Alege Etaj", "Parter", "Etaj 1", "Etaj 2" };
+    public List<string> etajj = new List<string>() { "Alege Etaj", "Etaj 1", "Etaj 2" };
     public List<string> camere_etaj1 = new List<string> { "etaj 1", "C101", "C102", "C103", "C104", "C105", "C106", "C107", "C108", "C109" };
     public List<string> camere_etaj2 = new List<string> { "etaj 2", "C201", "C202", "C203", "C204", "C205", "C206", "C207", "C208", "C209" };
 
@@ -36,9 +36,6 @@ public class showMenu : MonoBehaviour
             dd_camera1.ClearOptions(); // Stergem optiunile vechi
             dd_camera1.AddOptions(camere_etaj2); // Adaugam optiunile cu camerele etajului 2
         }
-
-        etaj1 = index;
-        Debug.Log("Etaj1: " + etaj1);
     }
 
     // Cand alege etajul destinatie pentru drum
@@ -54,8 +51,6 @@ public class showMenu : MonoBehaviour
             dd_camera2.ClearOptions(); // Stergem optiunile vechi
             dd_camera2.AddOptions(camere_etaj2); // Adaugam camerele etajului 2
         }
-        etaj2 = index;
-        Debug.Log("Etaj2: " + etaj2);
     }
 
 
@@ -63,26 +58,23 @@ public class showMenu : MonoBehaviour
     public void Dropdown_IndexChanged_Drum_Selectare_Camera1(int index)
     {
         //Debug.Log("Camera start: ");// + dd_camera1[index]);
-        camera1 = index;
-        Debug.Log("Camera1: " + camera1);
     }
 
-    
+
     // Cand alege camera destinatie pentru drum
     public void Dropdown_Index_Changed_Drum_Selectare_Camera2(int index)
     {
-        //Debug.Log("Camera destinatie: ");// + dd_camera2[index]);
-        camera2 = index;
-        Debug.Log("Camera2: " + camera2);
-
+        //Debug.Log("Camera2: " + camera2);
     }
 
 
-    public void Button_Generate()
+    public void Button_Generate(int etaj1)
     {
-        Debug.Log("Etaj1: " + etaj1 + " - Camera1: " + camera1 + "\nEtaj2: " + etaj2 + " - Camera2: " + camera2);
+        Debug.Log(  "Etaj1: " + dd_etaj1.GetComponent<Dropdown>().value + " - Camera1: " + dd_camera1.GetComponent<Dropdown>().value +
+                    "\nEtaj2: " + dd_etaj2.GetComponent<Dropdown>().value + " - Camera2: " + dd_camera2.GetComponent<Dropdown>().value);
     }
 
+   
     void Start()
     {
         Populare();
@@ -91,11 +83,10 @@ public class showMenu : MonoBehaviour
     void Populare()
     {
         dd_2d_etaj.ClearOptions();
-        dd_2d_etaj.AddOptions(etaj);
+        dd_2d_etaj.AddOptions(etajj);
         dd_etaj1.ClearOptions();
-        dd_etaj1.AddOptions(etaj);
+        dd_etaj1.AddOptions(etajj);
         dd_etaj2.ClearOptions();
-        dd_etaj2.AddOptions(etaj);
+        dd_etaj2.AddOptions(etajj);
     }
-
 }
