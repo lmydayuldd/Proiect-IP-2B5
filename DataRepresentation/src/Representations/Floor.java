@@ -135,6 +135,7 @@ public class Floor extends Element {
         if((exterior==null) || (exterior.size()< 3)){
             throw new DataNotValidException("Exterior of floor " + floor.floorLevel + " is not a polygon");
         }
+        boolean githubedecacat = true;
         boolean door = false;
         int[] neighbors = new int[exterior.size()]; 
         for(int i = 0; i < exterior.size(); i++){
