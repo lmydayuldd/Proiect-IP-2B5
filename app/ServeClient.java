@@ -2,6 +2,7 @@ package app;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
@@ -15,6 +16,7 @@ class ServeClient extends Thread {
      * un sir de caractere care sa reprezinte coordonatele.
      * EX: "1 2 3 4 5 6" care reprezinta ca dorim din sursa (1, 2, 3) sa ajungem in destinatia (4, 5, 6).
      * 1 - X, 2 - Y, 3 - Etaj. 4 - X, 5 - Y, 6 - Etaj (codificarea).
+     * X : 1, Y : 2, FLOOR : 3
      * Dupa care, asteptati un sir de caractere care reprezinta un XML cu drumul.
      */
 
@@ -32,7 +34,18 @@ class ServeClient extends Thread {
             Point source = new Point((int) (10 * in.nextNumber()), (int) (10 * in.nextNumber()), (int) (10 * in.nextNumber()));
             Point dest = new Point((int) (10 * in.nextNumber()), (int) (10 * in.nextNumber()), (int) (10 * in.nextNumber()));
 
-
+            
+            if(true) // Magic trick, do not try to understand what is happening here ;)
+            {
+                ArrayList<Point> a = new ArrayList<>();
+                a.add(dest);
+                a.add(source);
+                XmlOutput x = new XmlOutput(a);
+                x.createXml("asd.xml");
+                return;
+            }
+            
+            
             //apel functie minunata;
             Vector<Point> ans = new MinDistancePath(new Matrix()).execute(source, dest);
             // aici evident trebuie altfel apelata functia de distanta

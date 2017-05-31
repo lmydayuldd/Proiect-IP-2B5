@@ -2,6 +2,7 @@ package app;
 
 /**
  * Created by Vasile Catana, Tamara Trifan, Cristina Ulinici  on 5/18/2017.
+ * Modified a bit by Alex... small changes. Can't remomber exact what
  */
 
 import  org.w3c.dom.*;
@@ -21,15 +22,15 @@ public class XmlBuildingParser {
 
     public XmlBuildingParser(String pathXml)
     {
-        maxLength = 0;
-        maxWidth = 0;
-        maxFloor = 0;
+        maxLength = 500;
+        maxWidth = 500;
+        maxFloor = 6;
         this.pathXml = pathXml; // path where to read XML file
     }
 /**
 * parse a xml file and extract data
 */
-    private void parse() throws ParserConfigurationException, IOException, SAXException {
+    public void parse() throws ParserConfigurationException, IOException, SAXException {
         DocumentBuilder builder = factory.newDocumentBuilder();
 
         StringBuilder xmlStringBuilder = new StringBuilder();
@@ -75,12 +76,14 @@ public class XmlBuildingParser {
                 maxWidth = Integer.max(maxWidth,x1);
                 maxWidth = Integer.max(maxWidth,x2);
 
-                if (element.getElementsByTagName("type").item(0).getTextContent().toString().equals("wall"))
+                if (element.getElementsByTagName("type").item(0).getTextContent().toString().equals("wall") || 
+                        element.getElementsByTagName("type").item(0).getTextContent().toString().equals("stairs"))
                 {
                     fillWall(x1,y1,x2,y2,floor);
                 }
             }
         }
+        System.out.println("Am iesit din parse");
     }
 	
     private int getX(int x1, int y1, int x2, int y2, int y){
@@ -178,6 +181,7 @@ public class XmlBuildingParser {
                             x+=32; // north wall
                         }
                     }
+                    //System.out.println("Cellll"+i+" " + j + " " + etaj + " valoare: "+ x);
                     Cell cell = new Cell(x,a[etaj][i][j]);
                     matrix.setCell(cell,etaj,i,j); // setting our value
                 }

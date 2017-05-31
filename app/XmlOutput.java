@@ -52,13 +52,14 @@ public class XmlOutput{
         Integer auxFloor = Integer.MAX_VALUE-1; // I hope that such a floor doesn't exist :D
 
         Element floorTag = document.createElement("floor");
+        Element roomTag = document.createElement("room");
         Attr attrFloor = document.createAttribute("number");
 
         boolean singlePointOnFloor = true;
 
         for (int i=0; i<points.size()-1; ++i) {
             Element pointsTag = document.createElement("type");
-            Attr attr = document.createAttribute("type");
+            Attr attr = document.createAttribute("name");
             attr.setValue("path");
             pointsTag.setAttributeNode(attr);
             Integer floor = points.get(i).getFloor();
@@ -94,11 +95,14 @@ public class XmlOutput{
                 {
                     pointsTag.appendChild(x1Element);
                     pointsTag.appendChild(y1Element);
-                    floorTag.appendChild(pointsTag);
+                    roomTag.appendChild(pointsTag);
                 }
 
+                floorTag.appendChild(roomTag);
                 rootElement.appendChild(floorTag);
+                
                 floorTag = document.createElement("floor");
+                roomTag = document.createElement("room");
                 attrFloor = document.createAttribute("number");
                 attrFloor.setValue(floorNext.toString());
                 floorTag.setAttributeNode(attrFloor);
@@ -110,7 +114,7 @@ public class XmlOutput{
                 pointsTag.appendChild(y1Element);
                 pointsTag.appendChild(x2Element);
                 pointsTag.appendChild(y2Element);
-                floorTag.appendChild(pointsTag);
+                roomTag.appendChild(pointsTag);
                 singlePointOnFloor = false;
             }
 
@@ -120,16 +124,17 @@ public class XmlOutput{
                 {
                     pointsTag.appendChild(x1Element);
                     pointsTag.appendChild(y1Element);
-                    floorTag.appendChild(pointsTag);
+                    roomTag.appendChild(pointsTag);
                 }
 
                 pointsTag.appendChild(x1Element);
                 pointsTag.appendChild(y1Element);
-                floorTag.appendChild(pointsTag);
+                roomTag.appendChild(pointsTag);
                 rootElement.appendChild(floorTag);
             }
         }
 
+        floorTag.appendChild(roomTag);
         rootElement.appendChild(floorTag);
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();

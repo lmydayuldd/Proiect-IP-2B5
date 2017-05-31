@@ -27,8 +27,8 @@ public class Matrix {
         matrix = new Cell[LEVEL_COUNT][DIMENSION][DIMENSION];
     }
 
-    public void setCell(Cell cell, int x, int y, int z) {
-        matrix[z][x][y] = cell;
+    public void setCell(Cell cell, int level, int x, int y) {
+        matrix[level][x][y] = cell;
     }
 
     public Cell getCell(int x, int y, int z) {
