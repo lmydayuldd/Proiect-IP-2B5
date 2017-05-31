@@ -139,7 +139,7 @@ public class XmlBuildingParser {
        toMatrix - transfrom data from rawMatrix to Matrix()
      */
 
-    private Matrix toMatrix(int[][][] a)
+    public Matrix toMatrix(int[][][] a)
     {
         Matrix matrix = new Matrix();
 
