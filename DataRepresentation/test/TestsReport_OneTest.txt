@@ -1,0 +1,44 @@
+Raport Date: 28-May-2017
+	Test 1
+	1. Test Name: Test 1
+	2. Test Status: passed.
+
+	Test 2
+	1. Test Name: Test 2
+	2. Test Status: error(Floor 1 is not reached by any stairs + bad placed exit)
+
+	Test 3
+	1. Test Name: Test 3
+	2. Test Status: passed
+
+	Test 4
+	1. Test Name: Test 4
+	2. Test Status: error(Floor 1 is not reached by any stairs + room without door)
+
+	Test 5
+	1. Test Name: Test 16
+	2. Test Status: passed
+
+	Test 6
+	1. Test Name: Test 17
+	2. Test Status: passed
+
+	Test 7
+	1. Test Name: Test 18
+	2. Test Status: passed
+
+	Test 8
+	1. Test Name: Test 20
+	2. Test Status: error(stairs does NOT overlap from different floors)
+
+	Test 9
+	1. Test Name: Test 21
+	2. Test Status: error(Floor 2 has stairs without exit)
+
+	Test 10
+	1. Test Name: Test 22
+	2. Test Status: error(Floor 3 is not reached by any stairs)
+
+	Test 11
+	1. Test Name: Test 23
+	2. Test Status: error(For Stairs s2 there is only one room specified, on a single floor!)

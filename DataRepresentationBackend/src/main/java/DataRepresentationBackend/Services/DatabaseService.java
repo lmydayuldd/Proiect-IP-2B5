@@ -1,5 +1,6 @@
 package DataRepresentationBackend.Services;
 
+import DataRepresentationBackend.Logic.TableRepresentation.TableElement;
 import DataRepresentationBackend.Models.SingleObject;
 import DataRepresentationBackend.Models.TemporaryData;
 
@@ -27,6 +28,8 @@ public interface DatabaseService {
     void replicateData() throws Exception;
 
     ArrayList<TemporaryData> getTemporaryDataElements() throws SQLException;
+
+    ArrayList<TableElement> getTemporaryDataTable() throws SQLException;
 
     /*
     public void saveFinalData() throws Exception;

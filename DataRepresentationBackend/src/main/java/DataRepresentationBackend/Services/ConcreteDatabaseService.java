@@ -1,5 +1,6 @@
 package DataRepresentationBackend.Services;
 
+import DataRepresentationBackend.Logic.TableRepresentation.TableElement;
 import DataRepresentationBackend.Models.SingleObject;
 import DataRepresentationBackend.Models.TemporaryData;
 import org.springframework.stereotype.Service;
@@ -137,8 +138,8 @@ public class ConcreteDatabaseService implements DatabaseService {
         TemporaryData element = new TemporaryData();
         ArrayList<TemporaryData> elements = new ArrayList<>();
         String sql = "SELECT TYPE, x1, y1, x2, y2, floor, room, isExitWay, isExterior from temporary_data";
-        PreparedStatement statementCheck = DatabaseConnection.getConnection().prepareStatement(sql);
-        ResultSet resultSet = statementCheck.executeQuery();
+        PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql);
+        ResultSet resultSet = statement.executeQuery();
         while (resultSet.next()) {
             element.setType(resultSet.getString(1));
             element.setX1(resultSet.getInt(2));
@@ -151,8 +152,29 @@ public class ConcreteDatabaseService implements DatabaseService {
             element.setIsExterior(resultSet.getInt(9));
             elements.add(element);
         }
+        statement.close();
+        resultSet.close();
         return elements;
     }
+
+    //(String elementType, int xx1, int yy1, int xx2, int yy2, int floor, String theRoom, int exterior, int exit)
+    public ArrayList<TableElement> getTemporaryDataTable() throws SQLException {
+        ArrayList<TableElement> building = new ArrayList<>();
+        String sql = "SELECT TYPE, x1, y1, x2, y2, floor, room, isExterior, isExitWay from temporary_data";
+        PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql);
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()) {
+            TableElement tableElement = new TableElement(resultSet.getString(1), resultSet.getInt(2),
+                    resultSet.getInt(3),resultSet.getInt(4), resultSet.getInt(5),
+                    resultSet.getInt(6), resultSet.getString(7), resultSet.getInt(8),
+                    resultSet.getInt(9));
+            building.add(tableElement);
+        }
+        resultSet.close();
+        statement.close();
+        return building;
+    }
+
 
     /*
     public void saveFinalData() throws Exception{
