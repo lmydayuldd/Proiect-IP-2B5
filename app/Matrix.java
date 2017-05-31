@@ -1,9 +1,6 @@
 package app;
 
 
-import java.util.Vector;
-
-
 /**
  * This class represents the building as a 3D-Matrix for calculating
  * the path between two points in the building.
@@ -31,8 +28,8 @@ public class Matrix {
         matrix[level][x][y] = cell;
     }
 
-    public Cell getCell(int x, int y, int z) {
-        return matrix[z][x][y];
+    public Cell getCell(int level, int x, int y) {
+        return matrix[level][x][y];
     }
 
     public Cell getCell(Point p) {

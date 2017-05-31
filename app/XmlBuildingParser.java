@@ -35,6 +35,8 @@ public class XmlBuildingParser {
 
         
         //TODO put 0 on door on rawMatrix!!!!
+
+        //TODO Test with parsing xml file (check Matrix)
         
         StringBuilder xmlStringBuilder = new StringBuilder();
         File file = new File(this.pathXml);
@@ -185,7 +187,7 @@ public class XmlBuildingParser {
                         }
                     }
                     //System.out.println("Cellll"+i+" " + j + " " + etaj + " valoare: "+ x);
-                    Cell cell = new Cell(x,a[etaj][i][j]);
+                    Cell cell = new Cell(x,a[etaj][i][j]^1);
                     matrix.setCell(cell,etaj,i,j); // setting our value
                 }
             }

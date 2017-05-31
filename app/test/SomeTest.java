@@ -212,5 +212,24 @@ public class SomeTest {
 
         assertTrue(1 == xmat[3][2][2]);
     }
+    //part3 Test Matrix
+    @Test
+    public void testMatrix1(){
+        XmlBuildingParser sample = new XmlBuildingParser("exXML");
+        sample.fillWall(1, 1, 20, 20, 3);
+        Matrix mat = sample.toMatrix( sample.getRawMatrix());
 
+        for(int i=0; i<=30; ++i) {
+            for (int j = 0; j <= 30; ++j)
+                System.out.print(mat.getCell(3, i, j).getFree());
+            System.out.println();
+        }
+        for(int i=0; i<=30; ++i) {
+            for (int j = 0; j <= 30; ++j)
+                System.out.print(mat.getCell(3, i, j).getWalls() + " ");
+            System.out.println();
+        }
+
+        assertTrue(0 == mat.getCell(3, 3, 3).getFree());
+    }
 }
