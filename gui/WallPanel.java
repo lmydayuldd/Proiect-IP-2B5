@@ -5,32 +5,35 @@
  */
 package gui;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.Vector;
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpStatus;
+import org.apache.commons.httpclient.NameValuePair;
+import org.apache.commons.httpclient.methods.PostMethod;
+
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
-import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
-
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This class makes the panel that handles the wall manager in the application.
- * With the elements on this panel the user should add, remove or modify 
- * the walls in the building.
+ * With the elements on this panel the user should add, remove or modify the
+ * walls in the building.
+ *
  * @author alexandru
  */
-class WallPanel extends JPanel{
+class WallPanel extends JPanel {
 
-    JComboBox <String> componentType;
+    JComboBox<String> componentType;
     Border border = new BevelBorder(1);
     JLabel topLeftLabel, bottomRightLabel, wallHelpLabel;
     JTextField x1TextField, y1TextField, x2TextField, y2TextField, floorField;
@@ -42,10 +45,9 @@ class WallPanel extends JPanel{
      * Split the gui in three pane's to arrange them nicely.
      */
     JPanel topPane, addWallPane, removeWallPane;
-    
-    
+
     public WallPanel() {
-        
+
         // Setting up all the components
         setLayout(new FlowLayout());
         topLeftLabel = new JLabel("TopLeft Coordinates: ");
@@ -65,19 +67,19 @@ class WallPanel extends JPanel{
         y2TextField = new JTextField("Y");
         y2TextField.setPreferredSize(new Dimension(50, 20));
         addWall = new JButton("Add Wall");
-        
+
         // Starting to initialize the three inside Panels: topPane, addWallPane and removeWallPane
         topPane = new JPanel();
         topPane.setPreferredSize(new Dimension(1000, 70));
         addWallPane = new JPanel();
         addWallPane.setPreferredSize(new Dimension(1000, 50));
         removeWallPane = new JPanel();
-        
+
         //Adding components of topPane
         topPane.add(wallHelpLabel);
-        
+
         add(topPane);
-        
+
         //Adding components of add Wall Pane
         addWallPane.add(floorField);
         addWallPane.add(topLeftLabel);
@@ -87,16 +89,12 @@ class WallPanel extends JPanel{
         addWallPane.add(x2TextField);
         addWallPane.add(y2TextField);
         addWallPane.add(addWall);
-        
-        add(addWallPane);
-        
-        
-        //TODO remove Pane!!
-        
-        removeWallPane = new JPanel();
-        
 
-        
+        add(addWallPane);
+
+        //TODO remove Pane!!
+        removeWallPane = new JPanel();
+
         //setting up the bottom table
         String tableHeader[] = {"Floor", "X1", "Y1", "X2", "Y2"};
         wallsTableModel = new DefaultTableModel(null, tableHeader);
@@ -108,29 +106,31 @@ class WallPanel extends JPanel{
         //Setting up the scroll pane in which we will put the Table
         tableScrollPane.setPreferredSize(new Dimension(600, 100));
         tableScrollPane.add(walls);
-        */
+         */
         removeWallPane.add(new JScrollPane(walls));
-        
-        
+
         //Adding to the main frame the bottom panel which contains the table
         // with the walls data
         add(removeWallPane);
         setPreferredSize(new Dimension(1024, 250));
         setBorder(border);
         //setBackground(Color.DARK_GRAY);
-        
+
         addListeners();
     }
-    
-    private void addListeners()
-    {
-                addWall.addActionListener(new ActionListener() {
+
+    private void addListeners() {
+        addWall.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                try {
                     selectionButtonPressed();
+                } catch (IOException ex) {
+                    Logger.getLogger(WallPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
 
-            private void selectionButtonPressed() {
-                
+            private void selectionButtonPressed() throws IOException {
+
                 String myRow[] = new String[5];
                 myRow[0] = floorField.getText();
                 myRow[1] = x1TextField.getText();
@@ -138,6 +138,61 @@ class WallPanel extends JPanel{
                 myRow[3] = x2TextField.getText();
                 myRow[4] = y2TextField.getText();
                 wallsTableModel.addRow(myRow);
+                PostMethod post = new PostMethod("http://localhost:4500/add");
+                NameValuePair[] data = {
+                        new NameValuePair("type", "wall"),
+                        new NameValuePair("room", "camera flamanzilor"),
+                        new NameValuePair("x1", "0"),
+                        new NameValuePair("y1", "0"),
+                        new NameValuePair("x2", "0"),
+                        new NameValuePair("y2", "0"),
+                        new NameValuePair("floor", "8"),
+                        new NameValuePair("isExitWay", "1"),
+                        new NameValuePair("isExterior", "1")
+                };
+                String x="{\n" +
+                        "        \"type\" : \"wall\", \n" +
+                        "        \"room\" : \"C201\",\n" +
+                        "        \"x1\" : 0,\n" +
+                        "        \"y1\" : 0,\n" +
+                        "        \"x2\" : 5,\n" +
+                        "        \"y2\" : 4,\n" +
+                        "        \"floor\" : 1,\n" +
+                        "        \"isExitWay\" : 0,\n" +
+                        "        \"isExterior\": 1\n" +
+                        "\t\n" +
+                        "}";
+
+
+                BufferedReader br=null;
+                post.setRequestHeader("Content-type", "application/json");
+                post.setRequestBody(x);
+                try {
+                    HttpClient httpClient = new HttpClient();
+                    int resp = httpClient.executeMethod(post);
+
+
+                    if(resp == HttpStatus.SC_NOT_IMPLEMENTED) {
+                        System.err.println("The Post method is not implemented by this URI");
+                        // still consume the response body
+                        post.getResponseBodyAsString();
+                    } else {
+                        br = new BufferedReader(new InputStreamReader(post.getResponseBodyAsStream()));
+                        String readLine;
+                        while (((readLine = br.readLine()) != null)) {
+                            System.err.println(readLine);
+                        }
+                    }
+
+                } catch (Exception e) {
+                System.err.println(e);
+                } finally {
+                post.releaseConnection();
+                if(br != null) try { br.close(); } catch (Exception fe) {}
+                }
+
+                InputStream in = post.getResponseBodyAsStream();
+
             }
         });
     }

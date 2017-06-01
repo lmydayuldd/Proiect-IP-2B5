@@ -5,6 +5,10 @@ import app.Point;
 import app.XmlBuildingParser;
 import org.junit.Assert;
 import org.junit.Test;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 
 import static org.junit.Assert.*;
 
@@ -59,7 +63,7 @@ public class SomeTest {
     @Test
     public void testRawMatrix1(){
         XmlBuildingParser sample = new XmlBuildingParser("exXML");
-        sample.fillWall(2, 1, 2, 10, 3);
+        sample.fillWall(2, 1, 2, 10, 3, 1);
 
         int[][][] xmat = sample.getRawMatrix();
         /*
@@ -74,7 +78,7 @@ public class SomeTest {
     @Test
     public void testRawMatrix2(){
         XmlBuildingParser sample = new XmlBuildingParser("exXML");
-        sample.fillWall(2, 1, 5, 10, 3);
+        sample.fillWall(2, 1, 5, 10, 3, 1);
         /*
         int[][][] xmat = sample.getRawMatrix();
 
@@ -89,7 +93,7 @@ public class SomeTest {
     @Test
     public void testRawMatrix3(){
         XmlBuildingParser sample = new XmlBuildingParser("exXML");
-        sample.fillWall(2, 1, 100, 200, 3);
+        sample.fillWall(2, 1, 100, 200, 3, 1);
         /*
         int[][][] xmat = sample.getRawMatrix();
 
@@ -105,7 +109,7 @@ public class SomeTest {
     @Test
     public void testRawMatrix4(){
         XmlBuildingParser sample = new XmlBuildingParser("exXML");
-        sample.fillWall(2, 1, 2, 2, 3);
+        sample.fillWall(2, 1, 2, 2, 3, 1);
         /*
         int[][][] xmat = sample.getRawMatrix();
 
@@ -121,7 +125,7 @@ public class SomeTest {
     @Test
     public void testRawMatrix5(){
         XmlBuildingParser sample = new XmlBuildingParser("exXML");
-        sample.fillWall(1, 1, 1, 100, 3);
+        sample.fillWall(1, 1, 1, 100, 3, 1);
 
         int[][][] xmat = sample.getRawMatrix();
 
@@ -136,7 +140,7 @@ public class SomeTest {
     @Test
     public void testRawMatrix6(){
         XmlBuildingParser sample = new XmlBuildingParser("exXML");
-        sample.fillWall(100, 1, 1, 1, 3);
+        sample.fillWall(100, 1, 1, 1, 3, 1);
 
         int[][][] xmat = sample.getRawMatrix();
 
@@ -152,7 +156,7 @@ public class SomeTest {
     @Test
     public void testRawMatrix7(){
         XmlBuildingParser sample = new XmlBuildingParser("exXML");
-        sample.fillWall(100, 100, 1, 1, 3);
+        sample.fillWall(100, 100, 1, 1, 3, 1);
 
         int[][][] xmat = sample.getRawMatrix();
 
@@ -168,7 +172,7 @@ public class SomeTest {
     @Test
     public void testRawMatrix8(){
         XmlBuildingParser sample = new XmlBuildingParser("exXML");
-        sample.fillWall(100, 100, 2, 3, 3);
+        sample.fillWall(100, 100, 2, 3, 3, 1);
 
         int[][][] xmat = sample.getRawMatrix();
 
@@ -185,7 +189,7 @@ public class SomeTest {
     @Test
     public void testRawMatrix9(){
         XmlBuildingParser sample = new XmlBuildingParser("exXML");
-        sample.fillWall(100, 1, 2, 70, 3);
+        sample.fillWall(100, 1, 2, 70, 3, 1);
 
         int[][][] xmat = sample.getRawMatrix();
 
@@ -200,7 +204,7 @@ public class SomeTest {
     @Test
     public void testRawMatrix10(){
         XmlBuildingParser sample = new XmlBuildingParser("exXML");
-        sample.fillWall(2, 2, 2, 2, 3);
+        sample.fillWall(2, 2, 2, 2, 3, 1);
 
         int[][][] xmat = sample.getRawMatrix();
 
@@ -231,5 +235,26 @@ public class SomeTest {
         }
 
         assertTrue(0 == mat.getCell(3, 3, 3).getFree());
+    }
+
+    @Test
+    public void testMatrix2() throws IOException, SAXException, ParserConfigurationException {
+
+        XmlBuildingParser sample = new XmlBuildingParser("app/test/test1.xml");
+        sample.parse();
+        Matrix mat=sample.getMatrix();
+        for(int floor=0; floor<5; ++floor) {
+            System.out.println("Floor  "+floor);
+            for (int i = 0; i <= 300; ++i) {
+                for (int j = 0; j <= 300; ++j)
+                    System.out.print(mat.getCell(floor, i, j).getFree());
+                System.out.println();
+            }
+            System.out.println();
+            System.out.println();
+        }
+
+
+        assertTrue(0 == 0);
     }
 }
