@@ -174,6 +174,22 @@ public class ConcreteDatabaseService implements DatabaseService {
         return building;
     }
 
+    public ArrayList<TableElement> getFinalDataTable() throws SQLException {
+        ArrayList<TableElement> building = new ArrayList<>();
+        String sql = "SELECT TYPE, x1, y1, x2, y2, floor, room, isExterior, isExitWay from final_data";
+        PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql);
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()) {
+            TableElement tableElement = new TableElement(resultSet.getString(1), resultSet.getInt(2),
+                    resultSet.getInt(3),resultSet.getInt(4), resultSet.getInt(5),
+                    resultSet.getInt(6), resultSet.getString(7), resultSet.getInt(8),
+                    resultSet.getInt(9));
+            building.add(tableElement);
+        }
+        resultSet.close();
+        statement.close();
+        return building;
+    }
 
     /*
     public void saveFinalData() throws Exception{

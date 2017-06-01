@@ -157,7 +157,7 @@ public class HTTPController {
     @RequestMapping(value = "/getXML", method = RequestMethod.GET)
     public HttpEntity<?> getXML() {
         GetXML xmlEntity = new GetXML();
-        
+
         try {
             String xml = xmlEntity.getXML();
             byte[] documentBody = xml.getBytes();
