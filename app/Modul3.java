@@ -38,16 +38,24 @@ public class Modul3 {
         //x.fillWall(100, 1, 2, 70, 3);
 
         //int[][][] xmat = x.getRawMatrix();
-        /*Matrix m = x.toMatrix(xmat);
-        for(int i=0; i<=110; ++i) {
-            for (int j = 0; j <= 110; ++j)
-                System.out.print(m.getCell(2, i, j).getWalls());
+        //Matrix m = x.toMatrix(xmat);
+        
+        for(int i=40; i<=60; ++i) {
+            for (int j = 125; j <= 140; ++j)
+            {
+                System.out.print(mat.getCell(1, i, j).getWalls());
+                if(j %25 == 0)
+                    System.out.print("|");
+            }
+            if(i%25 == 0) System.out.println("");
+            System.out.println();
         }
-        */
+        
 
         mf = new MainFrame();
-        MinDistancePath mdp = new MinDistancePath(mat);
-        ArrayList<Point> a = mdp.execute(new Point(50, 30, 2), new Point(130, 50, 2));
+        MinTimePath mdp = new MinTimePath(mat);
+        ArrayList<Point> a = mdp.execute(new Point(200, 30, 1), new Point(50, 130, 2));
+        System.out.println(a.size());
         for (Point p : a) {
             System.out.println(p.getX() + " " + p.getY());
         }        //a.clear();

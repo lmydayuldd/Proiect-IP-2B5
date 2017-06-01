@@ -20,8 +20,8 @@ public class MinDistancePath extends PathFinder {
 
         Queue<Point> q = new LinkedList<>();
 
-        int dx[] = {0, 0, 1, 0, 0, -1};
         int dy[] = {0, 0, 0, -1, 1, 0};
+        int dx[] = {0, 0, -1, 0, 0, 1};
         int dz[] = {1, -1, 0, 0, 0, 0};
         int n = Matrix.DIMENSION;
         int lvl = 4;//Matrix.LEVEL_COUNT;

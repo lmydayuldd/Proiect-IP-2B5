@@ -1,28 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
 
 <floors>
 	<floor number="1">
 		<room>
-			<name>C101</name>
-			<type name="wall">
+			<name>Stairs1</name>
+			<type name="stairs">
 				<x1> 0</x1>
 				<y1> 0 </y1>
 				<x2> 5 </x2>
 				<y2> 0 </y2>
 			</type>
-			<type name="wall">
+			<type name="stairs">
 				<x1> 0 </x1>
 				<y1> 0 </y1>
 				<x2> 0 </x2>
 				<y2> 5 </y2>
 			</type>
-			<type name="wall">
+			<type name="stairs">
 				<x1> 0 </x1>
 				<y1> 5 </y1>
 				<x2> 5 </x2>
 				<y2> 5 </y2>
 			</type>
-			<type name="wall">
+			<type name="stairs">
 				<x1> 5 </x1>
 				<y1> 5 </y1>
 				<x2> 5 </x2>
@@ -428,12 +427,6 @@
 				<x2> 15 </x2>
 				<y2> 0 </y2>
 			</type>
-			<type name="window">
-				<x1> 12 </x1>
-				<y1> 0 </y1>
-				<x2> 14 </x2>
-				<y2> 0 </y2>
-			</type>
 			<type name="door">
 				<x1> 10 </x1>
 				<y1> 3 </y1>
@@ -472,27 +465,31 @@
 	</floor>
 	
 	<floor number="2">
+    
+      
+    
+        
 		<room>
-			<name> 201 </name>
-			<type name="wall">
+			<name> Stairs1 </name>
+			<type name="stairs">
 				<x1> 0 </x1>
 				<y1> 0 </y1>
 				<x2> 5 </x2>
 				<y2> 0 </y2>
 			</type>
-			<type name="wall">
+			<type name="stairs">
 				<x1> 0 </x1>
 				<y1> 0 </y1>
 				<x2> 0 </x2>
 				<y2> 5 </y2>
 			</type>
-			<type name="wall">
+			<type name="stairs">
 				<x1> 0 </x1>
 				<y1> 5 </y1>
 				<x2> 5 </x2>
 				<y2> 5 </y2>
 			</type>
-			<type name="wall">
+			<type name="stairs">
 				<x1> 5 </x1>
 				<y1> 5 </y1>
 				<x2> 5 </x2>
@@ -1138,6 +1135,8 @@
 				<y2> 15 </y2>
 			</type>
 		</room>
+		
+		
 
     <room>	
     <name>hol</name>

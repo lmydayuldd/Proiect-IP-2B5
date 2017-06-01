@@ -6,15 +6,13 @@ package app;
 public class Cell {
     /**
      * This encodes the walls of the current cell.
-     * This variable takes values from 0 to 63, first 4 bits encoding representing the
-     * four walls (North, East, West and South)
-     * If the variable equals 7, then it means that around this cell there are 3 walls
-     * 7 in base 2 is 1110
-     * The walls that exist are N, E, W.
-     * The last 2 bits encode the up/down accessibility.
-     * 10 - up
-     * 01 - down
-     * 11 - up/down
+     * This variable takes values from 0 to 63, 
+     * 2 ^ 0 -> if can't go to level - 1
+     * 2 ^ 1 -> if can't go to level + 1
+     * 2 ^ 2 -> if can't go to y - 1
+     * 2 ^ 3 -> if can't go to x - 1
+     * 2 ^ 4 -> if can't go to x + 1
+     * 2 ^ 5 -> if can't go to y + 1
      */
     private int walls;
 
