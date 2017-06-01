@@ -1,8 +1,6 @@
 package DataRepresentationBackend.Controllers;
 
-import DataRepresentationBackend.Logic.CustomExceptions.DataNotValidException;
-import DataRepresentationBackend.Logic.TableRepresentation.ElementManager;
-import DataRepresentationBackend.Logic.TableRepresentation.TableElement;
+import CustomExceptions.DataNotValidException;
 import DataRepresentationBackend.Models.Message;
 import DataRepresentationBackend.Models.SingleObject;
 import DataRepresentationBackend.Models.TemporaryData;
@@ -19,6 +17,8 @@ import com.sun.org.apache.xml.internal.serialize.OutputFormat;
 import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import tablerepresentation.ElementManager;
+import tablerepresentation.TableElement;
 
 import java.io.File;
 import java.io.FileWriter;

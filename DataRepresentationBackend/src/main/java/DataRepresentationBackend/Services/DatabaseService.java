@@ -1,8 +1,8 @@
 package DataRepresentationBackend.Services;
 
-import DataRepresentationBackend.Logic.TableRepresentation.TableElement;
 import DataRepresentationBackend.Models.SingleObject;
 import DataRepresentationBackend.Models.TemporaryData;
+import tablerepresentation.TableElement;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

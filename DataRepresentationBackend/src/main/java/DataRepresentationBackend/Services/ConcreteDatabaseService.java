@@ -1,14 +1,13 @@
 package DataRepresentationBackend.Services;
 
-import DataRepresentationBackend.Logic.TableRepresentation.TableElement;
 import DataRepresentationBackend.Models.SingleObject;
 import DataRepresentationBackend.Models.TemporaryData;
 import org.springframework.stereotype.Service;
+import tablerepresentation.TableElement;
 
 import javax.naming.OperationNotSupportedException;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Project name DataRepresentationBackend.

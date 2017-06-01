@@ -1,17 +1,14 @@
 package DataRepresentationBackend.Services;
 
-import java.sql.*;
-
-import DataRepresentationBackend.Logic.CustomExceptions.DataNotValidException;
-import DataRepresentationBackend.Logic.Representations.*;
-import DataRepresentationBackend.Logic.TableRepresentation.ElementFilter;
-import DataRepresentationBackend.Logic.TableRepresentation.TableElement;
-import DataRepresentationBackend.Models.TemporaryData;
+import Representations.Room;
+import Representations.Wall;
 import com.sun.org.apache.xerces.internal.dom.DocumentImpl;
 import com.sun.org.apache.xml.internal.serialize.OutputFormat;
 import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import tablerepresentation.ElementFilter;
+import tablerepresentation.TableElement;
 
 import java.io.File;
 import java.io.FileWriter;
