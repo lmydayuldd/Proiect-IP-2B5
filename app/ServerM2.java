@@ -18,11 +18,13 @@ public class ServerM2 extends Thread{
 
     @Override
     public void run() {
-        try {
-            Socket socket = serverSocket.accept();
-            new ServeClient(socket).start();
-        } catch (Exception e) {
-            e.printStackTrace();
+        while (true) {
+            try {
+                Socket sock = serverSocket.accept();
+                new ServeClient(sock).start();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

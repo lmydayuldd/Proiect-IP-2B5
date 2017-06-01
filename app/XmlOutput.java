@@ -20,6 +20,11 @@ import java.util.ArrayList;
  *
  * This class is receving an array of Point() and
  * is giving xml file coordinates
+ * 
+ * Primesti o lista de Point si trebuie sa o salvezi ca fisier xml
+ * Fiecare Point are un floor, un x si un y
+ * Mai exact:  structura xml-ului:
+ * 
  *
  */
 public class XmlOutput{
@@ -83,7 +88,7 @@ public class XmlOutput{
             Element y2Element = document.createElement("y2");
             y2Element.appendChild(document.createTextNode(y2.toString()));
 
-            if (auxFloor.equals(Integer.MAX_VALUE-1))
+            if (auxFloor.equals(Integer.MAX_VALUE-1)) // whaaaat? 
             {
                 auxFloor = floor;
                 attrFloor.setValue(auxFloor.toString());
