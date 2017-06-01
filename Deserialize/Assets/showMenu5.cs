@@ -75,6 +75,8 @@ public class showMenu5 : MonoBehaviour
         etaj_camera2 = dd_etaj2.GetComponent<Dropdown>().value;
         camera1 = dd_camera1.GetComponent<Dropdown>().value;
         camera2 = dd_camera2.GetComponent<Dropdown>().value;
+         Deserialize d = new Deserialize();
+        d.Connect("localhost", "6 9 6 9 6 9");
     }
     public static int getEtaj_camera1()
     {

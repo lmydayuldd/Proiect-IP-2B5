@@ -3,9 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
 using System.IO;
+using System.Net;
+using System.Security.Cryptography.X509Certificates;
+using System.Net.Security;
 using System;
+using System.Net;
 using System.Net.Sockets;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Net.Sockets;
+
 public class Deserialize : MonoBehaviour // the Class
 {
     public static List<string> camere1 = new List<string>() { "1" };
@@ -20,7 +29,8 @@ public class Deserialize : MonoBehaviour // the Class
 
     void Start()
     {
-
+        ServicePointManager.ServerCertificateValidationCallback = MyRemoteCertificateValidationCallback;
+        
 
     }
     private void Update()
@@ -69,7 +79,78 @@ public class Deserialize : MonoBehaviour // the Class
         yield return new WaitForSeconds(0);
 
     }
-     public static IEnumerator GetLevelsForDropDown(float waitTime, Action Populare)
+    
+    
+    public bool MyRemoteCertificateValidationCallback(System.Object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+    {
+        bool isOk = true;
+        // If there are errors in the certificate chain, look at each error to determine the cause.
+        if (sslPolicyErrors != SslPolicyErrors.None)
+        {
+            for (int i = 0; i < chain.ChainStatus.Length; i++)
+            {
+                if (chain.ChainStatus[i].Status != X509ChainStatusFlags.RevocationStatusUnknown)
+                {
+                    chain.ChainPolicy.RevocationFlag = X509RevocationFlag.EntireChain;
+                    chain.ChainPolicy.RevocationMode = X509RevocationMode.Online;
+                    chain.ChainPolicy.UrlRetrievalTimeout = new TimeSpan(0, 1, 0);
+                    chain.ChainPolicy.VerificationFlags = X509VerificationFlags.AllFlags;
+                    bool chainIsValid = chain.Build((X509Certificate2)certificate);
+                    if (!chainIsValid)
+                    {
+                        isOk = false;
+                    }
+                }
+            }
+        }
+        return isOk;
+    }
+    
+    
+    
+
+    public void Connect(String server, String message)
+    {
+        try
+        {
+            // Create a TcpClient.
+            // Note, for this client to work you need to have a TcpServer
+            // connected to the same address as specified by the server, port
+            // combination.
+            Int32 port = 6969;
+            TcpClient client = new TcpClient(server, port);
+
+            // Translate the passed message into ASCII and store it as a Byte array.
+            Byte[] data = System.Text.Encoding.ASCII.GetBytes(message);
+
+            // Get a client stream for reading and writing.
+            //  Stream stream = client.GetStream();
+
+            NetworkStream stream = client.GetStream();
+
+            // Send the message to the connected TcpServer.
+            stream.Write(data, 0, data.Length);
+
+            Console.WriteLine("Sent: {0}", message);
+
+            // Close everything.
+            stream.Close();
+            client.Close();
+        }
+        catch (ArgumentNullException e)
+        {
+            Console.WriteLine("ArgumentNullException: {0}", e);
+        }
+        catch (SocketException e)
+        {
+            Console.WriteLine("SocketException: {0}", e);
+        }
+
+        Console.WriteLine("\n Press Enter to continue...");
+        Console.Read();
+    }
+    
+    public static IEnumerator GetLevelsForDropDown(float waitTime, Action Populare)
     {
         XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
         xmlDoc.Load(stringXml); // load the file.
