@@ -21,10 +21,6 @@ import tablerepresentation.DataNotValidExceptionLogger;
  * @author Procop Vladimir
  */
 public class Floor extends Element {
-
-    private static Exception DataNotValidException(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     private int floorLevel;
     private int floorHeight;
     private ArrayList<Room> rooms = new ArrayList<>();
