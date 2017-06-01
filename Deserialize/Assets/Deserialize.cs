@@ -24,7 +24,7 @@ public class Deserialize : MonoBehaviour // the Class
     public static List<string> camere2 = new List<string>() { "1" };
     public static List<string> etaje = new List<string>() { "1" };
     public static int lastEtaj;
-    public static string stringXml = "C:\\Users\\Alex\\Documents\\Deserialize\\Assets\\format_date.xml";
+    public static string stringXml = "C:\\Users\\admin\\Documents\\GitHub\\Proiect-IP-2B5-deser\\Deserialize\\Assets\\format_date.xml";
    public static string EtajString;
 
     void Start()
@@ -61,9 +61,21 @@ public class Deserialize : MonoBehaviour // the Class
 
     public static IEnumerator GetLevel(int Etaj)
     {
-        
+
+        WebRequest request = WebRequest.Create("http://localhost:4500/getXML");
+        // If required by the server, set the credentials.
+        request.Credentials = CredentialCache.DefaultCredentials;
+        // Get the response.
+        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+        // Get the stream containing content returned by the server.
+        Stream dataStream = response.GetResponseStream();
+        // Open the stream using a StreamReader for easy access.
+        StreamReader reader = new StreamReader(dataStream);
+        // Read the content. 
+        string responseFromServer = reader.ReadToEnd();
+
         XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
-        xmlDoc.Load(stringXml); // load the file.
+        xmlDoc.LoadXml(responseFromServer); // load the file.
 
         XmlNodeList floorlist = xmlDoc.GetElementsByTagName("floor"); // array of the level nodes.
         float x1 = 0.0f, x2 = 0.0f, y1 = 0.0f, y2 = 0.0f;
