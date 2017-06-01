@@ -37,8 +37,9 @@ public class MinDistancePath extends PathFinder {
             int y = q.element().getY();
             int z = q.element().getFloor();
             Cell now = matrix.getCell(x, y, z);
-
+            if(now == null) continue;
             for (int dir = 0; dir < 6; ++dir) {
+                //System.out.println("");
                 if ((now.getWalls() & (1 << dir)) != 0)
                     continue;
                 int newx = x + dx[dir];

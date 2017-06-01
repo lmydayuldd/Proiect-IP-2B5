@@ -24,7 +24,7 @@ public class Modul3 {
         //ServerM2 srv = new ServerM2();
         //srv.start();
         //mf = new MainFrame();
-        XmlBuildingParser x = new XmlBuildingParser("building.xml");
+        XmlBuildingParser x = new XmlBuildingParser("src/res/building.xml");
         //x.parse();
         //x.fillWall(200, 200, 180, 0, 2, 1);
         Matrix mat = x.getMatrix();
