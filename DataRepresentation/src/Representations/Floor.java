@@ -236,10 +236,6 @@ public class Floor extends Element {
         for(int i = 0; i < orderedWalls.size(); i++){
             path.append(Wall.toLine2D(orderedWalls.get(i)), true);
         }
-        for(int i = 0; i < orderedWalls.size(); i++){
-            path.append(Wall.toLine2D(orderedWalls.get(i)), true);
-        }
-        
         return path;
     }
     public String toString(){
