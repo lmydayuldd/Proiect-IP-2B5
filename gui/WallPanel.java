@@ -7,7 +7,6 @@ package gui;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpStatus;
-import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.PostMethod;
 
 import javax.swing.*;
@@ -61,15 +60,15 @@ class WallPanel extends JPanel {
         // Initializing Labels with html code to set font and break lines.
         wallHelpLabel = new JLabel("<html><h1>Add Wall<br></h1>Fill up this form in order to add a wall to the Application. </html>");
         wallHelpLabel2=new JLabel("<html><br></html>");
-        x1TextField = new JTextField("X");
+        x1TextField = new JTextField("1");
         x1TextField.setPreferredSize(new Dimension(50, 20));
         floorField = new JTextField();
         floorField.setPreferredSize(new Dimension(50, 20));
-        y1TextField = new JTextField("Y");
+        y1TextField = new JTextField("1");
         y1TextField.setPreferredSize(new Dimension(50, 20));
-        x2TextField = new JTextField("X");
+        x2TextField = new JTextField("1");
         x2TextField.setPreferredSize(new Dimension(50, 20));
-        y2TextField = new JTextField("Y");
+        y2TextField = new JTextField("1");
         y2TextField.setPreferredSize(new Dimension(50, 20));
         externalWall=new JCheckBox();
         exitWay=new JCheckBox();
@@ -152,24 +151,33 @@ class WallPanel extends JPanel {
                 myRow[2] = y1TextField.getText();
                 myRow[3] = x2TextField.getText();
                 myRow[4] = y2TextField.getText();
-                
+
+                int external;
+                if (externalWall.isSelected()) {
+                    external=1;
+                } else {
+                    external=0;
+                }
                 wallsTableModel.addRow(myRow);
+
                 PostMethod post = new PostMethod("http://localhost:4500/add");
-                
+
                 String x="{\n" +
-                        "        \"type\" : "+ ", \n" +
+                        "        \"type\" : \"wall\", \n" +
                         "        \"room\" : \"C201\",\n" +
-                        "        \"x1\" :"+ myRow[1]+ ", \n" +
-                        "        \"y1\" :"+ myRow[2]+ ",\n" +
-                        "        \"x2\" : "+ myRow[3]+ ",\n" +
-                        "        \"y2\" : "+ myRow[4]+ ",\n" +
-                        "        \"floor\" :"+ myRow[0]+ ",\n" +
-                        "        \"isExitWay\" :"+ exitWay.getActionCommand()+ "\n" +
-                        "        \"isExterior\":"+ externalWall.getActionCommand()+ "\n" +
+                        "        \"x1\" : \""+ myRow[1]+ "\" , \n" +
+                        "        \"y1\" : \""+ myRow[2]+ "\" ,\n" +
+                        "        \"x2\" :  \""+ myRow[3]+ "\" ,\n" +
+                        "        \"y2\" :  \""+ myRow[4]+ "\" ,\n" +
+                        "        \"floor\" :  \""+ myRow[0]+ "\" ,\n" +
+                        "        \"isExitWay\" :  \"0\" ,\n" +
+                        "        \"isExterior\":  \""+ external+ "\" \n" +
                         "\t\n" +
                         "}";
-                System.out.println(exitWay.getActionCommand());
-                System.out.println(externalWall.getActionCommand());
+
+                System.out.println(exitWay.getText());
+                System.out.println(externalWall.getText());
+                System.out.println(x);
 
                 BufferedReader br=null;
                 post.setRequestHeader("Content-type", "application/json");
