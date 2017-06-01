@@ -24,18 +24,19 @@ public class Deserialize : MonoBehaviour // the Class
     public static List<string> camere2 = new List<string>() { "1" };
     public static List<string> etaje = new List<string>() { "1" };
     public static int lastEtaj;
-    public static string stringXml = "C:\\Users\\admin\\Documents\\GitHub\\Proiect-IP-2B5-deser\\Deserialize\\Assets\\format_date.xml";
-   public static string EtajString;
+    public static string stringXml = "C:\\Users\\Alex\\Documents\\Deserialize\\Assets\\format_date.xml";
+    public static string stringXmlPath = "C:\\Users\\Alex\\Documents\\Deserialize\\Assets\\format_date_path.xml";
+    public static string EtajString;
 
     void Start()
     {
         ServicePointManager.ServerCertificateValidationCallback = MyRemoteCertificateValidationCallback;
-        
+
 
     }
     private void Update()
     {
-       
+
     }
 
     public static List<string> getCamere(int etaj)
@@ -61,8 +62,8 @@ public class Deserialize : MonoBehaviour // the Class
 
     public static IEnumerator GetLevel(int Etaj)
     {
-
-        WebRequest request = WebRequest.Create("http://localhost:4500/getXML");
+        /*
+         WebRequest request = WebRequest.Create("http://localhost:4500/getXML");
         // If required by the server, set the credentials.
         request.Credentials = CredentialCache.DefaultCredentials;
         // Get the response.
@@ -76,23 +77,46 @@ public class Deserialize : MonoBehaviour // the Class
 
         XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
         xmlDoc.LoadXml(responseFromServer); // load the file.
+        
+        */
+        XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
+        xmlDoc.Load(stringXml); // load the file.
 
         XmlNodeList floorlist = xmlDoc.GetElementsByTagName("floor"); // array of the level nodes.
-        float x1 = 0.0f, x2 = 0.0f, y1 = 0.0f, y2 = 0.0f;
+       
+
+        foreach (XmlNode floorinfo2 in floorlist) //adica fiecare <floor>
+        {
+            EtajString = Etaj.ToString();
+            if (floorinfo2.Attributes["number"].Value.Equals(EtajString))
+                renderLevelForDisplay(floorinfo2);
+
+        }
+        yield return new WaitForSeconds(0);
+
+    }
+    public static IEnumerator GetLevelPath(int Etaj)
+    {
+
+        XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
+        xmlDoc.Load(stringXmlPath); // load the file.
+
+        XmlNodeList floorlist = xmlDoc.GetElementsByTagName("floor"); // array of the level nodes.
 
 
         foreach (XmlNode floorinfo2 in floorlist) //adica fiecare <floor>
         {
             EtajString = Etaj.ToString();
             if (floorinfo2.Attributes["number"].Value.Equals(EtajString))
-                    renderLevelForDisplay(floorinfo2);
-             
+                renderLevelForDisplay(floorinfo2);
+
         }
         yield return new WaitForSeconds(0);
 
     }
-    
-    
+
+
+
     public bool MyRemoteCertificateValidationCallback(System.Object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
     {
         bool isOk = true;
@@ -117,9 +141,9 @@ public class Deserialize : MonoBehaviour // the Class
         }
         return isOk;
     }
-    
-    
-    
+
+
+
 
     public void Connect(String server, String message)
     {
@@ -161,18 +185,13 @@ public class Deserialize : MonoBehaviour // the Class
         Console.WriteLine("\n Press Enter to continue...");
         Console.Read();
     }
-    
+
     public static IEnumerator GetLevelsForDropDown(float waitTime, Action Populare)
     {
         XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
         xmlDoc.Load(stringXml); // load the file.
-        /*
-        List<string> etaj = new List<string>();
-        List<string> camera_etaj0 = new List<string>();
-        List<string> camera_etaj1 = new List<string>();
-        List<string> camera_etaj2 = new List<string>();
-        */
-        
+                              
+
         XmlNodeList floorlist = xmlDoc.GetElementsByTagName("floor"); // array of the level nodes.
         float x1 = 0.0f, x2 = 0.0f, y1 = 0.0f, y2 = 0.0f;
 
@@ -182,7 +201,7 @@ public class Deserialize : MonoBehaviour // the Class
             renderLevelForDropDown(floorinfo2, Int32.Parse(floorinfo2.Attributes["number"].Value));
             etajePentruDd.Add(floorinfo2.Attributes["number"].Value);
         }
-        lastEtaj = Int32.Parse(etajePentruDd[etajePentruDd.Count-1]);
+        lastEtaj = Int32.Parse(etajePentruDd[etajePentruDd.Count - 1]);
 
         yield return new WaitForSeconds(waitTime);
         Populare();
@@ -328,6 +347,46 @@ public class Deserialize : MonoBehaviour // the Class
                             lineRenderer3.SetPosition(1, new Vector3(x2, 0, y2));
                             Material blueDiffuseMat = new Material(Shader.Find("Sprites/Default"));
                             lineRenderer3.material = blueDiffuseMat;
+                            break;
+                        case "path":
+
+                            XmlNodeList roomdimensions4 = roomstuff.ChildNodes;//xmlDoc.GetElementsByTagName("type");// 
+                            foreach (XmlNode dimension in roomdimensions4)
+                            {
+                                if (dimension.Name == "x1")
+                                {
+                                    string x1_str = dimension.InnerText;
+                                    x1 = float.Parse(x1_str);
+                                }
+                                if (dimension.Name == "y1")
+                                {
+                                    string y1_str = dimension.InnerText;
+                                    y1 = float.Parse(y1_str);
+
+                                }
+                                if (dimension.Name == "x2")
+                                {
+                                    string x2_str = dimension.InnerText;
+                                    x2 = float.Parse(x2_str);
+                                }
+                                if (dimension.Name == "y2")
+                                {
+                                    string y2_str = dimension.InnerText;
+                                    y2 = float.Parse(y2_str);
+                                }
+
+                            }
+                            LineRenderer lineRenderer4;
+                            GameObject obj4 = new GameObject("line-path");
+
+                            obj4.gameObject.tag = "naspa";
+                            lineRenderer4 = obj4.AddComponent<LineRenderer>();
+                            lineRenderer4.SetWidth(0.3f, 0.3f);
+                            lineRenderer4.SetColors(Color.green, Color.green);
+                            lineRenderer4.SetPosition(0, new Vector3(x1, 0.6f, y1));
+                            lineRenderer4.SetPosition(1, new Vector3(x2, 0.6f, y2));
+                            Material blueDiffuseMat4 = new Material(Shader.Find("Sprites/Default"));
+                            lineRenderer4.material = blueDiffuseMat4;
                             break;
 
                     }
