@@ -1,10 +1,8 @@
 package app;
 
-import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
@@ -16,138 +14,128 @@ import java.io.File;
 import java.util.ArrayList;
 
 /**
- * Created by Vasile Catana, Tamara Trifan, Cristina Ulinici on 5/28/2017.
- *
- * This class is receving an array of Point() and
- * is giving xml file coordinates
- * 
- * Primesti o lista de Point si trebuie sa o salvezi ca fisier xml
- * Fiecare Point are un floor, un x si un y
- * Mai exact:  structura xml-ului:
- * 
- *
+ * Created by Vic on 5/31/2017.
  */
-public class XmlOutput{
+public class XmlOutput {
     private ArrayList<Point> points;
-
-    private DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-    private DocumentBuilder docBuilder;
-
-    /**
-     * Constructor
-     * @param points  an Array with point to be processed
-     * @see           XmlOutput
-     */
-    public  XmlOutput(ArrayList<Point> points) throws ParserConfigurationException {
-        this.points = points;
-        docBuilder = docFactory.newDocumentBuilder();
+    public XmlOutput(ArrayList<Point> pts){
+        this.points=pts;
     }
 
     /**
-     * Transform an ArrayList<Point> to a xml file
-     * * @param path  an absolute path to xml file where to be saved
-     * @see         XmlOutput
+     * This takes the output of our pathfinding algorithm
+     * and creates an XML file with the path.
      */
-
-    public void createXml(String path) throws TransformerException {
-        Document document = docBuilder.newDocument();
-        Element rootElement = document.createElement("floors");
-        document.appendChild(rootElement);
-
-        Integer auxFloor = Integer.MAX_VALUE-1; // I hope that such a floor doesn't exist :D
-
-        Element floorTag = document.createElement("floor");
-        Element roomTag = document.createElement("room");
-        Attr attrFloor = document.createAttribute("number");
-
-        boolean singlePointOnFloor = true;
-
-        for (int i=0; i<points.size()-1; ++i) {
-            Element pointsTag = document.createElement("type");
-            Attr attr = document.createAttribute("name");
-            attr.setValue("path");
-            pointsTag.setAttributeNode(attr);
-            Integer floor = points.get(i).getFloor();
-            Integer floorNext = points.get(i+1).getFloor();
-
-            Double x1 = points.get(i).getX() / 10.0;
-            Double y1 = points.get(i).getY() / 10.0;
-
-            Double x2 = points.get(i + 1).getX() / 10.0;
-            Double y2 = points.get(i + 1).getY() / 10.0;
-
-            Element x1Element = document.createElement("x1");
-            x1Element.appendChild(document.createTextNode(x1.toString()));
-
-            Element y1Element = document.createElement("y1");
-            y1Element.appendChild(document.createTextNode(y1.toString()));
-
-            Element x2Element = document.createElement("x2");
-            x2Element.appendChild(document.createTextNode(x2.toString()));
-
-            Element y2Element = document.createElement("y2");
-            y2Element.appendChild(document.createTextNode(y2.toString()));
-
-            if (auxFloor.equals(Integer.MAX_VALUE-1)) // whaaaat? 
-            {
-                auxFloor = floor;
-                attrFloor.setValue(auxFloor.toString());
-                floorTag.setAttributeNode(attrFloor);
-            }
-
-            if (!floor.equals(floorNext)) {
-                if (singlePointOnFloor)
-                {
-                    pointsTag.appendChild(x1Element);
-                    pointsTag.appendChild(y1Element);
-                    roomTag.appendChild(pointsTag);
-                }
-
-                floorTag.appendChild(roomTag);
-                rootElement.appendChild(floorTag);
-                
-                floorTag = document.createElement("floor");
-                roomTag = document.createElement("room");
-                attrFloor = document.createAttribute("number");
-                attrFloor.setValue(floorNext.toString());
-                floorTag.setAttributeNode(attrFloor);
-                singlePointOnFloor = true;
-            }
-            else
-            {
-                pointsTag.appendChild(x1Element);
-                pointsTag.appendChild(y1Element);
-                pointsTag.appendChild(x2Element);
-                pointsTag.appendChild(y2Element);
-                roomTag.appendChild(pointsTag);
-                singlePointOnFloor = false;
-            }
-
-            if (i==points.size()-1)
-            {
-                if (singlePointOnFloor)
-                {
-                    pointsTag.appendChild(x1Element);
-                    pointsTag.appendChild(y1Element);
-                    roomTag.appendChild(pointsTag);
-                }
-
-                pointsTag.appendChild(x1Element);
-                pointsTag.appendChild(y1Element);
-                roomTag.appendChild(pointsTag);
-                rootElement.appendChild(floorTag);
-            }
+    public void createXml(String path) throws TransformerException, ParserConfigurationException {
+        Document doc = DocumentBuilderFactory.newInstance()
+                .newDocumentBuilder().newDocument();
+        Integer n=points.size();
+        Element floors = doc.createElement("floors");
+        doc.appendChild(floors);
+        Integer maxFloor=0;
+        for(int i=0;i<n;i++){
+            if(points.get(i).getFloor()>maxFloor)
+                maxFloor=points.get(i).getFloor();
         }
+        Element[] floor= new Element[maxFloor+1];
+        for (Integer i=1;i<=maxFloor;i++){
+            floor[i]=doc.createElement("floor");
+            floor[i].setAttribute("number", String.valueOf(i));
+        }
+        if(n==1){
+            Element room = doc.createElement("room");
+            Element type = doc.createElement("type");
+            Element x1 = doc.createElement("x1");
+            Element x2 = doc.createElement("x2");
+            Element y1 = doc.createElement("y1");
+            Element y2 = doc.createElement("y2");
+            type.setAttribute("name","path");
 
-        floorTag.appendChild(roomTag);
-        rootElement.appendChild(floorTag);
+            floors.appendChild(floor[points.get(0).getFloor()]);
+            floors.getLastChild().appendChild(room);
+            room.appendChild(type);
+            type.appendChild(x1);
+            x1.setTextContent(String.valueOf((points.get(0).getX()/(float)10)));
+            type.appendChild(y1);
+            y1.setTextContent(String.valueOf((points.get(0).getY()/(float)10)));
+            type.appendChild(x2);
+            x2.setTextContent(String.valueOf((points.get(0).getX()/(float)10)));
+            type.appendChild(y2);
+            y2.setTextContent(String.valueOf((points.get(0).getY()/(float)10)));
+        }
+        else{
+
+        for(int i=1; i<points.size();i++) {
+            //If first segment in path
+            if(i==1){
+                Element room = doc.createElement("room");
+                Element type = doc.createElement("type");
+                Element x1 = doc.createElement("x1");
+                Element x2 = doc.createElement("x2");
+                Element y1 = doc.createElement("y1");
+                Element y2 = doc.createElement("y2");
+                type.setAttribute("name","path");
+
+                floors.appendChild(floor[points.get(i).getFloor()]);
+                floors.getLastChild().appendChild(room);
+                room.appendChild(type);
+                type.appendChild(x1);
+                x1.setTextContent(String.valueOf((points.get(i-1).getX()/(float)10)));
+                type.appendChild(y1);
+                y1.setTextContent(String.valueOf((points.get(i-1).getY()/(float)10)));
+                type.appendChild(x2);
+                x2.setTextContent(String.valueOf((points.get(i).getX()/(float)10)));
+                type.appendChild(y2);
+                y2.setTextContent(String.valueOf((points.get(i).getY()/(float)10)));
+            }
+            else{
+                if(points.get(i).getFloor()==points.get(i-1).getFloor()){
+                    //Floor does not change
+                    Element type = doc.createElement("type");
+                    Element x1 = doc.createElement("x1");
+                    Element x2 = doc.createElement("x2");
+                    Element y1 = doc.createElement("y1");
+                    Element y2 = doc.createElement("y2");
+                    type.setAttribute("name","path");
+                    floors.getLastChild().getLastChild().appendChild(type);
+                    type.appendChild(x1);
+                    x1.setTextContent(String.valueOf((points.get(i-1).getX()/(float)10)));
+                    type.appendChild(y1);
+                    y1.setTextContent(String.valueOf((points.get(i-1).getY()/(float)10)));
+                    type.appendChild(x2);
+                    x2.setTextContent(String.valueOf((points.get(i).getX()/(float)10)));
+                    type.appendChild(y2);
+                    y2.setTextContent(String.valueOf((points.get(i).getY()/(float)10)));
+                }
+                else{
+                    Element room = doc.createElement("room");
+                    Element type = doc.createElement("type");
+                    Element x1 = doc.createElement("x1");
+                    Element x2 = doc.createElement("x2");
+                    Element y1 = doc.createElement("y1");
+                    Element y2 = doc.createElement("y2");
+                    type.setAttribute("name","path");
+                    floors.appendChild(floor[points.get(i).getFloor()]);
+                    floors.getLastChild().appendChild(room);
+                    room.appendChild(type);
+                    type.appendChild(x1);
+                    x1.setTextContent(String.valueOf((points.get(i-1).getX()/(float)10)));
+                    type.appendChild(y1);
+                    y1.setTextContent(String.valueOf((points.get(i-1).getY()/(float)10)));
+                    type.appendChild(x2);
+                    x2.setTextContent(String.valueOf((points.get(i).getX()/(float)10)));
+                    type.appendChild(y2);
+                    y2.setTextContent(String.valueOf((points.get(i).getY()/(float)10)));
+                }
+            }
+        }}
+        // Output the document.
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
-        DOMSource source = new DOMSource(document);
-
+        DOMSource source = new DOMSource(doc);
         StreamResult result = new StreamResult(new File(path));
+        transformer.transform(source, result);
 
-        transformer.transform(source,result);
+        System.out.println("File saved!");
     }
-
 }
