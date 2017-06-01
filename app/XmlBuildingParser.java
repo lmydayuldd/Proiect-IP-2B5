@@ -16,6 +16,8 @@ public class XmlBuildingParser {
     private int maxLength = 0;
     private int maxWidth = 0;
     private int maxFloor = 0;
+
+    private static int STAIRS_NUMBER = 3;
 	
     private final String pathXml;
     private static int[][][] rawMatrix = new int[Matrix.LEVEL_COUNT][Matrix.DIMENSION][Matrix.DIMENSION];
@@ -30,11 +32,33 @@ public class XmlBuildingParser {
 /**
 * parse a xml file and extract data
 */
+//    public static void main(String[] argv) throws IOException, SAXException, ParserConfigurationException {
+//        XmlBuildingParser xmlBuildingParser = new XmlBuildingParser("B:\\input.xml");
+//        Matrix matrix = new Matrix();
+//        matrix = xmlBuildingParser.getMatrix();
+//
+//        for (int etaj = 1; etaj<4; ++etaj)
+//        {
+//            for (int i=0; i<30; ++i)
+//            {
+//                for (int j=0; j<30; ++j)
+//                {
+//                    System.out.print(matrix.getCell(etaj,i,j).getFree()+" ");
+//                }
+//                System.out.println();
+//            }
+//            System.out.println("\n\n\n");
+//        }
+//
+//    }
+
     public void parse() throws ParserConfigurationException, IOException, SAXException {
         DocumentBuilder builder = factory.newDocumentBuilder();
 
         
         //TODO put 0 on door on rawMatrix!!!!
+
+        //TODO Test with parsing xml file (check Matrix)
         
         StringBuilder xmlStringBuilder = new StringBuilder();
         File file = new File(this.pathXml);
@@ -42,7 +66,7 @@ public class XmlBuildingParser {
         Document document = builder.parse(file);
         document.getDocumentElement().normalize();
 
-        NodeList nodeList = document.getElementsByTagName("element");
+
         rawMatrix = new int[Matrix.LEVEL_COUNT][Matrix.DIMENSION][Matrix.DIMENSION];
 	   
 	 //set rawMatrix with 0
@@ -58,33 +82,76 @@ public class XmlBuildingParser {
             }
         }
 	//parse the XML elements
+
+        NodeList nodeList = document.getElementsByTagName("floors");
+
         for (int i=0; i<nodeList.getLength(); ++i)
         {
             Node node = nodeList.item(i);
-            System.out.println(node.getNodeName());
 
-            if (node.getNodeType() == Node.ELEMENT_NODE)
+            NodeList nodeListFloor = document.getElementsByTagName("floor");
+
+
+            for (int i1=0; i1<nodeListFloor.getLength(); ++i1)
             {
-                Element element = (Element) node;
-                System.out.println(element.getElementsByTagName("type").item(0).getTextContent());
+                Node nodeFloor = nodeListFloor.item(i1);
+                Element elementFloor = (Element) nodeFloor;
+                Attr attr = ((Element) nodeFloor).getAttributeNode("number");
+                Integer floor = Integer.parseInt(attr.getValue());
 
-                int x1 = (int)(Double.parseDouble(element.getElementsByTagName("x1").item(0).getTextContent().toString())*10);
-                int y1 = (int)(Double.parseDouble(element.getElementsByTagName("y1").item(0).getTextContent().toString())*10);
-                int x2 = (int)(Double.parseDouble(element.getElementsByTagName("x2").item(0).getTextContent().toString())*10);
-                int y2 = (int)(Double.parseDouble(element.getElementsByTagName("y2").item(0).getTextContent().toString())*10);
-                int floor = (int)(Double.parseDouble(element.getElementsByTagName("floor").item(0).getTextContent().toString()));
                 maxFloor = Integer.max(maxFloor,floor);
-                maxLength = Integer.max(maxLength,y2);
-                maxLength = Integer.max(maxLength,y1);
-                maxWidth = Integer.max(maxWidth,x1);
-                maxWidth = Integer.max(maxWidth,x2);
 
-                if (element.getElementsByTagName("type").item(0).getTextContent().toString().equals("wall") || 
-                        element.getElementsByTagName("type").item(0).getTextContent().toString().equals("stairs"))
-                {
-                    fillWall(x1,y1,x2,y2,floor);
+                NodeList nodeListRoom = elementFloor.getElementsByTagName("room");
+
+                for (int i2=0; i2<nodeListRoom.getLength(); ++i2) {
+                    Node nodeRoom = nodeListRoom.item(i2);
+                    Element elementRoom = (Element) nodeRoom;
+
+                    NodeList nodeListType = elementRoom.getElementsByTagName("type");
+                    Node     nodeName = elementRoom.getElementsByTagName("name").item(0);
+
+                    boolean isStairs = false;
+
+                    if (nodeName.getTextContent().toLowerCase().contains(new String("Stairs").toLowerCase()))
+                    {
+                        isStairs = true;
+                    }
+
+                    for (int i3 = 0; i3<nodeListType.getLength(); ++i3)
+                    {
+                        Node nodeType = nodeListType.item(i3);
+                        Element elementType = (Element) nodeType;
+                        Attr attrType = ((Element) nodeType).getAttributeNode("name");
+
+                        String type = attrType.getValue();
+
+                        int x1 = (Integer.parseInt(elementType.getElementsByTagName("x1").item(0).getTextContent().toString()));
+                        int y1 = (Integer.parseInt(elementType.getElementsByTagName("y1").item(0).getTextContent().toString()));
+                        int x2 = (Integer.parseInt(elementType.getElementsByTagName("x2").item(0).getTextContent().toString()));
+                        int y2 = (Integer.parseInt(elementType.getElementsByTagName("y2").item(0).getTextContent().toString()));
+
+                        if (type.equals("wall") || type.equals("stairs"))
+                        {
+                            fillWall(x1,y1,x2,y2,floor,1);
+                        }
+
+                        if (type.equals("door") && !isStairs)
+                        {
+                            fillWall(x1,y1,x2,y2,floor,0);
+                        }
+
+                       // System.out.println(isStairs+" sdaj,njasdkadsjsjakjdsa");
+                        if (type.equals("door") && isStairs)
+                        {
+                            fillWall(x1,y1,x2,y2,floor,STAIRS_NUMBER);
+                           // System.out.println("sunt aici, gaseste-ma");
+                            //Tamara's Magic  Number
+                        }
+                    }
                 }
+
             }
+
         }
         System.out.println("Am iesit din parse");
     }
@@ -100,7 +167,7 @@ public class XmlBuildingParser {
 		We use Equation of a line to create the walls
 		(x - x1) / (x2 -x1 ) = (y - y1) / (y2 - y1)
 	*/
-    public void fillWall( int x1, int y1, int x2, int y2, int floor) {
+    public void fillWall( int x1, int y1, int x2, int y2, int floor, int value) {
         if (Math.abs(y2 - y1) > Math.abs(x2 - x1)) {
            // if (y1 > y2) {
                 //y1 = swap(y2, y2 = y1); //@Vasile - check this; @Alex - checked
@@ -110,7 +177,7 @@ public class XmlBuildingParser {
 
            // }
             for (int y = a1; y <= a2; ++y) {
-                rawMatrix[floor][getX(x1, y1, x2, y2, y)][y] = 1;
+                rawMatrix[floor][getX(x1, y1, x2, y2, y)][y] = value;
                 }
             }
          else {
@@ -121,7 +188,7 @@ public class XmlBuildingParser {
             a1 = Math.min(x1, x2);
           //  }
             for (int x = a1; x <= a2; ++x) {
-                rawMatrix[floor][x][getY(x1, y1, x2, y2, x)] = 1;
+                rawMatrix[floor][x][getY(x1, y1, x2, y2, x)] = value;
                 }
             }
     }
@@ -183,9 +250,26 @@ public class XmlBuildingParser {
                         {
                             x+=32; // north wall
                         }
+
+                    }
+
+                    if (a[etaj][i][j]==STAIRS_NUMBER)
+                    {
+                        if (etaj != maxFloor)
+                        {
+                            x+=2;
+                        }
+                        if (etaj != 0)
+                        {
+                            x+=1;
+                        }
                     }
                     //System.out.println("Cellll"+i+" " + j + " " + etaj + " valoare: "+ x);
-                    Cell cell = new Cell(x,a[etaj][i][j]);
+                    int isFree = 1;
+                    if (a[etaj][i][j] == 1) {
+                        isFree = 0;
+                    }
+                    Cell cell = new Cell(x,isFree);
                     matrix.setCell(cell,etaj,i,j); // setting our value
                 }
             }
