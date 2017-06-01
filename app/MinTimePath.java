@@ -34,7 +34,7 @@ class MinTimePath extends PathFinder {
                     dist[i][j][k] = (int) 1e9 + 69 * 69;
         //Djok's magic number
 
-        double magic = Math.sqrt(2);
+        double magic = 1;
         dist[source.getFloor()][source.getX()][source.getY()] = 0;
         for (q.add(source); !q.isEmpty(); q.poll()) {
             int x = q.element().getX();
