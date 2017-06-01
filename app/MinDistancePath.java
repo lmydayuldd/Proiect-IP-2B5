@@ -1,6 +1,9 @@
 package app;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Queue;
 
 
 public class MinDistancePath extends PathFinder {
@@ -38,7 +41,7 @@ public class MinDistancePath extends PathFinder {
             int z = q.element().getFloor();
             //System.out.println(z + " " + x + " " + y);
             Cell now = matrix.getCell(z, x, y);
-            if(now == null) continue;
+            if (now == null) continue;
             for (int dir = 0; dir < 6; ++dir) {
                 //System.out.println("");
                 if ((now.getWalls() & (1 << dir)) != 0)

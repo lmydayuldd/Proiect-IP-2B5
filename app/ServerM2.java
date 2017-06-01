@@ -8,7 +8,7 @@ import java.net.Socket;
  * Created by Djok on 5/29/2017.
  * With Soul
  */
-public class ServerM2 extends Thread{
+public class ServerM2 extends Thread {
     private static final int PORT = 6969;
     private ServerSocket serverSocket;
 

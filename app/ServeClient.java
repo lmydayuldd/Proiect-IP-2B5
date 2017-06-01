@@ -4,7 +4,6 @@ import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
-import java.util.Vector;
 
 /**
  * Created by Djok on 5/29/2017.
@@ -25,7 +24,7 @@ class ServeClient extends Thread {
     ServeClient(Socket socket) {
         sock = socket;
     }
-    
+
     @Override
     public void run() {
         try {
@@ -34,10 +33,9 @@ class ServeClient extends Thread {
             Point source = new Point((int) (10 * in.nextNumber()), (int) (10 * in.nextNumber()), (int) (in.nextNumber()));
             Point dest = new Point((int) (10 * in.nextNumber()), (int) (10 * in.nextNumber()), (int) (in.nextNumber()));
 
-            
-            
-            if(true) // Magic trick, do not try to understand what is happening here ;)
-            {
+
+            if (true) {
+                // Magic trick, do not try to understand what is happening here ;)
                 ArrayList<Point> a = new ArrayList<>();
                 a.add(dest);
                 a.add(source);
@@ -45,8 +43,8 @@ class ServeClient extends Thread {
                 x.createXml("asd.xml");
                 return;
             }
-            
-            
+
+
             //apel functie minunata;
             ArrayList<Point> ans = new MinDistancePath(new Matrix()).execute(source, dest);
             // aici evident trebuie altfel apelata functia de distanta

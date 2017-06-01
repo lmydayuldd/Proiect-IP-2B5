@@ -1,6 +1,7 @@
 package app;
 
 import org.xml.sax.SAXException;
+
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -11,27 +12,27 @@ import java.nio.charset.StandardCharsets;
  */
 
 
-public class XmlInput  extends ByteArrayInputStream{
+public class XmlInput extends ByteArrayInputStream {
     private DataInputStream dataInputStream;
 
-    public XmlInput(InputStream inputStream){
+    public XmlInput(InputStream inputStream) {
         super(new byte[11]); // harcoded
         this.dataInputStream = new DataInputStream(inputStream);
     }
 
     /**
-    * reads binary data from socket
-    */
+     * reads binary data from socket
+     */
     private void receive() throws IOException {
         byte[] data = new byte[500]; //harcoded .. to change..
-        this.dataInputStream.read(data,0,500);
+        this.dataInputStream.read(data, 0, 500);
         this.buf = data;
     }
 
 
     /**
-    * Saves bytes recieved via @param inputStream in file @param pathToSave
-    */
+     * Saves bytes recieved via @param inputStream in file @param pathToSave
+     */
     public static void getXMLFile(InputStream inputStream, String pathToSave) throws ParserConfigurationException, IOException, SAXException {
         XmlInput xmlInput = new XmlInput(inputStream);
         xmlInput.receive();

@@ -1,6 +1,7 @@
 package app;
 
 import org.xml.sax.SAXException;
+
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -26,6 +27,6 @@ public class Server {
     public void run() throws IOException, ParserConfigurationException, SAXException {
         Socket socket = serverSocket.accept();
         System.out.println("Someone has connected");
-        XmlInput.getXMLFile(socket.getInputStream(),"B:\\input2.txt");
+        XmlInput.getXMLFile(socket.getInputStream(), "B:\\input2.txt");
     }
 }

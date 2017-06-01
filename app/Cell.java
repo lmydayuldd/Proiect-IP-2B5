@@ -23,21 +23,20 @@ public class Cell {
      */
     private int free;
 
-    public Cell(int walls, int free)
-    {
+    public Cell(int walls, int free) {
         this.walls = walls;
         this.free = free;
     }
-	
-	public int getFree() {
+
+    public int getFree() {
         return free;
     }
 
     public int getWalls() {
         return walls;
     }
-	
-	public void setFree(int free) {
+
+    public void setFree(int free) {
         this.free = free;
     }
 
