@@ -69,7 +69,7 @@ public class Wall {
     
     @Override
     public String toString(){
-        return ("Wall: lpoint(" + this.leftPoint.toString().substring(7) + "), rpoint(" + this.rightPoint.toString().substring(7)+"), room: " + this.roomName);
+        return ("Wall: lpoint(" + this.leftPoint.toString().substring(7) + "), rpoint(" + this.rightPoint.toString().substring(7)+"), room: " + this.roomName + ", floor: " + this.floorNumber);
     }
     /**Returns equivalent representation of Wall as equivalent Line2D object*/
     public static Line2D toLine2D(Wall wall){

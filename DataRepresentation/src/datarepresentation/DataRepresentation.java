@@ -6,8 +6,6 @@
 package datarepresentation;
 
 import CustomExceptions.DataNotValidException;
-import tablerepresentation.ElementManager;
-
 /**
  *
  * @author Procop Vladimir
@@ -18,6 +16,6 @@ public class DataRepresentation {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws DataNotValidException {
-        ElementManager em = new ElementManager();  
+        
     }
 }

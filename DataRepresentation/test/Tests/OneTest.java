@@ -18,6 +18,45 @@ import tablerepresentation.TableElement;
  * @author Procop Vladimir
  */
 public class OneTest {
+    
+    public ArrayList<TableElement> test0(){
+        ArrayList<TableElement> floor = new ArrayList<>();
+        floor.add(new TableElement("wall", 0, 0, 5, 0, 1, "C101", 0, 0));
+        floor.add(new TableElement("wall", 0, 0, 0, 5, 1, "C101", 0, 0));
+        floor.add(new TableElement("wall", 0, 5, 5, 5, 1, "C101", 0, 0));
+        floor.add(new TableElement("wall", 5, 5, 5, 0, 1, "C101", 0, 0));
+        floor.add(new TableElement("window", 0, 2, 0, 3, 1, "C101", 0, 0));
+        floor.add(new TableElement("door", 5, 3, 5, 4, 1, "C101", 0, 0));
+        floor.add(new TableElement("stairs", 0, 15, 3, 15, 1, "Stairs1", 0, 0));
+        floor.add(new TableElement("stairs", 3, 15, 3, 18, 1, "Stairs1", 0, 0));
+        floor.add(new TableElement("stairs", 0, 15, 0, 18, 1, "Stairs1", 0, 0));
+        floor.add(new TableElement("stairs", 0, 18, 3, 18, 1, "Stairs1", 0, 0));
+        floor.add(new TableElement("stairs", 3, 16, 3, 17, 1, "Stairs1", 0, 0));
+
+        floor.add(new TableElement("wall", 0, 0, 5, 0, 2, "C201", 0, 0));
+        floor.add(new TableElement("wall", 0, 0, 0, 5, 2, "C201", 0, 0));
+        floor.add(new TableElement("wall", 0, 5, 5, 5, 2, "C201", 0, 0));
+        floor.add(new TableElement("wall", 5, 5, 5, 0, 2, "C201", 0, 0));
+        floor.add(new TableElement("window", 0, 2, 0, 3, 2, "C201", 0, 0));
+        floor.add(new TableElement("door", 5, 3, 5, 4, 2, "C201", 0, 0));
+        
+        return floor;
+    }
+    
+    @Test 
+    public void test0Run()throws DataNotValidException{
+        ArrayList<TableElement> floor = test0();
+        ElementManager em = new ElementManager(floor);
+        try{
+            System.out.println("*******************TEST 0 ********************************************************");
+            em.validateElements();
+            fail("DataNotValidException expected");
+        }catch(DataNotValidException e){
+            System.out.println("Test 0 : " + e.getMessage());
+        }
+    }
+    
+    
     //no errors
     //no errors
     public ArrayList<TableElement> test1(){
@@ -62,7 +101,6 @@ public class OneTest {
         floor.add(new TableElement("wall",34,10,34,4,0,"103",0,0));
         floor.add(new TableElement("wall",34,4,27,4,0,"103",0,0));
         floor.add(new TableElement("wall",27,4,27,16,0,"103",0,0));
-
         return floor;
     }
     

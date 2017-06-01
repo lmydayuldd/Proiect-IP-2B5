@@ -13,6 +13,7 @@ import java.awt.geom.Path2D;
 import java.awt.geom.PathIterator;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.HashMap;
 import tablerepresentation.DataNotValidExceptionLogger;
 
 /**
@@ -20,6 +21,10 @@ import tablerepresentation.DataNotValidExceptionLogger;
  * @author Procop Vladimir
  */
 public class Floor extends Element {
+
+    private static Exception DataNotValidException(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     private int floorLevel;
     private int floorHeight;
     private ArrayList<Room> rooms = new ArrayList<>();
@@ -183,27 +188,15 @@ public class Floor extends Element {
             DataNotValidExceptionLogger.getInstance().addExceptionMessage("There is no door on the first floor " + exterior.get(0).getFloorNumber());
         }
         
-        
-        Area exteriorAsArea = new Area(Floor.wallListAsPath2D(exterior));
+        Area exteriorAsArea = new Area(Floor.wallPolygonAsPath2D(exterior));
         Path2D roomAsPath2D;
         Area roomAsArea;
-        Area roomTemp;
-        
-        for(int j = 0 ; j< exterior.size(); j++){  /// DEBUG
-                System.out.println(exterior.get(j));   
-            }
-        
+        Area roomTemp;        
         for(int i = 0 ; i < floor.rooms.size(); i++){
             roomTemp = new Area(Room.toPath2D(floor.rooms.get(i)));
             roomTemp.intersect(exteriorAsArea);
             if(!roomTemp.equals(new Area(Room.toPath2D(floor.rooms.get(i))))){
                 DataNotValidExceptionLogger.getInstance().addExceptionMessage("[" + floor.rooms.get(i) + "] is not contained by it's floor , " + floor.rooms.get(i).getFloorNumber());
-                System.out.println("~~~~~~~~~~~~~~ARIE INTERSECTIE~~~~~~~~~~~~~~~~~~~~~~~~DEBUG"); float[] coords = new float[2];
-                for(PathIterator it = roomTemp.getPathIterator(null); !it.isDone(); it.next()){
-                    it.currentSegment(coords);
-                    System.out.println("punct cale intersectie " + coords[0] + " , " + coords[1]);
-                }
-                System.out.println("~~~~~~~~~~~~~~GATA~~~~~~~~~~~~~~~~~~~~~~~~");
             } 
         }
         return true;
@@ -213,11 +206,44 @@ public class Floor extends Element {
         this.exteriorWalls.add(wall);
     }
     /**Returns a Path2D object, equivalent to the parameter*/
-    public static Path2D wallListAsPath2D(ArrayList<Wall> walls){
+    public static Path2D wallPolygonAsPath2D(ArrayList<Wall> walls) throws DataNotValidException{
         Path2D path = new Path2D.Double();
-        for(int i = 0; i < walls.size(); i++){
-            path.append(Wall.toLine2D(walls.get(i)), true);
+        
+        boolean[] added = new boolean[walls.size()];
+        for(int i = 0; i < added.length; i++){
+            added[i] = false;
         }
+        ArrayList<Wall> orderedWalls = new ArrayList<>();
+        orderedWalls.add(0, walls.get(0));
+        Point nowPoint = new Point(walls.get(0).rightPoint);
+        added[0] = true;
+        for(int i = 0 ; i < walls.size(); i++){
+            if(nowPoint.equals(walls.get(0).leftPoint)){
+                break;
+            }
+            for(int j = 0; j < walls.size(); j++){
+                if((!added[j]) && (walls.get(j).rightPoint).equals(nowPoint)){
+                    added[j] = true;
+                    nowPoint.setX(walls.get(j).leftPoint.getX());
+                    nowPoint.setY(walls.get(j).leftPoint.getY());
+                    orderedWalls.add(walls.get(j));
+                }
+                if((!added[j]) && (walls.get(j).leftPoint).equals(nowPoint)){
+                    added[j] = true;
+                    nowPoint.setX(walls.get(j).rightPoint.getX());
+                    nowPoint.setY(walls.get(j).rightPoint.getY());
+                    orderedWalls.add(walls.get(j));
+                }
+            }
+        }
+        
+        for(int i = 0; i < orderedWalls.size(); i++){
+            path.append(Wall.toLine2D(orderedWalls.get(i)), true);
+        }
+        for(int i = 0; i < orderedWalls.size(); i++){
+            path.append(Wall.toLine2D(orderedWalls.get(i)), true);
+        }
+        
         return path;
     }
     public String toString(){

@@ -163,10 +163,37 @@ public class Room extends Element{
         return (double)(w.rightPoint.getY()-w.leftPoint.getY())/(double)((w.rightPoint.getX()-w.leftPoint.getX()));
     }
     /**Returns Path2D object equivalent to the Room parameter*/
-    public static Path2D toPath2D(Room room) {
+    public static Path2D toPath2D(Room room) throws DataNotValidException {
         Path2D path = new Path2D.Double();
-        for(int i = 0; i < room.walls.size(); i++){
-            path.append(Wall.toLine2D(room.walls.get(i)), true);
+        boolean[] added = new boolean[room.walls.size()];
+        for(int i = 0; i < added.length; i++){
+            added[i] = false;
+        }
+        ArrayList<Wall> orderedWalls = new ArrayList<>();
+        orderedWalls.add(0, room.walls.get(0));
+        Point nowPoint = new Point(room.walls.get(0).rightPoint);
+        added[0] = true;
+        for(int i = 0 ; i < room.walls.size(); i++){
+            if(nowPoint.equals(room.walls.get(0).leftPoint)){
+                break;
+            }
+            for(int j = 0; j < room.walls.size(); j++){
+                if((!added[j]) && (room.walls.get(j).rightPoint).equals(nowPoint)){
+                    added[j] = true;
+                    nowPoint.setX(room.walls.get(j).leftPoint.getX());
+                    nowPoint.setY(room.walls.get(j).leftPoint.getY());
+                    orderedWalls.add(room.walls.get(j));
+                }
+                if((!added[j]) && (room.walls.get(j).leftPoint).equals(nowPoint)){
+                    added[j] = true;
+                    nowPoint.setX(room.walls.get(j).rightPoint.getX());
+                    nowPoint.setY(room.walls.get(j).rightPoint.getY());
+                    orderedWalls.add(room.walls.get(j));
+                }
+            }
+        }
+        for(int i = 0; i < orderedWalls.size(); i++){
+            path.append(Wall.toLine2D(orderedWalls.get(i)), true);
         }
         return path;
     }
