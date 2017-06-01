@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class showMenu5 : MonoBehaviour
 {
-      public Dropdown dd_2d_etaj;
+    public Dropdown dd_2d_etaj;
     public Dropdown dd_etaj1;
     public Dropdown dd_etaj2;
     public Dropdown dd_camera1;
@@ -23,10 +23,11 @@ public class showMenu5 : MonoBehaviour
         for (var i = 0; i < gameObjects.Length; i++)
             Destroy(gameObjects[i]);
 
-        
+
         StartCoroutine(Deserialize.GetLevel(etaj_index_vizualizare));
-        
-       
+        StartCoroutine(Deserialize.GetLevelPath(etaj_index_vizualizare));
+
+
     }
     public static int getIndexEtaj()
     {
@@ -37,9 +38,9 @@ public class showMenu5 : MonoBehaviour
     // Cand alege etajul de start pentru drum
     public void Dropdown_IndexChanged_Drum_Selectare_Etaj1(int index)
     {
-        
-            dd_camera1.ClearOptions(); // Stergem optiunile de la dropdown'ul camera1
-            dd_camera1.AddOptions(Deserialize.getCamere(dd_etaj1.GetComponent<Dropdown>().value)); // Adaugam optiunile cu camerele etajului 1
+
+        dd_camera1.ClearOptions(); // Stergem optiunile de la dropdown'ul camera1
+        dd_camera1.AddOptions(Deserialize.getCamere(dd_etaj1.GetComponent<Dropdown>().value)); // Adaugam optiunile cu camerele etajului 1
 
     }
     public void Dropdown_IndexChanged_Drum_Selectare_Etaj2(int index)
@@ -49,7 +50,7 @@ public class showMenu5 : MonoBehaviour
         dd_camera2.AddOptions(Deserialize.getCamere(dd_etaj2.GetComponent<Dropdown>().value)); // Adaugam optiunile cu camerele etajului 1
 
     }
-    
+
 
 
     // Cand alege camera de start pentru drum
@@ -75,7 +76,7 @@ public class showMenu5 : MonoBehaviour
         etaj_camera2 = dd_etaj2.GetComponent<Dropdown>().value;
         camera1 = dd_camera1.GetComponent<Dropdown>().value;
         camera2 = dd_camera2.GetComponent<Dropdown>().value;
-         Deserialize d = new Deserialize();
+        Deserialize d = new Deserialize();
         d.Connect("localhost", "6 9 6 9 6 9");
     }
     public static int getEtaj_camera1()
@@ -98,12 +99,12 @@ public class showMenu5 : MonoBehaviour
     void Start()
     {
 
-        StartCoroutine(Deserialize.GetLevelsForDropDown(0,Populare));
+        StartCoroutine(Deserialize.GetLevelsForDropDown(0, Populare));
         dd_2d_etaj.ClearOptions();
         dd_2d_etaj.AddOptions(Deserialize.getEtajePentruDd());
     }
 
-     void Populare()
+    void Populare()
     {
 
         dd_etaj1.ClearOptions();
