@@ -62,7 +62,7 @@ class MinTimePath extends PathFinder {
 
                 if (dir == 1) {
                     if (new Point(newx + 1, newy, newz).isValid(lvl, n, n) && (now2.getWalls() & 8) == 0) {
-                        if (dist[newz][newx + 1][newy] > dist[newz][newy][newy] + magic) {
+                        if (dist[newz][newx + 1][newy] > dist[newz][newx][newy] + magic) {
                             dist[newz][newx + 1][newy] = dist[newz][newx][newy] + magic;
                             from[newz][newx + 1][newy] = 6;
                             q.add(new Point(newx + 1, newy, newz));
@@ -70,7 +70,7 @@ class MinTimePath extends PathFinder {
                     }
 
                     if (new Point(newx - 1, newy, newz).isValid(lvl, n, n) && (now2.getWalls() & 1) == 0) {
-                        if (dist[newz][newx - 1][newy] > dist[newz][newy][newy] + magic) {
+                        if (dist[newz][newx - 1][newy] > dist[newz][newx][newy] + magic) {
                             dist[newz][newx - 1][newy] = dist[newz][newx][newy] + magic;
                             from[newz][newx - 1][newy] = 7;
                             q.add(new Point(newx - 1, newy, newz));
@@ -80,7 +80,7 @@ class MinTimePath extends PathFinder {
 
                 if (dir == 2) {
                     if (new Point(newx + 1, newy, newz).isValid(lvl, n, n) && (now2.getWalls() & 8) == 0) {
-                        if (dist[newz][newx + 1][newy] > dist[newz][newy][newy] + magic) {
+                        if (dist[newz][newx + 1][newy] > dist[newz][newx][newy] + magic) {
                             dist[newz][newx + 1][newy] = dist[newz][newx][newy] + magic;
                             from[newz][newx + 1][newy] = 9;
                             q.add(new Point(newx + 1, newy, newz));
@@ -88,7 +88,7 @@ class MinTimePath extends PathFinder {
                     }
 
                     if (new Point(newx - 1, newy, newz).isValid(lvl, n, n)  && (now2.getWalls() & 1) == 0) {
-                        if (dist[newz][newx - 1][newy] > dist[newz][newy][newy] + magic) {
+                        if (dist[newz][newx - 1][newy] > dist[newz][newx][newy] + magic) {
                             dist[newz][newx - 1][newy] = dist[newz][newx][newy] + magic;
                             from[newz][newx - 1][newy] = 8;
                             q.add(new Point(newx - 1, newy, newz));
@@ -98,7 +98,7 @@ class MinTimePath extends PathFinder {
 
                 if (dir == 0) {
                     if (new Point(newx, newy + 1, newz).isValid(lvl, n, n) && (now2.getWalls() & 2) == 0) {
-                        if (dist[newz][newx][newy + 1] > dist[newz][newy][newy] + magic) {
+                        if (dist[newz][newx][newy + 1] > dist[newz][newx][newy] + magic) {
                             dist[newz][newx][newy + 1] = dist[newz][newx][newy] + magic;
                             from[newz][newx][newy + 1] = 7;
                             q.add(new Point(newx, newy + 1, newz));
@@ -106,7 +106,7 @@ class MinTimePath extends PathFinder {
                     }
 
                     if (new Point(newx, newy - 1, newz).isValid(lvl, n, n)  && (now2.getWalls() & 4) == 0) {
-                        if (dist[newz][newx][newy - 1] > dist[newz][newy][newy] + magic) {
+                        if (dist[newz][newx][newy - 1] > dist[newz][newx][newy] + magic) {
                             dist[newz][newx][newy - 1] = dist[newz][newx][newy] + magic;
                             from[newz][newx][newy - 1] = 8;
                             q.add(new Point(newx, newy - 1, newz));
@@ -116,7 +116,7 @@ class MinTimePath extends PathFinder {
 
                 if (dir == 3) {
                     if (new Point(newx, newy + 1, newz).isValid(lvl, n, n) && (now2.getWalls() & 2) == 0) {
-                        if (dist[newz][newx][newy + 1] > dist[newz][newy][newy] + magic) {
+                        if (dist[newz][newx][newy + 1] > dist[newz][newx][newy] + magic) {
                             dist[newz][newx][newy + 1] = dist[newz][newx][newy] + magic;
                             from[newz][newx][newy + 1] = 6;
                             q.add(new Point(newx, newy + 1, newz));
@@ -124,7 +124,7 @@ class MinTimePath extends PathFinder {
                     }
 
                     if (new Point(newx, newy - 1, newz).isValid(lvl, n, n)  && (now2.getWalls() & 4) == 0) {
-                        if (dist[newz][newx][newy - 1] > dist[newz][newy][newy] + magic) {
+                        if (dist[newz][newx][newy - 1] > dist[newz][newx][newy] + magic) {
                             dist[newz][newx][newy - 1] = dist[newz][newx][newy] + magic;
                             from[newz][newx][newy - 1] = 9;
                             q.add(new Point(newx, newy - 1, newz));
