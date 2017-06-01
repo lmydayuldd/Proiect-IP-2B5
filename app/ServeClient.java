@@ -48,7 +48,7 @@ class ServeClient extends Thread {
             
             
             //apel functie minunata;
-            Vector<Point> ans = new MinDistancePath(new Matrix()).execute(source, dest);
+            ArrayList<Point> ans = new MinDistancePath(new Matrix()).execute(source, dest);
             // aici evident trebuie altfel apelata functia de distanta
 
             //Parsam ans si transformam in ceva (XML ?)

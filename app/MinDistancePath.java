@@ -10,7 +10,7 @@ public class MinDistancePath extends PathFinder {
     }
 
     @Override
-    public Vector<Point> execute(Point source, Point dest) {
+    public ArrayList<Point> execute(Point source, Point dest) {
         if (!source.isValid(Matrix.LEVEL_COUNT, Matrix.DIMENSION, Matrix.DIMENSION) ||
                 !dest.isValid(Matrix.LEVEL_COUNT, Matrix.DIMENSION, Matrix.DIMENSION))
             return null;
@@ -57,7 +57,7 @@ public class MinDistancePath extends PathFinder {
         if (dist[dest.getFloor()][dest.getX()][dest.getY()] > (int) 1e9)
             return null;
 
-        Vector<Point> ans = new Vector<>();
+        ArrayList<Point> ans = new ArrayList<>();
 
         int x = dest.getX();
         int y = dest.getY();

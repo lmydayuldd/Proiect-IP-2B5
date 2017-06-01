@@ -1,5 +1,6 @@
 package app;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 
@@ -23,6 +24,6 @@ public abstract class PathFinder {
      * This class calculates the route in the building that travels through the
      * points described by the @param path list.
      */
-    public abstract Vector<Point> execute(Point source, Point dest);
+    public abstract ArrayList<Point> execute(Point source, Point dest);
 
 }

@@ -216,7 +216,7 @@ public class SomeTest {
     @Test
     public void testMatrix1(){
         XmlBuildingParser sample = new XmlBuildingParser("exXML");
-        sample.fillWall(1, 1, 20, 20, 3);
+        sample.fillWall(1, 1, 20, 20, 3, 1);
         Matrix mat = sample.toMatrix( sample.getRawMatrix());
 
         for(int i=0; i<=30; ++i) {
