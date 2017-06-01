@@ -31,8 +31,8 @@ class ServeClient extends Thread {
         try {
             InputReader in = new InputReader(sock.getInputStream());
             OutputStream out = new BufferedOutputStream(sock.getOutputStream());
-            Point source = new Point((int) (10 * in.nextNumber()), (int) (10 * in.nextNumber()), (int) (10 * in.nextNumber()));
-            Point dest = new Point((int) (10 * in.nextNumber()), (int) (10 * in.nextNumber()), (int) (10 * in.nextNumber()));
+            Point source = new Point((int) (10 * in.nextNumber()), (int) (10 * in.nextNumber()), (int) (in.nextNumber()));
+            Point dest = new Point((int) (10 * in.nextNumber()), (int) (10 * in.nextNumber()), (int) (in.nextNumber()));
 
             
             
