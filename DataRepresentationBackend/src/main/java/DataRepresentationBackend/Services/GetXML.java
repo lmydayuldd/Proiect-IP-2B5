@@ -1,19 +1,24 @@
 package DataRepresentationBackend.Services;
 
+import CustomExceptions.DataNotValidException;
+import Representations.Floor;
 import Representations.Room;
 import Representations.Wall;
 import com.sun.org.apache.xerces.internal.dom.DocumentImpl;
-import com.sun.org.apache.xml.internal.serialize.OutputFormat;
-import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import tablerepresentation.ElementFilter;
 import tablerepresentation.TableElement;
 
-import java.io.File;
-import java.io.FileWriter;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.io.StringWriter;
 import java.nio.file.FileAlreadyExistsException;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -21,25 +26,22 @@ import java.util.ArrayList;
  */
 public class GetXML {
 
-    public void getXML() {
-        Connection conn = DatabaseConnection.getConnection();
-        String OUTPUTFILE = "D:\\coordonate.xml"; // Change the path, if need be
+    public String getXML() {
 
         try {
             Document xmlDoc = buildXML();
 
-            File outputFile = new File(OUTPUTFILE);
-            printDOM(xmlDoc, outputFile);
+            TransformerFactory tf = TransformerFactory.newInstance();
+            Transformer transformer = tf.newTransformer();
+            transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+            StringWriter writer = new StringWriter();
+            transformer.transform(new DOMSource(xmlDoc), new StreamResult(writer));
 
-            conn.close();
-        }   catch(FileAlreadyExistsException f){
-            System.out.println("There is already a file with this name in this location");
+            return writer.getBuffer().toString().replaceAll("\n|\r", "");
+
+        }   catch (Exception e) {
+            return ("Really poor exception handling: " + e.toString());
         }
-
-        catch (Exception e) {
-            System.out.println("Really poor exception handling: " + e.toString());
-        }
-
     }
 
     private Document buildXML() throws Exception {
@@ -118,16 +120,5 @@ public class GetXML {
         }
 
         return xmlDoc;
-    }
-
-    private void printDOM(Document _xmlDoc, File _outputFile) throws Exception {
-        OutputFormat outputFormat = new OutputFormat("XML","UTF-8",true);
-        FileWriter fileWriter = new FileWriter(_outputFile);
-
-        XMLSerializer xmlSerializer = new XMLSerializer(fileWriter, outputFormat);
-
-        xmlSerializer.asDOMSerializer();
-
-        xmlSerializer.serialize(_xmlDoc.getDocumentElement());
     }
 }
