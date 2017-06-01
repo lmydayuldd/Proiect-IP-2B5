@@ -170,17 +170,16 @@ Raspunsuri care pot fi primite:
     
     Raspunsuri ce pot fi primite:
     1. in caz de succes:
-        Codul returnat: 200
             HttpEntity&lt;&gt; ce contine:
-                -
-                -
+                - XML cu reprezentarea cladirii 
+                - Un HttpHeader ce contine date despre ceea ce s-a transmis: tipul(XML) si lungimea 
     2. in caz de eroare:
         Codul returnat: 500
             ResponseEntity&lt;&gt; ce contine:
                     - Un obiect de tip Message cu textul: &quot;Get XML operation failed + exception.getMessage().&quot;
                     - HttpStatus.INTERNAL_SERVER_ERROR
 </code></pre>
-<h2><a id="6_4500finalSave_183"></a>6. :4500/finalSave</h2>
+<h2><a id="6_4500finalSave_182"></a>6. :4500/finalSave</h2>
 <pre><code>    -Http Method : POST 
     
     Raspunsuri ce pot fi primite:
@@ -201,7 +200,7 @@ Raspunsuri care pot fi primite:
                     - Un obiect de tip TemporarySaveMessage cu textul : &quot;Error at replicate data in database&quot; + exception.getMessage(), fie cu textul: &quot;Final save operation failed.&quot; + exception.getMessage()
                     - HttpStatus.INTERNAL_SERVER_ERROR
 </code></pre>
-<h2><a id="7_4500getTemporaryData_204"></a>7. :4500/getTemporaryData</h2>
+<h2><a id="7_4500getTemporaryData_203"></a>7. :4500/getTemporaryData</h2>
 <pre><code>    -Http Method : GET
     
     Raspunsuri ce pot fi primite:
@@ -214,6 +213,656 @@ Raspunsuri care pot fi primite:
         Codul returnat: 500
             ReponseEntity&lt;&gt; ce contine:
                     - Un obiect de tip TemporarySaveMessage cu textul : &quot;Get temporary data failed &quot; + exception.getMessage()
-                    - HttpStatus.INTERNAL_SERVER_ERROR</code></pre>
+                    - HttpStatus.INTERNAL_SERVER_ERROR
+</code></pre>
+<h2><a id="Exemplu_de_set_de_date_valid_si_XMLul_asociat_218"></a>Exemplu de set de date valid si XML-ul asociat:</h2>
+<pre><code>####Etajul 1
+
+//exterior care nu este in camere
+&quot;door&quot;,10,27,15,27,0,&quot;-1&quot;,1,0
+&quot;door&quot;,2,17,2,22,0,&quot;-1&quot;,1,0
+&quot;wall&quot;,2,27,10,27,0,&quot;-1&quot;,1,0
+&quot;wall&quot;,15,27,24,27,0,&quot;-1&quot;,1,0
+&quot;wall&quot;,24,27,24,18,0,&quot;-1&quot;,1,0
+&quot;wall&quot;,24,18,36,18,0,&quot;-1&quot;,1,0
+&quot;wall&quot;,36,18,36,2,0,&quot;-1&quot;,1,0
+&quot;wall&quot;,36,2,24,2,0,&quot;-1&quot;,1,0
+&quot;wall&quot;,2,11,2,17,0,&quot;-1&quot;,1,0
+&quot;wall&quot;,2,22,2,27,0,&quot;-1&quot;,1,0
+
+//room &quot;101&quot;
+&quot;door&quot;,5,11,10,11,0,&quot;101&quot;,0,0
+&quot;wall&quot;,2,11,5,11,0,&quot;101&quot;,0,0
+&quot;wall&quot;,10,11,13,11,0,&quot;101&quot;,0,0
+&quot;wall&quot;,13,11,13,2,0,&quot;101&quot;,0,0
+&quot;wall&quot;,13,2,2,2,0,&quot;101&quot;,1,0 
+&quot;wall&quot;,2,2,2,11,0,&quot;101&quot;,1,0
+
+//room &quot;102&quot;
+&quot;door&quot;,24,9,24,5,0,&quot;102&quot;,0,0
+&quot;wall&quot;,13,11,24,11,0,&quot;102&quot;,0,0
+&quot;wall&quot;,24,11,24,9,0,&quot;102&quot;,0,0
+&quot;wall&quot;,24,5,24,2,0,&quot;102&quot;,0,0
+&quot;wall&quot;,24,2,13,2,0,&quot;102&quot;,1,0 
+&quot;wall&quot;,13,2,13,11,0,&quot;102&quot;,0,0
+
+//room &quot;103&quot;
+&quot;door&quot;,29,16,32,16,0,&quot;103&quot;,0,0
+&quot;door&quot;,34,13,34,10,0,&quot;103&quot;,0,0
+&quot;wall&quot;,27,16,29,16,0,&quot;103&quot;,0,0
+&quot;wall&quot;,32,16,34,16,0,&quot;103&quot;,0,0
+&quot;wall&quot;,34,16,34,13,0,&quot;103&quot;,0,0
+&quot;wall&quot;,34,10,34,4,0,&quot;103&quot;,0,0
+&quot;wall&quot;,34,4,27,4,0,&quot;103&quot;,0,0
+&quot;wall&quot;,27,4,27,16,0,&quot;103&quot;,0,0
+
+//stairs s1
+&quot;door&quot;,29,16,32,16,1,&quot;s1&quot;,0,0) 
+&quot;door&quot;,34,13,34,10,1,&quot;s1&quot;,0,0) 
+&quot;stairs&quot;,27,16,29,16,1,&quot;s1&quot;,0,0) 
+&quot;stairs&quot;,32,16,34,16,1,&quot;s1&quot;,0,0) 
+&quot;stairs&quot;,34,16,34,13,1,&quot;s1&quot;,0,0) 
+&quot;stairs&quot;,34,10,34,4,1,&quot;s1&quot;,0,0) 
+&quot;stairs&quot;,34,4,27,4,1,&quot;s1&quot;,0,0) 
+&quot;stairs&quot;,27,4,27,16,1,&quot;s1&quot;,0,0) 
+
+####Etajul 2
+//exterior care nu este in camere
+&quot;door&quot;,10,27,15,27,0,&quot;-1&quot;,1,0
+&quot;door&quot;,2,17,2,22,0,&quot;-1&quot;,1,0
+&quot;wall&quot;,2,27,10,27,0,&quot;-1&quot;,1,0
+&quot;wall&quot;,15,27,24,27,0,&quot;-1&quot;,1,0
+&quot;wall&quot;,24,27,24,18,0,&quot;-1&quot;,1,0
+&quot;wall&quot;,24,18,36,18,0,&quot;-1&quot;,1,0
+&quot;wall&quot;,36,18,36,2,0,&quot;-1&quot;,1,0
+&quot;wall&quot;,36,2,24,2,0,&quot;-1&quot;,1,0
+&quot;wall&quot;,2,11,2,17,0,&quot;-1&quot;,1,0
+&quot;wall&quot;,2,22,2,27,0,&quot;-1&quot;,1,0
+
+//room &quot;201&quot;
+&quot;door&quot;,5,11,10,11,0,&quot;101&quot;,0,0
+&quot;wall&quot;,2,11,5,11,0,&quot;101&quot;,0,0
+&quot;wall&quot;,10,11,13,11,0,&quot;101&quot;,0,0
+&quot;wall&quot;,13,11,13,2,0,&quot;101&quot;,0,0
+&quot;wall&quot;,13,2,2,2,0,&quot;101&quot;,1,0 
+&quot;wall&quot;,2,2,2,11,0,&quot;101&quot;,1,0
+
+//stairs s1
+&quot;door&quot;,29,16,32,16,1,&quot;s1&quot;,0,0) 
+&quot;door&quot;,34,13,34,10,1,&quot;s1&quot;,0,0) 
+&quot;stairs&quot;,27,16,29,16,1,&quot;s1&quot;,0,0) 
+&quot;stairs&quot;,32,16,34,16,1,&quot;s1&quot;,0,0) 
+&quot;stairs&quot;,34,16,34,13,1,&quot;s1&quot;,0,0) 
+&quot;stairs&quot;,34,10,34,4,1,&quot;s1&quot;,0,0) 
+&quot;stairs&quot;,34,4,27,4,1,&quot;s1&quot;,0,0) 
+&quot;stairs&quot;,27,4,27,16,1,&quot;s1&quot;,0,0)
+
+//stairs s2
+&quot;door&quot;,10,23,13,23,2,&quot;s2&quot;,0,0) 
+&quot;stairs&quot;,13,23,15,23,2,&quot;s2&quot;,0,0) 
+&quot;stairs&quot;,15,23,15,17,2,&quot;s2&quot;,0,0) 
+&quot;stairs&quot;,15,17,7,17,2,&quot;s2&quot;,0,0) 
+&quot;stairs&quot;,7,17,7,23,2,&quot;s2&quot;,0,0) 
+&quot;stairs&quot;,7,23,10,23,2,&quot;s2&quot;,0,0) 
+
+####Etajul 3
+//exterior care nu este in camere
+&quot;door&quot;,10,27,15,27,0,&quot;-1&quot;,1,0
+&quot;door&quot;,2,17,2,22,0,&quot;-1&quot;,1,0
+&quot;wall&quot;,2,27,10,27,0,&quot;-1&quot;,1,0
+&quot;wall&quot;,15,27,24,27,0,&quot;-1&quot;,1,0
+&quot;wall&quot;,24,27,24,18,0,&quot;-1&quot;,1,0
+&quot;wall&quot;,24,18,36,18,0,&quot;-1&quot;,1,0
+&quot;wall&quot;,36,18,36,2,0,&quot;-1&quot;,1,0
+&quot;wall&quot;,36,2,24,2,0,&quot;-1&quot;,1,0
+&quot;wall&quot;,2,11,2,17,0,&quot;-1&quot;,1,0
+&quot;wall&quot;,2,22,2,27,0,&quot;-1&quot;,1,0
+
+//room 301
+&quot;door&quot;,24,9,24,5,3,&quot;301&quot;,0,0)
+&quot;wall&quot;,13,11,24,11,3,&quot;301&quot;,0,0)
+&quot;wall&quot;,24,11,24,9,3,&quot;301&quot;,0,0)
+&quot;wall&quot;,24,5,24,2,3,&quot;301&quot;,0,0)
+&quot;wall&quot;,24,2,13,2,3,&quot;301&quot;,0,0)
+
+//stairs s2
+&quot;door&quot;,10,23,13,23,2,&quot;s2&quot;,0,0) 
+&quot;stairs&quot;,13,23,15,23,2,&quot;s2&quot;,0,0) 
+&quot;stairs&quot;,15,23,15,17,2,&quot;s2&quot;,0,0) 
+&quot;stairs&quot;,15,17,7,17,2,&quot;s2&quot;,0,0) 
+&quot;stairs&quot;,7,17,7,23,2,&quot;s2&quot;,0,0) 
+&quot;stairs&quot;,7,23,10,23,2,&quot;s2&quot;,0,0) 
+</code></pre>
+<p>##XML-ul generat</p>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-title">floors</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">floor</span> <span class="hljs-attribute">number</span>=<span class="hljs-value">"1"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">room</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">name</span>&gt;</span>-1<span class="hljs-tag">&lt;/<span class="hljs-title">name</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"door"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>15<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"door"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>17<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>22<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>15<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>18<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>18<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>36<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>18<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>36<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>18<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>36<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>36<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>17<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>22<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">room</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">room</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">name</span>&gt;</span>101<span class="hljs-tag">&lt;/<span class="hljs-title">name</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"door"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">room</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">room</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">name</span>&gt;</span>102<span class="hljs-tag">&lt;/<span class="hljs-title">name</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"door"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>9<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>9<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">room</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">room</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">name</span>&gt;</span>s1<span class="hljs-tag">&lt;/<span class="hljs-title">name</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"door"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>29<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>16<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>32<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>16<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"door"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>34<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>34<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"stairs"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>16<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>29<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>16<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"stairs"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>32<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>16<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>34<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>16<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"stairs"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>34<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>16<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>34<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"stairs"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>34<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>34<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"stairs"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>34<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"stairs"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>16<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">room</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">floor</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">floor</span> <span class="hljs-attribute">number</span>=<span class="hljs-value">"2"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">room</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">name</span>&gt;</span>-1<span class="hljs-tag">&lt;/<span class="hljs-title">name</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"door"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>15<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"door"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>17<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>22<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>15<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>18<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>18<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>36<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>18<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>36<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>18<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>36<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>36<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>17<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>22<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">room</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">room</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">name</span>&gt;</span>201<span class="hljs-tag">&lt;/<span class="hljs-title">name</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"door"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">room</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">room</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">name</span>&gt;</span>s1<span class="hljs-tag">&lt;/<span class="hljs-title">name</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"door"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>29<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>16<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>32<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>16<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"stairs"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>34<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>34<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"stairs"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>16<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>29<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>16<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"stairs"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>32<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>16<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>34<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>16<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"stairs"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>34<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>16<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>34<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"stairs"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>34<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>34<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"stairs"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>34<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"stairs"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>16<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">room</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">room</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">name</span>&gt;</span>s2<span class="hljs-tag">&lt;/<span class="hljs-title">name</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"door"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>23<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>23<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"stairs"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>23<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>15<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>23<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"stairs"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>15<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>23<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>15<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>17<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"stairs"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>15<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>17<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>7<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>17<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"stairs"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>7<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>17<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>7<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>23<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"stairs"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>7<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>23<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>23<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">room</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">floor</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">floor</span> <span class="hljs-attribute">number</span>=<span class="hljs-value">"3"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">room</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">name</span>&gt;</span>-1<span class="hljs-tag">&lt;/<span class="hljs-title">name</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"door"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>15<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"door"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>17<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>22<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>15<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>18<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>18<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>36<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>18<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>36<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>18<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>36<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>36<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>17<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>22<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">room</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">room</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">name</span>&gt;</span>301<span class="hljs-tag">&lt;/<span class="hljs-title">name</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"door"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>9<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>9<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"wall"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">room</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">room</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">name</span>&gt;</span>s2<span class="hljs-tag">&lt;/<span class="hljs-title">name</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"door"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>23<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>23<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"stairs"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>23<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>15<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>23<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"stairs"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>15<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>23<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>15<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>17<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"stairs"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>15<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>17<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>7<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>17<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"stairs"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>7<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>17<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>7<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>23<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">type</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"stairs"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x1</span>&gt;</span>7<span class="hljs-tag">&lt;/<span class="hljs-title">x1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y1</span>&gt;</span>23<span class="hljs-tag">&lt;/<span class="hljs-title">y1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">x2</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-title">x2</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">y2</span>&gt;</span>23<span class="hljs-tag">&lt;/<span class="hljs-title">y2</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">type</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">room</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">floor</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">floors</span>&gt;</span>
+</code></pre>
+<pre><code>    &quot;-1&quot; semnifica identifica &quot;conturul&quot; exterior al cladirii  
+</code></pre>
 
 </body></html>
