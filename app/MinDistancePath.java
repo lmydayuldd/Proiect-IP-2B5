@@ -21,7 +21,7 @@ public class MinDistancePath extends PathFinder {
         int dy[] = {0, 1, -1, 0, 0, 0};
         int dz[] = {0, 0, 0, 0, 1, -1};
         int n = Matrix.DIMENSION;
-        int lvl = Matrix.LEVEL_COUNT;
+        int lvl = 4;//Matrix.LEVEL_COUNT;
         int dist[][][] = new int[lvl][n][n];
         int from[][][] = new int[lvl][n][n];
 
@@ -36,7 +36,8 @@ public class MinDistancePath extends PathFinder {
             int x = q.element().getX();
             int y = q.element().getY();
             int z = q.element().getFloor();
-            Cell now = matrix.getCell(x, y, z);
+            //System.out.println(z + " " + x + " " + y);
+            Cell now = matrix.getCell(z, x, y);
             if(now == null) continue;
             for (int dir = 0; dir < 6; ++dir) {
                 //System.out.println("");

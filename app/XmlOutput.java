@@ -37,8 +37,8 @@ public class XmlOutput {
             if(points.get(i).getFloor()>maxFloor)
                 maxFloor=points.get(i).getFloor();
         }
-        Element[] floor= new Element[maxFloor+1];
-        for (Integer i=1;i<=maxFloor;i++){
+        Element[] floor= new Element[15];
+        for (Integer i=0;i<=maxFloor;i++){
             floor[i]=doc.createElement("floor");
             floor[i].setAttribute("number", String.valueOf(i));
         }
@@ -75,7 +75,8 @@ public class XmlOutput {
                 Element y1 = doc.createElement("y1");
                 Element y2 = doc.createElement("y2");
                 type.setAttribute("name","path");
-
+                System.out.println(i);
+                System.out.println(points.get(i).getFloor());
                 floors.appendChild(floor[points.get(i).getFloor()]);
                 floors.getLastChild().appendChild(room);
                 room.appendChild(type);

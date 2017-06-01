@@ -125,10 +125,10 @@ public class XmlBuildingParser {
 
                         String type = attrType.getValue();
 
-                        int x1 = (Integer.parseInt(elementType.getElementsByTagName("x1").item(0).getTextContent().toString()))*10;
-                        int y1 = (Integer.parseInt(elementType.getElementsByTagName("y1").item(0).getTextContent().toString()))*10;
-                        int x2 = (Integer.parseInt(elementType.getElementsByTagName("x2").item(0).getTextContent().toString()))*10;
-                        int y2 = (Integer.parseInt(elementType.getElementsByTagName("y2").item(0).getTextContent().toString()))*10;
+                        int x1 = (Integer.parseInt(elementType.getElementsByTagName("x1").item(0).getTextContent().toString().trim()))*10;
+                        int y1 = (Integer.parseInt(elementType.getElementsByTagName("y1").item(0).getTextContent().toString().trim()))*10;
+                        int x2 = (Integer.parseInt(elementType.getElementsByTagName("x2").item(0).getTextContent().toString().trim()))*10;
+                        int y2 = (Integer.parseInt(elementType.getElementsByTagName("y2").item(0).getTextContent().toString().trim()))*10;
                         //System.out.println(x1+" "+y1+" "+x2+" "+y2);
                         if (type.equals("wall") || type.equals("stairs"))
                         {

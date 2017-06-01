@@ -42,7 +42,14 @@ public class Modul3 {
         
         mf = new MainFrame();
         MinDistancePath mdp = new MinDistancePath(mat);
-        ArrayList<Point> a = mdp.execute(new Point(0, 0, 0), new Point(10, 10, 0));
+        ArrayList<Point> a = mdp.execute(new Point(50, 30, 2), new Point(130, 50, 2));
+        for(Point p : a)
+        {
+            System.out.println(p.getX() + " " +p.getY());
+        }        //a.clear();
+        //a.add(new Point(10, 10, 0));
+        //a.add(new Point(20, 20, 0));
+        //a.add(new Point(30, 30, 1));
         XmlOutput x1 = new XmlOutput(a);
         x1.createXml("asd.xml");
         
