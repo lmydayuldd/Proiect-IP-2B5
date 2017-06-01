@@ -127,7 +127,10 @@ public class HTTPController {
     @RequestMapping(value = "/checkExists", method = RequestMethod.POST)
     public ResponseEntity<Message> checkExistsData(@RequestBody TemporaryData data) {
         try {
-            if (!data.isValid()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            if (!data.isValid())
+                return new ResponseEntity<>(new Message("Invalid Json format."), HttpStatus.BAD_REQUEST);
+            if (!data.containValidData())
+                return new ResponseEntity<>(new Message("Invalid Json values."), HttpStatus.BAD_REQUEST);
             if (databaseService.checkExistsData(data))
                 return new ResponseEntity<>(new Message("Data exists in database."), HttpStatus.OK);
             return new ResponseEntity<>(new Message("Data does not exists in database."), HttpStatus.OK);
@@ -142,9 +145,12 @@ public class HTTPController {
     public ResponseEntity<Message> addTemporaryData(@RequestBody TemporaryData data) {
         try {
             // to check error cannot insert null when "room" : ""
-            if (!data.isValid()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            if (!data.isValid())
+                return new ResponseEntity<>(new Message("Invalid Json format."), HttpStatus.BAD_REQUEST);
             if (databaseService.checkExistsData(data))
                 return new ResponseEntity<>(new Message("Element already exists."), HttpStatus.CONFLICT);
+            if (!data.containValidData())
+                return new ResponseEntity<>(new Message("Invalid Json values."), HttpStatus.BAD_REQUEST);
             databaseService.addData(data);
             databaseService.commit();
             return new ResponseEntity<>(new Message("Insert operation success."), HttpStatus.OK);
@@ -160,7 +166,10 @@ public class HTTPController {
     @ResponseBody
     public ResponseEntity<Message> deleteTemporaryData(@RequestBody TemporaryData data) {
         try {
-            if (!data.isValid()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            if (!data.isValid())
+                return new ResponseEntity<>(new Message("Invalid Json format."), HttpStatus.BAD_REQUEST);
+            if (!data.containValidData())
+                return new ResponseEntity<>(new Message("Invalid Json values."), HttpStatus.BAD_REQUEST);
             databaseService.deleteData(data);
             databaseService.commit();
             return new ResponseEntity<>(new Message("Delete operation success."), HttpStatus.OK);
@@ -176,7 +185,8 @@ public class HTTPController {
     @ResponseBody
     public ResponseEntity<Message> deleteRoom(@RequestBody SingleObject room) {
         try {
-            if (!room.isValid()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            if (!room.isValid())
+                return new ResponseEntity<>(new Message("Invalid Json format."), HttpStatus.BAD_REQUEST);
             databaseService.deleteRoom(room);
             databaseService.commit();
             return new ResponseEntity<>(new Message("Delete operation success."), HttpStatus.OK);
@@ -192,7 +202,8 @@ public class HTTPController {
     @ResponseBody
     public ResponseEntity<Message> deleteFloor(@RequestBody SingleObject floor) {
         try {
-            if (!floor.isValid()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            if (!floor.isValid())
+                return new ResponseEntity<>(new Message("Invalid Json format."), HttpStatus.BAD_REQUEST);
             databaseService.deleteFloor(floor);
             databaseService.commit();
             return new ResponseEntity<>(new Message("Delete operation success."), HttpStatus.OK);
@@ -215,6 +226,8 @@ public class HTTPController {
                 elementManager.validateElements();
             } catch (DataNotValidException e) {
                 return new ResponseEntity<>(new TemporarySaveMessage("Building is invalid.", e.getMessage()), HttpStatus.OK);
+            } catch (Exception e) {
+                return new ResponseEntity<>(new TemporarySaveMessage("Another exception throwed by validate Elements.", e.getMessage()), HttpStatus.OK);
             }
             try {
                 databaseService.replicateData();
