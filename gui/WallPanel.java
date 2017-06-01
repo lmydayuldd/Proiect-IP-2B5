@@ -35,9 +35,10 @@ class WallPanel extends JPanel {
 
     JComboBox<String> componentType;
     Border border = new BevelBorder(1);
-    JLabel topLeftLabel, bottomRightLabel, wallHelpLabel;
+    JLabel topLeftLabel, bottomRightLabel, wallHelpLabel,floorLabel, externalWallLabel,wallHelpLabel2,exitWayLabel;
     JTextField x1TextField, y1TextField, x2TextField, y2TextField, floorField;
     JButton addWall;
+    JCheckBox externalWall,exitWay;
     JTable walls;
     JScrollPane tableScrollPane = new JScrollPane();
     DefaultTableModel wallsTableModel;
@@ -50,15 +51,19 @@ class WallPanel extends JPanel {
 
         // Setting up all the components
         setLayout(new FlowLayout());
+        exitWayLabel=new JLabel("Exit way:");
+        externalWallLabel=new JLabel("External wall:");
         topLeftLabel = new JLabel("TopLeft Coordinates: ");
+        floorLabel=new JLabel("Floor:");
         //topLeftLabel.setForeground(Color.LIGHT_GRAY);
         bottomRightLabel = new JLabel("Bottom-Right Coordinates");
         //bottomRightLabel.setForeground(Color.LIGHT_GRAY);
         // Initializing Labels with html code to set font and break lines.
         wallHelpLabel = new JLabel("<html><h1>Add Wall<br></h1>Fill up this form in order to add a wall to the Application. </html>");
+        wallHelpLabel2=new JLabel("<html><br></html>");
         x1TextField = new JTextField("X");
         x1TextField.setPreferredSize(new Dimension(50, 20));
-        floorField = new JTextField("Floor");
+        floorField = new JTextField();
         floorField.setPreferredSize(new Dimension(50, 20));
         y1TextField = new JTextField("Y");
         y1TextField.setPreferredSize(new Dimension(50, 20));
@@ -66,6 +71,10 @@ class WallPanel extends JPanel {
         x2TextField.setPreferredSize(new Dimension(50, 20));
         y2TextField = new JTextField("Y");
         y2TextField.setPreferredSize(new Dimension(50, 20));
+        externalWall=new JCheckBox();
+        exitWay=new JCheckBox();
+        exitWay.setPreferredSize(new Dimension(50, 20));
+        externalWall.setPreferredSize(new Dimension(50, 20));
         addWall = new JButton("Add Wall");
 
         // Starting to initialize the three inside Panels: topPane, addWallPane and removeWallPane
@@ -81,6 +90,7 @@ class WallPanel extends JPanel {
         add(topPane);
 
         //Adding components of add Wall Pane
+        addWallPane.add(floorLabel);
         addWallPane.add(floorField);
         addWallPane.add(topLeftLabel);
         addWallPane.add(x1TextField);
@@ -88,6 +98,11 @@ class WallPanel extends JPanel {
         addWallPane.add(bottomRightLabel);
         addWallPane.add(x2TextField);
         addWallPane.add(y2TextField);
+        addWallPane.add(wallHelpLabel2);
+        addWallPane.add(externalWallLabel);
+        addWallPane.add(externalWall);
+        addWallPane.add(exitWayLabel);
+        addWallPane.add(exitWay);
         addWallPane.add(addWall);
 
         add(addWallPane);
@@ -137,32 +152,24 @@ class WallPanel extends JPanel {
                 myRow[2] = y1TextField.getText();
                 myRow[3] = x2TextField.getText();
                 myRow[4] = y2TextField.getText();
+                
                 wallsTableModel.addRow(myRow);
                 PostMethod post = new PostMethod("http://localhost:4500/add");
-                NameValuePair[] data = {
-                        new NameValuePair("type", "wall"),
-                        new NameValuePair("room", "camera flamanzilor"),
-                        new NameValuePair("x1", "0"),
-                        new NameValuePair("y1", "0"),
-                        new NameValuePair("x2", "0"),
-                        new NameValuePair("y2", "0"),
-                        new NameValuePair("floor", "8"),
-                        new NameValuePair("isExitWay", "1"),
-                        new NameValuePair("isExterior", "1")
-                };
+                
                 String x="{\n" +
-                        "        \"type\" : \"wall\", \n" +
+                        "        \"type\" : "+ ", \n" +
                         "        \"room\" : \"C201\",\n" +
-                        "        \"x1\" : 0,\n" +
-                        "        \"y1\" : 0,\n" +
-                        "        \"x2\" : 5,\n" +
-                        "        \"y2\" : 4,\n" +
-                        "        \"floor\" : 1,\n" +
-                        "        \"isExitWay\" : 0,\n" +
-                        "        \"isExterior\": 1\n" +
+                        "        \"x1\" :"+ myRow[1]+ ", \n" +
+                        "        \"y1\" :"+ myRow[2]+ ",\n" +
+                        "        \"x2\" : "+ myRow[3]+ ",\n" +
+                        "        \"y2\" : "+ myRow[4]+ ",\n" +
+                        "        \"floor\" :"+ myRow[0]+ ",\n" +
+                        "        \"isExitWay\" :"+ exitWay.getActionCommand()+ "\n" +
+                        "        \"isExterior\":"+ externalWall.getActionCommand()+ "\n" +
                         "\t\n" +
                         "}";
-
+                System.out.println(exitWay.getActionCommand());
+                System.out.println(externalWall.getActionCommand());
 
                 BufferedReader br=null;
                 post.setRequestHeader("Content-type", "application/json");
