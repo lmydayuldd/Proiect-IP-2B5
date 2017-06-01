@@ -30,16 +30,13 @@ public class GetXML {
 
         try {
             Document xmlDoc = buildXML();
-
             File outputFile = new File(OUTPUTFILE);
             printDOM(xmlDoc, outputFile);
 
             conn.close();
-        }   catch(FileAlreadyExistsException f){
+        } catch (FileAlreadyExistsException f) {
             System.out.println("There is already a file with this name in this location");
-        }
-
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Really poor exception handling: " + e.toString());
         }
 
@@ -58,13 +55,13 @@ public class GetXML {
 
         Integer i = 0, j = 0, t = 0, ok = 0;
 
-        for(i = 0; i < listOfEverything.size(); i++) {
+        for (i = 0; i < listOfEverything.size(); i++) {
             ok = 1;
-            for(j = 0; j < listOfFloors.size(); j++) {
-                if(listOfFloors.get(j) == listOfEverything.get(i).floorNumber)
+            for (j = 0; j < listOfFloors.size(); j++) {
+                if (listOfFloors.get(j) == listOfEverything.get(i).floorNumber)
                     ok = 0;
             }
-            if(ok == 1)
+            if (ok == 1)
                 listOfFloors.add(listOfEverything.get(i).floorNumber);
         }
 
@@ -74,12 +71,12 @@ public class GetXML {
         Element rootElement = xmlDoc.createElement("floors");
         xmlDoc.appendChild(rootElement);
 
-        for(i = 0; i < listOfFloors.size(); i++) {
+        for (i = 0; i < listOfFloors.size(); i++) {
             Element floorElement = xmlDoc.createElement("floor");
             floorElement.setAttribute("number", String.valueOf(listOfFloors.get(i)));
 
-            for(j = 0; j < listOfRooms.size(); j++) {
-                if(listOfRooms.get(j).getFloorNumber() == listOfFloors.get(i)) {
+            for (j = 0; j < listOfRooms.size(); j++) {
+                if (listOfRooms.get(j).getFloorNumber() == listOfFloors.get(i)) {
                     Element roomElement = xmlDoc.createElement("room");
                     Element nameElement = xmlDoc.createElement("name");
 
@@ -87,8 +84,8 @@ public class GetXML {
 
                     roomElement.appendChild(nameElement);
 
-                    for(t = 0; t < listOfEverything.size(); t++) {
-                        if(listOfEverything.get(t).floorNumber == listOfFloors.get(i)
+                    for (t = 0; t < listOfEverything.size(); t++) {
+                        if (listOfEverything.get(t).floorNumber == listOfFloors.get(i)
                                 && listOfEverything.get(t).room.equals(listOfRooms.get(j).getRoomName())) {
 
                             Element typeElement = xmlDoc.createElement("type");
@@ -124,7 +121,7 @@ public class GetXML {
     }
 
     private void printDOM(Document _xmlDoc, File _outputFile) throws Exception {
-        OutputFormat outputFormat = new OutputFormat("XML","UTF-8",true);
+        OutputFormat outputFormat = new OutputFormat("XML", "UTF-8", true);
         FileWriter fileWriter = new FileWriter(_outputFile);
 
         XMLSerializer xmlSerializer = new XMLSerializer(fileWriter, outputFormat);

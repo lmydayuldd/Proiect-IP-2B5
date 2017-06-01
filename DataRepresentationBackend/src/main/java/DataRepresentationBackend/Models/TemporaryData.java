@@ -104,4 +104,11 @@ public class TemporaryData {
                 this.getX2() == null || this.getY1() == null || this.getY2() == null ||
                 getType().isEmpty() || getRoom().isEmpty());
     }
+
+    @JsonIgnore
+    public Boolean containValidData() {
+        if(!(getType().toLowerCase().equals("wall") || getType().toLowerCase().equals("door") || getType().toLowerCase().equals("window")
+                || getType().toLowerCase().equals("stairs") || getType().toLowerCase().equals("room"))) return false;
+        return true;
+    }
 }
