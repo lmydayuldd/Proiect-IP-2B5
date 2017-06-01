@@ -15,7 +15,7 @@ public class Deserialize : MonoBehaviour // the Class
     public static List<string> camere2 = new List<string>() { "1" };
     public static List<string> etaje = new List<string>() { "1" };
     public static int lastEtaj;
-
+    public static string stringXml = "C:\\Users\\Alex\\Documents\\Deserialize\\Assets\\format_date.xml";
    public static string EtajString;
 
     void Start()
@@ -53,13 +53,8 @@ public class Deserialize : MonoBehaviour // the Class
     {
         
         XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
-        xmlDoc.Load("C:\\Users\\Alex\\Documents\\Deserialize\\Assets\\format_date.xml"); // load the file.
-        /*
-        List<string> etaj = new List<string>();
-        List<string> camera_etaj0 = new List<string>();
-        List<string> camera_etaj1 = new List<string>();
-        List<string> camera_etaj2 = new List<string>();
-        */
+        xmlDoc.Load(stringXml); // load the file.
+
         XmlNodeList floorlist = xmlDoc.GetElementsByTagName("floor"); // array of the level nodes.
         float x1 = 0.0f, x2 = 0.0f, y1 = 0.0f, y2 = 0.0f;
 
@@ -77,7 +72,7 @@ public class Deserialize : MonoBehaviour // the Class
      public static IEnumerator GetLevelsForDropDown(float waitTime, Action Populare)
     {
         XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
-        xmlDoc.Load("C:\\Users\\Alex\\Documents\\Deserialize\\Assets\\format_date.xml"); // load the file.
+        xmlDoc.Load(stringXml); // load the file.
         /*
         List<string> etaj = new List<string>();
         List<string> camera_etaj0 = new List<string>();
