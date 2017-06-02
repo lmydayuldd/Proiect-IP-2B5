@@ -11,6 +11,7 @@ public class showMenu5 : MonoBehaviour
     public Dropdown dd_camera2;
     public Button btn_generate;
     public static int etaj_index_vizualizare, etaj_camera1 = 0 - 2, etaj_camera2 = 0 - 2, camera1 = 0 - 2, camera2 = 0 - 2;
+    public static int buton_apasat = 0,buton_apasat2=0;
     public void doExitGame()
     {
         Application.Quit();
@@ -45,12 +46,13 @@ public class showMenu5 : MonoBehaviour
 
         dd_camera1.ClearOptions(); // Stergem optiunile de la dropdown'ul camera1
         dd_camera1.AddOptions(Deserialize.getCamere(dd_etaj1.GetComponent<Dropdown>().value)); // Adaugam optiunile cu camerele etajului 1
-
+        
     }
     public void Dropdown_IndexChanged_Drum_Selectare_Etaj2(int index)
     {
         dd_camera2.ClearOptions(); // Stergem optiunile de la dropdown'ul camera1
         dd_camera2.AddOptions(Deserialize.getCamere(dd_etaj2.GetComponent<Dropdown>().value)); // Adaugam optiunile cu camerele etajului 1
+       
     }
 
 
@@ -116,10 +118,10 @@ public class showMenu5 : MonoBehaviour
         Debug.Log("output = " + output);
         //de vazut cum se returneaza stringul din dropdown
         d.Connect("localhost", output);
-        
-       // Dropdown_IndexChanged_Vizualizare_Etaj(0);
-        
+
+        // Dropdown_IndexChanged_Vizualizare_Etaj(0);
     }
+
     public static int getEtaj_camera1()
     {
         return etaj_camera1;
