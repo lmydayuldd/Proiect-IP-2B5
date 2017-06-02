@@ -29,6 +29,6 @@ public class TableElement {
     }
     
     public String toString(){
-        return ("TableElement : elementType=" + this.elementType + " , x1 = " + this.x2 + " , y1 = " + this.y1 + " , x2 = " + this.x2 + " , y2 = " + this.y2 + " , room = " + this.room + " , isExterior = " + this.isExterior + " , isExit = " + this.isExit);
+        return ("TableElement : elementType=" + this.elementType + " , x1 = " + this.x2 + " , y1 = " + this.y1 + " , x2 = " + this.x2 + " , y2 = " + this.y2 + ", floor = " + this.floorNumber +  " , room = " + this.room + " , isExterior = " + this.isExterior + " , isExit = " + this.isExit);
 }
 }

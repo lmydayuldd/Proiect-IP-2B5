@@ -132,9 +132,7 @@ public class HTTPController {
     public ResponseEntity<TemporarySaveMessage> temporarySave() {
         try {
             ArrayList<TableElement> building = databaseService.getTemporaryDataTable();
-
             ElementManager elementManager = new ElementManager(building);
-
             try {
                 elementManager.validateElements();
             } catch (DataNotValidException e) {

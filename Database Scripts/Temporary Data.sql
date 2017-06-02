@@ -37,6 +37,8 @@ END;
 /
 select * from temporary_data;
 /
+SELECT TYPE, x1, y1, x2, y2, floor, room, isExterior, isExitWay from temporary_data
+/
 select * from final_data;
 /
 BEGIN
