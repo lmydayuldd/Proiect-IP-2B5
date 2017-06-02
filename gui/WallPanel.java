@@ -65,7 +65,7 @@ class WallPanel extends JPanel {
         // Initializing Labels with html code to set font and break lines.
         wallHelpLabel = new JLabel("<html><h1>Add Wall<br></h1>Fill up this form in order to add a wall to the Application. </html>");
 
-        wallHelpLabel2 = new JLabel("                                                   ");
+        wallHelpLabel2 = new JLabel("       ");
         x1TextField = new JTextField("X");
 
         x1TextField.setPreferredSize(new Dimension(50, 20));
@@ -88,9 +88,9 @@ class WallPanel extends JPanel {
 
         // Starting to initialize the three inside Panels: topPane, addWallPane and removeWallPane
         topPane = new JPanel();
-        topPane.setPreferredSize(new Dimension(1000, 70));
+        topPane.setPreferredSize(new Dimension(1000, 80));
         addWallPane = new JPanel();
-        addWallPane.setPreferredSize(new Dimension(1000, 50));
+        addWallPane.setPreferredSize(new Dimension(1000, 100));
         removeWallPane = new JPanel();
 
         //Adding components of topPane
@@ -109,7 +109,7 @@ class WallPanel extends JPanel {
         addWallPane.add(bottomRightLabel);
         addWallPane.add(x2TextField);
         addWallPane.add(y2TextField);
-        addWallPane.add(wallHelpLabel2);
+       addWallPane.add(wallHelpLabel2);
         addWallPane.add(externalWallLabel);
         addWallPane.add(externalWall);
         //addWallPane.add(exitWayLabel);
@@ -121,26 +121,10 @@ class WallPanel extends JPanel {
         addWallPane.add(errorNumberLabel);
         add(addWallPane);
 
-        //TODO remove Pane!!
-        removeWallPane = new JPanel();
-
-        //setting up the bottom table
-        String tableHeader[] = {"Floor", "Room", "X1", "Y1", "X2", "Y2", "External"};
-        wallsTableModel = new DefaultTableModel(null, tableHeader);
-        wallsTableModel.addRow(tableHeader);
-        walls = new JTable(wallsTableModel);
-        walls.setPreferredScrollableViewportSize(new Dimension(500, 80));
-
-        /*
-        //Setting up the scroll pane in which we will put the Table
-        tableScrollPane.setPreferredSize(new Dimension(600, 100));
-        tableScrollPane.add(walls);
-         */
-        removeWallPane.add(new JScrollPane(walls));
-
+       
         //Adding to the main frame the bottom panel which contains the table
         // with the walls data
-        add(removeWallPane);
+       
         setPreferredSize(new Dimension(1024, 250));
         setBorder(border);
         //setBackground(Color.DARK_GRAY);
@@ -210,6 +194,7 @@ class WallPanel extends JPanel {
 
                         errorFloorLabel.setText("");
                         errorStairLabel.setText("");
+                        errorNumberLabel.setText("");
                         repaint();
                     PostMethod post = new PostMethod("http://localhost:4500/add");
 
