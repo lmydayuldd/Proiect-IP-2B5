@@ -192,13 +192,14 @@ public class SomeTest {
 
         int[][][] xmat = sample.getRawMatrix();
 
-        for (int i = 1; i <= 15; ++i) {
-            for (int j = 1; j <= 15; ++j)
+        for (int i = 1; i <= 100; ++i) {
+            for (int j = 1; j <= 100; ++j)
                 System.out.print(xmat[3][i][j] + " ");
             System.out.println();
         }
 
         assertTrue(1 == xmat[3][2][3]);
     }
+
 
 }

@@ -169,7 +169,21 @@ public class XmlBuildingParser {
 
             // }
             for (int y = a1; y <= a2; ++y) {
-                rawMatrix[floor][getX(x1, y1, x2, y2, y)][y] = value;
+                int var_x = getX(x1, y1, x2, y2, y);
+                rawMatrix[floor][var_x][y] = value;
+                if (var_x !=0){
+                    rawMatrix[floor][var_x-1][y] = value;
+                    rawMatrix[floor][var_x-1][y+1] = value;
+                    if(y!=0)rawMatrix[floor][var_x-1][y-1] = value;
+                }
+                if(y!=0){
+                    rawMatrix[floor][var_x][y-1] = value;
+                    if(var_x!=0)rawMatrix[floor][var_x-1][y-1] = value;
+                    rawMatrix[floor][var_x+1][y-1] = value;
+                }
+                rawMatrix[floor][var_x][y+1] = value;
+                rawMatrix[floor][var_x+1][y] = value;
+                rawMatrix[floor][var_x+1][y+1] = value;
             }
         } else {
             //   if (x1>x2) {
@@ -179,7 +193,21 @@ public class XmlBuildingParser {
             a1 = Math.min(x1, x2);
             //  }
             for (int x = a1; x <= a2; ++x) {
-                rawMatrix[floor][x][getY(x1, y1, x2, y2, x)] = value;
+                int var_y = getY(x1, y1, x2, y2, x);
+                rawMatrix[floor][x][var_y] = value;
+                if(var_y!=0){
+                    rawMatrix[floor][x+1][var_y-1]=value;
+                    rawMatrix[floor][x][var_y-1]=value;
+                    if(x!=0) rawMatrix[floor][x-1][var_y-1]=value;
+                }
+                if(x!=0){
+                    rawMatrix[floor][x-1][var_y]=value;
+                    rawMatrix[floor][x-1][var_y+1]=value;
+                    if (var_y!=0)rawMatrix[floor][x-1][var_y-1]=value;
+                }
+                rawMatrix[floor][x][var_y+1]=value;
+                rawMatrix[floor][x+1][var_y]=value;
+                rawMatrix[floor][x+1][var_y+1]=value;
             }
         }
     }

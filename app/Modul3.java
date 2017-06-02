@@ -5,14 +5,13 @@
  */
 package app;
 
-import gui.*;
+import gui.MainFrame;
+import org.xml.sax.SAXException;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
-
-import org.xml.sax.SAXException;
+import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  *
