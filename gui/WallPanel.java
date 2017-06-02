@@ -225,17 +225,20 @@ class WallPanel extends JPanel {
                         HttpClient httpClient = new HttpClient();
                         int resp = httpClient.executeMethod(post);
 
-                        if (resp == HttpStatus.SC_NOT_IMPLEMENTED) {
-                            System.err.println("The Post method is not implemented by this URI");
-                            // still consume the response body
-                            post.getResponseBodyAsString();
-                        } else {
-                            br = new BufferedReader(new InputStreamReader(post.getResponseBodyAsStream()));
-                            String readLine;
-                            while (((readLine = br.readLine()) != null)) {
-                                System.err.println(readLine);
-                            }
-                        }
+                        if(resp==200)
+                        { responseLabel.setText("Inserarea a avut loc cu succes!");
+                           responseLabel.setForeground(Color.GREEN);
+                                                        repaint();}
+                        else if (resp==400)
+                             { responseLabel.setText("ERROR! Valorile introduse sunt invalide!");
+                           responseLabel.setForeground(Color.RED);
+                                                        repaint();}
+                        else if (resp==409){responseLabel.setText("ERROR! Elementul deja exista!");
+                           responseLabel.setForeground(Color.RED);
+                                                        repaint();}
+                        else {responseLabel.setText("ERROR!");
+                           responseLabel.setForeground(Color.RED);
+                                                        repaint();}
 
                     } catch (Exception e) {
                         System.err.println(e);
@@ -248,18 +251,9 @@ class WallPanel extends JPanel {
                             }
                         }
                     }
+                    
+                    
 
-                     HttpClient httpClient = new HttpClient();
-                        int resp = httpClient.executeMethod(post);
-			if (resp == HttpStatus.SC_CONFLICT) {
-			   responseLabel.setText(post.getResponseBodyAsString()+"ceva1");
-                           responseLabel.setForeground(Color.RED);
-                                                        repaint();
-			} else if (resp != HttpStatus.SC_OK) {
-				    responseLabel.setText(post.getResponseBodyAsString()+"Ceva2");
-                                    responseLabel.setForeground(Color.RED);
-                                    repaint();
-			}
 
                 }
             }
