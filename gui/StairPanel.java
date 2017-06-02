@@ -5,38 +5,59 @@
  */
 package gui;
 
+import com.sun.xml.internal.ws.util.StringUtils;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
-
+import javax.swing.table.DefaultTableModel;
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpStatus;
+import org.apache.commons.httpclient.methods.PostMethod;
 
 /**
  * This class makes the panel that handles the stair manager in the application.
- * With the elements on this panel the user should add or remove 
- * the stairs in the building.
+ * With the elements on this panel the user should add or remove the stairs in
+ * the building.
+ *
  * @author karina
  */
-class StairPanel extends JPanel{
+class StairPanel extends JPanel {
 
-    JComboBox <String> componentType;
+    JComboBox<String> componentType;
     Border border = new BevelBorder(1);
-    JLabel topLeftLabel, bottomRightLabel, stairHelpLabel;
-    JTextField x1TextField, y1TextField, x2TextField, y2TextField;
+    JLabel topLeftLabel, bottomRightLabel, stairHelpLabel, roomLabel, floorLabel, externalLabel, exitWayLabel, errorFloorLabel, errorStairLabel, errorNumberLabel;
+    JTextField x1TextField, y1TextField, x2TextField, y2TextField, roomTextField, floorTextField;
     JButton addStair;
-    
+    JCheckBox externalWall, exitWay;
+    int external, exitway;
+
     /**
      * Split the gui in three pane's to arrange them nicely.
      */
     JPanel topPane, addStairPane, removeStairPane;
-    
-    
+
     public StairPanel() {
-        
+
         // Setting up all the components
         setLayout(new FlowLayout());
+        errorNumberLabel = new JLabel("");
+        errorFloorLabel = new JLabel("");
+        errorStairLabel = new JLabel("");
+        floorLabel = new JLabel("Floor:");
+        roomLabel = new JLabel("Stair name:");
+        externalLabel = new JLabel("Extern stairs");
+        exitWayLabel = new JLabel("Exit way stairs");
         topLeftLabel = new JLabel("TopLeft Coordinates: ");
         //topLeftLabel.setForeground(Color.LIGHT_GRAY);
         bottomRightLabel = new JLabel("Bottom-Right Coordinates: ");
@@ -51,33 +72,160 @@ class StairPanel extends JPanel{
         x2TextField.setPreferredSize(new Dimension(50, 20));
         y2TextField = new JTextField("Y");
         y2TextField.setPreferredSize(new Dimension(50, 20));
+        floorTextField = new JTextField();
+        floorTextField.setPreferredSize(new Dimension(50, 20));
+        roomTextField = new JTextField("Stair1");
+        roomTextField.setPreferredSize(new Dimension(50, 20));
+        externalWall = new JCheckBox();
+
+        exitWay = new JCheckBox();
+        exitWay.setPreferredSize(new Dimension(50, 20));
+        externalWall.setPreferredSize(new Dimension(50, 20));
         addStair = new JButton("Add Stair");
-        
+
         // Starting to initialize the three inside Panels: topPane, addStairPane and removeStairPane
         topPane = new JPanel();
         topPane.setPreferredSize(new Dimension(1000, 100));
         addStairPane = new JPanel();
         addStairPane.setPreferredSize(new Dimension(1000, 100));
         removeStairPane = new JPanel();
-        
+
         //Adding components of topPane
         topPane.add(stairHelpLabel);
-        
+
         add(topPane);
-        
+
         //Adding components of add Stair Pane
+        addStairPane.add(floorLabel);
+        addStairPane.add(floorTextField);
+        addStairPane.add(roomLabel);
+        addStairPane.add(roomTextField);
         addStairPane.add(topLeftLabel);
         addStairPane.add(x1TextField);
         addStairPane.add(y1TextField);
         addStairPane.add(bottomRightLabel);
         addStairPane.add(x2TextField);
         addStairPane.add(y2TextField);
+        addStairPane.add(externalLabel);
+        addStairPane.add(externalWall);
+        addStairPane.add(exitWayLabel);
+        addStairPane.add(exitWay);
         addStairPane.add(addStair);
-        
+        addStairPane.add(errorFloorLabel);
+        addStairPane.add(errorStairLabel);
+        addStairPane.add(errorNumberLabel);
         add(addStairPane);
-        
+        addListeners();
         setPreferredSize(new Dimension(1024, 250));
         setBorder(border);
         //setBackground(Color.DARK_GRAY);
+    }
+
+    private void addListeners() {
+        addStair.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    selectionButtonPressed();
+                } catch (IOException ex) {
+                    Logger.getLogger(WallPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            private void selectionButtonPressed() throws IOException {
+                if (externalWall.isSelected()) {
+                    external = 1;
+                } else {
+                    external = 0;
+                }
+                if (exitWay.isSelected()) {
+                    exitway = 1;
+                } else {
+                    exitway = 0;
+                }
+                if (floorTextField.getText().length() == 0) {
+                    //  System.out.println("sdfasdf");
+                    errorFloorLabel.setText("Introduceti etajul!");
+                    errorFloorLabel.setForeground(Color.RED);
+                    errorStairLabel.setText("");
+                    errorNumberLabel.setText("");
+                    repaint();
+                } else if (roomTextField.getText().length() == 0) {
+                    //  System.out.println("sdfasdf");
+                    errorStairLabel.setText("Introduceti numele scarii!");
+                    errorStairLabel.setForeground(Color.RED);
+                    errorFloorLabel.setText("");
+                    errorNumberLabel.setText("");
+                    repaint();
+                } else {
+                    int ok = 1;
+                    try {
+                        int g = Integer.parseInt(floorTextField.getText());
+                        int g2 = Integer.parseInt(x1TextField.getText());
+                        int g3 = Integer.parseInt(y1TextField.getText());
+                        int g4 = Integer.parseInt(x2TextField.getText());
+                        int g5 = Integer.parseInt(y2TextField.getText());
+                    } catch (NumberFormatException e) {
+                        errorNumberLabel.setText("Coordonatele si numarul etajului trebuie sa fie numerice!");
+                        errorNumberLabel.setForeground(Color.RED);
+                        errorFloorLabel.setText("");
+                        errorStairLabel.setText("");
+                        repaint();
+                        ok = 0;
+                    }
+                    if (ok == 1) {
+
+                        errorFloorLabel.setText("");
+                        errorStairLabel.setText("");
+                        repaint();
+                        PostMethod post = new PostMethod("http://localhost:4500/add");
+
+                        String x = "{\n"
+                                + "        \"type\" : \"stair\", \n"
+                                + "        \"room\" : \"Stair" + roomTextField.getText() + "\",\n"
+                                + "        \"x1\" : \"" + x1TextField.getText() + "\" , \n"
+                                + "        \"y1\" : \"" + y1TextField.getText() + "\" ,\n"
+                                + "        \"x2\" :  \"" + x2TextField.getText() + "\" ,\n"
+                                + "        \"y2\" :  \"" + y2TextField.getText() + "\" ,\n"
+                                + "        \"floor\" :  \"" + floorTextField.getText() + "\" ,\n"
+                                + "        \"isExitWay\" :  \"" + exitway + "\" ,\n"
+                                + "        \"isExterior\":  \"" + external + "\" \n"
+                                + "\t\n }";
+
+                        BufferedReader br = null;
+                        post.setRequestHeader("Content-type", "application/json");
+                        post.setRequestBody(x);
+                        try {
+                            HttpClient httpClient = new HttpClient();
+                            int resp = httpClient.executeMethod(post);
+
+                            if (resp == HttpStatus.SC_NOT_IMPLEMENTED) {
+                                System.err.println("The Post method is not implemented by this URI");
+                                // still consume the response body
+                                post.getResponseBodyAsString();
+                            } else {
+                                br = new BufferedReader(new InputStreamReader(post.getResponseBodyAsStream()));
+                                String readLine;
+                                while (((readLine = br.readLine()) != null)) {
+                                    System.err.println(readLine);
+                                }
+                            }
+
+                        } catch (Exception e) {
+                            System.err.println(e);
+                        } finally {
+                            post.releaseConnection();
+                            if (br != null) {
+                                try {
+                                    br.close();
+                                } catch (Exception fe) {
+                                }
+                            }
+                        }
+
+                        InputStream in = post.getResponseBodyAsStream();
+                    }
+                }
+            }
+        });
     }
 }
