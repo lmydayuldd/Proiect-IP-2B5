@@ -148,6 +148,8 @@ class StairPanel extends JPanel {
                 } else {
                     exitway = 0;
                 }
+                 responseLabel.setText("");
+                 repaint();
                 if (floorTextField.getText().length() == 0) {
                     //  System.out.println("sdfasdf");
                     errorFloorLabel.setText("Introduceti etajul!");
@@ -228,13 +230,15 @@ class StairPanel extends JPanel {
                             }
                         }
 
-                        HttpClient httpClient = new HttpClient();
+                       HttpClient httpClient = new HttpClient();
                         int resp = httpClient.executeMethod(post);
 			if (resp == HttpStatus.SC_CONFLICT) {
-				                        responseLabel.setText(post.getResponseBodyAsString()+"ceva1");
+			   responseLabel.setText(post.getResponseBodyAsString()+"ceva1");
+                           responseLabel.setForeground(Color.RED);
                                                         repaint();
 			} else if (resp != HttpStatus.SC_OK) {
 				    responseLabel.setText(post.getResponseBodyAsString()+"Ceva2");
+                                    responseLabel.setForeground(Color.RED);
                                     repaint();
 			}
                     }

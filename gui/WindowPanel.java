@@ -160,6 +160,8 @@ public class WindowPanel extends JPanel{
                 } else {
                     exit = 0;
                 }
+                 responseLabel.setText("");
+                 repaint();
                 String myRow[] = new String[7];
                 myRow[0] = floorField.getText();
                 myRow[1] = roomTextField.getText();
@@ -256,10 +258,12 @@ public class WindowPanel extends JPanel{
                        HttpClient httpClient = new HttpClient();
                         int resp = httpClient.executeMethod(post);
 			if (resp == HttpStatus.SC_CONFLICT) {
-				                        responseLabel.setText(post.getResponseBodyAsString()+"ceva1");
+			   responseLabel.setText(post.getResponseBodyAsString()+"ceva1");
+                           responseLabel.setForeground(Color.RED);
                                                         repaint();
 			} else if (resp != HttpStatus.SC_OK) {
 				    responseLabel.setText(post.getResponseBodyAsString()+"Ceva2");
+                                    responseLabel.setForeground(Color.RED);
                                     repaint();
 			}
 
