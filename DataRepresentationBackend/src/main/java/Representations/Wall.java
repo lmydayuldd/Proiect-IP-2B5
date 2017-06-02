@@ -64,7 +64,7 @@ public class Wall {
         if(o == null) return false;
         if(!(o instanceof Wall)) return false;
         Wall w = (Wall)o;
-        return (this.leftPoint.equals(w.leftPoint)) && (this.rightPoint.equals(w.rightPoint) &&(w.getFloorNumber()==this.getFloorNumber()) && (this.getRoomName() == w.getRoomName()) );
+        return (this.leftPoint.equals(w.leftPoint)) && (this.rightPoint.equals(w.rightPoint) &&(w.getFloorNumber()==this.getFloorNumber()) && (this.getRoomName().equalsIgnoreCase(w.getRoomName())));
     }
     
     @Override

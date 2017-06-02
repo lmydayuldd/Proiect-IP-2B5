@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package tablerepresentation;
-
+//import datarepresentation.TemporaryData;
 public class TableElement {
     public String elementType = "";
     public int x1;
@@ -28,7 +28,20 @@ public class TableElement {
         isExit = exit;
     }
     
+//    public TableElement(TemporaryData td){
+//        this.x1 = td.x1;
+//        this.x2 = td.x2;
+//        this.y1 = td.y1;
+//        this.y2 = td.y2;
+//        this.elementType = td.type;
+//        this.floorNumber = td.floor;
+//        this.room = td.room;
+//        this.isExit = td.isExitWay;
+//        this.isExterior = td.isExterior;
+//        
+//    }
+    
     public String toString(){
-        return ("TableElement : elementType=" + this.elementType + " , x1 = " + this.x2 + " , y1 = " + this.y1 + " , x2 = " + this.x2 + " , y2 = " + this.y2 + ", floor = " + this.floorNumber +  " , room = " + this.room + " , isExterior = " + this.isExterior + " , isExit = " + this.isExit);
+        return ("TableElement : elementType=" + this.elementType + " , x1 = " + this.x2 + " , y1 = " + this.y1 + " , x2 = " + this.x2 + " , y2 = " + this.y2 + " , room = " + this.room + " , isExterior = " + this.isExterior + " , isExit = " + this.isExit);
 }
 }

@@ -45,7 +45,6 @@ public class ElementManager {/**Class that manages the elements in the TEMPORARY
         this.floors = this.filter.getFloors(rooms);
         this.stairs = this.filter.getStairsRooms();
         this.stairs3D = this.filter.getStairs3D();
-        
 //        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 //        for(int i = 0 ; i < floors.size(); i++){
 //            for(int j = 0 ; j< floors.get(i).getExteriorWalls().size(); j++){

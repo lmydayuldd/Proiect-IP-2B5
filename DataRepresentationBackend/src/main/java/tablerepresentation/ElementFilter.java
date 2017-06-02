@@ -221,7 +221,7 @@ public class ElementFilter {
     /**Tries to insert the Room parameter in one of the existing Floors. If it succeeds it returns true. Otherwise it returns false*/
     public boolean insertIfStairsExist(ArrayList<Stairs3D> stairs3D, Room stair) throws DataNotValidException{
         for(int i = 0; i < stairs3D.size(); i++){
-            if(stairs3D.get(i).getStairs3DName() == stair.getRoomName()){
+            if(stairs3D.get(i).getStairs3DName().equals(stair.getRoomName())){
                 stairs3D.get(i).addStairs2D(stair);
                 return true;
             }
