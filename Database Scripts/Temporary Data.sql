@@ -32,6 +32,7 @@ BEGIN
   v_sqlCreate := 'CREATE TABLE FINAL_DATA AS SELECT * FROM TEMPORARY_DATA';
   EXECUTE IMMEDIATE v_sqlDrop;
   EXECUTE IMMEDIATE v_sqlCreate;
+  commit;
 END;
 /
 select * from temporary_data;
