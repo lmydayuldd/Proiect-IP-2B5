@@ -235,13 +235,14 @@ public class XmlBuildingParser {
                         }
 
                     }
-
+                    
+                    x += 3;
                     if (a[etaj][i][j] == STAIRS_NUMBER) {
                         if (etaj != maxFloor) {
-                            x += 2;
+                            x -= 2;
                         }
                         if (etaj != 0) {
-                            x += 1;
+                            x -= 1;
                         }
                     }
                     //System.out.println("Cellll"+i+" " + j + " " + etaj + " valoare: "+ x);

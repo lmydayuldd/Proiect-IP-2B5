@@ -40,10 +40,10 @@ public class Modul3 {
         //int[][][] xmat = x.getRawMatrix();
         //Matrix m = x.toMatrix(xmat);
         
-        for(int i=40; i<=60; ++i) {
-            for (int j = 125; j <= 140; ++j)
+        for(int i=198; i<=202; ++i) {
+            for (int j = 28; j <= 33; ++j)
             {
-                System.out.print(mat.getCell(1, i, j).getWalls());
+                System.out.print(mat.getCell(1, i, j).getWalls() + " ");
                 if(j %25 == 0)
                     System.out.print("|");
             }
