@@ -11,6 +11,10 @@ public class showMenu5 : MonoBehaviour
     public Dropdown dd_camera2;
     public Button btn_generate;
     public static int etaj_index_vizualizare, etaj_camera1 = 0 - 2, etaj_camera2 = 0 - 2, camera1 = 0 - 2, camera2 = 0 - 2;
+    public void doExitGame()
+    {
+        Application.Quit();
+    }
     // Cand alege vizualizarea altui etaj
     public void Dropdown_IndexChanged_Vizualizare_Etaj(int index)
     {
@@ -45,10 +49,8 @@ public class showMenu5 : MonoBehaviour
     }
     public void Dropdown_IndexChanged_Drum_Selectare_Etaj2(int index)
     {
-
         dd_camera2.ClearOptions(); // Stergem optiunile de la dropdown'ul camera1
         dd_camera2.AddOptions(Deserialize.getCamere(dd_etaj2.GetComponent<Dropdown>().value)); // Adaugam optiunile cu camerele etajului 1
-
     }
 
 
@@ -75,9 +77,48 @@ public class showMenu5 : MonoBehaviour
         etaj_camera1 = dd_etaj1.GetComponent<Dropdown>().value;
         etaj_camera2 = dd_etaj2.GetComponent<Dropdown>().value;
         camera1 = dd_camera1.GetComponent<Dropdown>().value;
-        camera2 = dd_camera2.GetComponent<Dropdown>().value;
+        camera2 = dd_camera2.GetComponent<Dropdown>().value; 
         Deserialize d = new Deserialize();
-        d.Connect("localhost", "6 9 6 9 6 9");
+        //x1 y1 de la usa, x1 y1 de la cealalta usa, etaj de la prima usa, etaj de la a doua usa
+
+        string output = "";
+        
+
+        int valueIndex= dd_camera1.GetComponent<Dropdown>().value;
+        List<Dropdown.OptionData> menuOptions = dd_camera1.GetComponent<Dropdown>().options;
+        string numeCamera = menuOptions[valueIndex].text;
+
+        List<string> value2 = new List<string>();
+        value2.Clear();
+        value2 =Deserialize.getUsa(dd_etaj1.GetComponent<Dropdown>().value, numeCamera);
+        foreach (string value3 in value2)
+        {
+            Debug.Log("USA1 = " + value3);
+            output += value3+" ";
+        }
+        output += dd_etaj1.GetComponent<Dropdown>().value + " ";
+        Deserialize.setUsi(dd_etaj1.GetComponent<Dropdown>().value);
+
+        int valueIndex1 = dd_camera2.GetComponent<Dropdown>().value;
+        List<Dropdown.OptionData> menuOptions1 = dd_camera2.GetComponent<Dropdown>().options;
+        string numeCamera1 = menuOptions1[valueIndex1].text;
+
+        List<string> value4 = new List<string>();
+        value4.Clear();
+        value4 = Deserialize.getUsa(dd_etaj2.GetComponent<Dropdown>().value, numeCamera1);
+        foreach (string value5 in value4)
+        {
+            Debug.Log("USA2 = " + value5);
+            output += value5 + " ";
+        }
+        output += dd_etaj2.GetComponent<Dropdown>().value;
+        Deserialize.setUsi(dd_etaj2.GetComponent<Dropdown>().value);
+        Debug.Log("output = " + output);
+        //de vazut cum se returneaza stringul din dropdown
+        d.Connect("localhost", output);
+        
+       // Dropdown_IndexChanged_Vizualizare_Etaj(0);
+        
     }
     public static int getEtaj_camera1()
     {
