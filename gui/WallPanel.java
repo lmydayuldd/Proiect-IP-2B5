@@ -34,7 +34,7 @@ class WallPanel extends JPanel {
 
     JComboBox<String> componentType;
     Border border = new BevelBorder(1);
-    JLabel errorNumberLabel ,topLeftLabel, bottomRightLabel, wallHelpLabel, floorLabel, externalWallLabel, wallHelpLabel2, exitWayLabel, roomLabel, errorFloorLabel, errorStairLabel;
+    JLabel errorNumberLabel ,topLeftLabel,responseLabel, bottomRightLabel, wallHelpLabel, floorLabel, externalWallLabel, wallHelpLabel2,wallHelpLabel3, exitWayLabel, roomLabel, errorFloorLabel, errorStairLabel;
     JTextField x1TextField, y1TextField, x2TextField, y2TextField, floorField, roomTextField;
     JButton addWall;
     JCheckBox externalWall, exitWay;
@@ -53,7 +53,9 @@ class WallPanel extends JPanel {
         setLayout(new FlowLayout());
         errorNumberLabel=new JLabel("");
         errorFloorLabel = new JLabel("");
+        responseLabel=new JLabel("");
         errorStairLabel = new JLabel("");
+        wallHelpLabel3 = new JLabel("                                       ");
         roomLabel = new JLabel("Room:");
         exitWayLabel = new JLabel("Exit way:");
         externalWallLabel = new JLabel("External wall:");
@@ -119,13 +121,16 @@ class WallPanel extends JPanel {
         addWallPane.add(errorStairLabel);
         
         addWallPane.add(errorNumberLabel);
+       addWallPane.add(wallHelpLabel3);
+        addWallPane.add(responseLabel);
+        
         add(addWallPane);
 
        
         //Adding to the main frame the bottom panel which contains the table
         // with the walls data
        
-        setPreferredSize(new Dimension(1024, 250));
+        setPreferredSize(new Dimension(1024, 190));
         setBorder(border);
         //setBackground(Color.DARK_GRAY);
 
@@ -242,7 +247,15 @@ class WallPanel extends JPanel {
                         }
                     }
 
-                    InputStream in = post.getResponseBodyAsStream();
+                     HttpClient httpClient = new HttpClient();
+                        int resp = httpClient.executeMethod(post);
+			if (resp == HttpStatus.SC_CONFLICT) {
+				                        responseLabel.setText(post.getResponseBodyAsString()+"ceva1");
+                                                        repaint();
+			} else if (resp != HttpStatus.SC_OK) {
+				    responseLabel.setText(post.getResponseBodyAsString()+"Ceva2");
+                                    repaint();
+			}
 
                 }
             }
