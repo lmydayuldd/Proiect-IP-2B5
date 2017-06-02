@@ -54,7 +54,7 @@ public class Modul3 {
 
         mf = new MainFrame();
         MinTimePath mdp = new MinTimePath(mat);
-        ArrayList<Point> a = mdp.execute(new Point(200, 30, 1), new Point(50, 130, 2));
+        ArrayList<Point> a = mdp.execute(new Point(200, 30, 1), new Point(30, 120, 2));
         System.out.println(a.size());
         for (Point p : a) {
             System.out.println(p.getX() + " " + p.getY());
