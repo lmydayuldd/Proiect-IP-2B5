@@ -20,9 +20,9 @@ class MinTimePath extends PathFinder {
 
         Queue<Point> q = new LinkedList<>();
 
-        int dx[] = {0, 0, 1, 0, 0, -1, 1, -1, -1, 1};
-        int dy[] = {0, 0, 0, -1, 1, 0, 1, 1, -1, -1};
-        int dz[] = {1, -1, 0, 0, 0, 0, 0, 0, 0, 0};
+        int dx[] = {0, 0, 0, -1, 1, 0, 1, -1, -1, 1};
+        int dy[] = {0, 0, -1, 0, 0, 1, 1, 1, -1, -1};
+        int dz[] = {-1, 1, 0, 0, 0, 0, 0, 0, 0, 0};
         int n = Matrix.DIMENSION;
         int lvl = 4;//Matrix.LEVEL_COUNT;
         double dist[][][] = new double[lvl][n][n];
@@ -60,26 +60,8 @@ class MinTimePath extends PathFinder {
                 Cell now2 = matrix.getCell(newz, newx, newy);
                 if (now2 == null) continue;
 
-                if (dir == 3) {
-                    if (new Point(newx + 1, newy, newz).isValid(lvl, n, n) && (now2.getWalls() & 32) == 0) {
-                        if (dist[newz][newx + 1][newy] > dist[newz][newx][newy] + magic) {
-                            dist[newz][newx + 1][newy] = dist[newz][newx][newy] + magic;
-                            from[newz][newx + 1][newy] = 6;
-                            q.add(new Point(newx + 1, newy, newz));
-                        }
-                    }
-
-                    if (new Point(newx - 1, newy, newz).isValid(lvl, n, n) && (now2.getWalls() & 4) == 0) {
-                        if (dist[newz][newx - 1][newy] > dist[newz][newx][newy] + magic) {
-                            dist[newz][newx - 1][newy] = dist[newz][newx][newy] + magic;
-                            from[newz][newx - 1][newy] = 7;
-                            q.add(new Point(newx - 1, newy, newz));
-                        }
-                    }
-                }
-
-                if (dir == 4) {
-                    if (new Point(newx + 1, newy, newz).isValid(lvl, n, n) && (now2.getWalls() & 32) == 0) {
+                if (dir == 2) {
+                    if (new Point(newx + 1, newy, newz).isValid(lvl, n, n) && (now2.getWalls() & 8) == 0) {
                         if (dist[newz][newx + 1][newy] > dist[newz][newx][newy] + magic) {
                             dist[newz][newx + 1][newy] = dist[newz][newx][newy] + magic;
                             from[newz][newx + 1][newy] = 9;
@@ -87,7 +69,7 @@ class MinTimePath extends PathFinder {
                         }
                     }
 
-                    if (new Point(newx - 1, newy, newz).isValid(lvl, n, n)  && (now2.getWalls() & 4) == 0) {
+                    if (new Point(newx - 1, newy, newz).isValid(lvl, n, n) && (now2.getWalls() & 16) == 0) {
                         if (dist[newz][newx - 1][newy] > dist[newz][newx][newy] + magic) {
                             dist[newz][newx - 1][newy] = dist[newz][newx][newy] + magic;
                             from[newz][newx - 1][newy] = 8;
@@ -96,8 +78,26 @@ class MinTimePath extends PathFinder {
                     }
                 }
 
-                if (dir == 2) {
-                    if (new Point(newx, newy + 1, newz).isValid(lvl, n, n) && (now2.getWalls() & 8) == 0) {
+                if (dir == 5) {
+                    if (new Point(newx + 1, newy, newz).isValid(lvl, n, n) && (now2.getWalls() & 8) == 0) {
+                        if (dist[newz][newx + 1][newy] > dist[newz][newx][newy] + magic) {
+                            dist[newz][newx + 1][newy] = dist[newz][newx][newy] + magic;
+                            from[newz][newx + 1][newy] = 6;
+                            q.add(new Point(newx + 1, newy, newz));
+                        }
+                    }
+
+                    if (new Point(newx - 1, newy, newz).isValid(lvl, n, n)  && (now2.getWalls() & 16) == 0) {
+                        if (dist[newz][newx - 1][newy] > dist[newz][newx][newy] + magic) {
+                            dist[newz][newx - 1][newy] = dist[newz][newx][newy] + magic;
+                            from[newz][newx - 1][newy] = 7;
+                            q.add(new Point(newx - 1, newy, newz));
+                        }
+                    }
+                }
+
+                if (dir == 3) {
+                    if (new Point(newx, newy + 1, newz).isValid(lvl, n, n) && (now2.getWalls() & 32) == 0) {
                         if (dist[newz][newx][newy + 1] > dist[newz][newx][newy] + magic) {
                             dist[newz][newx][newy + 1] = dist[newz][newx][newy] + magic;
                             from[newz][newx][newy + 1] = 7;
@@ -105,7 +105,7 @@ class MinTimePath extends PathFinder {
                         }
                     }
 
-                    if (new Point(newx, newy - 1, newz).isValid(lvl, n, n)  && (now2.getWalls() & 16) == 0) {
+                    if (new Point(newx, newy - 1, newz).isValid(lvl, n, n)  && (now2.getWalls() & 4) == 0) {
                         if (dist[newz][newx][newy - 1] > dist[newz][newx][newy] + magic) {
                             dist[newz][newx][newy - 1] = dist[newz][newx][newy] + magic;
                             from[newz][newx][newy - 1] = 8;
@@ -114,8 +114,8 @@ class MinTimePath extends PathFinder {
                     }
                 }
 
-                if (dir == 5) {
-                    if (new Point(newx, newy + 1, newz).isValid(lvl, n, n) && (now2.getWalls() & 16) == 0) {
+                if (dir == 4) {
+                    if (new Point(newx, newy + 1, newz).isValid(lvl, n, n) && (now2.getWalls() & 32) == 0) {
                         if (dist[newz][newx][newy + 1] > dist[newz][newx][newy] + magic) {
                             dist[newz][newx][newy + 1] = dist[newz][newx][newy] + magic;
                             from[newz][newx][newy + 1] = 6;
@@ -123,7 +123,7 @@ class MinTimePath extends PathFinder {
                         }
                     }
 
-                    if (new Point(newx, newy - 1, newz).isValid(lvl, n, n)  && (now2.getWalls() & 16) == 0) {
+                    if (new Point(newx, newy - 1, newz).isValid(lvl, n, n)  && (now2.getWalls() & 4) == 0) {
                         if (dist[newz][newx][newy - 1] > dist[newz][newx][newy] + magic) {
                             dist[newz][newx][newy - 1] = dist[newz][newx][newy] + magic;
                             from[newz][newx][newy - 1] = 9;

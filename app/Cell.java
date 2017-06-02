@@ -6,7 +6,7 @@ package app;
 public class Cell {
     /**
      * This encodes the walls of the current cell.
-     * This variable takes values from 0 to 63, 
+     * This variable takes values from 0 to 63,
      * 2 ^ 0 -> if can't go to level - 1
      * 2 ^ 1 -> if can't go to level + 1
      * 2 ^ 2 -> if can't go to y - 1
