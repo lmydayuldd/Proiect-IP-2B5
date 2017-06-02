@@ -36,7 +36,7 @@ class StairPanel extends JPanel {
 
     JComboBox<String> componentType;
     Border border = new BevelBorder(1);
-    JLabel topLeftLabel, bottomRightLabel, stairHelpLabel, roomLabel, floorLabel, externalLabel, exitWayLabel, errorFloorLabel, errorStairLabel, errorNumberLabel;
+    JLabel topLeftLabel, bottomRightLabel, stairHelpLabel, roomLabel, floorLabel, externalLabel, wallHelpLabel2 ,exitWayLabel, errorFloorLabel, errorStairLabel, errorNumberLabel;
     JTextField x1TextField, y1TextField, x2TextField, y2TextField, roomTextField, floorTextField;
     JButton addStair;
     JCheckBox externalWall, exitWay;
@@ -58,12 +58,13 @@ class StairPanel extends JPanel {
         roomLabel = new JLabel("Stair name:");
         externalLabel = new JLabel("Extern stairs");
         exitWayLabel = new JLabel("Exit way stairs");
+        wallHelpLabel2 = new JLabel("      ");
         topLeftLabel = new JLabel("TopLeft Coordinates: ");
         //topLeftLabel.setForeground(Color.LIGHT_GRAY);
         bottomRightLabel = new JLabel("Bottom-Right Coordinates: ");
         //bottomRightLabel.setForeground(Color.LIGHT_GRAY);
         // Initializing Labels with html code to set font and break lines.
-        stairHelpLabel = new JLabel("<html><h1>Add Stair<br></h1>Fill up this form in order to add stairs to the Application. </html>");
+        stairHelpLabel = new JLabel("<html><center><h1>Add Stair<br></h1></center>Fill up this form in order to add stairs to the Application. </html>");
         x1TextField = new JTextField("X");
         x1TextField.setPreferredSize(new Dimension(50, 20));
         y1TextField = new JTextField("Y");
@@ -85,7 +86,7 @@ class StairPanel extends JPanel {
 
         // Starting to initialize the three inside Panels: topPane, addStairPane and removeStairPane
         topPane = new JPanel();
-        topPane.setPreferredSize(new Dimension(1000, 100));
+        topPane.setPreferredSize(new Dimension(1000, 80));
         addStairPane = new JPanel();
         addStairPane.setPreferredSize(new Dimension(1000, 100));
         removeStairPane = new JPanel();
@@ -106,6 +107,7 @@ class StairPanel extends JPanel {
         addStairPane.add(bottomRightLabel);
         addStairPane.add(x2TextField);
         addStairPane.add(y2TextField);
+        addStairPane.add(wallHelpLabel2);
         addStairPane.add(externalLabel);
         addStairPane.add(externalWall);
         addStairPane.add(exitWayLabel);

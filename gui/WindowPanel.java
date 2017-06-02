@@ -5,15 +5,9 @@
  */
 package gui;
 
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpStatus;
-import org.apache.commons.httpclient.methods.PostMethod;
-
-import javax.swing.*;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.Border;
-import javax.swing.table.DefaultTableModel;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -22,19 +16,29 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
+import javax.swing.table.DefaultTableModel;
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpStatus;
+import org.apache.commons.httpclient.methods.PostMethod;
 
 /**
- * This class makes the panel that handles the wall manager in the application.
- * With the elements on this panel the user should add, remove or modify the
- * walls in the building.
  *
- * @author alexandru
+ * @author ada
  */
-class WallPanel extends JPanel {
-
-    JComboBox<String> componentType;
+public class WindowPanel extends JPanel{
+        JComboBox<String> componentType;
     Border border = new BevelBorder(1);
-    JLabel errorNumberLabel ,topLeftLabel, bottomRightLabel, wallHelpLabel, floorLabel, externalWallLabel, wallHelpLabel2, exitWayLabel, roomLabel, errorFloorLabel, errorStairLabel;
+    JLabel errorNumberLabel, topLeftLabel, bottomRightLabel, wallHelpLabel, floorLabel, externalWallLabel, wallHelpLabel2, exitWayLabel, roomLabel, errorFloorLabel, errorStairLabel;
     JTextField x1TextField, y1TextField, x2TextField, y2TextField, floorField, roomTextField;
     JButton addWall;
     JCheckBox externalWall, exitWay;
@@ -47,25 +51,25 @@ class WallPanel extends JPanel {
      */
     JPanel topPane, addWallPane, removeWallPane;
 
-    public WallPanel() {
+    public WindowPanel() {
 
         // Setting up all the components
         setLayout(new FlowLayout());
-        errorNumberLabel=new JLabel("");
+        errorNumberLabel = new JLabel("");
         errorFloorLabel = new JLabel("");
         errorStairLabel = new JLabel("");
         roomLabel = new JLabel("Room:");
         exitWayLabel = new JLabel("Exit way:");
-        externalWallLabel = new JLabel("External wall:");
+        externalWallLabel = new JLabel("External window:");
         topLeftLabel = new JLabel("TopLeft Coordinates: ");
         floorLabel = new JLabel("Floor:");
         //topLeftLabel.setForeground(Color.LIGHT_GRAY);
         bottomRightLabel = new JLabel("Bottom-Right Coordinates");
         //bottomRightLabel.setForeground(Color.LIGHT_GRAY);
         // Initializing Labels with html code to set font and break lines.
-        wallHelpLabel = new JLabel("<html><center><h1>Add Wall<br></h1></center>Fill up this form in order to add a wall to the Application. </html>");
+        wallHelpLabel = new JLabel("<html><center><h1>Add Window<br></h1></center>Fill up this form in order to add a window to the Application. </html>");
 
-        wallHelpLabel2 = new JLabel("       ");
+        wallHelpLabel2 = new JLabel("      ");
         x1TextField = new JTextField("X");
 
         x1TextField.setPreferredSize(new Dimension(50, 20));
@@ -84,7 +88,7 @@ class WallPanel extends JPanel {
         exitWay = new JCheckBox();
         exitWay.setPreferredSize(new Dimension(50, 20));
         externalWall.setPreferredSize(new Dimension(50, 20));
-        addWall = new JButton("Add Wall");
+        addWall = new JButton("Add Window");
 
         // Starting to initialize the three inside Panels: topPane, addWallPane and removeWallPane
         topPane = new JPanel();
@@ -109,22 +113,20 @@ class WallPanel extends JPanel {
         addWallPane.add(bottomRightLabel);
         addWallPane.add(x2TextField);
         addWallPane.add(y2TextField);
-       addWallPane.add(wallHelpLabel2);
+        addWallPane.add(wallHelpLabel2);
         addWallPane.add(externalWallLabel);
         addWallPane.add(externalWall);
+        addWallPane.add(exitWayLabel);
+        addWallPane.add(exitWay);
         //addWallPane.add(exitWayLabel);
         // addWallPane.add(exitWay);
         addWallPane.add(addWall);
         addWallPane.add(errorFloorLabel);
         addWallPane.add(errorStairLabel);
-        
+
         addWallPane.add(errorNumberLabel);
         add(addWallPane);
 
-       
-        //Adding to the main frame the bottom panel which contains the table
-        // with the walls data
-       
         setPreferredSize(new Dimension(1024, 250));
         setBorder(border);
         //setBackground(Color.DARK_GRAY);
@@ -148,6 +150,11 @@ class WallPanel extends JPanel {
                 } else {
                     external = 0;
                 }
+                if (exitWay.isSelected()) {
+                    exit = 1;
+                } else {
+                    exit = 0;
+                }
                 String myRow[] = new String[7];
                 myRow[0] = floorField.getText();
                 myRow[1] = roomTextField.getText();
@@ -161,18 +168,17 @@ class WallPanel extends JPanel {
                     System.out.println("sdfasdf");
                     errorFloorLabel.setText("Introduceti etajul!");
                     errorFloorLabel.setForeground(Color.RED);
-                     errorStairLabel.setText("");
-                      errorNumberLabel.setText("");
+                    errorStairLabel.setText("");
+                    errorNumberLabel.setText("");
                     repaint();
                 } else if (roomTextField.getText().length() == 0) {
                     System.out.println("sdfasdf8");
-                     errorFloorLabel.setText("");
-                    errorStairLabel.setText("Introduceti numele camerei!");
+                    errorFloorLabel.setText("");
+                    errorStairLabel.setText("Introduceti numele camerei unde doriti sa adaugati fereastra!");
                     errorStairLabel.setForeground(Color.RED);
-                      errorNumberLabel.setText("");
+                    errorNumberLabel.setText("");
                     repaint();
                 } else {
-                    
 
                     int ok = 1;
                     try {
@@ -196,57 +202,58 @@ class WallPanel extends JPanel {
                         errorStairLabel.setText("");
                         errorNumberLabel.setText("");
                         repaint();
-                    PostMethod post = new PostMethod("http://localhost:4500/add");
+                        PostMethod post = new PostMethod("http://localhost:4500/add");
 
-                    String x = "{\n"
-                            + "        \"type\" : \"wall\", \n"
-                            + "        \"room\" : \"" + myRow[1] + "\",\n"
-                            + "        \"x1\" : \"" + myRow[2] + "\" , \n"
-                            + "        \"y1\" : \"" + myRow[3] + "\" ,\n"
-                            + "        \"x2\" :  \"" + myRow[4] + "\" ,\n"
-                            + "        \"y2\" :  \"" + myRow[5] + "\" ,\n"
-                            + "        \"floor\" :  \"" + myRow[0] + "\" ,\n"
-                            + "        \"isExitWay\" :  \"0\" ,\n"
-                            + "        \"isExterior\":  \"" + external + "\" \n"
-                            + "\t\n"
-                            + "}";
+                        String x = "{\n"
+                                + "        \"type\" : \"window\", \n"
+                                + "        \"room\" : \"" + myRow[1] + "\",\n"
+                                + "        \"x1\" : \"" + myRow[2] + "\" , \n"
+                                + "        \"y1\" : \"" + myRow[3] + "\" ,\n"
+                                + "        \"x2\" :  \"" + myRow[4] + "\" ,\n"
+                                + "        \"y2\" :  \"" + myRow[5] + "\" ,\n"
+                                + "        \"floor\" :  \"" + myRow[0] + "\" ,\n"
+                                + "        \"isExitWay\" :  \"" + exit + "\" ,\n"
+                                + "        \"isExterior\":  \"" + external + "\" \n"
+                                + "\t\n"
+                                + "}";
 
-                    BufferedReader br = null;
-                    post.setRequestHeader("Content-type", "application/json");
-                    post.setRequestBody(x);
-                    try {
-                        HttpClient httpClient = new HttpClient();
-                        int resp = httpClient.executeMethod(post);
+                        BufferedReader br = null;
+                        post.setRequestHeader("Content-type", "application/json");
+                        post.setRequestBody(x);
+                        try {
+                            HttpClient httpClient = new HttpClient();
+                            int resp = httpClient.executeMethod(post);
 
-                        if (resp == HttpStatus.SC_NOT_IMPLEMENTED) {
-                            System.err.println("The Post method is not implemented by this URI");
-                            // still consume the response body
-                            post.getResponseBodyAsString();
-                        } else {
-                            br = new BufferedReader(new InputStreamReader(post.getResponseBodyAsStream()));
-                            String readLine;
-                            while (((readLine = br.readLine()) != null)) {
-                                System.err.println(readLine);
+                            if (resp == HttpStatus.SC_NOT_IMPLEMENTED) {
+                                System.err.println("The Post method is not implemented by this URI");
+                                // still consume the response body
+                                post.getResponseBodyAsString();
+                            } else {
+                                br = new BufferedReader(new InputStreamReader(post.getResponseBodyAsStream()));
+                                String readLine;
+                                while (((readLine = br.readLine()) != null)) {
+                                    System.err.println(readLine);
+                                }
+                            }
+
+                        } catch (Exception e) {
+                            System.err.println(e);
+                        } finally {
+                            post.releaseConnection();
+                            if (br != null) {
+                                try {
+                                    br.close();
+                                } catch (Exception fe) {
+                                }
                             }
                         }
 
-                    } catch (Exception e) {
-                        System.err.println(e);
-                    } finally {
-                        post.releaseConnection();
-                        if (br != null) {
-                            try {
-                                br.close();
-                            } catch (Exception fe) {
-                            }
-                        }
+                        InputStream in = post.getResponseBodyAsStream();
+
                     }
-
-                    InputStream in = post.getResponseBodyAsStream();
-
                 }
             }
-        }}
+        }
         );
     }
 }
