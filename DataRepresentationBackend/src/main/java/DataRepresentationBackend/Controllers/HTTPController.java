@@ -1,10 +1,7 @@
 package DataRepresentationBackend.Controllers;
 
 import CustomExceptions.DataNotValidException;
-import DataRepresentationBackend.Models.Message;
-import DataRepresentationBackend.Models.SingleObject;
-import DataRepresentationBackend.Models.TemporaryData;
-import DataRepresentationBackend.Models.TemporarySaveMessage;
+import DataRepresentationBackend.Models.*;
 import DataRepresentationBackend.Services.DatabaseService;
 import DataRepresentationBackend.Services.GetXML;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,7 +74,7 @@ public class HTTPController {
     @CrossOrigin
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     @ResponseBody
-    public ResponseEntity<Message> deleteTemporaryData(@RequestBody TemporaryData data) {
+    public ResponseEntity<Message> deleteTemporaryData(@RequestBody TemporaryDataDelete data) {
         try {
             if (!data.isValid())
                 return new ResponseEntity<>(new Message("Invalid Json format."), HttpStatus.BAD_REQUEST);

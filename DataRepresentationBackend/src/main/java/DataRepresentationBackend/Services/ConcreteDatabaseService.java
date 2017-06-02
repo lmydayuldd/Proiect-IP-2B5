@@ -2,6 +2,7 @@ package DataRepresentationBackend.Services;
 
 import DataRepresentationBackend.Models.SingleObject;
 import DataRepresentationBackend.Models.TemporaryData;
+import DataRepresentationBackend.Models.TemporaryDataDelete;
 import org.springframework.stereotype.Service;
 import tablerepresentation.TableElement;
 
@@ -73,10 +74,9 @@ public class ConcreteDatabaseService implements DatabaseService {
         statement.close();
     }
 
-    public void deleteData(TemporaryData data) throws Exception {
+    public void deleteData(TemporaryDataDelete data) throws Exception {
         PreparedStatement statementCheck = DatabaseConnection.getConnection().prepareStatement("select count(*) FROM" +
-                " TEMPORARY_DATA WHERE type =? and x1 = ? and y1 = ? and x2=? and y2 = ? and floor = ? and room = ? " +
-                "and isExitWay = ? and isExterior = ?");
+                " TEMPORARY_DATA WHERE type =? and x1 = ? and y1 = ? and x2=? and y2 = ? and floor = ? and room = ?");
         statementCheck.setString(1, data.type);
         statementCheck.setInt(2, data.x1);
         statementCheck.setInt(3, data.y1);
@@ -84,8 +84,6 @@ public class ConcreteDatabaseService implements DatabaseService {
         statementCheck.setInt(5, data.y2);
         statementCheck.setInt(6, data.floor);
         statementCheck.setString(7, data.room);
-        statementCheck.setInt(8, data.isExitWay);
-        statementCheck.setInt(9, data.isExterior);
         ResultSet resultSet = statementCheck.executeQuery();
         resultSet.next();
         int response = resultSet.getInt(1);
@@ -94,8 +92,7 @@ public class ConcreteDatabaseService implements DatabaseService {
         }
 
         PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement("delete from TEMPORARY_DATA " +
-                "WHERE type = ? and x1 = ? and y1 = ? and x2=? and y2 = ? and floor = ? and room = ? and isExitWay = ? " +
-                "and isExterior = ?");
+                "WHERE type = ? and x1 = ? and y1 = ? and x2=? and y2 = ? and floor = ? and room = ?");
         statement.setString(1, data.type);
         statement.setInt(2, data.x1);
         statement.setInt(3, data.y1);
@@ -103,8 +100,6 @@ public class ConcreteDatabaseService implements DatabaseService {
         statement.setInt(5, data.y2);
         statement.setInt(6, data.floor);
         statement.setString(7, data.room);
-        statement.setInt(8, data.isExitWay);
-        statement.setInt(9, data.isExterior);
         statement.executeUpdate();
         resultSet.close();
         statement.close();

@@ -2,6 +2,7 @@ package DataRepresentationBackend.Services;
 
 import DataRepresentationBackend.Models.SingleObject;
 import DataRepresentationBackend.Models.TemporaryData;
+import DataRepresentationBackend.Models.TemporaryDataDelete;
 import tablerepresentation.TableElement;
 
 import java.sql.SQLException;
@@ -19,7 +20,7 @@ public interface DatabaseService {
 
     void addData(TemporaryData data) throws Exception;
 
-    void deleteData(TemporaryData data) throws Exception;
+    void deleteData(TemporaryDataDelete data) throws Exception;
 
     void deleteRoom(SingleObject data) throws Exception;
 
