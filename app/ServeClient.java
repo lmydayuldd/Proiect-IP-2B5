@@ -34,21 +34,12 @@ class ServeClient extends Thread {
             Point dest = new Point((int) (10 * in.nextNumber()), (int) (10 * in.nextNumber()), (int) (in.nextNumber()));
 
 
-            if (true) {
-                // Magic trick, do not try to understand what is happening here ;)
-                ArrayList<Point> a = new ArrayList<>();
-                a.add(dest);
-                a.add(source);
-                XmlOutput x = new XmlOutput(a);
-                x.createXml("asd.xml");
-                return;
-            }
-
-
             //apel functie minunata;
-            ArrayList<Point> ans = new MinDistancePath(new Matrix()).execute(source, dest);
-            // aici evident trebuie altfel apelata functia de distanta
-
+            Matrix matrix = null;
+            ArrayList<Point> ans = new MinTimePath(matrix).execute(source, dest);
+            
+            XmlOutput x = new XmlOutput(ans);
+            x.createXml("asd.xml");
             //Parsam ans si transformam in ceva (XML ?)
             // ca sa le trimitem inapoi drumul
             out.write((int) ans.size());

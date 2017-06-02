@@ -28,17 +28,14 @@ public class Modul3 {
         //ServerM2 srv = new ServerM2();
         //srv.start();
         //mf = new MainFrame();
+        
+        
         XmlBuildingParser x = new XmlBuildingParser("src/res/building.xml");
-        //x.parse();
-        //x.fillWall(200, 200, 180, 0, 2, 1);
-        Matrix mat = x.getMatrix();
-
-
-        //x.fillWall(100, 1, 2, 70, 3);
-
+        StaticClass.matrix = x.getMatrix();
+       
         //int[][][] xmat = x.getRawMatrix();
         //Matrix m = x.toMatrix(xmat);
-        
+        /*
         for(int i=198; i<=202; ++i) {
             for (int j = 28; j <= 33; ++j)
             {
@@ -49,11 +46,11 @@ public class Modul3 {
             if(i%25 == 0) System.out.println("");
             System.out.println();
         }
-        
+        */
 
         mf = new MainFrame();
-        MinTimePath mdp = new MinTimePath(mat);
-        ArrayList<Point> a = mdp.execute(new Point(200, 30, 1), new Point(30, 120, 2));
+        MinTimePath mdp = new MinTimePath(StaticClass.matrix);
+        ArrayList<Point> a = mdp.execute(new Point(200, 30, 1), new Point(10, 120, 2));
         System.out.println(a.size());
         for (Point p : a) {
             System.out.println(p.getX() + " " + p.getY());
