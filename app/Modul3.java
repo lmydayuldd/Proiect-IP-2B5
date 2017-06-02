@@ -5,14 +5,13 @@
  */
 package app;
 
-import gui.*;
+import gui.MainFrame;
+import org.xml.sax.SAXException;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
-
-import org.xml.sax.SAXException;
+import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  *
@@ -40,10 +39,10 @@ public class Modul3 {
         //int[][][] xmat = x.getRawMatrix();
         //Matrix m = x.toMatrix(xmat);
         
-        for(int i=40; i<=60; ++i) {
-            for (int j = 125; j <= 140; ++j)
+        for(int i=198; i<=202; ++i) {
+            for (int j = 28; j <= 33; ++j)
             {
-                System.out.print(mat.getCell(1, i, j).getWalls());
+                System.out.print(mat.getCell(1, i, j).getWalls() + " ");
                 if(j %25 == 0)
                     System.out.print("|");
             }
@@ -54,7 +53,7 @@ public class Modul3 {
 
         mf = new MainFrame();
         MinTimePath mdp = new MinTimePath(mat);
-        ArrayList<Point> a = mdp.execute(new Point(200, 30, 1), new Point(50, 130, 2));
+        ArrayList<Point> a = mdp.execute(new Point(200, 30, 1), new Point(30, 120, 2));
         System.out.println(a.size());
         for (Point p : a) {
             System.out.println(p.getX() + " " + p.getY());

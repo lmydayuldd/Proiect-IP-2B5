@@ -64,7 +64,9 @@ class DoorPanel extends JPanel {
         bottomRightLabel = new JLabel("Bottom-Right Coordinates");
         //bottomRightLabel.setForeground(Color.LIGHT_GRAY);
         // Initializing Labels with html code to set font and break lines.
+
         wallHelpLabel = new JLabel("<html><center><h1>Add Door<br></h1></center>Fill up this form in order to add a door to the Application. </html>");
+
 
         wallHelpLabel2 = new JLabel("      ");
         x1TextField = new JTextField("X");

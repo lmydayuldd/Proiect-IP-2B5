@@ -14,6 +14,7 @@ public class MainFrame extends JFrame{
     WallPanel leftPanel;
     StairPanel stairPanel;
     DoorPanel doorPanel;
+
     WindowPanel windowPanel;
     public MainFrame() {
         super();
@@ -34,6 +35,7 @@ public class MainFrame extends JFrame{
         add(stairPanel);
         add(doorPanel);
         add (windowPanel);
+
     }
     
     

@@ -58,7 +58,7 @@ public class SomeTest {
     @Test
     public void testRawMatrix1() {
         XmlBuildingParser sample = new XmlBuildingParser("exXML");
-        sample.fillWall(2, 1, 2, 10, 3);
+        sample.fillWall(2, 1, 2, 10, 3, 1);
 
         int[][][] xmat = sample.getRawMatrix();
         /*
@@ -74,7 +74,7 @@ public class SomeTest {
     @Test
     public void testRawMatrix2() {
         XmlBuildingParser sample = new XmlBuildingParser("exXML");
-        sample.fillWall(2, 1, 5, 10, 3);
+        sample.fillWall(2, 1, 5, 10, 3, 1);
         /*
         int[][][] xmat = sample.getRawMatrix();
 
@@ -90,7 +90,7 @@ public class SomeTest {
     @Test
     public void testRawMatrix3() {
         XmlBuildingParser sample = new XmlBuildingParser("exXML");
-        sample.fillWall(2, 1, 100, 200, 3);
+        sample.fillWall(2, 1, 100, 200, 3, 1);
         /*
         int[][][] xmat = sample.getRawMatrix();
 
@@ -106,7 +106,7 @@ public class SomeTest {
     @Test
     public void testRawMatrix4() {
         XmlBuildingParser sample = new XmlBuildingParser("exXML");
-        sample.fillWall(2, 1, 2, 2, 3);
+        sample.fillWall(2, 1, 2, 2, 3, 1);
         /*
         int[][][] xmat = sample.getRawMatrix();
 
@@ -122,7 +122,7 @@ public class SomeTest {
     @Test
     public void testRawMatrix5() {
         XmlBuildingParser sample = new XmlBuildingParser("exXML");
-        sample.fillWall(1, 1, 1, 100, 3);
+        sample.fillWall(1, 1, 1, 100, 3, 1);
 
         int[][][] xmat = sample.getRawMatrix();
 
@@ -138,7 +138,7 @@ public class SomeTest {
     @Test
     public void testRawMatrix6() {
         XmlBuildingParser sample = new XmlBuildingParser("exXML");
-        sample.fillWall(100, 1, 1, 1, 3);
+        sample.fillWall(100, 1, 1, 1, 3, 1);
 
         int[][][] xmat = sample.getRawMatrix();
 
@@ -155,7 +155,7 @@ public class SomeTest {
     @Test
     public void testRawMatrix7() {
         XmlBuildingParser sample = new XmlBuildingParser("exXML");
-        sample.fillWall(100, 100, 1, 1, 3);
+        sample.fillWall(100, 100, 1, 1, 3, 1);
 
         int[][][] xmat = sample.getRawMatrix();
 
@@ -171,7 +171,7 @@ public class SomeTest {
     @Test
     public void testRawMatrix8() {
         XmlBuildingParser sample = new XmlBuildingParser("exXML");
-        sample.fillWall(100, 100, 2, 3, 3);
+        sample.fillWall(100, 100, 2, 3, 3, 1);
 
         int[][][] xmat = sample.getRawMatrix();
 
@@ -188,17 +188,18 @@ public class SomeTest {
     @Test
     public void testRawMatrix9() {
         XmlBuildingParser sample = new XmlBuildingParser("exXML");
-        sample.fillWall(100, 1, 2, 70, 3);
+        sample.fillWall(100, 1, 2, 70, 3, 1);
 
         int[][][] xmat = sample.getRawMatrix();
 
-        for (int i = 1; i <= 15; ++i) {
-            for (int j = 1; j <= 15; ++j)
+        for (int i = 1; i <= 100; ++i) {
+            for (int j = 1; j <= 100; ++j)
                 System.out.print(xmat[3][i][j] + " ");
             System.out.println();
         }
 
         assertTrue(1 == xmat[3][2][3]);
     }
+
 
 }
