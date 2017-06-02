@@ -38,7 +38,7 @@ import org.apache.commons.httpclient.methods.PostMethod;
 public class WindowPanel extends JPanel{
         JComboBox<String> componentType;
     Border border = new BevelBorder(1);
-    JLabel errorNumberLabel, topLeftLabel, bottomRightLabel, wallHelpLabel, floorLabel, externalWallLabel, wallHelpLabel2, exitWayLabel, roomLabel, errorFloorLabel, errorStairLabel;
+    JLabel errorNumberLabel, topLeftLabel, bottomRightLabel, wallHelpLabel, floorLabel, responseLabel,wallHelpLabel3,externalWallLabel, wallHelpLabel2, exitWayLabel, roomLabel, errorFloorLabel, errorStairLabel;
     JTextField x1TextField, y1TextField, x2TextField, y2TextField, floorField, roomTextField;
     JButton addWall;
     JCheckBox externalWall, exitWay;
@@ -55,6 +55,8 @@ public class WindowPanel extends JPanel{
 
         // Setting up all the components
         setLayout(new FlowLayout());
+          responseLabel=new JLabel("");
+        wallHelpLabel3=new JLabel("                          ");
         errorNumberLabel = new JLabel("");
         errorFloorLabel = new JLabel("");
         errorStairLabel = new JLabel("");
@@ -125,9 +127,12 @@ public class WindowPanel extends JPanel{
         addWallPane.add(errorStairLabel);
 
         addWallPane.add(errorNumberLabel);
+        
+        addWallPane.add(wallHelpLabel3);
+        addWallPane.add(responseLabel);
         add(addWallPane);
 
-        setPreferredSize(new Dimension(1024, 250));
+        setPreferredSize(new Dimension(1024, 190));
         setBorder(border);
         //setBackground(Color.DARK_GRAY);
 
@@ -155,6 +160,8 @@ public class WindowPanel extends JPanel{
                 } else {
                     exit = 0;
                 }
+                 responseLabel.setText("");
+                 repaint();
                 String myRow[] = new String[7];
                 myRow[0] = floorField.getText();
                 myRow[1] = roomTextField.getText();
@@ -248,7 +255,17 @@ public class WindowPanel extends JPanel{
                             }
                         }
 
-                        InputStream in = post.getResponseBodyAsStream();
+                       HttpClient httpClient = new HttpClient();
+                        int resp = httpClient.executeMethod(post);
+			if (resp == HttpStatus.SC_CONFLICT) {
+			   responseLabel.setText(post.getResponseBodyAsString()+"ceva1");
+                           responseLabel.setForeground(Color.RED);
+                                                        repaint();
+			} else if (resp != HttpStatus.SC_OK) {
+				    responseLabel.setText(post.getResponseBodyAsString()+"Ceva2");
+                                    responseLabel.setForeground(Color.RED);
+                                    repaint();
+			}
 
                     }
                 }

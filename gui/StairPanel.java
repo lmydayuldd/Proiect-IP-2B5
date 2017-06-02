@@ -36,7 +36,7 @@ class StairPanel extends JPanel {
 
     JComboBox<String> componentType;
     Border border = new BevelBorder(1);
-    JLabel topLeftLabel, bottomRightLabel, stairHelpLabel, roomLabel, floorLabel, externalLabel, wallHelpLabel2 ,exitWayLabel, errorFloorLabel, errorStairLabel, errorNumberLabel;
+    JLabel topLeftLabel, bottomRightLabel, stairHelpLabel, roomLabel, floorLabel,responseLabel, externalLabel, wallHelpLabel2,wallHelpLabel3 ,exitWayLabel, errorFloorLabel, errorStairLabel, errorNumberLabel;
     JTextField x1TextField, y1TextField, x2TextField, y2TextField, roomTextField, floorTextField;
     JButton addStair;
     JCheckBox externalWall, exitWay;
@@ -51,6 +51,8 @@ class StairPanel extends JPanel {
 
         // Setting up all the components
         setLayout(new FlowLayout());
+        responseLabel=new JLabel("");
+        wallHelpLabel3=new JLabel("                          ");
         errorNumberLabel = new JLabel("");
         errorFloorLabel = new JLabel("");
         errorStairLabel = new JLabel("");
@@ -116,9 +118,11 @@ class StairPanel extends JPanel {
         addStairPane.add(errorFloorLabel);
         addStairPane.add(errorStairLabel);
         addStairPane.add(errorNumberLabel);
+        addStairPane.add(wallHelpLabel3);
+        addStairPane.add(responseLabel);
         add(addStairPane);
         addListeners();
-        setPreferredSize(new Dimension(1024, 250));
+        setPreferredSize(new Dimension(1024, 190));
         setBorder(border);
         //setBackground(Color.DARK_GRAY);
     }
@@ -144,6 +148,8 @@ class StairPanel extends JPanel {
                 } else {
                     exitway = 0;
                 }
+                 responseLabel.setText("");
+                 repaint();
                 if (floorTextField.getText().length() == 0) {
                     //  System.out.println("sdfasdf");
                     errorFloorLabel.setText("Introduceti etajul!");
@@ -224,7 +230,17 @@ class StairPanel extends JPanel {
                             }
                         }
 
-                        InputStream in = post.getResponseBodyAsStream();
+                       HttpClient httpClient = new HttpClient();
+                        int resp = httpClient.executeMethod(post);
+			if (resp == HttpStatus.SC_CONFLICT) {
+			   responseLabel.setText(post.getResponseBodyAsString()+"ceva1");
+                           responseLabel.setForeground(Color.RED);
+                                                        repaint();
+			} else if (resp != HttpStatus.SC_OK) {
+				    responseLabel.setText(post.getResponseBodyAsString()+"Ceva2");
+                                    responseLabel.setForeground(Color.RED);
+                                    repaint();
+			}
                     }
                 }
             }
