@@ -84,7 +84,7 @@ public class showMenu5 : MonoBehaviour
         //x1 y1 de la usa, x1 y1 de la cealalta usa, etaj de la prima usa, etaj de la a doua usa
 
         string output = "";
-        
+        int douaUsi = 0;
 
         int valueIndex= dd_camera1.GetComponent<Dropdown>().value;
         List<Dropdown.OptionData> menuOptions = dd_camera1.GetComponent<Dropdown>().options;
@@ -97,7 +97,10 @@ public class showMenu5 : MonoBehaviour
         {
             Debug.Log("USA1 = " + value3);
             output += value3+" ";
+            douaUsi++;
+            if (douaUsi == 2) break;
         }
+        douaUsi = 0;
         output += dd_etaj1.GetComponent<Dropdown>().value + " ";
         Deserialize.setUsi(dd_etaj1.GetComponent<Dropdown>().value);
 
@@ -112,7 +115,10 @@ public class showMenu5 : MonoBehaviour
         {
             Debug.Log("USA2 = " + value5);
             output += value5 + " ";
+            douaUsi++;
+            if (douaUsi == 2) break;
         }
+        douaUsi = 0;
         output += dd_etaj2.GetComponent<Dropdown>().value;
         Deserialize.setUsi(dd_etaj2.GetComponent<Dropdown>().value);
         Debug.Log("output = " + output);
