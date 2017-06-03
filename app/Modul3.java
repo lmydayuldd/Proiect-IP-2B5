@@ -6,11 +6,21 @@
 package app;
 
 import gui.MainFrame;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.io.Writer;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -18,20 +28,45 @@ import java.util.ArrayList;
  */
 public class Modul3 {
 
+    
+    
     /**
      * @param args the command line arguments
      */
     static MainFrame mf;
-
+    static Matrix currentMatrix;
+    static final String PATH = "building.xml";
+    /**
+     * 
+     * @return xml file name
+     */
+    public static void getXML(String path) throws MalformedURLException, ProtocolException, IOException
+    {
+        StringBuilder result = new StringBuilder();
+        URL url = new URL("localhost:4500/getXML");
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        String line; 
+        while ((line = rd.readLine()) != null) {
+            result.append(line);
+        }
+        rd.close();
+        Writer w = new PrintWriter(new File(path));
+        w.write(result.toString());
+        w.close();
+    }
+    
     public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException, TransformerException {
         // TODO code application logic here
-        //ServerM2 srv = new ServerM2();
-        //srv.start();
+        ServerM2 srv = new ServerM2();
+        srv.start();
         //mf = new MainFrame();
         
         
-        XmlBuildingParser x = new XmlBuildingParser("src/res/building.xml");
-        StaticClass.matrix = x.getMatrix();
+        getXML(PATH);
+        XmlBuildingParser x = new XmlBuildingParser(PATH);
+        currentMatrix = x.getMatrix();
        
         //int[][][] xmat = x.getRawMatrix();
         //Matrix m = x.toMatrix(xmat);
@@ -49,7 +84,7 @@ public class Modul3 {
         */
 
         mf = new MainFrame();
-        MinTimePath mdp = new MinTimePath(StaticClass.matrix);
+        MinTimePath mdp = new MinTimePath(currentMatrix);
         ArrayList<Point> a = mdp.execute(new Point(200, 30, 1), new Point(10, 120, 2));
         System.out.println(a.size());
         for (Point p : a) {

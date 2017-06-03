@@ -35,7 +35,7 @@ class ServeClient extends Thread {
 
 
             //apel functie minunata;
-            Matrix matrix = null;
+            Matrix matrix = Modul3.currentMatrix;
             ArrayList<Point> ans = new MinTimePath(matrix).execute(source, dest);
             
             XmlOutput x = new XmlOutput(ans);
