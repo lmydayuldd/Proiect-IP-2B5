@@ -119,7 +119,10 @@ public class showMenu5 : MonoBehaviour
         //de vazut cum se returneaza stringul din dropdown
         d.Connect("localhost", output);
 
-        // Dropdown_IndexChanged_Vizualizare_Etaj(0);
+
+        dd_2d_etaj.value =0;
+        Dropdown_IndexChanged_Vizualizare_Etaj(0);
+
     }
 
     public static int getEtaj_camera1()
