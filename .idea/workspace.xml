@@ -2,13 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e29abe0c-abd6-4c03-8584-cca52b5410f3" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/RaportTest1.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/SomeTest.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/Point.class" afterPath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/Point.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/Matrix.class" afterPath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/Matrix.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/MinDistancePath.class" afterPath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/MinDistancePath.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/MinTimePath.class" afterPath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/MinTimePath.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/Modul3.class" afterPath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/Modul3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/PathFinder.class" afterPath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/PathFinder.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/RequestHandler.class" afterPath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/RequestHandler.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/ServeClient$InputReader.class" afterPath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/ServeClient$InputReader.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/ServeClient.class" afterPath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/ServeClient.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/Server.class" afterPath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/Server.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/ServerM2.class" afterPath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/ServerM2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/SimplePath.class" afterPath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/SimplePath.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/XmlBuildingParser.class" afterPath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/XmlBuildingParser.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/XmlInput.class" afterPath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/XmlInput.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/XmlOutput.class" afterPath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/XmlOutput.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/test/SomeTest.class" afterPath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/test/SomeTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/gui/MainFrame.class" afterPath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/gui/MainFrame.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/gui/WallPanel.class" afterPath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/gui/WallPanel.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Point.java" afterPath="$PROJECT_DIR$/app/Point.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/RaportTest1.txt" afterPath="$PROJECT_DIR$/app/test/RaportTest1.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/SomeTest.java" afterPath="$PROJECT_DIR$/app/test/SomeTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/MinDistancePath.java" afterPath="$PROJECT_DIR$/app/MinDistancePath.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modul3.java" afterPath="$PROJECT_DIR$/app/Modul3.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/ServeClient.java" afterPath="$PROJECT_DIR$/app/ServeClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/XmlBuildingParser.java" afterPath="$PROJECT_DIR$/app/XmlBuildingParser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/test/SomeTest.java" afterPath="$PROJECT_DIR$/app/test/SomeTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/.idea/workspace.xml" afterPath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/Proiect-IP-2B5.iml" afterPath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/Proiect-IP-2B5.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/.idea/workspace.xml" afterPath="$PROJECT_DIR$/out/production/Proiect-IP-2B5/app/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,24 +42,12 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file leaf-file-name="Modul3.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Modul3.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-              <folding>
-                <element signature="e#0#470#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SomeTest.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/test/SomeTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="564">
-              <caret line="210" column="9" lean-forward="true" selection-start-line="210" selection-start-column="9" selection-end-line="210" selection-end-column="9" />
+            <state relative-caret-position="367">
+              <caret line="60" column="38" lean-forward="true" selection-start-line="60" selection-start-column="38" selection-end-line="60" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -48,18 +55,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Point.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Point.java">
+      <file leaf-file-name="building.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/building.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="490">
-              <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+            <state relative-caret-position="-164">
+              <caret line="0" column="27" lean-forward="false" selection-start-line="0" selection-start-column="27" selection-end-line="0" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.iml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/app.iml">
+      <file leaf-file-name="format_date_path.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/format_date_path.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -68,21 +75,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="XmlInput.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/XmlInput.java">
+      <file leaf-file-name="XmlOutput.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/XmlOutput.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="35" column="54" lean-forward="true" selection-start-line="35" selection-start-column="54" selection-end-line="35" selection-end-column="54" />
+            <state relative-caret-position="217">
+              <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="XmlBuildingParser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/XmlBuildingParser.java">
+      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="200" column="1" lean-forward="true" selection-start-line="200" selection-start-column="1" selection-end-line="200" selection-end-column="1" />
+            <state relative-caret-position="187">
+              <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ServeClient.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/ServeClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="635">
+              <caret line="78" column="69" lean-forward="true" selection-start-line="78" selection-start-column="69" selection-end-line="78" selection-end-column="69" />
               <folding />
             </state>
           </provider>
@@ -91,11 +108,11 @@
       <file leaf-file-name="MinTimePath.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/MinTimePath.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+            <state relative-caret-position="308">
+              <caret line="17" column="44" lean-forward="true" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
               <folding>
-                <element signature="e#113#114#0" expanded="true" />
-                <element signature="e#137#138#0" expanded="true" />
+                <element signature="e#199#200#0" expanded="true" />
+                <element signature="e#223#224#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -104,29 +121,32 @@
       <file leaf-file-name="MinDistancePath.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/MinDistancePath.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="415">
-              <caret line="81" column="1" lean-forward="false" selection-start-line="81" selection-start-column="1" selection-end-line="81" selection-end-column="1" />
+            <state relative-caret-position="242">
+              <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PathFinder.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/PathFinder.java">
+      <file leaf-file-name="XmlBuildingParser.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/XmlBuildingParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="94">
-              <caret line="5" column="3" lean-forward="false" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
+            <state relative-caret-position="154">
+              <caret line="296" column="25" lean-forward="true" selection-start-line="296" selection-start-column="25" selection-end-line="296" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ModelGenerator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/ModelGenerator.java">
+      <file leaf-file-name="Matrix.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Matrix.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="44">
-              <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-              <folding />
+            <state relative-caret-position="308">
+              <caret line="14" column="33" lean-forward="true" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="37" />
+              <folding>
+                <element signature="e#779#780#0" expanded="true" />
+                <element signature="e#821#822#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -144,13 +164,16 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Modul3.java" />
         <option value="$PROJECT_DIR$/app/SimplePath.java" />
         <option value="$PROJECT_DIR$/app/MinTimePath.java" />
         <option value="$PROJECT_DIR$/app/SomeTest.java" />
-        <option value="$PROJECT_DIR$/app/XmlBuildingParser.java" />
         <option value="$PROJECT_DIR$/app/Point.java" />
         <option value="$PROJECT_DIR$/app/test/SomeTest.java" />
+        <option value="$PROJECT_DIR$/app/MinDistancePath.java" />
+        <option value="$PROJECT_DIR$/app/Modul3.java" />
+        <option value="$PROJECT_DIR$/building.xml" />
+        <option value="$PROJECT_DIR$/app/XmlBuildingParser.java" />
+        <option value="$PROJECT_DIR$/app/ServeClient.java" />
       </list>
     </option>
   </component>
@@ -161,10 +184,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1" />
-    <option name="y" value="1" />
-    <option name="width" value="1918" />
-    <option name="height" value="1030" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1938" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -181,9 +204,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -244,18 +266,23 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="settings.editor.selected.configurable" value="project.propGUI" />
+    <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
+    <property name="js.eslint.eslintPackage" value="" />
+    <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="F:\INFO\IP\Proiect-IP-2B5\app\test" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SomeTest.testRawMatrix10">
+  <component name="RunManager" selected="Application.Unnamed">
     <configuration default="false" name="SomeTest.testRawMatrix8" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -347,32 +374,6 @@
       <option name="PACKAGE_NAME" value="app.test" />
       <option name="MAIN_CLASS_NAME" value="app.test.SomeTest" />
       <option name="METHOD_NAME" value="testRawMatrix9" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="SomeTest.testRawMatrix10" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="app.test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="Proiect-IP-2B5" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="app.test" />
-      <option name="MAIN_CLASS_NAME" value="app.test.SomeTest" />
-      <option name="METHOD_NAME" value="testRawMatrix10" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -623,6 +624,7 @@
       <setting name="passParentEnv" value="true" />
       <setting name="launchBrowser" value="true" />
       <setting name="launchBrowserUrl" value="" />
+      <setting name="depsClasspath" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -744,6 +746,12 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -759,20 +767,61 @@
     <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
       <method />
     </configuration>
-    <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.SomeTest.testRawMatrix8" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.SomeTest.testRawMatrix9" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.SomeTest.testRawMatrix3" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.SomeTest.testRawMatrix9 (1)" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.SomeTest.testRawMatrix10" />
+    <configuration default="false" name="Unnamed" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="app.Modul3" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Proiect-IP-2B5" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="SomeTest.testRawMatrix10" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="app.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="Proiect-IP-2B5" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="app.test" />
+      <option name="MAIN_CLASS_NAME" value="app.test.SomeTest" />
+      <option name="METHOD_NAME" value="testRawMatrix10" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <list size="6">
+      <item index="0" class="java.lang.String" itemvalue="Application.Unnamed" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.SomeTest.testRawMatrix10" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.SomeTest.testRawMatrix8" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.SomeTest.testRawMatrix9" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.SomeTest.testRawMatrix3" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.SomeTest.testRawMatrix9 (1)" />
     </list>
     <recent_temporary>
-      <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.SomeTest.testRawMatrix10" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.SomeTest.testRawMatrix9 (1)" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.SomeTest.testRawMatrix3" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.SomeTest.testRawMatrix9" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.SomeTest.testRawMatrix8" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="JUnit.SomeTest.testRawMatrix9 (1)" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.SomeTest.testRawMatrix3" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.SomeTest.testRawMatrix9" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.SomeTest.testRawMatrix8" />
       </list>
     </recent_temporary>
   </component>
@@ -790,24 +839,25 @@
       <option name="presentableId" value="Default" />
       <updated>1496044855084</updated>
       <workItem from="1496044856702" duration="5006000" />
+      <workItem from="1496482564669" duration="13596000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="SomeTest_testRawMatrix10 - 2017.05.30 at 00h 53m 39s.xml">
+    <history-entry file="SomeTest_testRawMatrix10 - 2017.06.03 at 12h 36m 17s.xml">
       <configuration name="SomeTest.testRawMatrix10" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SomeTest_testRawMatrix3 - 2017.05.29 at 11h 29m 51s.xml">
-      <configuration name="SomeTest.testRawMatrix3" configurationId="JUnit" />
+    <history-entry file="SomeTest_testRawMatrix10 - 2017.06.03 at 12h 37m 51s.xml">
+      <configuration name="SomeTest.testRawMatrix10" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SomeTest_testRawMatrix5 - 2017.05.29 at 11h 20m 47s.xml">
-      <configuration name="SomeTest.testRawMatrix5" configurationId="JUnit" />
+    <history-entry file="SomeTest_testRawMatrix10 - 2017.06.03 at 12h 38m 49s.xml">
+      <configuration name="SomeTest.testRawMatrix10" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SomeTest_testRawMatrix6 - 2017.05.29 at 11h 21m 01s.xml">
-      <configuration name="SomeTest.testRawMatrix6" configurationId="JUnit" />
+    <history-entry file="SomeTest_testRawMatrix10 - 2017.06.03 at 12h 42m 01s.xml">
+      <configuration name="SomeTest.testRawMatrix10" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SomeTest_testRawMatrix7 - 2017.05.29 at 11h 27m 38s.xml">
-      <configuration name="SomeTest.testRawMatrix7" configurationId="JUnit" />
+    <history-entry file="SomeTest_testRawMatrix10 - 2017.06.03 at 12h 42m 08s.xml">
+      <configuration name="SomeTest.testRawMatrix10" configurationId="JUnit" />
     </history-entry>
     <history-entry file="SomeTest_testRawMatrix8 - 2017.05.29 at 11h 28m 15s.xml">
       <configuration name="SomeTest.testRawMatrix8" configurationId="JUnit" />
@@ -826,41 +876,41 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5006000" />
+    <option name="totallyTimeSpent" value="18602000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="1" width="1918" height="1030" extended-state="0" />
+    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922733" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19148937" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25157896" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32858709" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21358159" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2515625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -880,73 +930,30 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/SimplePath.java">
+    <entry file="file://$PROJECT_DIR$/app/Modul3.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="18" column="14" lean-forward="false" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
+        <state relative-caret-position="132">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/XmlInput.java">
+    <entry file="file://$PROJECT_DIR$/app/test/SomeTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="35" column="54" lean-forward="true" selection-start-line="35" selection-start-column="54" selection-end-line="35" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modul3.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#470#0" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/ModelGenerator.java">
+    <entry file="file://$PROJECT_DIR$/app/Point.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/MinDistancePath.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="81" column="1" lean-forward="false" selection-start-line="81" selection-start-column="1" selection-end-line="81" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/MinTimePath.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding>
-            <element signature="e#113#114#0" expanded="true" />
-            <element signature="e#137#138#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/PathFinder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="5" column="3" lean-forward="false" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/XmlBuildingParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="200" column="1" lean-forward="true" selection-start-line="200" selection-start-column="1" selection-end-line="200" selection-end-column="1" />
+        <state relative-caret-position="638">
+          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -959,21 +966,245 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Point.java">
+    <entry file="file://$PROJECT_DIR$/app/XmlInput.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+        <state relative-caret-position="682">
+          <caret line="35" column="54" lean-forward="true" selection-start-line="35" selection-start-column="54" selection-end-line="35" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/XmlBuildingParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4246">
+          <caret line="200" column="1" lean-forward="true" selection-start-line="200" selection-start-column="1" selection-end-line="200" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/MinTimePath.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="11" column="5" lean-forward="true" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/MinDistancePath.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1672">
+          <caret line="81" column="1" lean-forward="false" selection-start-line="81" selection-start-column="1" selection-end-line="81" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/PathFinder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/ModelGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/XmlInput.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="682">
+          <caret line="35" column="54" lean-forward="false" selection-start-line="35" selection-start-column="54" selection-end-line="35" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/ModelGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/PathFinder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/app.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/test/SomeTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="564">
-          <caret line="210" column="9" lean-forward="true" selection-start-line="210" selection-start-column="9" selection-end-line="210" selection-end-column="9" />
+        <state relative-caret-position="396">
+          <caret line="216" column="16" lean-forward="false" selection-start-line="216" selection-start-column="16" selection-end-line="216" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/internal/requests/FilterRequest.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="22" column="31" lean-forward="true" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/net/URL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="438" column="0" lean-forward="false" selection-start-line="438" selection-start-column="0" selection-end-line="438" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/net/DualStackPlainSocketImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="105" column="0" lean-forward="false" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Point.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="14" column="19" lean-forward="true" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/net/ServerSocket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="127" column="0" lean-forward="false" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Cell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="26" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/SimplePath.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/ServerM2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/MinTimePath.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="17" column="44" lean-forward="true" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+          <folding>
+            <element signature="e#199#200#0" expanded="true" />
+            <element signature="e#223#224#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/MinDistancePath.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Matrix.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="14" column="33" lean-forward="true" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="37" />
+          <folding>
+            <element signature="e#779#780#0" expanded="true" />
+            <element signature="e#821#822#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/format_date_path.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/XmlOutput.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modul3.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="60" column="38" lean-forward="true" selection-start-line="60" selection-start-column="38" selection-end-line="60" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/building.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-164">
+          <caret line="0" column="27" lean-forward="false" selection-start-line="0" selection-start-column="27" selection-end-line="0" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/XmlBuildingParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="296" column="25" lean-forward="true" selection-start-line="296" selection-start-column="25" selection-end-line="296" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/ServeClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="635">
+          <caret line="78" column="69" lean-forward="true" selection-start-line="78" selection-start-column="69" selection-end-line="78" selection-end-column="69" />
+          <folding />
         </state>
       </provider>
     </entry>

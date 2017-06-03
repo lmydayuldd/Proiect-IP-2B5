@@ -33,16 +33,34 @@ class ServeClient extends Thread {
             Point source = new Point((int) (10 * in.nextNumber()), (int) (10 * in.nextNumber()), (int) (in.nextNumber()));
             Point dest = new Point((int) (10 * in.nextNumber()), (int) (10 * in.nextNumber()), (int) (in.nextNumber()));
 
+            System.out.println(source.getX());
+            System.out.println(source.getY());
+            System.out.println(source.getFloor());
+            System.out.println(dest.getX());
+            System.out.println(dest.getY());
+            System.out.println(dest.getFloor());
 
-            //apel functie minunata;
+            //apel functie minunata; slab
             Matrix matrix = Modul3.currentMatrix;
+            for(int floor=0; floor<4 && false; ++floor){
+                System.out.println(floor);
+                for(int i=0; i<450; ++i) {
+                    for (int j = 0; j < 450; ++j) {
+                        System.out.print(matrix.getCell(floor, i, j).getWalls()+" ");
+                    }
+                    System.out.println();
+                }
+                System.out.println();
+            }
             ArrayList<Point> ans = new MinTimePath(matrix).execute(source, dest);
-            
+
+
+
             XmlOutput x = new XmlOutput(ans);
-            x.createXml("asd.xml");
+            x.createXml("D:/format_date_path.xml");
             //Parsam ans si transformam in ceva (XML ?)
             // ca sa le trimitem inapoi drumul
-            out.write((int) ans.size());
+
         } catch (Exception e) {
             e.printStackTrace();
         }

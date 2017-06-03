@@ -1,0 +1,83 @@
+		ArrayList<Point> points = new ArrayList<>(10);
+
+        points.add(new Point(1,2,1));
+        points.add(new Point(3,4,2));
+        points.add(new Point(6,5,2));
+        points.add(new Point(7,8,2));
+        points.add(new Point(1,2,2));
+        points.add(new Point(15,2,2));
+        points.add(new Point(7,2,3));
+        points.add(new Point(8,2,3));
+        points.add(new Point(5,2,3));
+        points.add(new Point(3,2,3));
+        points.add(new Point(2,2,3));
+        points.add(new Point(15,2,3));
+
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<floors>
+	<floor number="1">
+		<type type="path">
+			<x1>0.1</x1>
+			<y1>0.2</y1>
+		</type>
+	</floor>
+	<floor number="2">
+		<type type="path">
+			<x1>0.3</x1>
+			<y1>0.4</y1>
+			<x2>0.6</x2>
+			<y2>0.5</y2>
+		</type>
+		<type type="path">
+			<x1>0.6</x1>
+			<y1>0.5</y1>
+			<x2>0.7</x2>
+			<y2>0.8</y2>
+		</type>
+		<type type="path">
+			<x1>0.7</x1>
+			<y1>0.8</y1>
+			<x2>0.1</x2>
+			<y2>0.2</y2>
+		</type>
+		<type type="path">
+			<x1>0.1</x1>
+			<y1>0.2</y1>
+			<x2>1.5</x2>
+			<y2>0.2</y2>
+		</type>
+	</floor>
+	<floor number="3">
+		<type type="path">
+			<x1>0.7</x1>
+			<y1>0.2</y1>
+			<x2>0.8</x2>
+			<y2>0.2</y2>
+		</type>
+		<type type="path">
+			<x1>0.8</x1>
+			<y1>0.2</y1>
+			<x2>0.5</x2>
+			<y2>0.2</y2>
+		</type>
+		<type type="path">
+			<x1>0.5</x1>
+			<y1>0.2</y1>
+			<x2>0.3</x2>
+			<y2>0.2</y2>
+		</type>
+		<type type="path">
+			<x1>0.3</x1>
+			<y1>0.2</y1>
+			<x2>0.2</x2>
+			<y2>0.2</y2>
+		</type>
+		<type type="path">
+			<x1>0.2</x1>
+			<y1>0.2</y1>
+			<x2>1.5</x2>
+			<y2>0.2</y2>
+		</type>
+	</floor>
+</floors>

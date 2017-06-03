@@ -201,21 +201,21 @@ public class SomeTest {
 
         assertTrue(1 == xmat[3][2][70]);
     }
-    @Test
-    public void testRawMatrix10(){
-        XmlBuildingParser sample = new XmlBuildingParser("exXML");
-        sample.fillWall(2, 2, 2, 2, 3, 1);
-
-        int[][][] xmat = sample.getRawMatrix();
-
-        for(int i=1; i<=11; ++i) {
-            for (int j = 1; j <= 11; ++j)
-                System.out.print(xmat[3][i][j] + " ");
-            System.out.println();
-        }
-
-        assertTrue(1 == xmat[3][2][2]);
-    }
+//    @Test
+//    public void testRawMatrix10(){
+//        XmlBuildingParser sample = new XmlBuildingParser("exXML");
+//        sample.fillWall(2, 2, 2, 2, 3, 1);
+//
+//        int[][][] xmat = sample.getRawMatrix();
+//
+//        for(int i=1; i<=11; ++i) {
+//            for (int j = 1; j <= 11; ++j)
+//                System.out.print(xmat[3][i][j] + " ");
+//            System.out.println();
+//        }
+//
+//        assertTrue(1 == xmat[3][2][2]);
+//    }
     //part3 Test Matrix
     @Test
     public void testMatrix1(){

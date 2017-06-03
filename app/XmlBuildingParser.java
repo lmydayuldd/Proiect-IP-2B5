@@ -22,13 +22,15 @@ public class XmlBuildingParser {
     private int maxFloor = 0;
 
     private static int STAIRS_NUMBER = 3;
+    private static int DOOR_NUMBER = 7;
+    private static int WALL_NUMBER = 1;
 
     private final String pathXml;
     private static int[][][] rawMatrix = new int[Matrix.LEVEL_COUNT][Matrix.DIMENSION][Matrix.DIMENSION];
 
     public XmlBuildingParser(String pathXml) {
-        maxLength = 500;
-        maxWidth = 500;
+        maxLength = 1000;
+        maxWidth = 1000;
         maxFloor = 6;
         this.pathXml = pathXml; // path where to read XML file
     }
@@ -71,6 +73,7 @@ public class XmlBuildingParser {
 
 
         rawMatrix = new int[Matrix.LEVEL_COUNT][Matrix.DIMENSION][Matrix.DIMENSION];
+        int[][][] huiMatrix = new int[Matrix.LEVEL_COUNT][Matrix.DIMENSION][Matrix.DIMENSION];
 
         //set rawMatrix with 0
         // rawMatrix is used to the process of builing the 3D matrix
@@ -110,7 +113,7 @@ public class XmlBuildingParser {
 
                     boolean isStairs = false;
 
-                    if (nodeName.getTextContent().toLowerCase().contains(new String("Stairs").toLowerCase())) {
+                    if (nodeName.getTextContent().toLowerCase().contains(new String("s").toLowerCase())) {
                         isStairs = true;
                     }
 
@@ -126,12 +129,14 @@ public class XmlBuildingParser {
                         int x2 = (Integer.parseInt(elementType.getElementsByTagName("x2").item(0).getTextContent().toString().trim())) * 10;
                         int y2 = (Integer.parseInt(elementType.getElementsByTagName("y2").item(0).getTextContent().toString().trim())) * 10;
                         //System.out.println(x1+" "+y1+" "+x2+" "+y2);
+
+
                         if (type.equals("wall") || type.equals("stairs")) {
-                            fillWall(x1, y1, x2, y2, floor, 1);
+                            fillWall(x1, y1, x2, y2, floor, WALL_NUMBER);
                         }
 
                         if (type.equals("door") && !isStairs) {
-                            fillWall(x1, y1, x2, y2, floor, 0);
+                            fillWall(x1, y1, x2, y2, floor, DOOR_NUMBER);
                         }
 
                         // System.out.println(isStairs+" sdaj,njasdkadsjsjakjdsa");
@@ -155,6 +160,13 @@ public class XmlBuildingParser {
         return (((x - x1)) * ((y2 - y1)) / ((x2 - x1)) + y1); // some formula for nerds
     }
 
+    //check_rewrite return true if the value x can rewrite value y
+    boolean check_rewrite(int x, int y) {
+        if (x == WALL_NUMBER && y == DOOR_NUMBER) return false;
+        if (x == WALL_NUMBER && y == STAIRS_NUMBER) return false;
+        return true;
+    }
+
     /*
         We use Equation of a line to create the walls
         (x - x1) / (x2 -x1 ) = (y - y1) / (y2 - y1)
@@ -170,20 +182,27 @@ public class XmlBuildingParser {
             // }
             for (int y = a1; y <= a2; ++y) {
                 int var_x = getX(x1, y1, x2, y2, y);
-                rawMatrix[floor][var_x][y] = value;
-                if (var_x !=0){
-                    rawMatrix[floor][var_x-1][y] = value;
-                    rawMatrix[floor][var_x-1][y+1] = value;
-                    if(y!=0)rawMatrix[floor][var_x-1][y-1] = value;
+                if (check_rewrite(value, rawMatrix[floor][var_x][y])) rawMatrix[floor][var_x][y] = value;
+                if (var_x != 0) {
+                    if (check_rewrite(value, rawMatrix[floor][var_x - 1][y])) rawMatrix[floor][var_x - 1][y] = value;
+                    if (check_rewrite(value, rawMatrix[floor][var_x - 1][y + 1]))
+                        rawMatrix[floor][var_x - 1][y + 1] = value;
+                    if (y != 0)
+                        if (check_rewrite(value, rawMatrix[floor][var_x - 1][y - 1]))
+                            rawMatrix[floor][var_x - 1][y - 1] = value;
                 }
-                if(y!=0){
-                    rawMatrix[floor][var_x][y-1] = value;
-                    if(var_x!=0)rawMatrix[floor][var_x-1][y-1] = value;
-                    rawMatrix[floor][var_x+1][y-1] = value;
+                if (y != 0) {
+                    if (check_rewrite(value, rawMatrix[floor][var_x][y - 1])) rawMatrix[floor][var_x][y - 1] = value;
+                    if (check_rewrite(value, rawMatrix[floor][var_x + 1][y - 1]))
+                        rawMatrix[floor][var_x + 1][y - 1] = value;
+                    if (var_x != 0)
+                        if (check_rewrite(value, rawMatrix[floor][var_x - 1][y - 1]))
+                            rawMatrix[floor][var_x - 1][y - 1] = value;
                 }
-                rawMatrix[floor][var_x][y+1] = value;
-                rawMatrix[floor][var_x+1][y] = value;
-                rawMatrix[floor][var_x+1][y+1] = value;
+                if (check_rewrite(value, rawMatrix[floor][var_x][y + 1])) rawMatrix[floor][var_x][y + 1] = value;
+                if (check_rewrite(value, rawMatrix[floor][var_x + 1][y])) rawMatrix[floor][var_x + 1][y] = value;
+                if (check_rewrite(value, rawMatrix[floor][var_x + 1][y + 1]))
+                    rawMatrix[floor][var_x + 1][y + 1] = value;
             }
         } else {
             //   if (x1>x2) {
@@ -194,20 +213,27 @@ public class XmlBuildingParser {
             //  }
             for (int x = a1; x <= a2; ++x) {
                 int var_y = getY(x1, y1, x2, y2, x);
-                rawMatrix[floor][x][var_y] = value;
-                if(var_y!=0){
-                    rawMatrix[floor][x+1][var_y-1]=value;
-                    rawMatrix[floor][x][var_y-1]=value;
-                    if(x!=0) rawMatrix[floor][x-1][var_y-1]=value;
+                if (check_rewrite(value, rawMatrix[floor][x][var_y])) rawMatrix[floor][x][var_y] = value;
+                if (var_y != 0) {
+                    if (check_rewrite(value, rawMatrix[floor][x + 1][var_y - 1]))
+                        rawMatrix[floor][x + 1][var_y - 1] = value;
+                    if (check_rewrite(value, rawMatrix[floor][x][var_y - 1])) rawMatrix[floor][x][var_y - 1] = value;
+                    if (x != 0)
+                        if (check_rewrite(value, rawMatrix[floor][x - 1][var_y - 1]))
+                            rawMatrix[floor][x - 1][var_y - 1] = value;
                 }
-                if(x!=0){
-                    rawMatrix[floor][x-1][var_y]=value;
-                    rawMatrix[floor][x-1][var_y+1]=value;
-                    if (var_y!=0)rawMatrix[floor][x-1][var_y-1]=value;
+                if (x != 0) {
+                    if (check_rewrite(value, rawMatrix[floor][x - 1][var_y])) rawMatrix[floor][x - 1][var_y] = value;
+                    if (check_rewrite(value, rawMatrix[floor][x - 1][var_y + 1]))
+                        rawMatrix[floor][x - 1][var_y + 1] = value;
+                    if (var_y != 0)
+                        if (check_rewrite(value, rawMatrix[floor][x - 1][var_y - 1]))
+                            rawMatrix[floor][x - 1][var_y - 1] = value;
                 }
-                rawMatrix[floor][x][var_y+1]=value;
-                rawMatrix[floor][x+1][var_y]=value;
-                rawMatrix[floor][x+1][var_y+1]=value;
+                if (check_rewrite(value, rawMatrix[floor][x][var_y + 1])) rawMatrix[floor][x][var_y + 1] = value;
+                if (check_rewrite(value, rawMatrix[floor][x + 1][var_y])) rawMatrix[floor][x + 1][var_y] = value;
+                if (check_rewrite(value, rawMatrix[floor][x + 1][var_y + 1]))
+                    rawMatrix[floor][x + 1][var_y + 1] = value;
             }
         }
     }
@@ -240,42 +266,44 @@ public class XmlBuildingParser {
                     int x = 0; // value for setting wall positioning
 
                     if (i != 0) {
-                        if (a[etaj][i - 1][j] == 1) {
-                            x += 8; // west wall
+                        if (a[etaj][i - 1][j] == WALL_NUMBER) {
+                            x |= 8; // west wall
                         }
                     }
 
                     if (i != maxWidth - 1) {
-                        if (a[etaj][i + 1][j] == 1) {
-                            x += 16; // east wall
+                        if (a[etaj][i + 1][j] == WALL_NUMBER) {
+                            x |= 16; // east wall
                         }
                     }
 
                     if (j != 0) {
-                        if (a[etaj][i][j - 1] == 1) {
-                            x += 4; // south wall
+                        if (a[etaj][i][j - 1] == WALL_NUMBER) {
+                            x |= 4; // south wall
                         }
                     }
 
                     if (j != maxLength - 1) {
-                        if (a[etaj][i][j + 1] == 1) {
-                            x += 32; // north wall
+                        if (a[etaj][i][j + 1] == WALL_NUMBER) {
+                            x |= 32; // north wall
                         }
 
                     }
-                    
-                    x += 3;
+
+                    x |= 3;
                     if (a[etaj][i][j] == STAIRS_NUMBER) {
-                        if (etaj != maxFloor) {
-                            x -= 2;
+                        if (etaj != maxFloor - 1 && a[etaj + 1][i][j] == STAIRS_NUMBER) {
+                            x ^= 2;
                         }
-                        if (etaj != 0) {
-                            x -= 1;
+
+
+                        if (etaj != 0 && a[etaj - 1][i][j] == STAIRS_NUMBER) {
+                            x ^= 1;
                         }
                     }
                     //System.out.println("Cellll"+i+" " + j + " " + etaj + " valoare: "+ x);
                     int isFree = 1;
-                    if (a[etaj][i][j] == 1) {
+                    if (a[etaj][i][j] == WALL_NUMBER) {
                         isFree = 0;
                     }
                     Cell cell = new Cell(x, isFree);
