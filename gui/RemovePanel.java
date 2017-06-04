@@ -17,10 +17,10 @@ import java.io.IOException;
  */
 public class RemovePanel extends JPanel {
     private XmlTable xtab;
-    private JButton rb = new JButton("Remove selected element");
+    private JButton rb;
     public RemovePanel(XmlTable arg) throws IOException, IOException, SAXException, ParserConfigurationException{
         this.xtab= arg;
-        this.rb=new RemoveButton("Remove selected node");
+         rb = new JButton("Remove selected element");
         this.swing();
     }
     public void swing() throws IOException, SAXException, ParserConfigurationException {
@@ -38,11 +38,20 @@ public class RemovePanel extends JPanel {
         p1.add(sc);
         p1.setPreferredSize(new Dimension(624,512));
         rb.addActionListener(new ActionListener() {
+            //Aici Victor!!!!!!
             @Override
             public void actionPerformed(ActionEvent e) {
+                
+                DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) jj
+                        .getLastSelectedPathComponent();
+                String selectedNodeName = selectedNode.toString();
+                String roomName = null;
+                System.out.println("{" + selectedNodeName + ", room = " + roomName + "}");
+                
                 DefaultTreeModel model = (DefaultTreeModel) jj.getModel();
                 DefaultMutableTreeNode mnode = (DefaultMutableTreeNode) jj.getLastSelectedPathComponent();
                 model.removeNodeFromParent(mnode);
+
             }
         });
         p2.add(rb);
