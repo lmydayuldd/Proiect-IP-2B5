@@ -28,7 +28,7 @@ public class Modul3 {
      */
     static MainFrame mf;
     static Matrix currentMatrix;
-    static final String PATH = "building.xml";
+    public static final String PATH = "src/res/building.xml";
     /**
      * 
      * @return xml file name
@@ -57,7 +57,7 @@ public class Modul3 {
         //mf = new MainFrame();
         
         
-        getXML(PATH);
+        //getXML(PATH);
         XmlBuildingParser x = new XmlBuildingParser(PATH);
         currentMatrix = x.getMatrix();
        

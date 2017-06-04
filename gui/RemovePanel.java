@@ -17,7 +17,7 @@ import java.io.IOException;
  */
 public class RemovePanel extends JPanel {
     private XmlTable xtab;
-    private RemoveButton rb;
+    private JButton rb = new JButton("Remove selected element");
     public RemovePanel(XmlTable arg) throws IOException, IOException, SAXException, ParserConfigurationException{
         this.xtab= arg;
         this.rb=new RemoveButton("Remove selected node");
@@ -34,9 +34,9 @@ public class RemovePanel extends JPanel {
         jj.addTreeSelectionListener(new SelectionListener());
         jj.setEditable(true);
         JScrollPane sc = new JScrollPane(jj);
-        sc.setPreferredSize(new Dimension(800,512));
+        sc.setPreferredSize(new Dimension(600,512));
         p1.add(sc);
-        p1.setPreferredSize(new Dimension(1024,512));
+        p1.setPreferredSize(new Dimension(624,512));
         rb.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

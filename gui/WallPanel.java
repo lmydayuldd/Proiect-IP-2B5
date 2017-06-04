@@ -90,9 +90,9 @@ class WallPanel extends JPanel {
 
         // Starting to initialize the three inside Panels: topPane, addWallPane and removeWallPane
         topPane = new JPanel();
-        topPane.setPreferredSize(new Dimension(1000, 80));
+        topPane.setPreferredSize(new Dimension(600, 80));
         addWallPane = new JPanel();
-        addWallPane.setPreferredSize(new Dimension(1000, 100));
+        addWallPane.setPreferredSize(new Dimension(600, 100));
         removeWallPane = new JPanel();
 
         //Adding components of topPane
@@ -130,7 +130,7 @@ class WallPanel extends JPanel {
         //Adding to the main frame the bottom panel which contains the table
         // with the walls data
        
-        setPreferredSize(new Dimension(1024, 190));
+        setPreferredSize(new Dimension(600, 190));
         setBorder(border);
         //setBackground(Color.DARK_GRAY);
 
