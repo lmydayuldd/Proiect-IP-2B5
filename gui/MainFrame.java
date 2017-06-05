@@ -29,6 +29,7 @@ public class MainFrame extends JFrame {
     StairPanel stairPanel;
     DoorPanel doorPanel;
     JPanel leftPanel, rightPanel;
+    JLabel eroare;
     JButton validateButton, xmlButton;
     
     WindowPanel windowPanel;
@@ -43,6 +44,8 @@ public class MainFrame extends JFrame {
         XmlTable xmlt = new XmlTable("src/res/building.xml");
         RemovePanel rpane = new RemovePanel(xmlt);
         rightPanel.add(rpane);
+        eroare = new JLabel("No err so far");
+        rightPanel.add(eroare);
         windowPanel = new WindowPanel();
         stairPanel = new StairPanel();
         doorPanel = new DoorPanel();
@@ -72,6 +75,7 @@ public class MainFrame extends JFrame {
                     PostMethod post = new PostMethod("http://localhost:4500/finalSave");
                     HttpClient httpClient = new HttpClient();
                     int resp = httpClient.executeMethod(post);
+                    eroare.setText(post.getResponseBodyAsString());
                     System.out.println("Am cerut validarea, iar raspunsul a fost: " + resp);
                 } catch (IOException ex) {
                     Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);

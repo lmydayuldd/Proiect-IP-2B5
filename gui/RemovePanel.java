@@ -30,6 +30,7 @@ public class RemovePanel extends JPanel {
     private XmlTable xtab;
     private JButton rb;
     
+    
     public RemovePanel(XmlTable arg) throws IOException, IOException, SAXException, ParserConfigurationException{
         this.xtab= arg;
          rb = new JButton("Remove selected element");
