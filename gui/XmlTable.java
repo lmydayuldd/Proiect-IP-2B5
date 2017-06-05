@@ -118,7 +118,11 @@ public class XmlTable {
                         DefaultMutableTreeNode point;
                         String[] arguments;
                         arguments = new String[]{type, String.valueOf(x1), String.valueOf(y1), String.valueOf(x2), String.valueOf(y2)};
-                        point = new DefaultMutableTreeNode("type: " + arguments[0] +", x1: "+ arguments[1] +  ", y1: " + arguments[2] + ", x2: " + arguments[3] + ", y2: " + arguments[4]);
+                        point = new DefaultMutableTreeNode("\"type\": \"" + arguments[0] +"\""
+                                + ", \"x1\": " + arguments[1] 
+                                + ", \"y1\": " + arguments[2] 
+                                + ", \"x2\": " + arguments[3] 
+                                + ", \"y2\": " + arguments[4]);
                         rr.add(point);
                         if (type.equals("wall") || type.equals("stairs"))
                         {
