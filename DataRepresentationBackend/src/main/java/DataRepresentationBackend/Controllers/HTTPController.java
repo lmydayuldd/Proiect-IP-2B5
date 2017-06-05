@@ -72,7 +72,7 @@ public class HTTPController {
     }
 
     @CrossOrigin
-    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<Message> deleteTemporaryData(@RequestBody TemporaryDataDelete data) {
         try {
@@ -91,7 +91,7 @@ public class HTTPController {
     }
 
     @CrossOrigin
-    @RequestMapping(value = "/deleteRoom", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/deleteRoom", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<Message> deleteRoom(@RequestBody SingleObject room) {
         try {
@@ -108,7 +108,7 @@ public class HTTPController {
     }
 
     @CrossOrigin
-    @RequestMapping(value = "/deleteFloor", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/deleteFloor", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<Message> deleteFloor(@RequestBody SingleObject floor) {
         try {

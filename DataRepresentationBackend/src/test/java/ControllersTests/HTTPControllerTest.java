@@ -44,39 +44,19 @@ public class HTTPControllerTest {
     }
 
     @Test
-    public void checkDatShouldReturnFalseIfThisDataDoesNotExists() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/checkExists")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\n" +
-                        "\t\"type\" : 6,\n" +
-                        "\t\"room\" : \"Timisoara\",\n" +
-                        "\t\"x1\" : 1,\n" +
-                        "\t\"y1\" : 2,\n" +
-                        "\t\"x2\" : 3,\n" +
-                        "\t\"y2\" : 4,\n" +
-                        "\t\"floor\" : 5,\n" +
-                        "\t\"isExitWay\" : 3,\n" +
-                        "\t\"isExterior\": 6\n" +
-                        "}")
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.message").value("Data does not exists in database."))
-        ;
-    }
-
-    @Test
     public void addDataShouldReturnInsertOperationSuccess() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/add")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
-                        "\t\"type\" : 6,\n" +
-                        "\t\"room\" : \"Timisoara\",\n" +
+                        "\t\"type\" : \"door\",\n" +
+                        "\t\"room\" : \"x\",\n" +
                         "\t\"x1\" : 1,\n" +
                         "\t\"y1\" : 2,\n" +
                         "\t\"x2\" : 3,\n" +
-                        "\t\"y2\" : 4,\n" +
-                        "\t\"floor\" : 5,\n" +
-                        "\t\"isExitWay\" : 3,\n" +
-                        "\t\"isExterior\": 4\n" +
+                        "\t\"y2\" : 3,\n" +
+                        "\t\"floor\" : 0,\n" +
+                        "\t\"isExitWay\" : 2,\n" +
+                        "\t\"isExterior\" : 3\n" +
                         "}")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.message").value("Insert operation success."))
@@ -88,15 +68,15 @@ public class HTTPControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.post("/checkExists")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
-                        "\t\"type\" : 6,\n" +
-                        "\t\"room\" : \"Timisoara\",\n" +
+                        "\t\"type\" : \"door\",\n" +
+                        "\t\"room\" : \"x\",\n" +
                         "\t\"x1\" : 1,\n" +
                         "\t\"y1\" : 2,\n" +
                         "\t\"x2\" : 3,\n" +
-                        "\t\"y2\" : 4,\n" +
-                        "\t\"floor\" : 5,\n" +
-                        "\t\"isExitWay\" : 3,\n" +
-                        "\t\"isExterior\": 4\n" +
+                        "\t\"y2\" : 3,\n" +
+                        "\t\"floor\" : 0,\n" +
+                        "\t\"isExitWay\" : 2,\n" +
+                        "\t\"isExterior\" : 3\n" +
                         "}")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.message").value("Data exists in database."))
@@ -105,18 +85,16 @@ public class HTTPControllerTest {
 
     @Test
     public void deleteDataShouldReturnOKRequestIfDataCanBeDeleted() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/delete")
+        mockMvc.perform(MockMvcRequestBuilders.post("/delete")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
-                        "\t\"type\" : 6,\n" +
-                        "\t\"room\" : \"Timisoara\",\n" +
+                        "\t\"type\" : \"door\",\n" +
+                        "\t\"room\" : \"x\",\n" +
                         "\t\"x1\" : 1,\n" +
                         "\t\"y1\" : 2,\n" +
                         "\t\"x2\" : 3,\n" +
-                        "\t\"y2\" : 4,\n" +
-                        "\t\"floor\" : 5,\n" +
-                        "\t\"isExitWay\" : 3,\n" +
-                        "\t\"isExterior\": 4\n" +
+                        "\t\"y2\" : 3,\n" +
+                        "\t\"floor\" : 0\n" +
                         "}")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -124,19 +102,39 @@ public class HTTPControllerTest {
     }
 
     @Test
-    public void deleteDataShouldReturnBadRequestIfDataDoesNotExists() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/delete")
+    public void checkDatShouldReturnFalseIfThisDataDoesNotExists() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/checkExists")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
-                        "\t\"type\" : 6,\n" +
-                        "\t\"room\" : \"Timisoara\",\n" +
+                        "\t\"type\" : \"door\",\n" +
+                        "\t\"room\" : \"testtesttestetest\",\n" +
                         "\t\"x1\" : 1,\n" +
                         "\t\"y1\" : 2,\n" +
                         "\t\"x2\" : 3,\n" +
-                        "\t\"y2\" : 4,\n" +
-                        "\t\"floor\" : 5,\n" +
-                        "\t\"isExitWay\" : 3,\n" +
-                        "\t\"isExterior\": 214\n" +
+                        "\t\"y2\" : 3,\n" +
+                        "\t\"floor\" : 0,\n" +
+                        "\t\"isExitWay\" : 2,\n" +
+                        "\t\"isExterior\" : 3\n" +
+                        "}")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.message").value("Data does not exists in database."))
+        ;
+    }
+
+    @Test
+    public void deleteDataShouldReturnBadRequestIfDataDoesNotExists() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/delete")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\n" +
+                        "\t\"type\" : \"erdhgfg\",\n" +
+                        "\t\"room\" : \"x\",\n" +
+                        "\t\"x1\" : 1,\n" +
+                        "\t\"y1\" : 2,\n" +
+                        "\t\"x2\" : 3,\n" +
+                        "\t\"y2\" : 3,\n" +
+                        "\t\"floor\" : 0,\n" +
+                        "\t\"isExitWay\" : 2,\n" +
+                        "\t\"isExterior\" : 3\n" +
                         "}")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
@@ -187,7 +185,7 @@ public class HTTPControllerTest {
 
     @Test
     public void deleteDataShouldReturnBadRequestIfDataJsonIsInvalid() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/delete")
+        mockMvc.perform(MockMvcRequestBuilders.post("/delete")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
                         "\t\"type\" : 6,\n" +
@@ -207,7 +205,7 @@ public class HTTPControllerTest {
 
     @Test
     public void deleteRoomShouldReturnBadRequestIfDataJsonIsInvalid() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/deleteRoom")
+        mockMvc.perform(MockMvcRequestBuilders.post("/deleteRoom")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
                         "\t\"nme\" : \"sdad\"\n" +
@@ -219,7 +217,7 @@ public class HTTPControllerTest {
 
     @Test
     public void deleteFloorShouldReturnBadRequestIfDataJsonIsInvalid() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/deleteFloor")
+        mockMvc.perform(MockMvcRequestBuilders.post("/deleteFloor")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
                         "\t\"nme\" : \"sdad\"\n" +
@@ -253,7 +251,7 @@ public class HTTPControllerTest {
 
     @Test
     public void deleteReturnMethodNotAllowedIfWrongHttpRequest() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/delete")
+        mockMvc.perform(MockMvcRequestBuilders.put("/delete")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{}")
                 .accept(MediaType.APPLICATION_JSON))
@@ -283,7 +281,7 @@ public class HTTPControllerTest {
 
     @Test
     public void deleteRoomShouldReturnMethodNotAllowedIfWrongHttpRequest() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/deleteRoom")
+        mockMvc.perform(MockMvcRequestBuilders.put("/deleteRoom")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{}")
                 .accept(MediaType.APPLICATION_JSON))
@@ -293,7 +291,7 @@ public class HTTPControllerTest {
 
     @Test
     public void deleteFloorShouldReturnMethodNotAllowedIfWrongHttpRequest() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/deleteFloor")
+        mockMvc.perform(MockMvcRequestBuilders.put("/deleteFloor")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{}")
                 .accept(MediaType.APPLICATION_JSON))
