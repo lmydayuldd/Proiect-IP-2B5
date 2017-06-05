@@ -1,5 +1,7 @@
 package gui;
 
+import app.Modul3;
+import com.sun.org.apache.xalan.internal.xsltc.compiler.util.StringStack;
 import org.xml.sax.SAXException;
 
 import javax.swing.*;
@@ -16,9 +18,13 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableColumnModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.DeleteMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
@@ -29,11 +35,59 @@ import org.apache.commons.httpclient.methods.PostMethod;
 public class RemovePanel extends JPanel {
     private XmlTable xtab;
     private JButton rb;
+    public JLabel eroare;
+    public JButton validateButton, xmlButton;
+    public JTable tempTable;
     
+    
+    
+    public void buttons()
+    {
+        validateButton = new JButton("Validate changes!");
+        validateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                try {
+                    
+                    PostMethod post = new PostMethod("http://localhost:4500/finalSave");
+                    HttpClient httpClient = new HttpClient();
+                    int resp = httpClient.executeMethod(post);
+                    eroare.setText(post.getResponseBodyAsString());
+                    System.out.println("Am cerut validarea, iar raspunsul a fost: " + resp);
+                } catch (IOException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                
+             
+            }
+        });
+        
+        xmlButton = new JButton("get XML schema");
+        xmlButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Modul3.getXML(Modul3.PATH);
+                } catch (ProtocolException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+             
+            }
+        });
+    }
     
     public RemovePanel(XmlTable arg) throws IOException, IOException, SAXException, ParserConfigurationException{
         this.xtab= arg;
          rb = new JButton("Remove selected element");
+         
+         buttons();
+         
+        eroare = new JLabel("No err so far");
         this.swing();
     }
     
@@ -168,5 +222,12 @@ public class RemovePanel extends JPanel {
         add(p1);
         add(p2);
         
+        add(eroare);
+        add(validateButton);
+        add(xmlButton);
+        
+        String[] asd = {"Temporary element"};
+        tempTable = new JTable(new String[0][0], asd);
+        add(new JScrollPane(tempTable));
     }
 }

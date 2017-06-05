@@ -29,9 +29,7 @@ public class MainFrame extends JFrame {
     StairPanel stairPanel;
     DoorPanel doorPanel;
     JPanel leftPanel, rightPanel;
-    JLabel eroare;
-    JButton validateButton, xmlButton;
-    
+    public RemovePanel rpane;
     WindowPanel windowPanel;
 
     public MainFrame() throws IOException, SAXException, ParserConfigurationException {
@@ -41,11 +39,9 @@ public class MainFrame extends JFrame {
         rightPanel = new JPanel();
         rightPanel.setPreferredSize(new Dimension(600, 800)); 
         
-        XmlTable xmlt = new XmlTable("src/res/building.xml");
-        RemovePanel rpane = new RemovePanel(xmlt);
+        XmlTable xmlt = new XmlTable(Modul3.PATH);
+        rpane = new RemovePanel(xmlt);
         rightPanel.add(rpane);
-        eroare = new JLabel("No err so far");
-        rightPanel.add(eroare);
         windowPanel = new WindowPanel();
         stairPanel = new StairPanel();
         doorPanel = new DoorPanel();
@@ -65,44 +61,7 @@ public class MainFrame extends JFrame {
         add(leftPanel);
         add(rightPanel);
         
-        validateButton = new JButton("Validate changes!");
-        validateButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-                try {
-                    
-                    PostMethod post = new PostMethod("http://localhost:4500/finalSave");
-                    HttpClient httpClient = new HttpClient();
-                    int resp = httpClient.executeMethod(post);
-                    eroare.setText(post.getResponseBodyAsString());
-                    System.out.println("Am cerut validarea, iar raspunsul a fost: " + resp);
-                } catch (IOException ex) {
-                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-                
-             
-            }
-        });
         
-        xmlButton = new JButton("get XML schema");
-        xmlButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    Modul3.getXML(Modul3.PATH);
-                } catch (ProtocolException ex) {
-                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IOException ex) {
-                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-             
-            }
-        });
-        rpane.add(validateButton);
-        rpane.add(xmlButton);
         
     }
 

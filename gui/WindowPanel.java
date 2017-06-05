@@ -5,6 +5,8 @@
  */
 package gui;
 
+import app.Modul3;
+import com.sun.org.apache.xalan.internal.xsltc.compiler.util.StringStack;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -27,6 +29,7 @@ import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.methods.PostMethod;
@@ -234,7 +237,12 @@ public class WindowPanel extends JPanel{
                         if(resp==200)
                         { responseLabel.setText("Inserarea a avut loc cu succes!");
                            responseLabel.setForeground(Color.GREEN);
-                                                        repaint();}
+                            repaint();
+                            DefaultTableModel tm = (DefaultTableModel) Modul3.mf.rpane.tempTable.getModel();
+                            String[] tmp = new String[1];
+                            tmp[0] = x;
+                            tm.addRow(tmp);
+                        }
                         else if (resp==400)
                              { responseLabel.setText("ERROR! Valorile introduse sunt invalide!");
                            responseLabel.setForeground(Color.RED);
