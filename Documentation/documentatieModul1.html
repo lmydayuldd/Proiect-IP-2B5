@@ -58,7 +58,7 @@ Raspunsuri care pot fi primite:
                - HttpStatus.INTERNAL_SERVER_ERROR
 </code></pre>
 <h2><a id="2___4500delete_60"></a>2.   :4500/delete</h2>
-<pre><code>    - Http Method : DELETE
+<pre><code>    - Http Method : POST
     - Body Type :  JSON
     - Body Content 
     Exemplu:
@@ -70,9 +70,7 @@ Raspunsuri care pot fi primite:
         "<span class="hljs-attribute">y1</span>" : <span class="hljs-value"><span class="hljs-number">0</span></span>,
         "<span class="hljs-attribute">x2</span>" : <span class="hljs-value"><span class="hljs-number">5</span></span>,
         "<span class="hljs-attribute">y2</span>" : <span class="hljs-value"><span class="hljs-number">4</span></span>,
-        "<span class="hljs-attribute">floor</span>" : <span class="hljs-value"><span class="hljs-number">1</span></span>,
-        "<span class="hljs-attribute">isExitWay</span>" : <span class="hljs-value"><span class="hljs-number">0</span></span>,
-        "<span class="hljs-attribute">isExterior</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>}
+        "<span class="hljs-attribute">floor</span>" : <span class="hljs-value"><span class="hljs-number">1</span></span>}
 </code></pre>
 <pre><code>Raspunsuri care pot fi primite:
     1. in caz de succes: 
@@ -107,8 +105,8 @@ Raspunsuri care pot fi primite:
                    - Un obiect de tip Message cu textul: &quot;Delete operation failed + ex.getMessage().&quot;
                    - HttpStatus.INTERNAL_SERVER_ERROR
 </code></pre>
-<h2><a id="3_4500deleteRoom_110"></a>3. :4500/deleteRoom</h2>
-<pre><code>    - Http Method : DELETE
+<h2><a id="3_4500deleteRoom_108"></a>3. :4500/deleteRoom</h2>
+<pre><code>    - Http Method : POST
     - Body Type :  JSON
     - Body Content 
     Exemplu:
@@ -136,8 +134,8 @@ Raspunsuri care pot fi primite:
                     - Un obiect de tip Message cu textul: &quot;Delete operation failed + ex.getMessage().&quot;
                     - HttpStatus.INTERNAL_SERVER_ERROR
 </code></pre>
-<h2><a id="4_4500deleteFloor_139"></a>4. :4500/deleteFloor</h2>
-<pre><code>    - Http Method : DELETE
+<h2><a id="4_4500deleteFloor_137"></a>4. :4500/deleteFloor</h2>
+<pre><code>    - Http Method : POST
     - Body Type :  JSON
     - Body Content 
     Exemplu:
@@ -165,7 +163,7 @@ Raspunsuri care pot fi primite:
                     - Un obiect de tip Message cu textul: &quot;Delete operation failed + exception.getMessage().&quot;
                     - HttpStatus.INTERNAL_SERVER_ERROR
 </code></pre>
-<h2><a id="5_4500getXML_168"></a>5. :4500/getXML</h2>
+<h2><a id="5_4500getXML_166"></a>5. :4500/getXML</h2>
 <pre><code>    -Http Method : GET
     
     Raspunsuri ce pot fi primite:
@@ -179,7 +177,7 @@ Raspunsuri care pot fi primite:
                     - Un obiect de tip Message cu textul: &quot;Get XML operation failed + exception.getMessage().&quot;
                     - HttpStatus.INTERNAL_SERVER_ERROR
 </code></pre>
-<h2><a id="6_4500finalSave_182"></a>6. :4500/finalSave</h2>
+<h2><a id="6_4500finalSave_180"></a>6. :4500/finalSave</h2>
 <pre><code>    -Http Method : POST 
     
     Raspunsuri ce pot fi primite:
@@ -192,7 +190,7 @@ Raspunsuri care pot fi primite:
         a) datele care se incearca a fi salvate nu sunt valide
             Codul returnat: 200
             ResponseEntity&lt;&gt; ce contine:
-                    - Un obiect de tip TemporarySaveMessage cu textul : &quot;Operation success.&quot;    
+                    - Un obiect de tip TemporarySaveMessage cu textul : &quot;Building is invalid.&quot;    
                     - HttpStatus.OK
         b) Exception
             Codul returnat: 500
@@ -200,7 +198,7 @@ Raspunsuri care pot fi primite:
                     - Un obiect de tip TemporarySaveMessage cu textul : &quot;Error at replicate data in database&quot; + exception.getMessage(), fie cu textul: &quot;Final save operation failed.&quot; + exception.getMessage()
                     - HttpStatus.INTERNAL_SERVER_ERROR
 </code></pre>
-<h2><a id="7_4500getTemporaryData_203"></a>7. :4500/getTemporaryData</h2>
+<h2><a id="7_4500getTemporaryData_201"></a>7. :4500/getTemporaryData</h2>
 <pre><code>    -Http Method : GET
     
     Raspunsuri ce pot fi primite:
@@ -215,7 +213,7 @@ Raspunsuri care pot fi primite:
                     - Un obiect de tip TemporarySaveMessage cu textul : &quot;Get temporary data failed &quot; + exception.getMessage()
                     - HttpStatus.INTERNAL_SERVER_ERROR
 </code></pre>
-<h2><a id="Exemplu_de_set_de_date_valid_si_XMLul_asociat_218"></a>Exemplu de set de date valid si XML-ul asociat:</h2>
+<h2><a id="Exemplu_de_set_de_date_valid_si_XMLul_asociat_216"></a>Exemplu de set de date valid si XML-ul asociat:</h2>
 <pre><code>####Etajul 1
 
 //exterior care nu este in camere
