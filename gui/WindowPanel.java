@@ -94,9 +94,9 @@ public class WindowPanel extends JPanel{
 
         // Starting to initialize the three inside Panels: topPane, addWallPane and removeWallPane
         topPane = new JPanel();
-        topPane.setPreferredSize(new Dimension(1000, 80));
+        topPane.setPreferredSize(new Dimension(550, 80));
         addWallPane = new JPanel();
-        addWallPane.setPreferredSize(new Dimension(1000, 100));
+        addWallPane.setPreferredSize(new Dimension(550, 100));
         removeWallPane = new JPanel();
 
         //Adding components of topPane
@@ -132,7 +132,7 @@ public class WindowPanel extends JPanel{
         addWallPane.add(responseLabel);
         add(addWallPane);
 
-        setPreferredSize(new Dimension(1024, 190));
+        setPreferredSize(new Dimension(554, 190));
         setBorder(border);
         //setBackground(Color.DARK_GRAY);
 
