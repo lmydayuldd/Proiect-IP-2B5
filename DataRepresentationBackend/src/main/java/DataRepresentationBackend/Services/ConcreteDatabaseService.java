@@ -185,36 +185,4 @@ public class ConcreteDatabaseService implements DatabaseService {
         statement.close();
         return building;
     }
-
-    /*
-    public void saveFinalData() throws Exception{
-        TemporaryData element = new TemporaryData;
-        List<TemporaryData> elements = this.getTableElements();
-        int i=0;
-
-        //apel catre functia de validare a datelor
-
-        if (validare_elemente(elements) == 1) {
-            System.out.println("Datele sunt valide");
-            while (i < elements.size()) {
-                element = elements.get(i);
-                PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement("insert into FINAL_DATA(type, x1, y1, x2, y2, floor, room, isExit, isExterior) values(?,?,?,?,?,?,?,?)");
-                statement.setString(1, element.getType);
-                statement.setInt(2, element.getX1);
-                statement.setInt(3, element.getY1);
-                statement.setInt(4, element.getX2);
-                statement.setInt(5, element.getY2);
-                statement.setInt(6, element.getFloor);
-                statement.setInt(7, element.getRoom);
-                statement.setInt(8, element.getIsExit);
-                statement.setInt(9, element.getIsExterior);
-                statement.executeUpdate();
-                i++;
-            }
-        }
-        else
-                System.out.printl("Datele trebuie revazute");
-
-    }
-    */
 }
