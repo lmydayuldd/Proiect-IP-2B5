@@ -258,8 +258,9 @@ public class RemovePanel extends JPanel {
         
         String[] asd = {"Temporary element"};
         tempTable = new JTable( new DefaultTableModel(asd,0));//new String[0][0], asd);
-        JScrollPane sc = new JScrollPane(tempTable);
-        
+        JScrollPane sc1 = new JScrollPane(tempTable);
+        add(sc1);
+        sc1.setPreferredSize(new Dimension(600, 130));
         JButton openUnity = new JButton("Open unity");
         openUnity.addActionListener(new ActionListener() {
             @Override
@@ -273,6 +274,7 @@ public class RemovePanel extends JPanel {
              
             }
         });
-        add(sc);
+        add(openUnity);
     }
+    
 }
