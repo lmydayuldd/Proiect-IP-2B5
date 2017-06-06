@@ -32,6 +32,7 @@ public interface DatabaseService {
 
     ArrayList<TableElement> getTemporaryDataTable() throws SQLException;
 
+    void rollback() throws SQLException;
     /*
     public void saveFinalData() throws Exception;
     */

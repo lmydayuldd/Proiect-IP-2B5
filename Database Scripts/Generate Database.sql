@@ -6,3 +6,4 @@ commit;
 
 
 select * from temporary_data;
+select * from final_data;

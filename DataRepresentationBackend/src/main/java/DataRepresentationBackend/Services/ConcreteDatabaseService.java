@@ -128,6 +128,13 @@ public class ConcreteDatabaseService implements DatabaseService {
         statement.close();
     }
 
+    public void rollback() throws SQLException {
+        String plsql = "BEGIN ROLL_BACK; END;";
+        PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(plsql);
+        statement.executeUpdate();
+        statement.close();
+    }
+
     public ArrayList<TemporaryData> getTemporaryDataElements() throws SQLException {
         TemporaryData element = new TemporaryData();
         ArrayList<TemporaryData> elements = new ArrayList<>();
@@ -159,7 +166,7 @@ public class ConcreteDatabaseService implements DatabaseService {
         ResultSet resultSet = statement.executeQuery();
         while (resultSet.next()) {
             TableElement tableElement = new TableElement(resultSet.getString(1), resultSet.getInt(2),
-                    resultSet.getInt(3),resultSet.getInt(4), resultSet.getInt(5),
+                    resultSet.getInt(3), resultSet.getInt(4), resultSet.getInt(5),
                     resultSet.getInt(6), resultSet.getString(7), resultSet.getInt(8),
                     resultSet.getInt(9));
             building.add(tableElement);
@@ -176,7 +183,7 @@ public class ConcreteDatabaseService implements DatabaseService {
         ResultSet resultSet = statement.executeQuery();
         while (resultSet.next()) {
             TableElement tableElement = new TableElement(resultSet.getString(1), resultSet.getInt(2),
-                    resultSet.getInt(3),resultSet.getInt(4), resultSet.getInt(5),
+                    resultSet.getInt(3), resultSet.getInt(4), resultSet.getInt(5),
                     resultSet.getInt(6), resultSet.getString(7), resultSet.getInt(8),
                     resultSet.getInt(9));
             building.add(tableElement);

@@ -149,12 +149,40 @@ public class HTTPController {
     }
 
     @CrossOrigin
+    @RequestMapping(value = "/rollback", method = RequestMethod.POST)
+    public ResponseEntity<Message> roolbackData() {
+        try {
+            databaseService.rollback();
+            return new ResponseEntity<>(new Message("Operation success."), HttpStatus.OK);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(new Message("Final save operation failed." + ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @CrossOrigin
     @RequestMapping(value = "/getXML", method = RequestMethod.GET)
     public HttpEntity<?> getXML() {
         GetXML xmlEntity = new GetXML();
 
         try {
             String xml = xmlEntity.getXML();
+            byte[] documentBody = xml.getBytes();
+            HttpHeaders header = new HttpHeaders();
+            header.setContentType(new MediaType("application", "xml"));
+            header.setContentLength(documentBody.length);
+            return new HttpEntity<>(documentBody, header);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(new Message("Get XML operation failed" + ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/getXMLTemporary", method = RequestMethod.GET)
+    public HttpEntity<?> getXMLTemporary() {
+        GetXML xmlEntity = new GetXML();
+
+        try {
+            String xml = xmlEntity.getXML();    // this should be changed
             byte[] documentBody = xml.getBytes();
             HttpHeaders header = new HttpHeaders();
             header.setContentType(new MediaType("application", "xml"));

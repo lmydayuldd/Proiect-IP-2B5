@@ -35,6 +35,17 @@ BEGIN
   commit;
 END;
 /
+CREATE OR REPLACE PROCEDURE ROLL_BACK IS
+  v_sqlDrop varchar2(100);
+  v_sqlCreate varchar2(100);
+BEGIN
+  v_sqlDrop := 'DROP TABLE TEMPORARY_DATA CASCADE CONSTRAINTS';
+  v_sqlCreate := 'CREATE TABLE TEMPORARY_DATA AS SELECT * FROM FINAL_DATA';
+  EXECUTE IMMEDIATE v_sqlDrop;
+  EXECUTE IMMEDIATE v_sqlCreate;
+  commit;
+END;
+/
 select * from temporary_data;
 /
 SELECT TYPE, x1, y1, x2, y2, floor, room, isExterior, isExitWay from temporary_data
