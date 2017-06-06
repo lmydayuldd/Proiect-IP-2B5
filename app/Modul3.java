@@ -29,6 +29,7 @@ public class Modul3 {
     public static MainFrame mf;
     static Matrix currentMatrix;
     public static final String PATH = "src/res/building.xml";
+    public static final String RUN_PATH = "src/res/building.xml";
     /**
      * 
      * @return xml file name

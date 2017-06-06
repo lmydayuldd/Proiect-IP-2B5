@@ -39,7 +39,7 @@ public class RemovePanel extends JPanel {
     public JLabel eroare;
     public JButton validateButton, xmlButton, removeTempButton;
     public JTable tempTable;
-    
+    public JScrollPane sc;
     
     
     public void buttons()
@@ -56,8 +56,17 @@ public class RemovePanel extends JPanel {
                     int resp = httpClient.executeMethod(post);
                     eroare.setText(post.getResponseBodyAsString());
                     System.out.println("Am cerut validarea, iar raspunsul a fost: " + resp);
+                    Modul3.getXML(Modul3.PATH);
+                    remove(sc);
+                    JTree jt = xtab.makeTree();
+                    sc = new JScrollPane(jt);
+                    add(sc);
                 } catch (IOException ex) {
                     Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParserConfigurationException ex) {
+                    Logger.getLogger(RemovePanel.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SAXException ex) {
+                    Logger.getLogger(RemovePanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
                 
@@ -172,7 +181,7 @@ public class RemovePanel extends JPanel {
         jj.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         jj.addTreeSelectionListener(new SelectionListener());
         jj.setEditable(true);
-        JScrollPane sc = new JScrollPane(jj);
+        sc = new JScrollPane(jj);
         sc.setPreferredSize(new Dimension(600,512));
         p1.add(sc);
         p1.setPreferredSize(new Dimension(624,512));
@@ -211,13 +220,11 @@ public class RemovePanel extends JPanel {
                 
                 if(resp==200){}
                 */
-                String msg = getMsgFromDelete("http://localhost:4500/delete", x, 100, "DELETE");
+                String msg = getMsgFromDelete("http://localhost:4500/delete", x, 100, "POST");
                 eroare.setText(msg);
                 DefaultTreeModel model = (DefaultTreeModel) jj.getModel();
                 DefaultMutableTreeNode mnode = (DefaultMutableTreeNode) jj.getLastSelectedPathComponent();
                 model.removeNodeFromParent(mnode);
-
-                
             }
         });
         p2.add(rb);
@@ -239,13 +246,14 @@ public class RemovePanel extends JPanel {
                 int y = tempTable.getSelectedColumn();
                 String asd = (String) tempTable.getValueAt(x, y);
                 System.out.println(asd);
-                String msg = getMsgFromDelete("http://localhost:4500/delete", asd, 100, "DELETE");
+                String msg = getMsgFromDelete("http://localhost:4500/delete", asd, 100, "POST");
                 eroare.setText(msg);
             }});
         add(removeTempButton);
         
         String[] asd = {"Temporary element"};
         tempTable = new JTable( new DefaultTableModel(asd,0));//new String[0][0], asd);
-        add(new JScrollPane(tempTable));
+        JScrollPane sc = new JScrollPane(tempTable);
+        add(sc);
     }
 }
