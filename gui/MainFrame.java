@@ -35,9 +35,9 @@ public class MainFrame extends JFrame {
     public MainFrame() throws IOException, SAXException, ParserConfigurationException {
         super();
         leftPanel = new JPanel();
-        leftPanel.setPreferredSize(new Dimension(600, 800));
+        leftPanel.setPreferredSize(new Dimension(600,900));
         rightPanel = new JPanel();
-        rightPanel.setPreferredSize(new Dimension(600, 800)); 
+        rightPanel.setPreferredSize(new Dimension(600, 900)); 
         
         XmlTable xmlt = new XmlTable(Modul3.PATH);
         rpane = new RemovePanel(xmlt);
@@ -49,7 +49,7 @@ public class MainFrame extends JFrame {
         setLayout(new FlowLayout());
         wallPanel = new WallPanel();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(new Dimension(1244, 820));
+        setSize(new Dimension(1220, 930));
         getContentPane().setBackground(Color.DARK_GRAY);
         //setBackground(Color.yellow);
         setVisible(true);

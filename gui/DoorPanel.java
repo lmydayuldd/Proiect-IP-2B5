@@ -93,9 +93,9 @@ class DoorPanel extends JPanel {
 
         // Starting to initialize the three inside Panels: topPane, addWallPane and removeWallPane
         topPane = new JPanel();
-        topPane.setPreferredSize(new Dimension(550, 80));
+        topPane.setPreferredSize(new Dimension(600, 80));
         addWallPane = new JPanel();
-        addWallPane.setPreferredSize(new Dimension(550, 100));
+        addWallPane.setPreferredSize(new Dimension(600, 100));
         removeWallPane = new JPanel();
 
         //Adding components of topPane
@@ -114,7 +114,7 @@ class DoorPanel extends JPanel {
         addWallPane.add(bottomRightLabel);
         addWallPane.add(x2TextField);
         addWallPane.add(y2TextField);
-        addWallPane.add(wallHelpLabel2);
+        //addWallPane.add(wallHelpLabel2);
         addWallPane.add(externalWallLabel);
         addWallPane.add(externalWall);
         addWallPane.add(exitWayLabel);
@@ -126,11 +126,11 @@ class DoorPanel extends JPanel {
         addWallPane.add(errorStairLabel);
 
         addWallPane.add(errorNumberLabel);
-        addWallPane.add(wallHelpLabel3);
+        //addWallPane.add(wallHelpLabel3);
         addWallPane.add(responseLabel);
         add(addWallPane);
 
-        setPreferredSize(new Dimension(555, 190));
+        setPreferredSize(new Dimension(600, 220));
         setBorder(border);
         //setBackground(Color.DARK_GRAY);
 

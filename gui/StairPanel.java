@@ -60,7 +60,7 @@ class StairPanel extends JPanel {
         roomLabel = new JLabel("Stair name:");
         externalLabel = new JLabel("Extern stairs");
         exitWayLabel = new JLabel("Exit way stairs");
-        wallHelpLabel2 = new JLabel("      ");
+        wallHelpLabel2 = new JLabel("              ");
         topLeftLabel = new JLabel("TopLeft Coordinates: ");
         //topLeftLabel.setForeground(Color.LIGHT_GRAY);
         bottomRightLabel = new JLabel("Bottom-Right Coordinates: ");
@@ -88,9 +88,9 @@ class StairPanel extends JPanel {
 
         // Starting to initialize the three inside Panels: topPane, addStairPane and removeStairPane
         topPane = new JPanel();
-        topPane.setPreferredSize(new Dimension(1000, 80));
+        topPane.setPreferredSize(new Dimension(600, 80));
         addStairPane = new JPanel();
-        addStairPane.setPreferredSize(new Dimension(1000, 100));
+        addStairPane.setPreferredSize(new Dimension(600, 100));
         removeStairPane = new JPanel();
 
         //Adding components of topPane
@@ -109,20 +109,21 @@ class StairPanel extends JPanel {
         addStairPane.add(bottomRightLabel);
         addStairPane.add(x2TextField);
         addStairPane.add(y2TextField);
-        addStairPane.add(wallHelpLabel2);
+        //addStairPane.add(wallHelpLabel2);
         addStairPane.add(externalLabel);
         addStairPane.add(externalWall);
+        addStairPane.add(wallHelpLabel2);
         addStairPane.add(exitWayLabel);
         addStairPane.add(exitWay);
         addStairPane.add(addStair);
         addStairPane.add(errorFloorLabel);
         addStairPane.add(errorStairLabel);
         addStairPane.add(errorNumberLabel);
-        addStairPane.add(wallHelpLabel3);
+        //addStairPane.add(wallHelpLabel3);
         addStairPane.add(responseLabel);
         add(addStairPane);
         addListeners();
-        setPreferredSize(new Dimension(1024, 190));
+        setPreferredSize(new Dimension(600, 220));
         setBorder(border);
         //setBackground(Color.DARK_GRAY);
     }

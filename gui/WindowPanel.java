@@ -74,7 +74,7 @@ public class WindowPanel extends JPanel{
         // Initializing Labels with html code to set font and break lines.
         wallHelpLabel = new JLabel("<html><center><h1>Add Window<br></h1></center>Fill up this form in order to add a window to the Application. </html>");
 
-        wallHelpLabel2 = new JLabel("      ");
+        wallHelpLabel2 = new JLabel("             ");
         x1TextField = new JTextField("X");
 
         x1TextField.setPreferredSize(new Dimension(50, 20));
@@ -97,9 +97,9 @@ public class WindowPanel extends JPanel{
 
         // Starting to initialize the three inside Panels: topPane, addWallPane and removeWallPane
         topPane = new JPanel();
-        topPane.setPreferredSize(new Dimension(550, 80));
+        topPane.setPreferredSize(new Dimension(600, 80));
         addWallPane = new JPanel();
-        addWallPane.setPreferredSize(new Dimension(550, 100));
+        addWallPane.setPreferredSize(new Dimension(600, 100));
         removeWallPane = new JPanel();
 
         //Adding components of topPane
@@ -118,9 +118,9 @@ public class WindowPanel extends JPanel{
         addWallPane.add(bottomRightLabel);
         addWallPane.add(x2TextField);
         addWallPane.add(y2TextField);
-        addWallPane.add(wallHelpLabel2);
         addWallPane.add(externalWallLabel);
-        addWallPane.add(externalWall);
+        addWallPane.add(externalWall);        
+        addWallPane.add(wallHelpLabel2);
         addWallPane.add(exitWayLabel);
         addWallPane.add(exitWay);
         //addWallPane.add(exitWayLabel);
@@ -131,11 +131,11 @@ public class WindowPanel extends JPanel{
 
         addWallPane.add(errorNumberLabel);
         
-        addWallPane.add(wallHelpLabel3);
+        //addWallPane.add(wallHelpLabel3);
         addWallPane.add(responseLabel);
         add(addWallPane);
 
-        setPreferredSize(new Dimension(554, 190));
+        setPreferredSize(new Dimension(600, 220));
         setBorder(border);
         //setBackground(Color.DARK_GRAY);
 

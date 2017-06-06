@@ -111,7 +111,7 @@ class WallPanel extends JPanel {
         addWallPane.add(bottomRightLabel);
         addWallPane.add(x2TextField);
         addWallPane.add(y2TextField);
-       addWallPane.add(wallHelpLabel2);
+        //addWallPane.add(wallHelpLabel2);
         addWallPane.add(externalWallLabel);
         addWallPane.add(externalWall);
         //addWallPane.add(exitWayLabel);
@@ -121,7 +121,7 @@ class WallPanel extends JPanel {
         addWallPane.add(errorStairLabel);
         
         addWallPane.add(errorNumberLabel);
-       addWallPane.add(wallHelpLabel3);
+        //addWallPane.add(wallHelpLabel3);
         addWallPane.add(responseLabel);
         
         add(addWallPane);
