@@ -49,7 +49,7 @@ public class MainFrame extends JFrame {
         setLayout(new FlowLayout());
         wallPanel = new WallPanel();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(new Dimension(1220, 930));
+        setSize(new Dimension(1250, 950));
         getContentPane().setBackground(Color.DARK_GRAY);
         //setBackground(Color.yellow);
         setVisible(true);

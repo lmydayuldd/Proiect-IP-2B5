@@ -23,6 +23,7 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableColumnModel;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 import org.apache.commons.httpclient.HttpClient;
@@ -244,7 +245,7 @@ public class RemovePanel extends JPanel {
         add(removeTempButton);
         
         String[] asd = {"Temporary element"};
-        tempTable = new JTable(new String[0][0], asd);
+        tempTable = new JTable( new DefaultTableModel(asd,0));//new String[0][0], asd);
         add(new JScrollPane(tempTable));
     }
 }
