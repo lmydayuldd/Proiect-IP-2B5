@@ -9,7 +9,7 @@ import java.net.Socket;
  * With Soul
  */
 public class ServerM2 extends Thread {
-    private static final int PORT = 6960;
+    private static final int PORT = 6969;
     private ServerSocket serverSocket;
 
     public ServerM2() throws IOException {
