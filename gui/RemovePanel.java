@@ -13,6 +13,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -39,6 +40,7 @@ public class RemovePanel extends JPanel {
     public JLabel eroare;
     public JButton validateButton, xmlButton, removeTempButton;
     public JTable tempTable;
+    public JPanel p1;// = new JPanel();
     public JScrollPane sc;
     
     
@@ -57,10 +59,13 @@ public class RemovePanel extends JPanel {
                     eroare.setText(post.getResponseBodyAsString());
                     System.out.println("Am cerut validarea, iar raspunsul a fost: " + resp);
                     Modul3.getXML(Modul3.PATH);
-                    remove(sc);
+                    p1.remove(sc);
                     JTree jt = xtab.makeTree();
                     sc = new JScrollPane(jt);
-                    add(sc);
+                    p1.add(sc);
+                    p1.repaint();
+                    p1.revalidate();
+                    repaint();
                 } catch (IOException ex) {
                     Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ParserConfigurationException ex) {
@@ -176,7 +181,7 @@ public class RemovePanel extends JPanel {
         //JFrame frame = new JFrame();
         //JPanel pane = new JPanel();
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        JPanel p1 = new JPanel();
+        p1 = new JPanel();
         JPanel p2 = new JPanel();
         jj.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         jj.addTreeSelectionListener(new SelectionListener());
@@ -254,6 +259,20 @@ public class RemovePanel extends JPanel {
         String[] asd = {"Temporary element"};
         tempTable = new JTable( new DefaultTableModel(asd,0));//new String[0][0], asd);
         JScrollPane sc = new JScrollPane(tempTable);
+        
+        JButton openUnity = new JButton("Open unity");
+        openUnity.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Desktop dsk = Desktop.getDesktop();
+                    dsk.open(new File(Modul3.RUN_PATH));
+                } catch (IOException ex) {
+                    Logger.getLogger(RemovePanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+             
+            }
+        });
         add(sc);
     }
 }
