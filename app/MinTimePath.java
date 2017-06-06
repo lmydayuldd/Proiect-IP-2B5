@@ -61,7 +61,7 @@ class MinTimePath extends PathFinder {
                 if (now2 == null) continue;
 
                 if (dir == 2) {
-                    if (new Point(newx + 1, newy, newz).isValid(lvl, n, n) && (now2.getWalls() & 8) == 0) {
+                    if (new Point(newx + 1, newy, newz).isValid(lvl, n, n) && (now2.getWalls() & 16) == 0) {
                         if (dist[newz][newx + 1][newy] > dist[newz][newx][newy] + magic) {
                             dist[newz][newx + 1][newy] = dist[newz][newx][newy] + magic;
                             from[newz][newx + 1][newy] = 9;
@@ -69,7 +69,7 @@ class MinTimePath extends PathFinder {
                         }
                     }
 
-                    if (new Point(newx - 1, newy, newz).isValid(lvl, n, n) && (now2.getWalls() & 16) == 0) {
+                    if (new Point(newx - 1, newy, newz).isValid(lvl, n, n) && (now2.getWalls() & 8) == 0) {
                         if (dist[newz][newx - 1][newy] > dist[newz][newx][newy] + magic) {
                             dist[newz][newx - 1][newy] = dist[newz][newx][newy] + magic;
                             from[newz][newx - 1][newy] = 8;
@@ -79,7 +79,7 @@ class MinTimePath extends PathFinder {
                 }
 
                 if (dir == 5) {
-                    if (new Point(newx + 1, newy, newz).isValid(lvl, n, n) && (now2.getWalls() & 8) == 0) {
+                    if (new Point(newx + 1, newy, newz).isValid(lvl, n, n) && (now2.getWalls() & 16) == 0) {
                         if (dist[newz][newx + 1][newy] > dist[newz][newx][newy] + magic) {
                             dist[newz][newx + 1][newy] = dist[newz][newx][newy] + magic;
                             from[newz][newx + 1][newy] = 6;
@@ -87,7 +87,7 @@ class MinTimePath extends PathFinder {
                         }
                     }
 
-                    if (new Point(newx - 1, newy, newz).isValid(lvl, n, n)  && (now2.getWalls() & 16) == 0) {
+                    if (new Point(newx - 1, newy, newz).isValid(lvl, n, n)  && (now2.getWalls() & 8) == 0) {
                         if (dist[newz][newx - 1][newy] > dist[newz][newx][newy] + magic) {
                             dist[newz][newx - 1][newy] = dist[newz][newx][newy] + magic;
                             from[newz][newx - 1][newy] = 7;
