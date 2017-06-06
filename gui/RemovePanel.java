@@ -36,7 +36,7 @@ public class RemovePanel extends JPanel {
     private XmlTable xtab;
     private JButton rb;
     public JLabel eroare;
-    public JButton validateButton, xmlButton;
+    public JButton validateButton, xmlButton, removeTempButton;
     public JTable tempTable;
     
     
@@ -210,7 +210,8 @@ public class RemovePanel extends JPanel {
                 
                 if(resp==200){}
                 */
-                getMsgFromDelete("http://localhost:4500/delete", x, 100, "DELETE");
+                String msg = getMsgFromDelete("http://localhost:4500/delete", x, 100, "DELETE");
+                eroare.setText(msg);
                 DefaultTreeModel model = (DefaultTreeModel) jj.getModel();
                 DefaultMutableTreeNode mnode = (DefaultMutableTreeNode) jj.getLastSelectedPathComponent();
                 model.removeNodeFromParent(mnode);
@@ -225,6 +226,22 @@ public class RemovePanel extends JPanel {
         add(eroare);
         add(validateButton);
         add(xmlButton);
+        
+        
+        removeTempButton = new JButton("Remove Temporary Item!");
+        
+        removeTempButton.addActionListener(new ActionListener() {
+            //Aici Victor!!!!!!
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int x = tempTable.getSelectedRow();
+                int y = tempTable.getSelectedColumn();
+                String asd = (String) tempTable.getValueAt(x, y);
+                System.out.println(asd);
+                String msg = getMsgFromDelete("http://localhost:4500/delete", asd, 100, "DELETE");
+                eroare.setText(msg);
+            }});
+        add(removeTempButton);
         
         String[] asd = {"Temporary element"};
         tempTable = new JTable(new String[0][0], asd);
