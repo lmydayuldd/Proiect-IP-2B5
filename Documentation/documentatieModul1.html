@@ -227,7 +227,36 @@ Raspunsuri care pot fi primite:
                     - Un obiect de tip TemporarySaveMessage cu textul : &quot;Get temporary data failed &quot; + exception.getMessage()
                     - HttpStatus.INTERNAL_SERVER_ERROR
 </code></pre>
-<h2><a id="Exemplu_de_set_de_date_valid_si_XMLul_asociat_232"></a>Exemplu de set de date valid si XML-ul asociat:</h2>
+<h2><a id="8_4500rollback_232"></a>8. :4500/rollback</h2>
+<h4><a id="_Se_face_rollback_la_tabela_temporara_In_cazul_in_care_se_fac_diverse_modificari_si_se_doreste_sa_se_revina_la_o_stare_care_se_stie_a_fi_valida_sunt_transferate_datele_din_tabela_finalaunde_elementele_sunt_valide_in_tabela_temporara_233"></a>-&gt; Se face rollback la tabela temporara. In cazul in care se fac diverse modificari si se doreste sa se revina la o stare care se stie a fi valida, sunt transferate datele din tabela finala(unde elementele sunt valide) in tabela temporara.</h4>
+<pre><code>    -Http Method : GET
+    Raspunsuri ce pot fi primite:
+    1. in caz de succes
+        Codul returnat: 200
+            ResponseEntity&lt;&gt; ce contine:
+                    - Un obiect de tip Message cu textul : &quot;Operation succes&quot;
+                    - HttpStatus.OK
+    2. in caz de exceptie aparuta
+        Codul returnat: 500
+            ReponseEntity&lt;&gt; ce contine:
+                    - Un obiect de tip TemporarySaveMessage cu textul : &quot;Final save operation failed &quot; + exception.getMessage()
+                    - HttpStatus.INTERNAL_SERVER_ERROR
+</code></pre>
+<h2><a id="9_4500getXMLTemporary_247"></a>9. :4500/getXMLTemporary</h2>
+<h4><a id="_Returneaza_XML_pe_baza_elementelor_existente_in_tabela_temporara_248"></a>-&gt; Returneaza XML pe baza elementelor existente in tabela temporara.</h4>
+<pre><code>    -Http Method : GET
+    Raspunsuri ce pot fi primite:
+    1. in caz de succes:
+            HttpEntity&lt;&gt; ce contine:
+                - XML cu reprezentarea cladirii 
+                - Un HttpHeader ce contine date despre ceea ce s-a transmis: tipul(XML) si lungimea 
+    2. in caz de eroare:
+        Codul returnat: 500
+            ResponseEntity&lt;&gt; ce contine:
+                    - Un obiect de tip Message cu textul: &quot;Get XML operation failed + exception.getMessage().&quot;
+                    - HttpStatus.INTERNAL_SERVER_ERROR
+</code></pre>
+<h2><a id="Exemplu_de_set_de_date_valid_si_XMLul_asociat_261"></a>Exemplu de set de date valid si XML-ul asociat:</h2>
 <pre><code>####Etajul 1
 
 //exterior care nu este in camere
