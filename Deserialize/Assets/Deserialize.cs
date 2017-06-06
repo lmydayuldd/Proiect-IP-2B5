@@ -8,22 +8,24 @@ using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
 using System;
 using System.Net.Sockets;
+using UnityEngine.UI;
 
 public class Deserialize : MonoBehaviour // the Class
 {
     public static List<string> camere1 = new List<string>() { "1" };
     public static List<string> etajePentruDd = new List<string>() { "Selectare Etaj" };
-   
+
     public static List<string>[] camere = new List<string>[11];
     public static List<string>[] usi = new List<string>[50];
 
     public static List<string> camere2 = new List<string>() { "1" };
     public static List<string> etaje = new List<string>() { "1" };
     public static int lastEtaj;
-    //public static string stringXml = "D:\\format_date.xml";
+    public static string stringXml = "D:\\format_date_nou.xml";
     public static string stringXmlPath = "D:\\format_date_path.xml";
     public static string camera_oficial;
     public static string EtajString;
+    static String sala_scris;
 
     void Start()
     {
@@ -61,6 +63,7 @@ public class Deserialize : MonoBehaviour // the Class
         xmlDoc.LoadXml(responseFromServer); // load the file.
         
         camera_oficial = camera;
+
         //XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
         //xmlDoc.Load(stringXml); // load the file.
 
@@ -80,6 +83,10 @@ public class Deserialize : MonoBehaviour // the Class
     {
         usi[index].Clear();
     }
+    public static void setCamere(int index)
+    {
+        camere[index].Clear();
+    }
     public static string getCamera()
     {
         return camera_oficial;
@@ -93,12 +100,18 @@ public class Deserialize : MonoBehaviour // the Class
     {
         return etajePentruDd;
     }
+    public static void setEtajePentruDd()
+    {
+       etajePentruDd.Clear();
+        etajePentruDd.Add("Selectare Etaj");
+    }
 
     public static int getLastEtaj()
     {
         return lastEtaj;
     }
 
+  
 
     public static IEnumerator GetLevel(int Etaj) //comunic cu modul 1
     {
@@ -247,7 +260,7 @@ public class Deserialize : MonoBehaviour // the Class
         XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
         xmlDoc.LoadXml(responseFromServer); // load the file.
         
-         //XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
+        // XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
          //xmlDoc.Load(stringXml); // load the file.
 
 
@@ -265,6 +278,7 @@ public class Deserialize : MonoBehaviour // the Class
         yield return new WaitForSeconds(waitTime);
         Populare();
     }
+    
 
     public static void renderLevelForDisplay(XmlNode floorinfo2)
     {
@@ -280,7 +294,7 @@ public class Deserialize : MonoBehaviour // the Class
                 if (roomstuff.Name == "name")
                 {
                     string nume = roomstuff.InnerText;
-
+                    sala_scris = nume;
                 }
 
                 if (roomstuff.Name == "type")
@@ -354,6 +368,9 @@ public class Deserialize : MonoBehaviour // the Class
                                 }
                             }
 
+                            
+                           
+
                             LineRenderer lineRenderer2;
                             GameObject obj2 = new GameObject("line_usa");
 
@@ -365,6 +382,17 @@ public class Deserialize : MonoBehaviour // the Class
                             lineRenderer2.SetPosition(1, new Vector3(x2, 0.35f, y2));
                             Material blackDiffuseMat = new Material(Shader.Find("Sprites/Default"));
                             lineRenderer2.material = blackDiffuseMat;
+
+                            GameObject text = new GameObject();
+                            text.gameObject.tag = "naspa";
+                            TextMesh t = text.AddComponent<TextMesh>();
+                            t.text = sala_scris;
+                            t.fontSize = 12;
+                            t.fontStyle = FontStyle.Bold;
+                            t.color = Color.red;
+                            t.transform.localEulerAngles += new Vector3(90, 0, 0);
+                            t.transform.localPosition += new Vector3(x1, 2f, y1);
+
                             break;
 
                         case "window":
@@ -499,11 +527,7 @@ public class Deserialize : MonoBehaviour // the Class
         }
 
     }
-
-    public static void setCamere(int index)
-    {
-        camere[index].Clear();
-    }
+    
     public static void renderLevelForDropDown(XmlNode floorinfo2, int Etaj)
     {
        if (camere[Etaj] == null)

@@ -46,13 +46,14 @@ public class showMenu5 : MonoBehaviour
 
         dd_camera1.ClearOptions(); // Stergem optiunile de la dropdown'ul camera1
         dd_camera1.AddOptions(Deserialize.getCamere(dd_etaj1.GetComponent<Dropdown>().value)); // Adaugam optiunile cu camerele etajului 1
-        
+
     }
     public void Dropdown_IndexChanged_Drum_Selectare_Etaj2(int index)
     {
         dd_camera2.ClearOptions(); // Stergem optiunile de la dropdown'ul camera1
+
         dd_camera2.AddOptions(Deserialize.getCamere(dd_etaj2.GetComponent<Dropdown>().value)); // Adaugam optiunile cu camerele etajului 1
-       
+
     }
 
 
@@ -147,8 +148,19 @@ public class showMenu5 : MonoBehaviour
     {
         return camera2;
     }
+    public void Button_Refresh_Dd()
+    {
+        int i=1;
+        while(i<=Deserialize.lastEtaj)
+        { 
+            Deserialize.setCamere(i);
+            i++;
+        }
+        Deserialize.setEtajePentruDd();
+        StartCoroutine(Deserialize.GetLevelsForDropDown(0, Populare));
+    }
 
-    void Start()
+        void Start()
     {
 
         StartCoroutine(Deserialize.GetLevelsForDropDown(0, Populare));
@@ -156,11 +168,13 @@ public class showMenu5 : MonoBehaviour
         dd_2d_etaj.AddOptions(Deserialize.getEtajePentruDd());
     }
 
+
     void Populare()
     {
 
         dd_etaj1.ClearOptions();
         dd_etaj1.AddOptions(Deserialize.getEtajePentruDd());
+        
 
         dd_etaj2.ClearOptions();
         dd_etaj2.AddOptions(Deserialize.getEtajePentruDd());
