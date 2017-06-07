@@ -25,6 +25,8 @@ public class Deserialize : MonoBehaviour // the Class
     public static string stringXmlPath = "D:\\format_date_gol.xml";
     public static string camera_oficial;
     public static string EtajString;
+
+    public static string x1String, x2String, y1String, y2String;
     static String sala_scris;
     public static float mouseSensitivity = 0.05F;
     public static Vector3 lastPosition;
@@ -76,8 +78,8 @@ public class Deserialize : MonoBehaviour // the Class
         
         camera_oficial = camera;
 
-     // XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
-      //  xmlDoc.Load(stringXml); // load the file.
+       // XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
+       // xmlDoc.Load(stringXml); // load the file.
 
 
         XmlNodeList floorlist = xmlDoc.GetElementsByTagName("floor"); // array of the level nodes.
@@ -145,8 +147,8 @@ public class Deserialize : MonoBehaviour // the Class
         xmlDoc.LoadXml(responseFromServer); // load the file.
         
         
-       // XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
-       // xmlDoc.Load(stringXml); // load the file.
+        //XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
+        //xmlDoc.Load(stringXml); // load the file.
 
         XmlNodeList floorlist = xmlDoc.GetElementsByTagName("floor"); // array of the level nodes.
        
@@ -182,7 +184,7 @@ public class Deserialize : MonoBehaviour // the Class
         xmlDoc.LoadXml(responseFromServer); // load the file.
         
 
-       // XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
+        //XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
        // xmlDoc.Load(stringXml); // load the file.
 
         XmlNodeList floorlist = xmlDoc.GetElementsByTagName("floor"); // array of the level nodes.
@@ -310,7 +312,7 @@ public class Deserialize : MonoBehaviour // the Class
         xmlDoc.LoadXml(responseFromServer); // load the file.
         
         // XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
-        //xmlDoc.Load(stringXml); // load the file.
+       // xmlDoc.Load(stringXml); // load the file.
 
 
         XmlNodeList floorlist = xmlDoc.GetElementsByTagName("floor"); // array of the level nodes.
@@ -358,6 +360,7 @@ public class Deserialize : MonoBehaviour // the Class
                                 if (dimension.Name == "x1")
                                 {
                                     string x1_str = dimension.InnerText;
+                                    x1String=x1_str;
                                     x1 = float.Parse(x1_str);
                                     if (x1 < xMin) xMin = x1;
                                     if (x1 >= xMax) xMax = x1;
@@ -365,6 +368,7 @@ public class Deserialize : MonoBehaviour // the Class
                                 if (dimension.Name == "y1")
                                 {
                                     string y1_str = dimension.InnerText;
+                                    y1String=y1_str;
                                     y1 = float.Parse(y1_str);
                                     if (y1 < yMin) yMin = y1;
                                     if (y1 >= yMax) yMax = y1;
@@ -372,6 +376,7 @@ public class Deserialize : MonoBehaviour // the Class
                                 if (dimension.Name == "x2")
                                 {
                                     string x2_str = dimension.InnerText;
+                                    x2String=x2_str;
                                     x2 = float.Parse(x2_str);
                                     if (x2 < xMin) xMin = x2;
                                     if (x2 >= xMax) xMax = x2;
@@ -380,6 +385,7 @@ public class Deserialize : MonoBehaviour // the Class
                                 if (dimension.Name == "y2")
                                 {
                                     string y2_str = dimension.InnerText;
+                                    y2String=y2_str;
                                     y2 = float.Parse(y2_str);
                                     if (y2 < yMin) yMin = y2;
                                     if (y2 >= yMax) yMax = y2;
@@ -396,7 +402,30 @@ public class Deserialize : MonoBehaviour // the Class
                             lineRenderer.SetPosition(1, new Vector3(x2, 0, y2));
                             Material whiteDiffuseMat = new Material(Shader.Find("Sprites/Default"));
                             lineRenderer.material = whiteDiffuseMat;
+                            
+                            if(sala_scris.Equals("-1"))
+                            {
+                                GameObject text2 = new GameObject();
+                                text2.gameObject.tag = "naspa";
+                                TextMesh t2 = text2.AddComponent<TextMesh>();
+                                t2.text = x1String+" "+y1String;
+                                t2.fontSize = 12;
+                                t2.fontStyle = FontStyle.Bold;
+                                t2.color = Color.magenta;
+                                t2.transform.localEulerAngles += new Vector3(90, 0, 0);
+                                t2.transform.localPosition += new Vector3(x1, 2f, y1);
 
+                                GameObject text3 = new GameObject();
+                                text3.gameObject.tag = "naspa";
+                                TextMesh t3 = text3.AddComponent<TextMesh>();
+                                t3.text = x2String + " " + y2String;
+                                t3.fontSize = 12;
+                                t3.fontStyle = FontStyle.Bold;
+                                t3.color = Color.magenta;
+                                t3.transform.localEulerAngles += new Vector3(90, 0, 0);
+                                t3.transform.localPosition += new Vector3(x2, 2f, y2);
+
+                            }
 
 
                             break;

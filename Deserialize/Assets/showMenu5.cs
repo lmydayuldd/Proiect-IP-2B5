@@ -15,7 +15,8 @@ public class showMenu5 : MonoBehaviour
     Vector3 mainCam;
     public static float mouseSensitivity = 0.05F;
     public static Vector3 lastPosition;
-	public static int test_etaj_count, test_etaj1_count, test_etaj2_count, test_camera1_count, test_camera2_count;
+    public static int test_etaj_count, test_etaj1_count, test_etaj2_count, test_camera1_count, test_camera2_count;
+
 
     public void doExitGame()
     {
@@ -36,9 +37,9 @@ public class showMenu5 : MonoBehaviour
 
         StartCoroutine(Deserialize.GetLevel(etaj_index_vizualizare));
         StartCoroutine(Deserialize.GetLevelPath(etaj_index_vizualizare));
-		test_etaj_count = dd_2d_etaj.GetComponent<Dropdown>().options.Count;
+
+
     }
-	
     public static int getIndexEtaj()
     {
         return etaj_index_vizualizare; // nu e nevoie momentan
@@ -51,25 +52,21 @@ public class showMenu5 : MonoBehaviour
 
         dd_camera1.ClearOptions(); // Stergem optiunile de la dropdown'ul camera1
         dd_camera1.AddOptions(Deserialize.getCamere(dd_etaj1.GetComponent<Dropdown>().value)); // Adaugam optiunile cu camerele etajului 1
-		test_etaj1_count = dd_etaj1.GetComponent<Dropdown>().options.Count;
-
+        test_etaj1_count = dd_etaj1.GetComponent<Dropdown>().options.Count;
     }
     public void Dropdown_IndexChanged_Drum_Selectare_Etaj2(int index)
     {
         dd_camera2.ClearOptions(); // Stergem optiunile de la dropdown'ul camera1
 
         dd_camera2.AddOptions(Deserialize.getCamere(dd_etaj2.GetComponent<Dropdown>().value)); // Adaugam optiunile cu camerele etajului 1
-		test_etaj2_count = dd_etaj2.GetComponent<Dropdown>().options.Count;
-
+        test_etaj2_count = dd_etaj2.GetComponent<Dropdown>().options.Count;
     }
-
-
 
     // Cand alege camera de start pentru drum
     public void Dropdown_IndexChanged_Drum_Selectare_Camera1(int index)
     {
         //Debug.Log("Camera start: ");// + dd_camera1[index]);
-		test_camera1_count = dd_camera1.GetComponent<Dropdown>().options.Count;
+        test_camera1_count = dd_camera1.GetComponent<Dropdown>().options.Count;
     }
 
 
@@ -77,8 +74,9 @@ public class showMenu5 : MonoBehaviour
     public void Dropdown_Index_Changed_Drum_Selectare_Camera2(int index)
     {
         //Debug.Log("Camera2: " + camera2);
-		test_camera2_count = dd_camera2.GetComponent<Dropdown>().options.Count;
+        test_camera2_count = dd_camera2.GetComponent<Dropdown>().options.Count;
     }
+
 
     public void Button_Zoom_Out()
     {
@@ -183,6 +181,9 @@ public class showMenu5 : MonoBehaviour
         StartCoroutine(Deserialize.GetLevelsForDropDown(0, Populare));
         dd_2d_etaj.ClearOptions();
         dd_2d_etaj.AddOptions(Deserialize.getEtajePentruDd());
+
+        dd_2d_etaj.value = 0;
+        Dropdown_IndexChanged_Vizualizare_Etaj(0);
     }
     public void Button_Clear_Path()
     {
@@ -192,8 +193,9 @@ public class showMenu5 : MonoBehaviour
 
 
     }
-	
-	public static int countEtajElements()
+
+
+    public static int countEtajElements()
     {
         return test_etaj_count;
     }
@@ -217,7 +219,6 @@ public class showMenu5 : MonoBehaviour
     {
         return test_camera2_count;
     }
-
 
     void Start()
     {
