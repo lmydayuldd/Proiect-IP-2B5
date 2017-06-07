@@ -111,4 +111,11 @@ public class TemporaryData {
                 || getType().toLowerCase().equals("stairs") || getType().toLowerCase().equals("room"))) return false;
         return true;
     }
+
+    @JsonIgnore
+    public Boolean coordinatesParametersValid() {
+       if (getX1() < 0 || getX2() < 0 || getY1() < 0 || getY2() < 0) return false;
+       if (getX1() > 1000 || getX2() > 1000 || getY1() > 1000 || getY2() > 1000) return false;
+       return true;
+    }
 }

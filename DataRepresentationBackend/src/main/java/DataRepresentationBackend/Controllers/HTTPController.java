@@ -61,6 +61,8 @@ public class HTTPController {
                 return new ResponseEntity<>(new Message("Element already exists."), HttpStatus.CONFLICT);
             if (!data.containValidData())
                 return new ResponseEntity<>(new Message("Invalid Json values."), HttpStatus.BAD_REQUEST);
+            if (!data.coordinatesParametersValid())
+                return new ResponseEntity<>(new Message("Invalid coordinates."), HttpStatus.BAD_REQUEST);
             databaseService.addData(data);
             databaseService.commit();
             return new ResponseEntity<>(new Message("Insert operation success."), HttpStatus.OK);
