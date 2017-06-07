@@ -1,6 +1,8 @@
 package gui;
 
 import app.Modul3;
+import static app.Modul3.PATH;
+import app.XmlBuildingParser;
 import com.sun.org.apache.xalan.internal.xsltc.compiler.util.StringStack;
 import org.xml.sax.SAXException;
 
@@ -58,6 +60,7 @@ public class RemovePanel extends JPanel {
                     int resp = httpClient.executeMethod(post);
                     eroare.setText(post.getResponseBodyAsString());
                     System.out.println("Am cerut validarea, iar raspunsul a fost: " + resp);
+                    eroare.setText("Status: "+resp + " - " + post.getResponseBodyAsString());
                     Modul3.getXML(Modul3.PATH);
                     p1.remove(sc);
                     JTree jt = xtab.makeTree();
@@ -67,6 +70,9 @@ public class RemovePanel extends JPanel {
                     p1.repaint();
                     p1.revalidate();
                     repaint();
+                    
+                    XmlBuildingParser x = new XmlBuildingParser(Modul3.PATH);
+                    Modul3.currentMatrix = x.getMatrix();
                 } catch (IOException ex) {
                     Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ParserConfigurationException ex) {
@@ -80,12 +86,13 @@ public class RemovePanel extends JPanel {
             }
         });
         
-        xmlButton = new JButton("get XML schema");
+        xmlButton = new JButton("update XML schema");
         xmlButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     Modul3.getXML(Modul3.PATH);
+                    
                 } catch (ProtocolException ex) {
                     Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IOException ex) {

@@ -27,7 +27,7 @@ public class Modul3 {
      * @param args the command line arguments
      */
     public static MainFrame mf;
-    static Matrix currentMatrix;
+    public static Matrix currentMatrix;
     public static final String PATH = "src/res/building.xml";
     public static final String RUN_PATH = "src/res/building.xml";
     /**
