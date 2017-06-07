@@ -62,6 +62,7 @@ public class RemovePanel extends JPanel {
                     p1.remove(sc);
                     JTree jt = xtab.makeTree();
                     sc = new JScrollPane(jt);
+                    sc.setPreferredSize(new Dimension(600,512));
                     p1.add(sc);
                     p1.repaint();
                     p1.revalidate();
@@ -252,6 +253,8 @@ public class RemovePanel extends JPanel {
                 String asd = (String) tempTable.getValueAt(x, y);
                 System.out.println(asd);
                 String msg = getMsgFromDelete("http://localhost:4500/delete", asd, 100, "POST");
+                DefaultTableModel tm = (DefaultTableModel) tempTable.getModel();
+                tm.removeRow(x);
                 eroare.setText(msg);
             }});
         add(removeTempButton);
