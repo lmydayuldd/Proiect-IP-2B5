@@ -150,6 +150,14 @@ class StairPanel extends JPanel {
                     exitway = 0;
                 }
                 responseLabel.setText("");
+                if(roomTextField.getText().indexOf("Stair") != 0)
+                {
+                 
+                    responseLabel.setText("Stair name must begin with \"Stair\".");
+                    responseLabel.setForeground(Color.red);
+                    repaint();
+                    return;
+                }
                 repaint();
                 if (floorTextField.getText().length() == 0) {
                     //  System.out.println("sdfasdf");
