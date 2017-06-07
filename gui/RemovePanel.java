@@ -26,12 +26,8 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
-import javax.swing.table.TableColumnModel;
 import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.methods.DeleteMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
 
 /**
@@ -219,35 +215,31 @@ public class RemovePanel extends JPanel {
                 
                 DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) jj
                         .getLastSelectedPathComponent();
+                String x = "";
+                String req = "";
+                
                 if(selectedNode.isLeaf() == false)
                 {
-                    System.err.println("Not a primary component!");
-                    return;
+                    if(selectedNode.getDepth() == 1)
+                    {
+                        req = "deleteRoom";
+                        x = "{ \"name\" : \"" + selectedNode.toString() +"\"}";
+                    }
+                    if(selectedNode.getDepth() == 2)
+                    {
+                        req = "deleteFloor";
+                        x = "{ \"name\" : \"" + selectedNode.toString() +"\"}";
+                    }
                 }
-                String selectedNodeName = selectedNode.toString();
-                String roomName = selectedNode.getParent().toString();
-                String floorName = selectedNode.getParent().getParent().toString();
-                System.out.println("{" + selectedNodeName + ", \"room\" : \"" + roomName.trim() + "\", \"floor\": \"" + floorName.trim() + "\"}");
-                String x = "{" + selectedNodeName + ", \"room\" : \"" + roomName.trim() + "\", \"floor\": \"" + floorName.trim() + "\"}";
-                
-                /*
-                DeleteMethod del = new DeleteMethod("http://localhost:4500/delete");
-                
-                URL url = new URL("http://www.example.com/resource");
-                HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
-                httpCon.setDoOutput(true);
-                httpCon.setRequestProperty(
-                "Content-Type", "application/x-www-form-urlencoded" );
-                httpCon.setRequestMethod("DELETE");
-                httpCon.set
-                httpCon.connect();
-                
-                HttpClient httpClient = new HttpClient();
-                int resp = httpClient.executeMethod(del);
-                
-                if(resp==200){}
-                */
-                String msg = getMsgFromDelete("http://localhost:4500/delete", x, 100, "POST");
+                else{
+                    String selectedNodeName = selectedNode.toString();
+                    String roomName = selectedNode.getParent().toString();
+                    String floorName = selectedNode.getParent().getParent().toString();
+                    System.out.println("{" + selectedNodeName + ", \"room\" : \"" + roomName.trim() + "\", \"floor\": \"" + floorName.trim() + "\"}");
+                    x = "{" + selectedNodeName + ", \"room\" : \"" + roomName.trim() + "\", \"floor\": \"" + floorName.trim() + "\"}";
+                    req = "delete";
+                }
+                String msg = getMsgFromDelete("http://localhost:4500/"+req, x, 100, "POST");
                 eroare.setText(msg);
                 DefaultTreeModel model = (DefaultTreeModel) jj.getModel();
                 DefaultMutableTreeNode mnode = (DefaultMutableTreeNode) jj.getLastSelectedPathComponent();
