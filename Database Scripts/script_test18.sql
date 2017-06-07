@@ -29,15 +29,15 @@ delete from temporary_data;
         insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('wall',24,2,13,2,1,'102',1,0);
         insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('wall',13,2,13,11,1,'102',0,0);
 
-        --stairs 's1'
-        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('door',29,16,32,16,1,'s1',0,0);
-        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('door',34,13,34,10,1,'s1',0,0);
-        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',27,16,29,16,1,'s1',0,0);
-        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',32,16,34,16,1,'s1',0,0);
-        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',34,16,34,13,1,'s1',0,0);
-        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',34,10,34,4,1,'s1',0,0);
-        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',34,4,27,4,1,'s1',0,0);
-        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',27,4,27,16,1,'s1',0,0);
+        --stairs 'stairs'
+        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('door',29,16,32,16,1,'stairs',0,0);
+        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('door',34,13,34,10,1,'stairs',0,0);
+        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',27,16,29,16,1,'stairs',0,0);
+        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',32,16,34,16,1,'stairs',0,0);
+        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',34,16,34,13,1,'stairs',0,0);
+        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',34,10,34,4,1,'stairs',0,0);
+        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',34,4,27,4,1,'stairs',0,0);
+        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',27,4,27,16,1,'stairs',0,0);
 
         --Floor 2
         --Floor exterior walls
@@ -60,23 +60,23 @@ delete from temporary_data;
         insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('wall',13,2,2,2,2,'201',1,0);
         insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('wall',2,2,2,11,2,'201',1,0);
 
-        --stairs 's1'
-        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('door',29,16,32,16,2,'s1',0,0);
-        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',34,13,34,10,2,'s1',0,0);
-        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',27,16,29,16,2,'s1',0,0);
-        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',32,16,34,16,2,'s1',0,0);
-        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',34,16,34,13,2,'s1',0,0);
-        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',34,10,34,4,2,'s1',0,0);
-        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',34,4,27,4,2,'s1',0,0);
-        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',27,4,27,16,2,'s1',0,0);
+        --stairs 'stairs'
+        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('door',29,16,32,16,2,'stairs',0,0);
+        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',34,13,34,10,2,'stairs',0,0);
+        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',27,16,29,16,2,'stairs',0,0);
+        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',32,16,34,16,2,'stairs',0,0);
+        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',34,16,34,13,2,'stairs',0,0);
+        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',34,10,34,4,2,'stairs',0,0);
+        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',34,4,27,4,2,'stairs',0,0);
+        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',27,4,27,16,2,'stairs',0,0);
 
-        --stairs 's2'
-        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('door',10,23,13,23,2,'s2',0,0);
-        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',13,23,15,23,2,'s2',0,0);
-        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',15,23,15,17,2,'s2',0,0);
-        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',15,17,7,17,2,'s2',0,0);
-        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',7,17,7,23,2,'s2',0,0);
-        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',7,23,10,23,2,'s2',0,0);
+        --stairs 'stairs'
+        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('door',10,23,13,23,2,'stairs',0,0);
+        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',13,23,15,23,2,'stairs',0,0);
+        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',15,23,15,17,2,'stairs',0,0);
+        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',15,17,7,17,2,'stairs',0,0);
+        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',7,17,7,23,2,'stairs',0,0);
+        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',7,23,10,23,2,'stairs',0,0);
 
 
         --Floor 3
@@ -102,11 +102,11 @@ delete from temporary_data;
         insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('wall',24,2,13,2,3,'301',1,0);
         insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('wall',13,2,13,11,3,'301',0,0);
 
-        --stairs 's2'
-        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('door',10,23,13,23,3,'s2',0,0);
-        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',13,23,15,23,3,'s2',0,0);
-        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',15,23,15,17,3,'s2',0,0);
-        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',15,17,7,17,3,'s2',0,0);
-        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',7,17,7,23,3,'s2',0,0);
-        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',7,23,10,23,3,'s2',0,0);
+        --stairs 'stairs'
+        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('door',10,23,13,23,3,'stairs',0,0);
+        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',13,23,15,23,3,'stairs',0,0);
+        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',15,23,15,17,3,'stairs',0,0);
+        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',15,17,7,17,3,'stairs',0,0);
+        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',7,17,7,23,3,'stairs',0,0);
+        insert into temporary_data(type, x1, y1, x2, y2, floor, room, isexterior ,isexitway) values ('stairs',7,23,10,23,3,'stairs',0,0);
 commit;
