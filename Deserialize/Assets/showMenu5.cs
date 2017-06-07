@@ -15,6 +15,7 @@ public class showMenu5 : MonoBehaviour
     Vector3 mainCam;
     public static float mouseSensitivity = 0.05F;
     public static Vector3 lastPosition;
+	public static int test_etaj_count, test_etaj1_count, test_etaj2_count, test_camera1_count, test_camera2_count;
 
     public void doExitGame()
     {
@@ -187,6 +188,32 @@ public class showMenu5 : MonoBehaviour
 
 
     }
+	
+	public static int countEtajElements()
+    {
+        return test_etaj_count;
+    }
+
+    public static int countEtaj1Elements()
+    {
+        return test_etaj1_count;
+    }
+
+    public static int countEtaj2Elements()
+    {
+        return test_etaj2_count;
+    }
+
+    public static int countCamera1Elements()
+    {
+        return test_camera1_count;
+    }
+
+    public static int countCamera2Elements()
+    {
+        return test_camera2_count;
+    }
+
 
     void Start()
     {
