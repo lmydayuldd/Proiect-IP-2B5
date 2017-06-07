@@ -6,7 +6,6 @@
 package gui;
 
 import app.Modul3;
-import com.sun.org.apache.xalan.internal.xsltc.compiler.util.StringStack;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;

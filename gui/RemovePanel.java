@@ -3,7 +3,7 @@ package gui;
 import app.Modul3;
 import static app.Modul3.PATH;
 import app.XmlBuildingParser;
-import com.sun.org.apache.xalan.internal.xsltc.compiler.util.StringStack;
+import com.google.gson.Gson;
 import org.xml.sax.SAXException;
 
 import javax.swing.*;
@@ -23,6 +23,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableColumnModel;
@@ -45,6 +46,7 @@ public class RemovePanel extends JPanel {
     public JPanel p1;// = new JPanel();
     public JScrollPane sc;
     public JTree jj;
+    public JPanel buttonPanel;
     
     public void buttons()
     {
@@ -61,18 +63,25 @@ public class RemovePanel extends JPanel {
                     eroare.setText(post.getResponseBodyAsString());
                     System.out.println("Am cerut validarea, iar raspunsul a fost: " + resp);
                     eroare.setText("Status: "+resp + " - " + post.getResponseBodyAsString());
-                    Modul3.getXML(Modul3.PATH);
-                    p1.remove(sc);
-                    jj = xtab.makeTree();
-                    sc = new JScrollPane(jj);
-                    sc.setPreferredSize(new Dimension(600,512));
-                    p1.add(sc);
-                    p1.repaint();
-                    p1.revalidate();
-                    repaint();
-                    
-                    XmlBuildingParser x = new XmlBuildingParser(Modul3.PATH);
-                    Modul3.currentMatrix = x.getMatrix();
+                    Gson gson = new Gson();
+                    HashMap<String, String> mp = gson.fromJson(post.getResponseBodyAsString(), HashMap.class);
+                    eroare.setText(mp.get("message"));
+                    if(resp == 409)
+                    {
+                        Modul3.getXML(Modul3.PATH);
+                        p1.remove(sc);
+                        jj = xtab.makeTree();
+                        sc = new JScrollPane(jj);
+                        sc.setPreferredSize(new Dimension(600,312));
+                        p1.add(sc);
+                        p1.repaint();
+                        p1.revalidate();
+                        repaint();
+                        DefaultTableModel tm = (DefaultTableModel) tempTable.getModel();
+                        while(tm.getRowCount() > 0) tm.removeRow(0);
+                        XmlBuildingParser x = new XmlBuildingParser(Modul3.PATH);
+                        Modul3.currentMatrix = x.getMatrix();
+                    }
                 } catch (IOException ex) {
                     Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ParserConfigurationException ex) {
@@ -189,15 +198,16 @@ public class RemovePanel extends JPanel {
         //JFrame frame = new JFrame();
         //JPanel pane = new JPanel();
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        //setLayout(new FlowLayout());
         p1 = new JPanel();
         JPanel p2 = new JPanel();
         jj.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         jj.addTreeSelectionListener(new SelectionListener());
         jj.setEditable(true);
         sc = new JScrollPane(jj);
-        sc.setPreferredSize(new Dimension(600,512));
+        sc.setPreferredSize(new Dimension(600,312));
         p1.add(sc);
-        p1.setPreferredSize(new Dimension(624,512));
+        p1.setPreferredSize(new Dimension(624,312));
         rb.addActionListener(new ActionListener() {
             //Aici Victor!!!!!!
             @Override
@@ -243,11 +253,11 @@ public class RemovePanel extends JPanel {
         p2.add(rb);
         add(p1);
         add(p2);
-        
+        buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout());
         add(eroare);
-        add(validateButton);
-        add(xmlButton);
-        
+        buttonPanel.add(validateButton);
+        buttonPanel.add(xmlButton);
         
         removeTempButton = new JButton("Remove Temporary Item!");
         
@@ -264,13 +274,13 @@ public class RemovePanel extends JPanel {
                 tm.removeRow(x);
                 eroare.setText(msg);
             }});
-        add(removeTempButton);
+        buttonPanel.add(removeTempButton);
         
         String[] asd = {"Temporary element"};
         tempTable = new JTable( new DefaultTableModel(asd,0));//new String[0][0], asd);
         JScrollPane sc1 = new JScrollPane(tempTable);
         add(sc1);
-        sc1.setPreferredSize(new Dimension(600, 130));
+        sc1.setPreferredSize(new Dimension(600, 330));
         JButton openUnity = new JButton("Open unity");
         openUnity.addActionListener(new ActionListener() {
             @Override
@@ -284,7 +294,9 @@ public class RemovePanel extends JPanel {
              
             }
         });
-        add(openUnity);
+        buttonPanel.add(openUnity);
+        
+        add(buttonPanel);
     }
     
 }
