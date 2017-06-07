@@ -82,7 +82,7 @@ public class Modul3 {
         srv.start();
         //mf = new MainFrame();
 
-        //getXML(PATH);
+        getXML(PATH);
         XmlBuildingParser x = new XmlBuildingParser(PATH);
         currentMatrix = x.getMatrix();
 
