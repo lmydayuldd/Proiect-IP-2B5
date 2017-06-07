@@ -57,7 +57,7 @@ public class Deserialize : MonoBehaviour // the Class
     public static List<string> getUsa(int etaj,string camera) //comunic cu modul 1
     {
 
-        /*
+        
         WebRequest request = WebRequest.Create("http://localhost:4500/getXML");
         // If required by the server, set the credentials.
         request.Credentials = CredentialCache.DefaultCredentials;
@@ -73,11 +73,11 @@ public class Deserialize : MonoBehaviour // the Class
 
         XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
         xmlDoc.LoadXml(responseFromServer); // load the file.
-        */
+        
         camera_oficial = camera;
 
-       XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
-        xmlDoc.Load(stringXml); // load the file.
+     // XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
+      //  xmlDoc.Load(stringXml); // load the file.
 
 
         XmlNodeList floorlist = xmlDoc.GetElementsByTagName("floor"); // array of the level nodes.
@@ -127,7 +127,7 @@ public class Deserialize : MonoBehaviour // the Class
 
     public static IEnumerator GetLevel(int Etaj) //comunic cu modul 1
     {
-        /*
+        
          WebRequest request = WebRequest.Create("http://localhost:4500/getXML");
         // If required by the server, set the credentials.
         request.Credentials = CredentialCache.DefaultCredentials;
@@ -143,10 +143,10 @@ public class Deserialize : MonoBehaviour // the Class
 
         XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
         xmlDoc.LoadXml(responseFromServer); // load the file.
-        */
         
-        XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
-        xmlDoc.Load(stringXml); // load the file.
+        
+       // XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
+       // xmlDoc.Load(stringXml); // load the file.
 
         XmlNodeList floorlist = xmlDoc.GetElementsByTagName("floor"); // array of the level nodes.
        
@@ -164,7 +164,7 @@ public class Deserialize : MonoBehaviour // the Class
 
     public static IEnumerator GetLevelForCamera(int Etaj) //comunic cu modul 1
     {
-        /*
+        
          WebRequest request = WebRequest.Create("http://localhost:4500/getXML");
         // If required by the server, set the credentials.
         request.Credentials = CredentialCache.DefaultCredentials;
@@ -180,10 +180,10 @@ public class Deserialize : MonoBehaviour // the Class
 
         XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
         xmlDoc.LoadXml(responseFromServer); // load the file.
-        */
+        
 
-        XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
-        xmlDoc.Load(stringXml); // load the file.
+       // XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
+       // xmlDoc.Load(stringXml); // load the file.
 
         XmlNodeList floorlist = xmlDoc.GetElementsByTagName("floor"); // array of the level nodes.
 
@@ -292,7 +292,7 @@ public class Deserialize : MonoBehaviour // the Class
     public static IEnumerator GetLevelsForDropDown(float waitTime, Action Populare) //aici comunic cu modul 1
     {
 
-       /*
+       
         WebRequest request = WebRequest.Create("http://localhost:4500/getXML");
         // If required by the server, set the credentials.
         request.Credentials = CredentialCache.DefaultCredentials;
@@ -308,9 +308,9 @@ public class Deserialize : MonoBehaviour // the Class
 
         XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
         xmlDoc.LoadXml(responseFromServer); // load the file.
-        */
-         XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
-        xmlDoc.Load(stringXml); // load the file.
+        
+        // XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
+        //xmlDoc.Load(stringXml); // load the file.
 
 
         XmlNodeList floorlist = xmlDoc.GetElementsByTagName("floor"); // array of the level nodes.
