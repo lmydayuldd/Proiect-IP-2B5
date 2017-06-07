@@ -147,7 +147,7 @@ public class HTTPControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{}")
                 .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
+                .andExpect(status().isConflict())
         ;
     }
 

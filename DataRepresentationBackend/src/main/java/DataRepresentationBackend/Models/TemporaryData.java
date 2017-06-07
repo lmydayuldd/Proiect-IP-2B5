@@ -108,7 +108,7 @@ public class TemporaryData {
     @JsonIgnore
     public Boolean containValidData() {
         if (!(getType().toLowerCase().equals("wall") || getType().toLowerCase().equals("door") || getType().toLowerCase().equals("window")
-                || getType().toLowerCase().equals("stairs") || getType().toLowerCase().equals("room"))) return false;
+                || getType().toLowerCase().equals("stairs"))) return false;
         return true;
     }
 
