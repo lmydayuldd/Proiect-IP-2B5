@@ -133,7 +133,7 @@ public class HTTPController {
             try {
                 elementManager.validateElements();
             } catch (DataNotValidException e) {
-                return new ResponseEntity<>(new TemporarySaveMessage("Building is invalid.", e.getMessage()), HttpStatus.OK);
+                return new ResponseEntity<>(new TemporarySaveMessage("Building is invalid.", e.getMessage()), HttpStatus.CONFLICT);
             } catch (Exception e) {
                 return new ResponseEntity<>(new TemporarySaveMessage("Another exception throwed by validate Elements.", e.getMessage()), HttpStatus.OK);
             }
