@@ -113,7 +113,7 @@ public class XmlBuildingParser {
 
                     boolean isStairs = false;
 
-                    if (nodeName.getTextContent().toLowerCase().contains(new String("s").toLowerCase())) {
+                    if (nodeName.getTextContent().toLowerCase().contains(new String("stair").toLowerCase())) {
                         isStairs = true;
                     }
 

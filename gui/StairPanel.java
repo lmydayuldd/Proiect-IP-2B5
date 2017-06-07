@@ -6,24 +6,20 @@
 package gui;
 
 import app.Modul3;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.methods.PostMethod;
+
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpStatus;
-import org.apache.commons.httpclient.methods.PostMethod;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This class makes the panel that handles the stair manager in the application.
@@ -150,7 +146,7 @@ class StairPanel extends JPanel {
                     exitway = 0;
                 }
                 responseLabel.setText("");
-                if(roomTextField.getText().indexOf("Stair") != 0)
+                if(roomTextField.getText().toLowerCase().indexOf("stair") != 0)
                 {
                  
                     responseLabel.setText("Stair name must begin with \"Stair\".");
@@ -197,8 +193,8 @@ class StairPanel extends JPanel {
                         PostMethod post = new PostMethod("http://localhost:4500/add");
 
                         String x = "{\n"
-                                + "        \"type\" : \"stair\", \n"
-                                + "        \"room\" : \"Stair" + roomTextField.getText() + "\",\n"
+                                + "        \"type\" : \"stairs\", \n"
+                                + "        \"room\" : \"" + roomTextField.getText() + "\",\n"
                                 + "        \"x1\" : \"" + x1TextField.getText() + "\" , \n"
                                 + "        \"y1\" : \"" + y1TextField.getText() + "\" ,\n"
                                 + "        \"x2\" :  \"" + x2TextField.getText() + "\" ,\n"
