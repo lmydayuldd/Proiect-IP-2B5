@@ -64,6 +64,7 @@ public class RemovePanel extends JPanel {
                     eroare.setText(mp.get("data"));
                     if(resp == 200)
                     {
+                        eroare.setText("Validation OK!");
                         Modul3.getXML(Modul3.PATH);
                         p1.remove(sc);
                         jj = xtab.makeTree();
