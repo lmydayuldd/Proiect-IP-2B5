@@ -37,6 +37,12 @@ public class Deserialize : MonoBehaviour // the Class
 
 
     }
+	/*
+	
+	Aici miscam imaginea cu mouse-ul.
+	
+	
+	*/
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -56,6 +62,7 @@ public class Deserialize : MonoBehaviour // the Class
     {
         return camere[etaj];
     }
+	//luam doua coordonate de la usa camerei din parametru
     public static List<string> getUsa(int etaj,string camera) //comunic cu modul 1
     {
 
@@ -76,7 +83,7 @@ public class Deserialize : MonoBehaviour // the Class
         XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
         xmlDoc.LoadXml(responseFromServer); // load the file.
         
-        camera_oficial = camera;
+        camera_oficial = camera; //in camera_oficial pastram numele camerei ca la parsare sa putem gasi usor usa ei.
 
        // XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
        // xmlDoc.Load(stringXml); // load the file.
@@ -126,7 +133,7 @@ public class Deserialize : MonoBehaviour // the Class
     }
 
   
-
+	//getlevel este apelata din dropdown, si la momentul parsarii afiseaza doar etajul din parametru
     public static IEnumerator GetLevel(int Etaj) //comunic cu modul 1
     {
         
@@ -164,6 +171,7 @@ public class Deserialize : MonoBehaviour // the Class
 
     }
 
+	//Aceasta este apelata in Start(), pentru a lua coordonatele minime si maxime ale x si y, ca mai apoi sa faca media si sa plaseze camera la acele coordonate
     public static IEnumerator GetLevelForCamera(int Etaj) //comunic cu modul 1
     {
         
@@ -200,6 +208,7 @@ public class Deserialize : MonoBehaviour // the Class
         yield return new WaitForSeconds(0);
 
     }
+	//este apelata din dropdown ca sa fie afisat path-ul. Se parseaza documentul salvat local de catre modulul 3.
     public static IEnumerator GetLevelPath(int Etaj)
     {
 
@@ -290,7 +299,8 @@ public class Deserialize : MonoBehaviour // the Class
         Console.WriteLine("\n Press Enter to continue...");
         Console.Read();
     }
-
+	
+	//apelata in Button_refresh() si Start(). Populeaza dropdownurile pentru etaje.
     public static IEnumerator GetLevelsForDropDown(float waitTime, Action Populare) //aici comunic cu modul 1
     {
 
@@ -330,7 +340,7 @@ public class Deserialize : MonoBehaviour // the Class
         Populare();
     }
     
-
+	//punem obiectele care sunt de afisat.
     public static void renderLevelForDisplay(XmlNode floorinfo2)
     {
         XmlNodeList roomcontent2 = floorinfo2.ChildNodes;
@@ -616,7 +626,7 @@ public class Deserialize : MonoBehaviour // the Class
         }
 
     }
-
+	//pastram minimul si maximul din x si y pentru Main Camera.
     public static void renderLevelForDisplayCamera(XmlNode floorinfo2)
     {
         XmlNodeList roomcontent2 = floorinfo2.ChildNodes;
@@ -811,7 +821,7 @@ public class Deserialize : MonoBehaviour // the Class
         }
 
     }
-
+	//functia de care ne folosim sa populam dropdownul cu camere
     public static void renderLevelForDropDown(XmlNode floorinfo2, int Etaj)
     {
        if (camere[Etaj] == null)
@@ -940,7 +950,7 @@ public class Deserialize : MonoBehaviour // the Class
         }
 
     }
-
+	//functia care e apelata in getUsa(). aici pastram coordonatele.
     public static void renderLevelForDropDownDoor(XmlNode floorinfo2, int Etaj)
     {
         if (usi[Etaj] == null) //sa incep de la 0 si sa pun aici pe undeca la citirea usilor un x1 concatenat cu y1 pe care il returnez cu getUsa

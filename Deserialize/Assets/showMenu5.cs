@@ -90,7 +90,7 @@ public class showMenu5 : MonoBehaviour
         float zoom = transform.position.y;
         transform.Translate(0, 0, 1);
     }
-
+	//luam valorile din dropdown-uri, apelam functiile de get si le punem intr un string pe care il trimitem printr un socket.
     public void Button_Generate()
     {
         Debug.Log("Etaj1: " + dd_etaj1.GetComponent<Dropdown>().value + " - Camera1: " + dd_camera1.GetComponent<Dropdown>().value +
@@ -169,6 +169,7 @@ public class showMenu5 : MonoBehaviour
     {
         return camera2;
     }
+	//facem refresh la dropdown, golim intai etajele si camerele din valorile statice din Deserialize.cs si parsam din nou xml-ul nou.
     public void Button_Refresh_Dd()
     {
         int i=1;
@@ -185,6 +186,8 @@ public class showMenu5 : MonoBehaviour
         dd_2d_etaj.value = 0;
         Dropdown_IndexChanged_Vizualizare_Etaj(0);
     }
+	//transforma stringxmlpath intr un fisier gol numit format_date_gol si o apelam la Start pentru a nu afisa vechiul path din ce ne a generat modulul 3.
+	//in plus, seteaza vizualizarea etajului pe 0 ca sa aibe timp sa se stearga pathul vechi.
     public void Button_Clear_Path()
     {
         Deserialize.stringXmlPath = "D:\\format_date_gol.xml";
