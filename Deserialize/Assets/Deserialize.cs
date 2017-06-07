@@ -26,7 +26,10 @@ public class Deserialize : MonoBehaviour // the Class
     public static string camera_oficial;
     public static string EtajString;
     static String sala_scris;
+    public static float mouseSensitivity = 0.05F;
+    public static Vector3 lastPosition;
 
+    
     void Start()
     {
         ServicePointManager.ServerCertificateValidationCallback = MyRemoteCertificateValidationCallback;
@@ -35,7 +38,17 @@ public class Deserialize : MonoBehaviour // the Class
     }
     private void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            lastPosition = Input.mousePosition;
+        }
 
+        if (Input.GetMouseButton(0))
+        {
+            Vector3 delta = Input.mousePosition - lastPosition;
+            transform.Translate(-delta.x * mouseSensitivity, -delta.y * mouseSensitivity, 0);
+            lastPosition = Input.mousePosition;
+        }
     }
 
     public static List<string> getCamere(int etaj)
