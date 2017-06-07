@@ -79,6 +79,7 @@ public class RemovePanel extends JPanel {
                         repaint();
                         DefaultTableModel tm = (DefaultTableModel) tempTable.getModel();
                         while(tm.getRowCount() > 0) tm.removeRow(0);
+                        tm.setNumRows(0);
                         XmlBuildingParser x = new XmlBuildingParser(Modul3.PATH);
                         Modul3.currentMatrix = x.getMatrix();
                     }
@@ -296,6 +297,17 @@ public class RemovePanel extends JPanel {
         buttonPanel.add(openUnity);
         rollbackButton = new JButton("Rollback");
         buttonPanel.add(rollbackButton);
+        
+        rollbackButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Modul3.rollback();
+                //Clear temp table
+                DefaultTableModel tm = (DefaultTableModel) tempTable.getModel();
+                while(tm.getRowCount() > 0) tm.removeRow(0);
+                tm.setNumRows(0);
+            }
+        });
         
         buttonPanel.setSize(new Dimension(500, 200));
         add(buttonPanel);
