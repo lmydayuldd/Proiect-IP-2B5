@@ -76,12 +76,12 @@ public class Modul3 {
 
     public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException, TransformerException {
         // TODO code application logic here
-        //rollback();
+        rollback();
         ServerM2 srv = new ServerM2();
         srv.start();
         //mf = new MainFrame();
 
-        //getXML(PATH);
+        getXML(PATH);
         XmlBuildingParser x = new XmlBuildingParser(PATH);
         currentMatrix = x.getMatrix();
 
