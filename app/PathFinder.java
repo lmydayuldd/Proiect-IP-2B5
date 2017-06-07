@@ -23,6 +23,9 @@ public abstract class PathFinder {
     /**
      * This class calculates the route in the building that travels through the
      * points described by the @param path list.
+     * @param source source point
+     * @param dest dest point
+     * @return Array list of Points
      */
     public abstract ArrayList<Point> execute(Point source, Point dest);
 

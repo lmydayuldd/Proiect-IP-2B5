@@ -39,7 +39,7 @@ public class Matrix {
     /**
      * Sets the pathfinder.
      *
-     * @param pf
+     * @param pf the interface that models the PathFinder
      */
     public void setPathFinder(PathFinder pf) {
         pathFinder = pf;

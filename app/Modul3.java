@@ -25,9 +25,6 @@ import java.util.logging.Logger;
  */
 public class Modul3 {
 
-    /**
-     * @param args the command line arguments
-     */
     public static MainFrame mf;
     public static Matrix currentMatrix;
     public static final String PATH = "building.xml";
@@ -54,10 +51,6 @@ public class Modul3 {
         }
     }
 
-    /**
-     *
-     * @return xml file name
-     */
     public static void getXML(String path) throws MalformedURLException, ProtocolException, IOException {
         StringBuilder result = new StringBuilder();
         URL url = new URL("http://localhost:4500/getXML");
@@ -76,12 +69,12 @@ public class Modul3 {
 
     public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException, TransformerException {
         // TODO code application logic here
-        rollback();
+        //rollback();
         ServerM2 srv = new ServerM2();
         srv.start();
         //mf = new MainFrame();
 
-        getXML(PATH);
+        //getXML(PATH);
         XmlBuildingParser x = new XmlBuildingParser(PATH);
         currentMatrix = x.getMatrix();
 
