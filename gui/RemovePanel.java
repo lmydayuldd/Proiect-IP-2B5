@@ -40,7 +40,7 @@ import org.apache.commons.httpclient.methods.PostMethod;
 public class RemovePanel extends JPanel {
     private XmlTable xtab;
     private JButton rb;
-    public JLabel eroare;
+    public JTextArea eroare;
     public JButton validateButton, xmlButton, removeTempButton, rollbackButton;
     public JTable tempTable;
     public JPanel p1;// = new JPanel();
@@ -120,7 +120,9 @@ public class RemovePanel extends JPanel {
          
          buttons();
          
-        eroare = new JLabel("No err so far");
+        eroare = new JTextArea("No err so far");
+        eroare.setPreferredSize(new Dimension(500, 50));
+        eroare.setLineWrap(true);
         this.swing();
     }
     
@@ -206,9 +208,10 @@ public class RemovePanel extends JPanel {
         jj.addTreeSelectionListener(new SelectionListener());
         jj.setEditable(true);
         sc = new JScrollPane(jj);
+        setPreferredSize(new Dimension(620, 800));
         sc.setPreferredSize(new Dimension(600,312));
         p1.add(sc);
-        p1.setPreferredSize(new Dimension(624,312));
+        p1.setPreferredSize(new Dimension(620,312));
         rb.addActionListener(new ActionListener() {
             //Aici Victor!!!!!!
             @Override
@@ -256,7 +259,10 @@ public class RemovePanel extends JPanel {
         add(p2);
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout());
-        add(eroare);
+        JPanel tmp = new JPanel();
+        tmp.add(eroare);
+        tmp.setSize(new Dimension(580, 50));
+        add(tmp);
         buttonPanel.add(validateButton);
         
         removeTempButton = new JButton("Remove Temporary Item!");
@@ -311,6 +317,17 @@ public class RemovePanel extends JPanel {
         
         buttonPanel.setSize(new Dimension(500, 200));
         add(buttonPanel);
+        
+        
+        
+        //Added tooltips
+        validateButton.setToolTipText("<html>Checks if new building format is valid. <br>If so, it updates the building. This removes temporary data. <br>If not, error. Nothing is removed</html>");
+ 
+        xmlButton.setToolTipText("Get latest XML schema.");
+
+        rb.setToolTipText("Remove selected building element.");
+
+        removeTempButton.setToolTipText("Remove building element from the temporary data table.");
     }
     
 }
