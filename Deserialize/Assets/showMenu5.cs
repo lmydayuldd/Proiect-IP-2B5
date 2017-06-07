@@ -13,6 +13,9 @@ public class showMenu5 : MonoBehaviour
     public static int etaj_index_vizualizare, etaj_camera1 = 0 - 2, etaj_camera2 = 0 - 2, camera1 = 0 - 2, camera2 = 0 - 2;
     public static int buton_apasat = 0,buton_apasat2=0;
     Vector3 mainCam;
+    public static float mouseSensitivity = 0.05F;
+    public static Vector3 lastPosition;
+
     public void doExitGame()
     {
         Application.Quit();
@@ -72,6 +75,18 @@ public class showMenu5 : MonoBehaviour
         //Debug.Log("Camera2: " + camera2);
     }
 
+    public void Button_Zoom_Out()
+    {
+        float zoom=transform.position.y;
+        transform.Translate(0, 0, -1);
+        
+    }
+    public void Button_Zoom_In()
+    {
+
+        float zoom = transform.position.y;
+        transform.Translate(0, 0, 1);
+    }
 
     public void Button_Generate()
     {
