@@ -115,7 +115,7 @@ public class TemporaryData {
     @JsonIgnore
     public Boolean coordinatesParametersValid() {
        if (getX1() < 0 || getX2() < 0 || getY1() < 0 || getY2() < 0) return false;
-       if (getX1() > 1000 || getX2() > 1000 || getY1() > 1000 || getY2() > 1000) return false;
+       if (getX1() > 100 || getX2() > 100 || getY1() > 100 || getY2() > 100) return false;
        return true;
     }
 }
