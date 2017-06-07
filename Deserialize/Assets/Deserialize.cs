@@ -22,7 +22,7 @@ public class Deserialize : MonoBehaviour // the Class
     public static List<string> etaje = new List<string>() { "1" };
     public static int lastEtaj;
     public static string stringXml = "D:\\format_date_nou.xml";
-    public static string stringXmlPath = "D:\\format_date_path.xml";
+    public static string stringXmlPath = "D:\\format_date_gol.xml";
     public static string camera_oficial;
     public static string EtajString;
     static String sala_scris;
@@ -64,8 +64,8 @@ public class Deserialize : MonoBehaviour // the Class
         
         camera_oficial = camera;
 
-        //XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
-        //xmlDoc.Load(stringXml); // load the file.
+       // XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
+       // xmlDoc.Load(stringXml); // load the file.
 
 
         XmlNodeList floorlist = xmlDoc.GetElementsByTagName("floor"); // array of the level nodes.
@@ -133,8 +133,8 @@ public class Deserialize : MonoBehaviour // the Class
         xmlDoc.LoadXml(responseFromServer); // load the file.
         
         
-        //XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
-        //xmlDoc.Load(stringXml); // load the file.
+       // XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
+       // xmlDoc.Load(stringXml); // load the file.
 
         XmlNodeList floorlist = xmlDoc.GetElementsByTagName("floor"); // array of the level nodes.
        
@@ -243,7 +243,7 @@ public class Deserialize : MonoBehaviour // the Class
     public static IEnumerator GetLevelsForDropDown(float waitTime, Action Populare) //aici comunic cu modul 1
     {
 
-        
+       
         WebRequest request = WebRequest.Create("http://localhost:4500/getXML");
         // If required by the server, set the credentials.
         request.Credentials = CredentialCache.DefaultCredentials;
@@ -261,7 +261,7 @@ public class Deserialize : MonoBehaviour // the Class
         xmlDoc.LoadXml(responseFromServer); // load the file.
         
         // XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
-         //xmlDoc.Load(stringXml); // load the file.
+        //xmlDoc.Load(stringXml); // load the file.
 
 
         XmlNodeList floorlist = xmlDoc.GetElementsByTagName("floor"); // array of the level nodes.

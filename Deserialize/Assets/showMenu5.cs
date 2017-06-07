@@ -77,7 +77,9 @@ public class showMenu5 : MonoBehaviour
         Debug.Log("Etaj1: " + dd_etaj1.GetComponent<Dropdown>().value + " - Camera1: " + dd_camera1.GetComponent<Dropdown>().value +
                     "\nEtaj2: " + dd_etaj2.GetComponent<Dropdown>().value + " - Camera2: " + dd_camera2.GetComponent<Dropdown>().value);
 
-        etaj_camera1 = dd_etaj1.GetComponent<Dropdown>().value;
+        Deserialize.stringXmlPath = "D:\\format_date_path.xml";
+
+       etaj_camera1 = dd_etaj1.GetComponent<Dropdown>().value;
         etaj_camera2 = dd_etaj2.GetComponent<Dropdown>().value;
         camera1 = dd_camera1.GetComponent<Dropdown>().value;
         camera2 = dd_camera2.GetComponent<Dropdown>().value; 
@@ -158,9 +160,19 @@ public class showMenu5 : MonoBehaviour
         }
         Deserialize.setEtajePentruDd();
         StartCoroutine(Deserialize.GetLevelsForDropDown(0, Populare));
+        dd_2d_etaj.ClearOptions();
+        dd_2d_etaj.AddOptions(Deserialize.getEtajePentruDd());
+    }
+    public void Button_Clear_Path()
+    {
+        Deserialize.stringXmlPath = "D:\\format_date_gol.xml";
+        dd_2d_etaj.value = 0;
+        Dropdown_IndexChanged_Vizualizare_Etaj(0);
+
+
     }
 
-        void Start()
+    void Start()
     {
 
         StartCoroutine(Deserialize.GetLevelsForDropDown(0, Populare));
