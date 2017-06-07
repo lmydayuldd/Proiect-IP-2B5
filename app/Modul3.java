@@ -6,7 +6,8 @@
 package app;
 
 import gui.MainFrame;
-import java.awt.Color;
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.methods.PostMethod;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -18,8 +19,6 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.methods.PostMethod;
 
 /**
  *
@@ -31,8 +30,8 @@ public class Modul3 {
      */
     public static MainFrame mf;
     public static Matrix currentMatrix;
-    public static final String PATH = "src/res/building.xml";
-    public static final String RUN_PATH = "src/res/building.xml";
+    public static final String PATH = "building.xml";
+    public static final String RUN_PATH = "C:\\Deserialize\\ziua_predarii2.exe";
 
     public static void rollback() {
 
