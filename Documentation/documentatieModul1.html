@@ -20,7 +20,7 @@
 </code></pre>
 <pre><code>Tipurile de elemente care pot fi adaugate sunt: &quot;wall&quot;, &quot;door&quot;, &quot;window&quot;, &quot;stairs&quot;.
 &quot;room&quot; reprezinta camera de care elementul apartine.
-(x1,y1), (x2,y2) reprezinta seturile de coordonate care identifica elementul si sunt din intervalul [0,1000].
+(x1,y1), (x2,y2) reprezinta seturile de coordonate care identifica elementul si sunt din intervalul [0,100].
 &quot;floor&quot; reprezinta etajul de care apartine elementul
 &quot;isExitWay&quot; indica daca usa este cale de iesire catre exterior
 &quot;isExterior&quot; indica daca elementul apartine structurii exterioare a cladirii
@@ -42,7 +42,7 @@ Raspunsuri care pot fi primite:
             ResponseEntity&lt;&gt; ce contine:
                - un obiect de tip Message cu textul : &quot;Invalid Json values.&quot;
                - HttpStatus.BAD_REQUEST
-    c) coordonatele elementului nu sunt din intervalul [0,1000]
+    c) coordonatele elementului nu sunt din intervalul [0,100]
             Codul returnat: 400
                 ResponseEntity&lt;&gt; ce contine:
                    - un obiect de tip Message cu textul : &quot;Invalid coordinates.&quot;
