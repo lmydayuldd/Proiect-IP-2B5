@@ -41,7 +41,7 @@ public class RemovePanel extends JPanel {
     private XmlTable xtab;
     private JButton rb;
     public JLabel eroare;
-    public JButton validateButton, xmlButton, removeTempButton;
+    public JButton validateButton, xmlButton, removeTempButton, rollbackButton;
     public JTable tempTable;
     public JPanel p1;// = new JPanel();
     public JScrollPane sc;
@@ -65,7 +65,7 @@ public class RemovePanel extends JPanel {
                     eroare.setText("Status: "+resp + " - " + post.getResponseBodyAsString());
                     Gson gson = new Gson();
                     HashMap<String, String> mp = gson.fromJson(post.getResponseBodyAsString(), HashMap.class);
-                    eroare.setText(mp.get("message"));
+                    eroare.setText(mp.get("data"));
                     if(resp == 409)
                     {
                         Modul3.getXML(Modul3.PATH);
@@ -257,7 +257,6 @@ public class RemovePanel extends JPanel {
         buttonPanel.setLayout(new FlowLayout());
         add(eroare);
         buttonPanel.add(validateButton);
-        buttonPanel.add(xmlButton);
         
         removeTempButton = new JButton("Remove Temporary Item!");
         
@@ -295,7 +294,10 @@ public class RemovePanel extends JPanel {
             }
         });
         buttonPanel.add(openUnity);
+        rollbackButton = new JButton("Rollback");
+        buttonPanel.add(rollbackButton);
         
+        buttonPanel.setSize(new Dimension(500, 200));
         add(buttonPanel);
     }
     
