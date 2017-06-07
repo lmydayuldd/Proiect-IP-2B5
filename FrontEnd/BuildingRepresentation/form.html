@@ -54,9 +54,10 @@
         <div class="form-group col-xs-4 col-md-4">
           <label for="element">Choose the element you want to add</label>
           <select name="element" id="element" #element class="form-control input-lg">
-            <option value="Room"> Room</option>
-            <option value="Door"> Door</option>
-            <option value="Stairs"> Stairs</option>
+            <option value="wall"> Wall</option>
+            <option value="door"> Door</option>
+            <option value="stairs"> Stairs</option>
+            <option value="window"> Window</option>  
           </select>
         </div>
         <div class="form-group col-xs-4 col-md-4">
@@ -75,20 +76,20 @@
         </div>
         <div class="form-group col-xs-6 col-md-6">
           <label for="x1">Left lower x coordinate </label>
-          <input #x1 type="number" name="x1" value="" id="x1" class="form-control input-lg" placeholder="x1"/>
+          <input #x1 type="number" name="x1" value="" id="x1" class="form-control input-lg" placeholder="x1" min="0"/>
         </div>
         <div class="form-group col-xs-6 col-md-6">
           <label for="y1">Left lower y coordinate </label>
-          <input #y1 type="number" name="y1" value="" id="y1" class="form-control input-lg" placeholder="y1"/>
+          <input #y1 type="number" name="y1" value="" id="y1" class="form-control input-lg" placeholder="y1" min = "0"/>
         </div>
         <div class="form-group col-xs-6 col-md-6">
           <label for="x2">Right upper x coordinate </label>
-          <input #x2 type="number" name="x2" value="" id="x2" class="form-control input-lg" placeholder="x2"/>
+          <input #x2 type="number" name="x2" value="" id="x2" class="form-control input-lg" placeholder="x2" min = "0"/>
         </div>
 
         <div class="form-group col-xs-6 col-md-6">
           <label for="y2">Right upper y coordinate </label>
-          <input #y2 name="y2" value="" id="y2" class="form-control input-lg" placeholder="y2"/>
+          <input #y2 type="number" name="y2" value="" id="y2" class="form-control input-lg" placeholder="y2" min = "0"/>
         </div>
 
         <div class="form-group col-xs-6 col-md-6">
@@ -118,11 +119,22 @@
             Save this element
                   <div id= "snackbar" > <i> Element adaugat cu succes </i> </div>
             </button>
+         <button class = "btn btn-success" id="saveBuilding" type = "button"
+             onclick="onTemporarySaveDataClick()"> Save Building
+         </button>
+          </div>
+          </form>
+
           
-          <button class="btn btn-success" id="saveBuilding" type="submit"
-                  (click)="onTemporarySaveDataClick()"> Save Building
-          </button>
-         </form>
+          <!--<form name="myForm" accept-charset="utf-8" class="form" method="POST"/>
+          <div class="btn-group col-md-12" role="group" aria-label="Actions" style="margin-top: 30px;">
+         <button class="btn btn-primary" id="saveElement" type="submit"
+          			(click)="onSaveElementClick(element.value, x1.value, y1.value, x2.value, y2.value, floor.value, room.value, isExitWay.value, isExterior.value)">
+            Save thi
+                  <div id= "snackbar" > <i> Element adaugat cu succes </i> </div>
+            </button>
+          </div>
+          </form>-->
 
             <div id= "finalMessage"></div>
             <div id = "wrongInput"></div>	
