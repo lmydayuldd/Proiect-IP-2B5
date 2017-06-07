@@ -299,6 +299,7 @@ public class RemovePanel extends JPanel {
                 while (tm.getRowCount() > 0) {
                     tm.removeRow(0);
                 }
+                eroare.setText("Rollback success!");
                 tm.setNumRows(0);
             }
         });
