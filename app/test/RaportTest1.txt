@@ -48,5 +48,5 @@ Report Date: 7-June-2017
 
 Manual Testing GUI - Found bugs on JTree element - after Rollback the size of the JTree degenerates.
                    - Bug on tempTable - after removing an element, it is removed from server but not from gui.removePane.tempTable.
-
+		   - Other functionalities seem to work well.
 
