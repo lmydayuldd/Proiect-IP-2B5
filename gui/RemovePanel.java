@@ -247,13 +247,14 @@ public class RemovePanel extends JPanel {
                 model.removeNodeFromParent(mnode);
             }
         });
+        
         p2.add(rb);
         add(p1);
         add(p2);
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout());
         JPanel tmp = new JPanel();
-        tmp.add(eroare);
+        tmp.add(new JScrollPane(eroare));
         tmp.setSize(new Dimension(580, 50));
         add(tmp);
         buttonPanel.add(validateButton);
