@@ -5,6 +5,7 @@
  */
 package gui;
 
+import app.Modul3;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.methods.PostMethod;
@@ -34,7 +35,7 @@ class WallPanel extends JPanel {
 
     JComboBox<String> componentType;
     Border border = new BevelBorder(1);
-    JLabel errorNumberLabel ,topLeftLabel,responseLabel, bottomRightLabel, wallHelpLabel, floorLabel, externalWallLabel, wallHelpLabel2,wallHelpLabel3, exitWayLabel, roomLabel, errorFloorLabel, errorStairLabel;
+    JLabel errorNumberLabel, topLeftLabel, responseLabel, bottomRightLabel, wallHelpLabel, floorLabel, externalWallLabel, wallHelpLabel2, wallHelpLabel3, exitWayLabel, roomLabel, errorFloorLabel, errorStairLabel;
     JTextField x1TextField, y1TextField, x2TextField, y2TextField, floorField, roomTextField;
     JButton addWall;
     JCheckBox externalWall, exitWay;
@@ -51,9 +52,9 @@ class WallPanel extends JPanel {
 
         // Setting up all the components
         setLayout(new FlowLayout());
-        errorNumberLabel=new JLabel("");
+        errorNumberLabel = new JLabel("");
         errorFloorLabel = new JLabel("");
-        responseLabel=new JLabel("");
+        responseLabel = new JLabel("");
         errorStairLabel = new JLabel("");
         wallHelpLabel3 = new JLabel("                                       ");
         roomLabel = new JLabel("Room:");
@@ -119,17 +120,15 @@ class WallPanel extends JPanel {
         addWallPane.add(addWall);
         addWallPane.add(errorFloorLabel);
         addWallPane.add(errorStairLabel);
-        
+
         addWallPane.add(errorNumberLabel);
         //addWallPane.add(wallHelpLabel3);
         addWallPane.add(responseLabel);
-        
+
         add(addWallPane);
 
-       
         //Adding to the main frame the bottom panel which contains the table
         // with the walls data
-       
         setPreferredSize(new Dimension(600, 190));
         setBorder(border);
         //setBackground(Color.DARK_GRAY);
@@ -153,8 +152,8 @@ class WallPanel extends JPanel {
                 } else {
                     external = 0;
                 }
-                 responseLabel.setText("");
-                 repaint();
+                responseLabel.setText("");
+                repaint();
                 String myRow[] = new String[7];
                 myRow[0] = floorField.getText();
                 myRow[1] = roomTextField.getText();
@@ -168,18 +167,17 @@ class WallPanel extends JPanel {
                     System.out.println("sdfasdf");
                     errorFloorLabel.setText("Introduceti etajul!");
                     errorFloorLabel.setForeground(Color.RED);
-                     errorStairLabel.setText("");
-                      errorNumberLabel.setText("");
+                    errorStairLabel.setText("");
+                    errorNumberLabel.setText("");
                     repaint();
                 } else if (roomTextField.getText().length() == 0) {
                     System.out.println("sdfasdf8");
-                     errorFloorLabel.setText("");
+                    errorFloorLabel.setText("");
                     errorStairLabel.setText("Introduceti numele camerei!");
                     errorStairLabel.setForeground(Color.RED);
-                      errorNumberLabel.setText("");
+                    errorNumberLabel.setText("");
                     repaint();
                 } else {
-                    
 
                     int ok = 1;
                     try {
@@ -203,61 +201,66 @@ class WallPanel extends JPanel {
                         errorStairLabel.setText("");
                         errorNumberLabel.setText("");
                         repaint();
-                    PostMethod post = new PostMethod("http://localhost:4500/add");
+                        PostMethod post = new PostMethod("http://localhost:4500/add");
 
-                    String x = "{\n"
-                            + "        \"type\" : \"wall\", \n"
-                            + "        \"room\" : \"" + myRow[1] + "\",\n"
-                            + "        \"x1\" : \"" + myRow[2] + "\" , \n"
-                            + "        \"y1\" : \"" + myRow[3] + "\" ,\n"
-                            + "        \"x2\" :  \"" + myRow[4] + "\" ,\n"
-                            + "        \"y2\" :  \"" + myRow[5] + "\" ,\n"
-                            + "        \"floor\" :  \"" + myRow[0] + "\" ,\n"
-                            + "        \"isExitWay\" :  \"0\" ,\n"
-                            + "        \"isExterior\":  \"" + external + "\" \n"
-                            + "\t\n"
-                            + "}";
+                        String x = "{\n"
+                                + "        \"type\" : \"wall\", \n"
+                                + "        \"room\" : \"" + myRow[1] + "\",\n"
+                                + "        \"x1\" : \"" + myRow[2] + "\" , \n"
+                                + "        \"y1\" : \"" + myRow[3] + "\" ,\n"
+                                + "        \"x2\" :  \"" + myRow[4] + "\" ,\n"
+                                + "        \"y2\" :  \"" + myRow[5] + "\" ,\n"
+                                + "        \"floor\" :  \"" + myRow[0] + "\" ,\n"
+                                + "        \"isExitWay\" :  \"0\" ,\n"
+                                + "        \"isExterior\":  \"" + external + "\" \n"
+                                + "\t\n"
+                                + "}";
 
-                    BufferedReader br = null;
-                    post.setRequestHeader("Content-type", "application/json");
-                    post.setRequestBody(x);
-                    try {
-                        HttpClient httpClient = new HttpClient();
-                        int resp = httpClient.executeMethod(post);
+                        BufferedReader br = null;
+                        post.setRequestHeader("Content-type", "application/json");
+                        post.setRequestBody(x);
+                        try {
+                            HttpClient httpClient = new HttpClient();
+                            int resp = httpClient.executeMethod(post);
 
-                        if(resp==200)
-                        { responseLabel.setText("Inserarea a avut loc cu succes!");
-                           responseLabel.setForeground(Color.GREEN);
-                                                        repaint();}
-                        else if (resp==400)
-                             { responseLabel.setText("ERROR! Valorile introduse sunt invalide!");
-                           responseLabel.setForeground(Color.RED);
-                                                        repaint();}
-                        else if (resp==409){responseLabel.setText("ERROR! Elementul deja exista!");
-                           responseLabel.setForeground(Color.RED);
-                                                        repaint();}
-                        else {responseLabel.setText("ERROR!");
-                           responseLabel.setForeground(Color.RED);
-                                                        repaint();}
+                            if (resp == 200) {
+                                responseLabel.setText("Inserarea a avut loc cu succes!");
+                                responseLabel.setForeground(Color.GREEN);
+                                repaint();
+                                DefaultTableModel tm = (DefaultTableModel) Modul3.mf.rpane.tempTable.getModel();
+                                String[] tmp = new String[1];
+                                tmp[0] = x;
+                                tm.addRow(tmp);
+                            } else if (resp == 400) {
+                                responseLabel.setText("ERROR! Valorile introduse sunt invalide!");
+                                responseLabel.setForeground(Color.RED);
+                                repaint();
+                            } else if (resp == 409) {
+                                responseLabel.setText("ERROR! Elementul deja exista!");
+                                responseLabel.setForeground(Color.RED);
+                                repaint();
+                            } else {
+                                responseLabel.setText("ERROR!");
+                                responseLabel.setForeground(Color.RED);
+                                repaint();
+                            }
 
-                    } catch (Exception e) {
-                        System.err.println(e);
-                    } finally {
-                        post.releaseConnection();
-                        if (br != null) {
-                            try {
-                                br.close();
-                            } catch (Exception fe) {
+                        } catch (Exception e) {
+                            System.err.println(e);
+                        } finally {
+                            post.releaseConnection();
+                            if (br != null) {
+                                try {
+                                    br.close();
+                                } catch (Exception fe) {
+                                }
                             }
                         }
+
                     }
-                    
-                    
-
-
                 }
             }
-        }}
+        }
         );
     }
 }

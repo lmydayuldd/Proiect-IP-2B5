@@ -5,6 +5,7 @@
  */
 package gui;
 
+import app.Modul3;
 import com.sun.xml.internal.ws.util.StringUtils;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -36,7 +37,7 @@ class StairPanel extends JPanel {
 
     JComboBox<String> componentType;
     Border border = new BevelBorder(1);
-    JLabel topLeftLabel, bottomRightLabel, stairHelpLabel, roomLabel, floorLabel,responseLabel, externalLabel, wallHelpLabel2,wallHelpLabel3 ,exitWayLabel, errorFloorLabel, errorStairLabel, errorNumberLabel;
+    JLabel topLeftLabel, bottomRightLabel, stairHelpLabel, roomLabel, floorLabel, responseLabel, externalLabel, wallHelpLabel2, wallHelpLabel3, exitWayLabel, errorFloorLabel, errorStairLabel, errorNumberLabel;
     JTextField x1TextField, y1TextField, x2TextField, y2TextField, roomTextField, floorTextField;
     JButton addStair;
     JCheckBox externalWall, exitWay;
@@ -51,8 +52,8 @@ class StairPanel extends JPanel {
 
         // Setting up all the components
         setLayout(new FlowLayout());
-        responseLabel=new JLabel("");
-        wallHelpLabel3=new JLabel("                          ");
+        responseLabel = new JLabel("");
+        wallHelpLabel3 = new JLabel("                          ");
         errorNumberLabel = new JLabel("");
         errorFloorLabel = new JLabel("");
         errorStairLabel = new JLabel("");
@@ -149,8 +150,8 @@ class StairPanel extends JPanel {
                 } else {
                     exitway = 0;
                 }
-                 responseLabel.setText("");
-                 repaint();
+                responseLabel.setText("");
+                repaint();
                 if (floorTextField.getText().length() == 0) {
                     //  System.out.println("sdfasdf");
                     errorFloorLabel.setText("Introduceti etajul!");
@@ -203,37 +204,44 @@ class StairPanel extends JPanel {
                         BufferedReader br = null;
                         post.setRequestHeader("Content-type", "application/json");
                         post.setRequestBody(x);
-                    try {
-                        HttpClient httpClient = new HttpClient();
-                        int resp = httpClient.executeMethod(post);
+                        try {
+                            HttpClient httpClient = new HttpClient();
+                            int resp = httpClient.executeMethod(post);
 
-                        if(resp==200)
-                        { responseLabel.setText("Inserarea a avut loc cu succes!");
-                           responseLabel.setForeground(Color.GREEN);
-                                                        repaint();}
-                        else if (resp==400)
-                             { responseLabel.setText("ERROR! Valorile introduse sunt invalide!");
-                           responseLabel.setForeground(Color.RED);
-                                                        repaint();}
-                        else if (resp==409){responseLabel.setText("ERROR! Elementul deja exista!");
-                           responseLabel.setForeground(Color.RED);
-                                                        repaint();}
-                        else {responseLabel.setText("ERROR!");
-                           responseLabel.setForeground(Color.RED);
-                                                        repaint();}
+                            if (resp == 200) {
+                                responseLabel.setText("Inserarea a avut loc cu succes!");
+                                responseLabel.setForeground(Color.GREEN);
+                                repaint();
+                                DefaultTableModel tm = (DefaultTableModel) Modul3.mf.rpane.tempTable.getModel();
+                                String[] tmp = new String[1];
+                                tmp[0] = x;
+                                tm.addRow(tmp);
+                            } else if (resp == 400) {
+                                responseLabel.setText("ERROR! Valorile introduse sunt invalide!");
+                                responseLabel.setForeground(Color.RED);
+                                repaint();
+                            } else if (resp == 409) {
+                                responseLabel.setText("ERROR! Elementul deja exista!");
+                                responseLabel.setForeground(Color.RED);
+                                repaint();
+                            } else {
+                                responseLabel.setText("ERROR!");
+                                responseLabel.setForeground(Color.RED);
+                                repaint();
+                            }
 
-                    } catch (Exception e) {
-                        System.err.println(e);
-                    } finally {
-                        post.releaseConnection();
-                        if (br != null) {
-                            try {
-                                br.close();
-                            } catch (Exception fe) {
+                        } catch (Exception e) {
+                            System.err.println(e);
+                        } finally {
+                            post.releaseConnection();
+                            if (br != null) {
+                                try {
+                                    br.close();
+                                } catch (Exception fe) {
+                                }
                             }
                         }
-                    }
-                    
+
                     }
                 }
             }

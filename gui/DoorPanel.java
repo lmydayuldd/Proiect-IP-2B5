@@ -5,6 +5,7 @@
  */
 package gui;
 
+import app.Modul3;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -35,7 +36,7 @@ class DoorPanel extends JPanel {
 
     JComboBox<String> componentType;
     Border border = new BevelBorder(1);
-    JLabel errorNumberLabel, topLeftLabel, bottomRightLabel, wallHelpLabel, floorLabel, externalWallLabel,wallHelpLabel3 ,responseLabel ,wallHelpLabel2, exitWayLabel, roomLabel, errorFloorLabel, errorStairLabel;
+    JLabel errorNumberLabel, topLeftLabel, bottomRightLabel, wallHelpLabel, floorLabel, externalWallLabel, wallHelpLabel3, responseLabel, wallHelpLabel2, exitWayLabel, roomLabel, errorFloorLabel, errorStairLabel;
     JTextField x1TextField, y1TextField, x2TextField, y2TextField, floorField, roomTextField;
     JButton addWall;
     JCheckBox externalWall, exitWay;
@@ -54,7 +55,7 @@ class DoorPanel extends JPanel {
         setLayout(new FlowLayout());
         errorNumberLabel = new JLabel("");
         errorFloorLabel = new JLabel("");
-        responseLabel=new JLabel("");
+        responseLabel = new JLabel("");
         errorStairLabel = new JLabel("");
         roomLabel = new JLabel("Room:");
         exitWayLabel = new JLabel("Exit way:");
@@ -68,9 +69,8 @@ class DoorPanel extends JPanel {
 
         wallHelpLabel = new JLabel("<html><center><h1>Add Door<br></h1></center>Fill up this form in order to add a door to the Application. </html>");
 
-
         wallHelpLabel2 = new JLabel("      ");
-         wallHelpLabel3 = new JLabel("                                     ");
+        wallHelpLabel3 = new JLabel("                                     ");
         x1TextField = new JTextField("X");
 
         x1TextField.setPreferredSize(new Dimension(50, 20));
@@ -158,8 +158,8 @@ class DoorPanel extends JPanel {
                 } else {
                     exit = 0;
                 }
-                 responseLabel.setText("");
-                 repaint();
+                responseLabel.setText("");
+                repaint();
                 String myRow[] = new String[7];
                 myRow[0] = floorField.getText();
                 myRow[1] = roomTextField.getText();
@@ -225,37 +225,45 @@ class DoorPanel extends JPanel {
                         BufferedReader br = null;
                         post.setRequestHeader("Content-type", "application/json");
                         post.setRequestBody(x);
-                    try {
-                        HttpClient httpClient = new HttpClient();
-                        int resp = httpClient.executeMethod(post);
+                        try {
+                            HttpClient httpClient = new HttpClient();
+                            int resp = httpClient.executeMethod(post);
 
-                        if(resp==200)
-                        { responseLabel.setText("Inserarea a avut loc cu succes!");
-                           responseLabel.setForeground(Color.GREEN);
-                                                        repaint();}
-                        else if (resp==400)
-                             { responseLabel.setText("ERROR! Valorile introduse sunt invalide!");
-                           responseLabel.setForeground(Color.RED);
-                                                        repaint();}
-                        else if (resp==409){responseLabel.setText("ERROR! Elementul deja exista!");
-                           responseLabel.setForeground(Color.RED);
-                                                        repaint();}
-                        else {responseLabel.setText("ERROR!");
-                           responseLabel.setForeground(Color.RED);
-                                                        repaint();}
+                            if (resp == 200) {
+                                responseLabel.setText("Inserarea a avut loc cu succes!");
+                                responseLabel.setForeground(Color.GREEN);
+                                repaint();
 
-                    } catch (Exception e) {
-                        System.err.println(e);
-                    } finally {
-                        post.releaseConnection();
-                        if (br != null) {
-                            try {
-                                br.close();
-                            } catch (Exception fe) {
+                                DefaultTableModel tm = (DefaultTableModel) Modul3.mf.rpane.tempTable.getModel();
+                                String[] tmp = new String[1];
+                                tmp[0] = x;
+                                tm.addRow(tmp);
+                            } else if (resp == 400) {
+                                responseLabel.setText("ERROR! Valorile introduse sunt invalide!");
+                                responseLabel.setForeground(Color.RED);
+                                repaint();
+                            } else if (resp == 409) {
+                                responseLabel.setText("ERROR! Elementul deja exista!");
+                                responseLabel.setForeground(Color.RED);
+                                repaint();
+                            } else {
+                                responseLabel.setText("ERROR!");
+                                responseLabel.setForeground(Color.RED);
+                                repaint();
+                            }
+
+                        } catch (Exception e) {
+                            System.err.println(e);
+                        } finally {
+                            post.releaseConnection();
+                            if (br != null) {
+                                try {
+                                    br.close();
+                                } catch (Exception fe) {
+                                }
                             }
                         }
-                    }
-                    
+
                     }
                 }
             }

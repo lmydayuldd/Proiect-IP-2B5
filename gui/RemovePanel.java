@@ -44,7 +44,7 @@ public class RemovePanel extends JPanel {
     public JTable tempTable;
     public JPanel p1;// = new JPanel();
     public JScrollPane sc;
-    
+    public JTree jj;
     
     public void buttons()
     {
@@ -63,8 +63,8 @@ public class RemovePanel extends JPanel {
                     eroare.setText("Status: "+resp + " - " + post.getResponseBodyAsString());
                     Modul3.getXML(Modul3.PATH);
                     p1.remove(sc);
-                    JTree jt = xtab.makeTree();
-                    sc = new JScrollPane(jt);
+                    jj = xtab.makeTree();
+                    sc = new JScrollPane(jj);
                     sc.setPreferredSize(new Dimension(600,512));
                     p1.add(sc);
                     p1.repaint();
@@ -185,7 +185,7 @@ public class RemovePanel extends JPanel {
     
     
     public void swing() throws IOException, SAXException, ParserConfigurationException {
-        JTree jj = xtab.makeTree();
+        jj = xtab.makeTree();
         //JFrame frame = new JFrame();
         //JPanel pane = new JPanel();
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));

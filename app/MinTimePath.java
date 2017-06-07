@@ -24,7 +24,7 @@ class MinTimePath extends PathFinder {
         int dy[] = {0, 0, -1, 0, 0, 1, 1, 1, -1, -1};
         int dz[] = {-1, 1, 0, 0, 0, 0, 0, 0, 0, 0};
         int n = Matrix.DIMENSION;
-        int lvl = 4;//Matrix.LEVEL_COUNT;
+        int lvl = Matrix.LEVEL_COUNT;
         double dist[][][] = new double[lvl][n][n];
         int from[][][] = new int[lvl][n][n];
 
