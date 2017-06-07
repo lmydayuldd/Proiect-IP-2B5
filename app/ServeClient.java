@@ -6,19 +6,23 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 /**
- * Created by Djok on 5/29/2017.
- * With Soul
+ * Created by Djok on 5/29/2017. With Soul Creati o conexiune TCP la portul 6969
+ * si trimiteti un sir de caractere care sa reprezinte coordonatele. EX: "1 2 3
+ * 4 5 6" care reprezinta ca dorim din sursa (1, 2, 3) sa ajungem in destinatia
+ * (4, 5, 6). 1 - X, 2 - Y, 3 - Etaj. 4 - X, 5 - Y, 6 - Etaj (codificarea). X :
+ * 1, Y : 2, FLOOR : 3 Dupa care, asteptati un sir de caractere care reprezinta
+ * un XML cu drumul.
  */
 class ServeClient extends Thread {
-    /**
-     * Creati o conexiune TCP la portul 6969 si trimiteti
-     * un sir de caractere care sa reprezinte coordonatele.
-     * EX: "1 2 3 4 5 6" care reprezinta ca dorim din sursa (1, 2, 3) sa ajungem in destinatia (4, 5, 6).
-     * 1 - X, 2 - Y, 3 - Etaj. 4 - X, 5 - Y, 6 - Etaj (codificarea).
-     * X : 1, Y : 2, FLOOR : 3
-     * Dupa care, asteptati un sir de caractere care reprezinta un XML cu drumul.
-     */
 
+    /**
+     * Creati o conexiune TCP la portul 6969 si trimiteti un sir de caractere
+     * care sa reprezinte coordonatele. EX: "1 2 3 4 5 6" care reprezinta ca
+     * dorim din sursa (1, 2, 3) sa ajungem in destinatia (4, 5, 6). 1 - X, 2 -
+     * Y, 3 - Etaj. 4 - X, 5 - Y, 6 - Etaj (codificarea). X : 1, Y : 2, FLOOR :
+     * 3 Dupa care, asteptati un sir de caractere care reprezinta un XML cu
+     * drumul.
+     */
     private Socket sock = null;
 
     ServeClient(Socket socket) {
@@ -42,19 +46,17 @@ class ServeClient extends Thread {
 
             //apel functie minunata; slab
             Matrix matrix = Modul3.currentMatrix;
-            for(int floor=0; floor<4 && false; ++floor){
+            for (int floor = 0; floor < 4 && false; ++floor) {
                 System.out.println(floor);
-                for(int i=0; i<450; ++i) {
+                for (int i = 0; i < 450; ++i) {
                     for (int j = 0; j < 450; ++j) {
-                        System.out.print(matrix.getCell(floor, i, j).getWalls()+" ");
+                        System.out.print(matrix.getCell(floor, i, j).getWalls() + " ");
                     }
                     System.out.println();
                 }
                 System.out.println();
             }
             ArrayList<Point> ans = new MinTimePath(matrix).execute(source, dest);
-
-
 
             XmlOutput x = new XmlOutput(ans);
             x.createXml("D:/format_date_path.xml");
@@ -67,6 +69,7 @@ class ServeClient extends Thread {
     }
 
     class InputReader {
+
         private BufferedReader reader;
         private StringTokenizer tokenizer;
 

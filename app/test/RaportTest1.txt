@@ -42,3 +42,11 @@ Raport Date: 28-May-2017
 	Test 11
 	1. Test Name: testRawMatrix5
 	2. Test Status: error (wrong filling wall assignement)
+
+
+Report Date: 7-June-2017
+
+Manual Testing GUI - Found bugs on JTree element - after Rollback the size of the JTree degenerates.
+                   - Bug on tempTable - after removing an element, it is removed from server but not from gui.removePane.tempTable.
+
+
