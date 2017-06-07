@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.net.ProtocolException;
 import java.util.logging.Level;
@@ -48,7 +50,7 @@ public class MainFrame extends JFrame {
         setLayout(new FlowLayout());
         setLayout(new FlowLayout());
         wallPanel = new WallPanel();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setSize(new Dimension(1250, 950));
         getContentPane().setBackground(Color.DARK_GRAY);
         //setBackground(Color.yellow);
@@ -61,8 +63,40 @@ public class MainFrame extends JFrame {
         add(leftPanel);
         add(rightPanel);
         
-        
-        
+       addListeners();
+
+    }
+
+    private void addListeners() {
+        addWindowListener(new WindowAdapter() {
+
+            public void windowClosing(WindowEvent e) {
+                String[] options = {"YES", "NO"};
+                JOptionPane pane = new JOptionPane();
+                pane.setMessageType(JOptionPane.QUESTION_MESSAGE);
+                pane.setMessage("<html>If you will exit now, all temporary data will be discarded<br>"
+                        + "The building will revert to the last valid state.<br>"
+                        + "Do you really want to quit?</html>");
+                pane.setOptions(options);
+                pane.setInitialValue("YES");
+                
+                JDialog dialog = pane.createDialog(null,"ATTENTION");
+                dialog.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+                dialog.setVisible(Boolean.TRUE);
+                Object answer = pane.getValue();
+                System.out.println("Answer: "+answer);
+                if(answer.equals("NO"))
+                {
+                    dialog.dispose();
+                    
+                }
+                else {
+                    
+                    dispose();
+                    System.exit(0);
+                }
+            }
+        });
     }
 
 }

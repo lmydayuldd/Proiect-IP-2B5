@@ -62,7 +62,7 @@ public class RemovePanel extends JPanel {
                     Gson gson = new Gson();
                     HashMap<String, String> mp = gson.fromJson(post.getResponseBodyAsString(), HashMap.class);
                     eroare.setText(mp.get("data"));
-                    if(resp == 409)
+                    if(resp == 200)
                     {
                         Modul3.getXML(Modul3.PATH);
                         p1.remove(sc);
