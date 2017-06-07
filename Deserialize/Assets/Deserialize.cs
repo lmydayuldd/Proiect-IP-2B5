@@ -28,8 +28,7 @@ public class Deserialize : MonoBehaviour // the Class
     static String sala_scris;
     public static float mouseSensitivity = 0.05F;
     public static Vector3 lastPosition;
-
-    
+    public static float xMin=101, yMin=101,xMax=0,yMax=0;
     void Start()
     {
         ServicePointManager.ServerCertificateValidationCallback = MyRemoteCertificateValidationCallback;
@@ -44,11 +43,11 @@ public class Deserialize : MonoBehaviour // the Class
         }
 
         if (Input.GetMouseButton(0))
-        {
-            Vector3 delta = Input.mousePosition - lastPosition;
-            transform.Translate(-delta.x * mouseSensitivity, -delta.y * mouseSensitivity, 0);
-            lastPosition = Input.mousePosition;
-        }
+            {
+                Vector3 delta = Input.mousePosition - lastPosition;
+                transform.Translate(-delta.x * mouseSensitivity, -delta.y * mouseSensitivity, 0);
+                lastPosition = Input.mousePosition;
+            }
     }
 
     public static List<string> getCamere(int etaj)
@@ -77,7 +76,7 @@ public class Deserialize : MonoBehaviour // the Class
         
         camera_oficial = camera;
 
-       // XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
+      // XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
        // xmlDoc.Load(stringXml); // load the file.
 
 
@@ -157,6 +156,43 @@ public class Deserialize : MonoBehaviour // the Class
             EtajString = Etaj.ToString();
             if (floorinfo2.Attributes["number"].Value.Equals(EtajString))
                 renderLevelForDisplay(floorinfo2);
+
+        }
+        yield return new WaitForSeconds(0);
+
+    }
+
+    public static IEnumerator GetLevelForCamera(int Etaj) //comunic cu modul 1
+    {
+        
+         WebRequest request = WebRequest.Create("http://localhost:4500/getXML");
+        // If required by the server, set the credentials.
+        request.Credentials = CredentialCache.DefaultCredentials;
+        // Get the response.
+        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+        // Get the stream containing content returned by the server.
+        Stream dataStream = response.GetResponseStream();
+        // Open the stream using a StreamReader for easy access.
+        StreamReader reader = new StreamReader(dataStream);
+        // Read the content. 
+        string responseFromServer = reader.ReadToEnd();
+        
+
+        XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
+        xmlDoc.LoadXml(responseFromServer); // load the file.
+        
+
+       // XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
+        //xmlDoc.Load(stringXml); // load the file.
+
+        XmlNodeList floorlist = xmlDoc.GetElementsByTagName("floor"); // array of the level nodes.
+
+
+        foreach (XmlNode floorinfo2 in floorlist) //adica fiecare <floor>
+        {
+            EtajString = Etaj.ToString();
+            if (floorinfo2.Attributes["number"].Value.Equals(EtajString))
+                renderLevelForDisplayCamera(floorinfo2);
 
         }
         yield return new WaitForSeconds(0);
@@ -256,7 +292,7 @@ public class Deserialize : MonoBehaviour // the Class
     public static IEnumerator GetLevelsForDropDown(float waitTime, Action Populare) //aici comunic cu modul 1
     {
 
-       
+       /*
         WebRequest request = WebRequest.Create("http://localhost:4500/getXML");
         // If required by the server, set the credentials.
         request.Credentials = CredentialCache.DefaultCredentials;
@@ -272,9 +308,9 @@ public class Deserialize : MonoBehaviour // the Class
 
         XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
         xmlDoc.LoadXml(responseFromServer); // load the file.
-        
-        // XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
-        //xmlDoc.Load(stringXml); // load the file.
+        */
+         XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
+        xmlDoc.Load(stringXml); // load the file.
 
 
         XmlNodeList floorlist = xmlDoc.GetElementsByTagName("floor"); // array of the level nodes.
@@ -323,22 +359,30 @@ public class Deserialize : MonoBehaviour // the Class
                                 {
                                     string x1_str = dimension.InnerText;
                                     x1 = float.Parse(x1_str);
+                                    if (x1 < xMin) xMin = x1;
+                                    if (x1 >= xMax) xMax = x1;
                                 }
                                 if (dimension.Name == "y1")
                                 {
                                     string y1_str = dimension.InnerText;
                                     y1 = float.Parse(y1_str);
-
+                                    if (y1 < yMin) yMin = y1;
+                                    if (y1 >= yMax) yMax = y1;
                                 }
                                 if (dimension.Name == "x2")
                                 {
                                     string x2_str = dimension.InnerText;
                                     x2 = float.Parse(x2_str);
+                                    if (x2 < xMin) xMin = x2;
+                                    if (x2 >= xMax) xMax = x2;
+
                                 }
                                 if (dimension.Name == "y2")
                                 {
                                     string y2_str = dimension.InnerText;
                                     y2 = float.Parse(y2_str);
+                                    if (y2 < yMin) yMin = y2;
+                                    if (y2 >= yMax) yMax = y2;
                                 }
 
                             }
@@ -352,6 +396,9 @@ public class Deserialize : MonoBehaviour // the Class
                             lineRenderer.SetPosition(1, new Vector3(x2, 0, y2));
                             Material whiteDiffuseMat = new Material(Shader.Find("Sprites/Default"));
                             lineRenderer.material = whiteDiffuseMat;
+
+
+
                             break;
 
                         case "door":
@@ -540,7 +587,202 @@ public class Deserialize : MonoBehaviour // the Class
         }
 
     }
-    
+
+    public static void renderLevelForDisplayCamera(XmlNode floorinfo2)
+    {
+        XmlNodeList roomcontent2 = floorinfo2.ChildNodes;
+        float x1 = 0.0f, x2 = 0.0f, y1 = 0.0f, y2 = 0.0f;
+
+        foreach (XmlNode floorinfo in roomcontent2)
+        {
+            XmlNodeList roomcontent = floorinfo.ChildNodes;
+
+            foreach (XmlNode roomstuff in roomcontent)
+            {
+                if (roomstuff.Name == "name")
+                {
+                    string nume = roomstuff.InnerText;
+                    sala_scris = nume;
+                }
+
+                if (roomstuff.Name == "type")
+                {
+                    switch (roomstuff.Attributes["name"].Value)
+                    {
+                        case "wall":
+
+                            XmlNodeList roomdimensions = roomstuff.ChildNodes;//xmlDoc.GetElementsByTagName("type");// 
+                            foreach (XmlNode dimension in roomdimensions)
+                            {
+                                if (dimension.Name == "x1")
+                                {
+                                    string x1_str = dimension.InnerText;
+                                    x1 = float.Parse(x1_str);
+                                    if (x1 < xMin) xMin = x1;
+                                    if (x1 >= xMax) xMax = x1;
+                                }
+                                if (dimension.Name == "y1")
+                                {
+                                    string y1_str = dimension.InnerText;
+                                    y1 = float.Parse(y1_str);
+                                    if (y1 < yMin) yMin = y1;
+                                    if (y1 >= yMax) yMax = y1;
+                                }
+                                if (dimension.Name == "x2")
+                                {
+                                    string x2_str = dimension.InnerText;
+                                    x2 = float.Parse(x2_str);
+                                    if (x2 < xMin) xMin = x2;
+                                    if (x2 >= xMax) xMax = x2;
+
+                                }
+                                if (dimension.Name == "y2")
+                                {
+                                    string y2_str = dimension.InnerText;
+                                    y2 = float.Parse(y2_str);
+                                    if (y2 < yMin) yMin = y2;
+                                    if (y2 >= yMax) yMax = y2;
+                                }
+
+                            }
+
+
+
+                            break;
+
+                        case "door":
+                            XmlNodeList roomdimensions2 = roomstuff.ChildNodes;//xmlDoc.GetElementsByTagName("type");// 
+                            foreach (XmlNode dimension in roomdimensions2)
+
+                            {
+                                if (dimension.Name == "x1")
+                                {
+                                    string x1_str = dimension.InnerText;
+                                    x1 = float.Parse(x1_str);
+                                }
+                                if (dimension.Name == "y1")
+                                {
+                                    string y1_str = dimension.InnerText;
+                                    y1 = float.Parse(y1_str);
+                                }
+                                if (dimension.Name == "x2")
+                                {
+                                    string x2_str = dimension.InnerText;
+                                    x2 = float.Parse(x2_str);
+                                }
+                                if (dimension.Name == "y2")
+                                {
+                                    string y2_str = dimension.InnerText;
+                                    y2 = float.Parse(y2_str);
+                                }
+                            }
+
+
+
+                            
+
+                            break;
+
+                        case "window":
+
+                            XmlNodeList roomdimensions3 = roomstuff.ChildNodes;//xmlDoc.GetElementsByTagName("type");// 
+                            foreach (XmlNode dimension in roomdimensions3)
+                            {
+                                if (dimension.Name == "x1")
+                                {
+                                    string x1_str = dimension.InnerText;
+                                    x1 = float.Parse(x1_str);
+                                }
+                                if (dimension.Name == "y1")
+                                {
+                                    string y1_str = dimension.InnerText;
+                                    y1 = float.Parse(y1_str);
+
+                                }
+                                if (dimension.Name == "x2")
+                                {
+                                    string x2_str = dimension.InnerText;
+                                    x2 = float.Parse(x2_str);
+                                }
+                                if (dimension.Name == "y2")
+                                {
+                                    string y2_str = dimension.InnerText;
+                                    y2 = float.Parse(y2_str);
+                                }
+
+                            }
+                            break;
+                        case "path":
+
+                            XmlNodeList roomdimensions4 = roomstuff.ChildNodes;//xmlDoc.GetElementsByTagName("type");// 
+                            foreach (XmlNode dimension in roomdimensions4)
+                            {
+                                if (dimension.Name == "x1")
+                                {
+                                    string x1_str = dimension.InnerText;
+                                    x1 = float.Parse(x1_str);
+                                }
+                                if (dimension.Name == "y1")
+                                {
+                                    string y1_str = dimension.InnerText;
+                                    y1 = float.Parse(y1_str);
+
+                                }
+                                if (dimension.Name == "x2")
+                                {
+                                    string x2_str = dimension.InnerText;
+                                    x2 = float.Parse(x2_str);
+                                }
+                                if (dimension.Name == "y2")
+                                {
+                                    string y2_str = dimension.InnerText;
+                                    y2 = float.Parse(y2_str);
+                                }
+
+                            }
+                            break;
+
+                        case "stairs":
+
+                            XmlNodeList roomdimensions5 = roomstuff.ChildNodes;//xmlDoc.GetElementsByTagName("type");// 
+                            foreach (XmlNode dimension in roomdimensions5)
+                            {
+                                if (dimension.Name == "x1")
+                                {
+                                    string x1_str = dimension.InnerText;
+                                    x1 = float.Parse(x1_str);
+                                }
+                                if (dimension.Name == "y1")
+                                {
+                                    string y1_str = dimension.InnerText;
+                                    y1 = float.Parse(y1_str);
+
+                                }
+                                if (dimension.Name == "x2")
+                                {
+                                    string x2_str = dimension.InnerText;
+                                    x2 = float.Parse(x2_str);
+                                }
+                                if (dimension.Name == "y2")
+                                {
+                                    string y2_str = dimension.InnerText;
+                                    y2 = float.Parse(y2_str);
+                                }
+
+                            }
+                            break;
+
+                    }
+                }
+
+
+
+
+            }
+        }
+
+    }
+
     public static void renderLevelForDropDown(XmlNode floorinfo2, int Etaj)
     {
        if (camere[Etaj] == null)

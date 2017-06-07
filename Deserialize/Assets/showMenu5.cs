@@ -12,6 +12,7 @@ public class showMenu5 : MonoBehaviour
     public Button btn_generate;
     public static int etaj_index_vizualizare, etaj_camera1 = 0 - 2, etaj_camera2 = 0 - 2, camera1 = 0 - 2, camera2 = 0 - 2;
     public static int buton_apasat = 0,buton_apasat2=0;
+    Vector3 mainCam;
     public void doExitGame()
     {
         Application.Quit();
@@ -124,7 +125,7 @@ public class showMenu5 : MonoBehaviour
         douaUsi = 0;
         output += dd_etaj2.GetComponent<Dropdown>().value;
         Deserialize.setUsi(dd_etaj2.GetComponent<Dropdown>().value);
-        Debug.Log("output = " + output);
+        Debug.Log("output = " + output + "xMin,xMax"+Deserialize.xMin + Deserialize.xMax + "yMin,yMax"+Deserialize.yMin+ Deserialize.yMax);
         //de vazut cum se returneaza stringul din dropdown
         d.Connect("localhost", output);
 
@@ -178,6 +179,12 @@ public class showMenu5 : MonoBehaviour
         StartCoroutine(Deserialize.GetLevelsForDropDown(0, Populare));
         dd_2d_etaj.ClearOptions();
         dd_2d_etaj.AddOptions(Deserialize.getEtajePentruDd());
+
+        StartCoroutine(Deserialize.GetLevelForCamera(1));
+       // Debug.Log( "xMin,xMax" + Deserialize.xMin + Deserialize.xMax + "yMin,yMax" + Deserialize.yMin + Deserialize.yMax);
+        float xMedie = (Deserialize.xMin + Deserialize.xMax) / 2;
+        float yMedie = (Deserialize.yMin + Deserialize.yMax) / 2;
+        mainCam = GameObject.Find("Main Camera").transform.position=new Vector3(xMedie, 30, yMedie);
     }
 
 
