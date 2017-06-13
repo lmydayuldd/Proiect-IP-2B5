@@ -11,7 +11,7 @@ using System.Net.Sockets;
 using UnityEngine.UI;
 
 public class Deserialize : MonoBehaviour // the Class
-{
+{  
     public static List<string> camere1 = new List<string>() { "1" };
     public static List<string> etajePentruDd = new List<string>() { "Selectare Etaj" };
 
@@ -30,19 +30,89 @@ public class Deserialize : MonoBehaviour // the Class
     static String sala_scris;
     public static float mouseSensitivity = 0.05F;
     public static Vector3 lastPosition;
+
     public static float xMin=101, yMin=101,xMax=0,yMax=0;
+    public static GameObject vesselSegment;
+    /*
+    static void SpawnGround(Vector3 pA, Vector3 pB)
+    {
+        GameObject ground = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        Vector3 between = pB - pA;
+        float distance = between.magnitude;
+       ground.transform.localScale=new Vector3(distance,1,1);
+       // x = distance;
+        ground.transform.position = pA + (between / 2.0f);
+        ground.transform.LookAt(pB);
+    }*/
+    static void create_3D(Vector3 p1, Vector3 p2,int option)
+    {
+        Vector3 pos = Vector3.Lerp(p1, p2, (float)0.5);
+
+      //  vesselSegment = Resources.Load("Cube") as GameObject;
+        GameObject segObj = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        segObj.tag = "naspa";
+        if(option==1)segObj.name = "Perete";
+        if (option == 2) segObj.name = "Stairs-Wall";
+        if (option == 3) segObj.name = "Fereastra";
+        if (option == 4) segObj.name = "Usa";
+
+        Vector3 newScale = segObj.transform.localScale;
+        if (option != 4) newScale.x = Vector3.Distance(p1, p2)+0.5f;
+        else newScale.x = Vector3.Distance(p1, p2)-0.5f;
+        if (option == 3) newScale.y = 2.5f;
+        else newScale.y = 3;
+        if (option == 3) newScale.z = 0.8f;
+        else newScale.z = 0.5f;
+        segObj.transform.localScale = newScale;
+        
+        segObj.transform.position = pos;
+        //segObj.transform.up = p2 - p1;
+        segObj.transform.LookAt(p2);
+        
+        Vector3 eulerAngleValues = segObj.transform.rotation.eulerAngles;
+       if(option==1) segObj.GetComponent<Renderer>().material.color = Color.white;
+        else if (option==2)segObj.GetComponent<Renderer>().material.color = Color.red;
+        else if (option == 3) segObj.GetComponent<Renderer>().material.color = Color.blue;
+        else if (option == 4) segObj.GetComponent<Renderer>().material.color = Color.black;
+
+        Debug.Log(eulerAngleValues);
+        if (eulerAngleValues.y == 0)
+        {
+            segObj.transform.rotation = Quaternion.Euler(0, 90, 0);
+        }
+        else if (eulerAngleValues.y == 270 || eulerAngleValues.y == 90)
+        {
+            segObj.transform.rotation = Quaternion.Euler(0, 0, 0);
+
+        }
+        else if (eulerAngleValues.y == 180)
+        {
+            segObj.transform.rotation = Quaternion.Euler(0, 90, 0);
+        }
+    }
+    
+    /*
+   static void SpawnGround2(Vector3 startPos, Vector3 endPos)
+    {
+        GameObject ground = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        Vector3 centerPos = new Vector3(startPos.x + endPos.x, startPos.y + endPos.y) / 2;
+
+        float scaleX = Mathf.Abs(startPos.x - endPos.x);
+        float scaleY = Mathf.Abs(startPos.y - endPos.y);
+
+        centerPos.x -= 0.5f;
+        centerPos.y += 0.5f;
+        ground.transform.position = centerPos;
+        ground.transform.localScale = new Vector3(scaleX, scaleY, 1);
+    }*/
+
+
     void Start()
     {
         ServicePointManager.ServerCertificateValidationCallback = MyRemoteCertificateValidationCallback;
 
 
     }
-	/*
-	
-	Aici miscam imaginea cu mouse-ul.
-	
-	
-	*/
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -62,7 +132,6 @@ public class Deserialize : MonoBehaviour // the Class
     {
         return camere[etaj];
     }
-	//luam doua coordonate de la usa camerei din parametru
     public static List<string> getUsa(int etaj,string camera) //comunic cu modul 1
     {
 
@@ -83,10 +152,10 @@ public class Deserialize : MonoBehaviour // the Class
         XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
         xmlDoc.LoadXml(responseFromServer); // load the file.
         
-        camera_oficial = camera; //in camera_oficial pastram numele camerei ca la parsare sa putem gasi usor usa ei.
+        camera_oficial = camera;
 
-       // XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
-       // xmlDoc.Load(stringXml); // load the file.
+       //XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
+      // xmlDoc.Load(stringXml); // load the file.
 
 
         XmlNodeList floorlist = xmlDoc.GetElementsByTagName("floor"); // array of the level nodes.
@@ -133,7 +202,7 @@ public class Deserialize : MonoBehaviour // the Class
     }
 
   
-	//getlevel este apelata din dropdown, si la momentul parsarii afiseaza doar etajul din parametru
+
     public static IEnumerator GetLevel(int Etaj) //comunic cu modul 1
     {
         
@@ -154,7 +223,7 @@ public class Deserialize : MonoBehaviour // the Class
         xmlDoc.LoadXml(responseFromServer); // load the file.
         
         
-        //XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
+       // XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
         //xmlDoc.Load(stringXml); // load the file.
 
         XmlNodeList floorlist = xmlDoc.GetElementsByTagName("floor"); // array of the level nodes.
@@ -171,7 +240,6 @@ public class Deserialize : MonoBehaviour // the Class
 
     }
 
-	//Aceasta este apelata in Start(), pentru a lua coordonatele minime si maxime ale x si y, ca mai apoi sa faca media si sa plaseze camera la acele coordonate
     public static IEnumerator GetLevelForCamera(int Etaj) //comunic cu modul 1
     {
         
@@ -192,8 +260,8 @@ public class Deserialize : MonoBehaviour // the Class
         xmlDoc.LoadXml(responseFromServer); // load the file.
         
 
-        //XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
-       // xmlDoc.Load(stringXml); // load the file.
+      //  XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
+        //xmlDoc.Load(stringXml); // load the file.
 
         XmlNodeList floorlist = xmlDoc.GetElementsByTagName("floor"); // array of the level nodes.
 
@@ -208,7 +276,6 @@ public class Deserialize : MonoBehaviour // the Class
         yield return new WaitForSeconds(0);
 
     }
-	//este apelata din dropdown ca sa fie afisat path-ul. Se parseaza documentul salvat local de catre modulul 3.
     public static IEnumerator GetLevelPath(int Etaj)
     {
 
@@ -299,8 +366,7 @@ public class Deserialize : MonoBehaviour // the Class
         Console.WriteLine("\n Press Enter to continue...");
         Console.Read();
     }
-	
-	//apelata in Button_refresh() si Start(). Populeaza dropdownurile pentru etaje.
+
     public static IEnumerator GetLevelsForDropDown(float waitTime, Action Populare) //aici comunic cu modul 1
     {
 
@@ -322,7 +388,7 @@ public class Deserialize : MonoBehaviour // the Class
         xmlDoc.LoadXml(responseFromServer); // load the file.
         
         // XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
-       // xmlDoc.Load(stringXml); // load the file.
+        // xmlDoc.Load(stringXml); // load the file.
 
 
         XmlNodeList floorlist = xmlDoc.GetElementsByTagName("floor"); // array of the level nodes.
@@ -340,7 +406,7 @@ public class Deserialize : MonoBehaviour // the Class
         Populare();
     }
     
-	//punem obiectele care sunt de afisat.
+
     public static void renderLevelForDisplay(XmlNode floorinfo2)
     {
         XmlNodeList roomcontent2 = floorinfo2.ChildNodes;
@@ -401,7 +467,7 @@ public class Deserialize : MonoBehaviour // the Class
                                     if (y2 >= yMax) yMax = y2;
                                 }
 
-                            }
+                            }/*
                             LineRenderer lineRenderer;
                             GameObject obj = new GameObject("line");
                             obj.gameObject.tag = "naspa";
@@ -412,10 +478,17 @@ public class Deserialize : MonoBehaviour // the Class
                             lineRenderer.SetPosition(1, new Vector3(x2, 0, y2));
                             Material whiteDiffuseMat = new Material(Shader.Find("Sprites/Default"));
                             lineRenderer.material = whiteDiffuseMat;
-                            
-                            if(sala_scris.Equals("-1"))
+                            */
+                            Vector3 p1 = new Vector3(x1, 1, y1);
+                            Vector3 p2 = new Vector3(x2, 1, y2);
+
+                            create_3D(p1, p2,1);
+
+
+
+                            if (sala_scris.Equals("-1"))
                             {
-                                GameObject text2 = new GameObject();
+                                GameObject text2 = new GameObject("text-coord");
                                 text2.gameObject.tag = "naspa";
                                 TextMesh t2 = text2.AddComponent<TextMesh>();
                                 t2.text = x1String+" "+y1String;
@@ -425,7 +498,7 @@ public class Deserialize : MonoBehaviour // the Class
                                 t2.transform.localEulerAngles += new Vector3(90, 0, 0);
                                 t2.transform.localPosition += new Vector3(x1, 2f, y1);
 
-                                GameObject text3 = new GameObject();
+                                GameObject text3 = new GameObject("text-coord2");
                                 text3.gameObject.tag = "naspa";
                                 TextMesh t3 = text3.AddComponent<TextMesh>();
                                 t3.text = x2String + " " + y2String;
@@ -466,10 +539,7 @@ public class Deserialize : MonoBehaviour // the Class
                                     y2 = float.Parse(y2_str);
                                 }
                             }
-
-                            
-                           
-
+                            /*
                             LineRenderer lineRenderer2;
                             GameObject obj2 = new GameObject("line_usa");
 
@@ -481,8 +551,14 @@ public class Deserialize : MonoBehaviour // the Class
                             lineRenderer2.SetPosition(1, new Vector3(x2, 0.35f, y2));
                             Material blackDiffuseMat = new Material(Shader.Find("Sprites/Default"));
                             lineRenderer2.material = blackDiffuseMat;
+                            */
 
-                            GameObject text = new GameObject();
+                            Vector3 p7 = new Vector3(x1, 1, y1);
+                            Vector3 p8 = new Vector3(x2, 1, y2);
+
+                            create_3D(p7, p8, 4);
+
+                            GameObject text = new GameObject("text-door");
                             text.gameObject.tag = "naspa";
                             TextMesh t = text.AddComponent<TextMesh>();
                             t.text = sala_scris;
@@ -522,6 +598,7 @@ public class Deserialize : MonoBehaviour // the Class
                                 }
 
                             }
+                            /*
                             LineRenderer lineRenderer3;
                             GameObject obj3 = new GameObject("line-window");
 
@@ -532,7 +609,12 @@ public class Deserialize : MonoBehaviour // the Class
                             lineRenderer3.SetPosition(0, new Vector3(x1, 0, y1));
                             lineRenderer3.SetPosition(1, new Vector3(x2, 0, y2));
                             Material blueDiffuseMat = new Material(Shader.Find("Sprites/Default"));
-                            lineRenderer3.material = blueDiffuseMat;
+                            lineRenderer3.material = blueDiffuseMat;*/
+                            Vector3 p5 = new Vector3(x1, 1, y1);
+                            Vector3 p6 = new Vector3(x2, 1, y2);
+                        
+                            create_3D(p5, p6, 3);
+
                             break;
                         case "path":
 
@@ -567,7 +649,7 @@ public class Deserialize : MonoBehaviour // the Class
 
                             obj4.gameObject.tag = "naspa";
                             lineRenderer4 = obj4.AddComponent<LineRenderer>();
-                            lineRenderer4.SetWidth(0.3f, 0.3f);
+                            lineRenderer4.SetWidth(0.6f, 0.6f);
                             lineRenderer4.SetColors(Color.green, Color.green);
                             lineRenderer4.SetPosition(0, new Vector3(x1, 0.6f, y1));
                             lineRenderer4.SetPosition(1, new Vector3(x2, 0.6f, y2));
@@ -603,6 +685,7 @@ public class Deserialize : MonoBehaviour // the Class
                                 }
 
                             }
+                            /*
                             LineRenderer lineRenderer5;
                             GameObject obj5 = new GameObject("line-path");
 
@@ -614,6 +697,13 @@ public class Deserialize : MonoBehaviour // the Class
                             lineRenderer5.SetPosition(1, new Vector3(x2, 0.6f, y2));
                             Material blueDiffuseMat5 = new Material(Shader.Find("Sprites/Default"));
                             lineRenderer5.material = blueDiffuseMat5;
+                            */
+
+                            Vector3 p3 = new Vector3(x1, 1, y1);
+                            Vector3 p4 = new Vector3(x2, 1, y2);
+
+                            create_3D(p3, p4,2);
+
                             break;
 
                     }
@@ -626,7 +716,7 @@ public class Deserialize : MonoBehaviour // the Class
         }
 
     }
-	//pastram minimul si maximul din x si y pentru Main Camera.
+
     public static void renderLevelForDisplayCamera(XmlNode floorinfo2)
     {
         XmlNodeList roomcontent2 = floorinfo2.ChildNodes;
@@ -821,7 +911,7 @@ public class Deserialize : MonoBehaviour // the Class
         }
 
     }
-	//functia de care ne folosim sa populam dropdownul cu camere
+
     public static void renderLevelForDropDown(XmlNode floorinfo2, int Etaj)
     {
        if (camere[Etaj] == null)
@@ -950,7 +1040,7 @@ public class Deserialize : MonoBehaviour // the Class
         }
 
     }
-	//functia care e apelata in getUsa(). aici pastram coordonatele.
+
     public static void renderLevelForDropDownDoor(XmlNode floorinfo2, int Etaj)
     {
         if (usi[Etaj] == null) //sa incep de la 0 si sa pun aici pe undeca la citirea usilor un x1 concatenat cu y1 pe care il returnez cu getUsa
