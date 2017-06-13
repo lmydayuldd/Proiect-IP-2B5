@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Deserialize.cs" />
+    <Compile Include="Assets\MoveCamera.cs" />
     <Compile Include="Assets\PlayerController.cs" />
     <Compile Include="Assets\showMenu5.cs" />
   </ItemGroup>

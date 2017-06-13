@@ -9,6 +9,9 @@ using System.Net.Security;
 using System;
 using System.Net.Sockets;
 using UnityEngine.UI;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class Deserialize : MonoBehaviour // the Class
 {  
@@ -47,14 +50,35 @@ public class Deserialize : MonoBehaviour // the Class
     static void create_3D(Vector3 p1, Vector3 p2,int option)
     {
         Vector3 pos = Vector3.Lerp(p1, p2, (float)0.5);
-
-      //  vesselSegment = Resources.Load("Cube") as GameObject;
+#if UNITY_EDITOR
+        //  vesselSegment = Resources.Load("Cube") as GameObject;
         GameObject segObj = GameObject.CreatePrimitive(PrimitiveType.Cube);
         segObj.tag = "naspa";
         if(option==1)segObj.name = "Perete";
         if (option == 2) segObj.name = "Stairs-Wall";
         if (option == 3) segObj.name = "Fereastra";
         if (option == 4) segObj.name = "Usa";
+        if (option == 1)
+        {
+            Texture2D mytexture = (Texture2D)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Resources/Textures/wall07_Height.tga", typeof(Texture2D));
+            segObj.GetComponent<Renderer>().material.mainTexture = mytexture;
+        }
+        if (option == 2)
+        {
+            Texture2D mytexture = (Texture2D)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Resources/Textures/woodPlanks_bare03.png", typeof(Texture2D));
+            segObj.GetComponent<Renderer>().material.mainTexture = mytexture;
+        }
+        if (option == 3)
+        {
+            Texture2D mytexture = (Texture2D)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Resources/Textures/window.jpg", typeof(Texture2D));
+            segObj.GetComponent<Renderer>().material.mainTexture = mytexture;
+        }
+        if (option == 4)
+        {
+            Texture2D mytexture = (Texture2D)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Resources/Textures/door.jpg", typeof(Texture2D));
+            segObj.GetComponent<Renderer>().material.mainTexture = mytexture;
+        }
+
 
         Vector3 newScale = segObj.transform.localScale;
         if (option != 4) newScale.x = Vector3.Distance(p1, p2)+0.5f;
@@ -70,10 +94,10 @@ public class Deserialize : MonoBehaviour // the Class
         segObj.transform.LookAt(p2);
         
         Vector3 eulerAngleValues = segObj.transform.rotation.eulerAngles;
-       if(option==1) segObj.GetComponent<Renderer>().material.color = Color.white;
-        else if (option==2)segObj.GetComponent<Renderer>().material.color = Color.red;
-        else if (option == 3) segObj.GetComponent<Renderer>().material.color = Color.blue;
-        else if (option == 4) segObj.GetComponent<Renderer>().material.color = Color.black;
+      // if(option==1) segObj.GetComponent<Renderer>().material.color = Color.white;
+       // else if (option==2)segObj.GetComponent<Renderer>().material.color = Color.red;
+       // else if (option == 3) segObj.GetComponent<Renderer>().material.color = Color.blue;
+        //if (option == 4) segObj.GetComponent<Renderer>().material.color = Color.black;
 
         Debug.Log(eulerAngleValues);
         if (eulerAngleValues.y == 0)
@@ -89,8 +113,9 @@ public class Deserialize : MonoBehaviour // the Class
         {
             segObj.transform.rotation = Quaternion.Euler(0, 90, 0);
         }
+#endif
     }
-    
+
     /*
    static void SpawnGround2(Vector3 startPos, Vector3 endPos)
     {
@@ -115,7 +140,7 @@ public class Deserialize : MonoBehaviour // the Class
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+       /* if (Input.GetMouseButtonDown(0))
         {
             lastPosition = Input.mousePosition;
         }
@@ -125,7 +150,7 @@ public class Deserialize : MonoBehaviour // the Class
                 Vector3 delta = Input.mousePosition - lastPosition;
                 transform.Translate(-delta.x * mouseSensitivity, -delta.y * mouseSensitivity, 0);
                 lastPosition = Input.mousePosition;
-            }
+            } */
     }
 
     public static List<string> getCamere(int etaj)
@@ -154,8 +179,8 @@ public class Deserialize : MonoBehaviour // the Class
         
         camera_oficial = camera;
 
-       //XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
-      // xmlDoc.Load(stringXml); // load the file.
+        // XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
+        // xmlDoc.Load(stringXml); // load the file.
 
 
         XmlNodeList floorlist = xmlDoc.GetElementsByTagName("floor"); // array of the level nodes.
@@ -224,7 +249,7 @@ public class Deserialize : MonoBehaviour // the Class
         
         
        // XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
-        //xmlDoc.Load(stringXml); // load the file.
+       // xmlDoc.Load(stringXml); // load the file.
 
         XmlNodeList floorlist = xmlDoc.GetElementsByTagName("floor"); // array of the level nodes.
        
@@ -387,8 +412,8 @@ public class Deserialize : MonoBehaviour // the Class
         XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
         xmlDoc.LoadXml(responseFromServer); // load the file.
         
-        // XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
-        // xmlDoc.Load(stringXml); // load the file.
+       //  XmlDocument xmlDoc = new XmlDocument(); // xmlDoc is the new xml document.
+         //xmlDoc.Load(stringXml); // load the file.
 
 
         XmlNodeList floorlist = xmlDoc.GetElementsByTagName("floor"); // array of the level nodes.
@@ -1174,6 +1199,8 @@ public class Deserialize : MonoBehaviour // the Class
             }
         }
 
+
     }
+
 
 }
